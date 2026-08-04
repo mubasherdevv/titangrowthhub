@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useToast } from '@/components/ToastProvider';
 import {
   Upload,
   Search,
@@ -75,6 +76,7 @@ const initialMedia: MediaItem[] = [
 ];
 
 export default function MediaLibraryPage() {
+  const toast = useToast();
   const [mediaList, setMediaList] = useState<MediaItem[]>(initialMedia);
   const [searchQuery, setSearchQuery] = useState('');
   const [filterType, setFilterType] = useState<'all' | 'missing' | 'webp'>('all');
@@ -92,6 +94,7 @@ export default function MediaLibraryPage() {
         item.id === id ? { ...item, altText: generated, hasAlt: true } : item
       )
     );
+    toast.success('AI alt text generated successfully');
   };
 
   // Copy Image URL
@@ -99,6 +102,14 @@ export default function MediaLibraryPage() {
     navigator.clipboard.writeText(url);
     setCopiedId(id);
     setTimeout(() => setCopiedId(null), 2000);
+    toast.success('Image URL copied to clipboard');
+  };
+
+  // Delete Image
+  const handleDelete = (id: string) => {
+    const item = mediaList.find((m) => m.id === id);
+    setMediaList((prev) => prev.filter((m) => m.id !== id));
+    toast.success(`Deleted ${item?.name ?? 'image'}`);
   };
 
   // Filtered List
@@ -315,6 +326,7 @@ export default function MediaLibraryPage() {
                     <ExternalLink className="h-4 w-4" />
                   </a>
                   <button
+                    onClick={() => handleDelete(item.id)}
                     className="p-1.5 text-zinc-400 hover:text-red-600 rounded-lg hover:bg-red-50"
                     title="Delete image"
                   >

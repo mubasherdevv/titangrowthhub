@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { verifySessionToken, SESSION_COOKIE } from '@/lib/auth';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
@@ -7,15 +8,32 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Fast-skip static assets, API paths, and admin panel
+  // Fast-skip static assets, API paths, and WordPress assets
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
-    pathname.startsWith('/admin') ||
     pathname.startsWith('/wp-content') ||
     pathname.startsWith('/wp-includes') ||
     pathname.includes('.')
   ) {
+    return NextResponse.next();
+  }
+
+  // Protect the admin panel (except the login page)
+  if (pathname.startsWith('/admin')) {
+    if (pathname === '/admin/login') {
+      return NextResponse.next();
+    }
+
+    const token = request.cookies.get(SESSION_COOKIE)?.value;
+    const valid = await verifySessionToken(token);
+
+    if (!valid) {
+      const url = new URL('/admin/login', request.url);
+      url.searchParams.set('next', pathname);
+      return NextResponse.redirect(url);
+    }
+
     return NextResponse.next();
   }
 

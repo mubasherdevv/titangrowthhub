@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useToast } from '@/components/ToastProvider';
 import {
   Sliders,
   Globe,
@@ -24,6 +25,7 @@ import {
 } from 'lucide-react';
 
 export default function SettingsPage() {
+  const toast = useToast();
   const [activeTab, setActiveTab] = useState<'general' | 'seo' | 'api' | 'team' | 'security' | 'notifications'>('general');
   const [savedSuccess, setSavedSuccess] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -100,9 +102,13 @@ export default function SettingsPage() {
       if (response.ok) {
         setSavedSuccess(true);
         setTimeout(() => setSavedSuccess(false), 2000);
+        toast.success('Settings saved successfully');
+      } else {
+        toast.error('Failed to save settings');
       }
     } catch (err) {
       console.error('Error saving settings:', err);
+      toast.error('Error saving settings');
     } finally {
       setIsSaving(false);
     }

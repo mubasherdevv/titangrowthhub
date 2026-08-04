@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, Search, Bell, ChevronDown, CheckCircle2, Sparkles } from 'lucide-react';
+import { Menu, Search, Bell, ChevronDown, CheckCircle2, Sparkles, LogOut, Loader2 } from 'lucide-react';
 
 interface HeaderProps {
   onToggleSidebar?: () => void;
@@ -13,6 +13,30 @@ interface HeaderProps {
 export default function Header({ onToggleSidebar, onOpenSearch }: HeaderProps) {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [adminEmail, setAdminEmail] = useState('admin@vistaseo.com');
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/auth/me')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.authenticated && data.email) {
+          setAdminEmail(data.email);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const handleLogout = async () => {
+    setLoggingOut(true);
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      window.location.href = '/admin/login';
+    }
+  };
 
   const notifications = [
     { id: 1, title: 'SEO Audit Completed', desc: 'Blog posts score updated to 85/100', time: '10m ago', unread: true },
@@ -118,7 +142,9 @@ export default function Header({ onToggleSidebar, onOpenSearch }: HeaderProps) {
               className="h-9 w-9 rounded-full object-cover ring-2 ring-orange-500/20"
             />
             <div className="hidden md:flex flex-col text-left">
-              <span className="text-xs font-extrabold text-zinc-950 leading-tight">John Doe</span>
+              <span className="text-xs font-extrabold text-zinc-950 leading-tight">
+                {adminEmail.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
+              </span>
               <span className="text-[11px] text-orange-600 font-bold">Admin</span>
             </div>
             <ChevronDown className="h-4 w-4 text-zinc-400 hidden md:block" />
@@ -128,13 +154,22 @@ export default function Header({ onToggleSidebar, onOpenSearch }: HeaderProps) {
           {showUserMenu && (
             <div className="absolute right-0 mt-2 w-48 rounded-xl border border-zinc-200 bg-white py-2 shadow-lg z-50">
               <div className="px-4 py-2 border-b border-zinc-100">
-                <p className="text-xs font-bold text-zinc-900">John Doe</p>
-                <p className="text-[11px] text-zinc-500">john.doe@vistaseo.com</p>
+                <p className="text-xs font-bold text-zinc-900">
+                  {adminEmail.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
+                </p>
+                <p className="text-[11px] text-zinc-500">{adminEmail}</p>
               </div>
               <Link href="#profile" className="block px-4 py-2 text-xs text-zinc-700 hover:bg-orange-50 hover:text-orange-600 font-medium">Account Settings</Link>
               <Link href="#billing" className="block px-4 py-2 text-xs text-zinc-700 hover:bg-orange-50 hover:text-orange-600 font-medium">Billing & Plans</Link>
               <div className="border-t border-zinc-100 mt-1"></div>
-              <button className="w-full text-left px-4 py-2 text-xs text-red-600 hover:bg-red-50 font-bold">Log out</button>
+              <button
+                onClick={handleLogout}
+                disabled={loggingOut}
+                className="w-full flex items-center gap-2 px-4 py-2 text-xs text-red-600 hover:bg-red-50 font-bold disabled:opacity-50"
+              >
+                {loggingOut ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <LogOut className="h-3.5 w-3.5" />}
+                Log out
+              </button>
             </div>
           )}
         </div>

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useToast } from '@/components/ToastProvider';
 import {
   Search,
   Upload,
@@ -59,6 +60,7 @@ const getCategoryDetails = (category: string) => {
 };
 
 export default function ServicesPage() {
+  const toast = useToast();
   const [services, setServices] = useState<ServiceItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
@@ -75,6 +77,7 @@ export default function ServicesPage() {
       })
       .catch((err) => {
         console.error(err);
+        toast.error('Failed to load services');
         setLoading(false);
       });
   }, []);

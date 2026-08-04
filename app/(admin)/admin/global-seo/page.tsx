@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useToast } from '@/components/ToastProvider';
 import {
   Code,
   FileText,
@@ -17,6 +18,7 @@ import {
 } from 'lucide-react';
 
 export default function GlobalSeoPage() {
+  const toast = useToast();
   const [activeTab, setActiveTab] = useState<'schema' | 'robots' | 'opengraph'>('schema');
   const [schemaType, setSchemaType] = useState<'Organization' | 'Article' | 'FAQ' | 'LocalBusiness'>('Organization');
   const [copied, setCopied] = useState(false);
@@ -120,6 +122,7 @@ export default function GlobalSeoPage() {
     navigator.clipboard.writeText(jsonLdOutput);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+    toast.success('JSON-LD code copied to clipboard');
   };
 
   const handleSave = async () => {
@@ -140,9 +143,13 @@ export default function GlobalSeoPage() {
       if (response.ok) {
         setSavedSuccess(true);
         setTimeout(() => setSavedSuccess(false), 2000);
+        toast.success('Global SEO settings saved successfully');
+      } else {
+        toast.error('Failed to save global SEO settings');
       }
     } catch (err) {
       console.error('Error saving global SEO:', err);
+      toast.error('Error saving global SEO settings');
     }
   };
 

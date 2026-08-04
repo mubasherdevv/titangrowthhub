@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useToast } from '@/components/ToastProvider';
 import {
   ArrowLeft,
   Save,
@@ -15,6 +16,7 @@ import {
 } from 'lucide-react';
 
 export default function AddRedirectPage() {
+  const toast = useToast();
   const [sourceDomain, setSourceDomain] = useState('https://yoursite.com');
   const [sourcePath, setSourcePath] = useState('');
   const [targetDomain, setTargetDomain] = useState('https://yoursite.com');
@@ -28,6 +30,11 @@ export default function AddRedirectPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!sourcePath.trim() || !targetPath.trim()) {
+      toast.error('Source URL and Target URL are required!');
+      return;
+    }
+    toast.success('Redirect rule created successfully');
     window.location.href = '/admin/redirects';
   };
 

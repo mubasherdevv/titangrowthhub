@@ -50,6 +50,28 @@ const frontendToDbSettings = (fe: any) => {
   return db;
 };
 
+const defaultSettings = {
+  siteName: '',
+  siteTagline: '',
+  siteUrl: '',
+  logoUrl: null,
+  faviconUrl: null,
+  timezone: 'UTC (GMT+00:00)',
+  language: 'English (US)',
+  defaultTitlePattern: '%page_title% | %site_name%',
+  globalMetaDesc: '',
+  allowIndexing: true,
+  ogTitle: '',
+  ogDescription: '',
+  gscApiKey: '',
+  bingApiKey: '',
+  geminiApiKey: '',
+  orgName: '',
+  orgUrl: '',
+  orgLogo: '',
+  robotsText: '',
+};
+
 export async function GET() {
   try {
     const { data, error } = await supabase
@@ -69,12 +91,16 @@ export async function GET() {
         if (insertError) throw insertError;
         return NextResponse.json(dbToFrontendSettings(inserted));
       }
+      if (error.code === 'PGRST205' || error.code === '42P01') {
+        // Table doesn't exist yet (setup SQL not run). Return defaults so the UI works.
+        return NextResponse.json(defaultSettings);
+      }
       throw error;
     }
     return NextResponse.json(dbToFrontendSettings(data));
   } catch (error: any) {
     console.error('Error fetching site settings:', error);
-    return NextResponse.json({ error: error.message || 'Failed to fetch settings' }, { status: 500 });
+    return NextResponse.json(defaultSettings);
   }
 }
 

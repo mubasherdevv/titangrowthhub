@@ -13,6 +13,9 @@ node_modules/
 # production
 /build
 
+# runtime user uploads
+/public/uploads/
+
 # Allow WordPress static assets needed by Next.js public pages
 !public/index.html
 !public/wp-content/

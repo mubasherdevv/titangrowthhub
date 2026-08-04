@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useToast } from '@/components/ToastProvider';
 import {
   Upload,
   Settings,
@@ -108,6 +109,7 @@ const initialRedirects: RedirectRule[] = [
 ];
 
 export default function RedirectsPage() {
+  const toast = useToast();
   const [redirects, setRedirects] = useState<RedirectRule[]>(initialRedirects);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -118,16 +120,30 @@ export default function RedirectsPage() {
 
   // Toggle Single Status (Active <-> Inactive)
   const handleToggleStatus = (id: string) => {
+    const rule = redirects.find((r) => r.id === id);
+    const newStatus = rule?.status === 'Active' ? 'Inactive' : 'Active';
     setRedirects((prev) =>
       prev.map((item) =>
         item.id === id
           ? {
               ...item,
-              status: item.status === 'Active' ? 'Inactive' : 'Active',
+              status: newStatus,
             }
           : item
       )
     );
+    toast.success(
+      newStatus === 'Active'
+        ? `Redirect ${rule?.sourceUrl ?? ''} activated`
+        : `Redirect ${rule?.sourceUrl ?? ''} deactivated`
+    );
+  };
+
+  // Delete a redirect rule
+  const handleDelete = (id: string) => {
+    const rule = redirects.find((r) => r.id === id);
+    setRedirects((prev) => prev.filter((r) => r.id !== id));
+    toast.success(`Redirect ${rule?.sourceUrl ?? ''} deleted`);
   };
 
   // Toggle Select All
@@ -477,6 +493,7 @@ export default function RedirectsPage() {
 
                         {/* Delete Button */}
                         <button
+                          onClick={() => handleDelete(rule.id)}
                           title="Delete Redirect"
                           className="flex h-7 w-7 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-red-50 hover:text-red-600"
                         >

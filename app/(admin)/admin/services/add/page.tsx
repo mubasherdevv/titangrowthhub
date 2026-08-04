@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useToast } from '@/components/ToastProvider';
 import {
   ArrowLeft,
   Save,
@@ -34,6 +35,7 @@ import {
 
 export default function AddNewServicePage() {
   const router = useRouter();
+  const toast = useToast();
   const [activeTab, setActiveTab] = useState<'general' | 'seo' | 'schema' | 'social'>('seo');
   const [isSubmitting, setIsSubmitting] = useState(false);
   
@@ -47,7 +49,7 @@ export default function AddNewServicePage() {
 
   const handlePublish = async (status: 'Published' | 'Draft' = 'Published') => {
     if (!title || !slug) {
-      alert('Title and Slug are required!');
+      toast.error('Title and Slug are required!');
       return;
     }
     setIsSubmitting(true);
@@ -68,14 +70,19 @@ export default function AddNewServicePage() {
         }),
       });
       if (res.ok) {
+        toast.success(
+          status === 'Published'
+            ? 'Service published successfully!'
+            : 'Service saved as draft.'
+        );
         router.push('/admin/services');
         router.refresh();
       } else {
-        alert('Failed to save service');
+        toast.error('Failed to save service');
       }
     } catch (err) {
       console.error(err);
-      alert('Error saving service');
+      toast.error('Error saving service');
     } finally {
       setIsSubmitting(false);
     }

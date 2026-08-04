@@ -1,20 +1,65 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
-import { Mail, Lock, Eye, EyeOff, User, Layers, BarChart2, PieChart, TrendingUp } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
+import { Mail, Lock, Eye, EyeOff, User, Layers, BarChart2, PieChart, TrendingUp, Loader2, AlertCircle, LogIn } from 'lucide-react';
 
-export default function LoginPage() {
+function LoginPageContent() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [checkingSession, setCheckingSession] = useState(true);
+  const searchParams = useSearchParams();
+  const nextPath = searchParams.get('next') || '/admin';
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // If already logged in, go straight to the dashboard
+  useEffect(() => {
+    fetch('/api/auth/me')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.authenticated) {
+          window.location.href = '/admin';
+        }
+      })
+      .catch(() => {})
+      .finally(() => setCheckingSession(false));
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Redirect to dashboard
-    window.location.href = '/';
+    setError('');
+    setLoading(true);
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error || 'Invalid email or password');
+        setLoading(false);
+        return;
+      }
+      window.location.href = nextPath.startsWith('/admin') ? nextPath : '/admin';
+    } catch (err) {
+      console.error(err);
+      setError('Something went wrong. Please try again.');
+      setLoading(false);
+    }
   };
+
+  if (checkingSession) {
+    return (
+      <div className="min-h-screen w-full flex items-center justify-center bg-[#F8F9FE]">
+        <Loader2 className="h-8 w-8 text-purple-600 animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen w-full grid grid-cols-1 lg:grid-cols-2 bg-white font-sans text-zinc-900">
@@ -189,12 +234,31 @@ export default function LoginPage() {
               </a>
             </div>
 
+            {/* Error Message */}
+            {error && (
+              <div className="flex items-start gap-2.5 rounded-xl border border-red-200 bg-red-50 px-3.5 py-2.5 text-xs font-semibold text-red-600">
+                <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
+                <span>{error}</span>
+              </div>
+            )}
+
             {/* Sign In Button */}
             <button
               type="submit"
-              className="w-full rounded-xl bg-purple-600 py-3 text-xs font-extrabold text-white shadow-lg shadow-purple-600/25 transition-all hover:bg-purple-700 active:scale-[0.99]"
+              disabled={loading}
+              className="w-full rounded-xl bg-purple-600 py-3 text-xs font-extrabold text-white shadow-lg shadow-purple-600/25 transition-all hover:bg-purple-700 active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Sign In
+              {loading ? (
+                <span className="inline-flex items-center justify-center gap-2">
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Signing in...
+                </span>
+              ) : (
+                <span className="inline-flex items-center justify-center gap-2">
+                  <LogIn className="h-4 w-4" />
+                  Sign In
+                </span>
+              )}
             </button>
           </form>
 
@@ -209,8 +273,9 @@ export default function LoginPage() {
           {/* Google Sign In */}
           <button
             type="button"
-            onClick={() => (window.location.href = '/')}
-            className="w-full flex items-center justify-center gap-2.5 rounded-xl border border-zinc-200 bg-white py-3 text-xs font-bold text-zinc-700 shadow-sm hover:bg-zinc-50 transition-all"
+            disabled
+            className="w-full flex items-center justify-center gap-2.5 rounded-xl border border-zinc-200 bg-white py-3 text-xs font-bold text-zinc-400 shadow-sm cursor-not-allowed"
+            title="Sign in with Google is not enabled yet"
           >
             <svg className="h-4 w-4" viewBox="0 0 24 24">
               <path
@@ -243,5 +308,19 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen w-full flex items-center justify-center bg-[#F8F9FE]">
+          <Loader2 className="h-8 w-8 text-purple-600 animate-spin" />
+        </div>
+      }
+    >
+      <LoginPageContent />
+    </Suspense>
   );
 }

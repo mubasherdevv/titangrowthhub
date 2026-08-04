@@ -12,6 +12,9 @@ const formatBlogPost = (dbBlog: any) => {
     category: dbBlog.category,
     metaDesc: dbBlog.meta_desc,
     content: dbBlog.content,
+    featuredImage: dbBlog.featured_image,
+    tags: dbBlog.tags || '',
+    isActive: dbBlog.is_active !== false,
     updatedDate: dateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
     updatedTime: dateObj.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
   };
@@ -46,6 +49,9 @@ export async function POST(request: Request) {
       category: body.category || 'SEO Strategy',
       meta_desc: body.metaDesc || '',
       content: body.content || '',
+      featured_image: body.featuredImage || '',
+      tags: body.tags || '',
+      is_active: body.isActive !== undefined ? body.isActive : true,
     };
 
     const { data, error } = await supabase

@@ -1,6 +1,7 @@
 import '../globals.css';
 import type { Metadata } from 'next';
 import DashboardLayout from '@/components/DashboardLayout';
+import { ToastProvider } from '@/components/ToastProvider';
 
 export const metadata: Metadata = {
   title: 'VistaSEO Admin Dashboard',
@@ -23,7 +24,9 @@ export default function AdminRootLayout({
         />
       </head>
       <body className="min-h-screen bg-[#FAFAFC] text-zinc-900 antialiased">
-        <DashboardLayout>{children}</DashboardLayout>
+        <ToastProvider>
+          <DashboardLayout>{children}</DashboardLayout>
+        </ToastProvider>
       </body>
     </html>
   );
