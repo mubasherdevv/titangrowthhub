@@ -82,8 +82,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const singlePostHtml = `
     <article class="tx-blog-box mt-30 type-post status-publish format-standard hentry">
         <div class="tz-blog-item single-post-view" style="padding: 30px; background: #fff; border-radius: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-            <div class="item-img" style="margin-bottom: 25px; border-radius: 15px; overflow: hidden;">
-                <img width="1824" height="839" src="${featuredImg}" class="img-responsive w-100 wp-post-image" alt="${blog.title || ''}" />
+            <div class="item-img" style="margin-bottom: 25px; border-radius: 15px; overflow: hidden; height: 400px; width: 100%;">
+                <img src="${featuredImg}" class="img-responsive w-100 wp-post-image" alt="${blog.title || ''}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;" />
             </div>
             <div class="item-text headline pera-content">
                 <div class="item-meta" style="margin-bottom: 15px; font-size: 13px; color: #fd3f00; display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
