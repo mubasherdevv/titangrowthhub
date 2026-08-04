@@ -2,7 +2,9 @@ import { MetadataRoute } from 'next';
 import { supabase } from '@/lib/supabase';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  let siteUrl = 'https://yoursite.com';
+  // Use env variable as fallback — auto-resolves to localhost in dev, real domain in production
+  let siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://titangrowthhub.com';
+
   try {
     const { data } = await supabase
       .from('site_settings')
@@ -20,8 +22,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = ['', '/about', '/our-services', '/our-team', '/faqs', '/blog', '/contact-us'].map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1.0 : 0.8,
   }));
 
   // 2. Fetch published blogs from Supabase
@@ -38,8 +38,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         return {
           url: `${siteUrl}${slug}`,
           lastModified: new Date(blog.created_at),
-          changeFrequency: 'monthly' as const,
-          priority: 0.6,
         };
       });
     }
@@ -61,13 +59,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         return {
           url: `${siteUrl}${slug}`,
           lastModified: new Date(service.created_at),
-          changeFrequency: 'monthly' as const,
-          priority: 0.7,
         };
       });
     }
   } catch (e) {
-    console.error('Error fetching services for sitemap:', e);
+    console.error('Error fetching services for sitemap:', e)
   }
 
   return [...staticRoutes, ...blogUrls, ...serviceUrls];
