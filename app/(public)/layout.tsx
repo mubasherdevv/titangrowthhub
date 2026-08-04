@@ -64,8 +64,8 @@ export default function PublicRootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Read index.html to dynamically load all WordPress CSS and scripts in head
-  const html = getCleanHtml('index.html');
+  // Read template-head.html to dynamically load all WordPress CSS and scripts in head
+  const html = getCleanHtml('template-head.html');
 
   // Extract head tags
   const headStart = html.indexOf('<head>');

@@ -17,7 +17,7 @@ node_modules/
 /public/uploads/
 
 # Allow WordPress static assets needed by Next.js public pages
-!public/index.html
+!public/template-head.html
 !public/wp-content/
 !public/wp-includes/
 
