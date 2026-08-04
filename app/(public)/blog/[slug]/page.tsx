@@ -81,23 +81,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   // Construct single blog post HTML
   const singlePostHtml = `
     <article class="tx-blog-box mt-30 type-post status-publish format-standard hentry">
-        <div class="tz-blog-item single-post-view" style="padding: 30px; background: #fff; border-radius: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+        <div class="tz-blog-item" style="border-radius: 15px; overflow: hidden; background: transparent; padding: 0; box-shadow: none;">
             <div class="item-img" style="margin-bottom: 25px; border-radius: 15px; overflow: hidden; height: 400px; width: 100%;">
                 <img src="${featuredImg}" class="img-responsive w-100 wp-post-image" alt="${blog.title || ''}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;" />
             </div>
             <div class="item-text headline pera-content">
-                <div class="item-meta" style="margin-bottom: 15px; font-size: 13px; color: #fd3f00; display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
-                    <span><i class="fa-regular fa-calendar"></i> ${formattedDate}</span>
-                    <span><i class="fa-regular fa-user"></i> avista</span>
-                    <span><i class="fa-solid fa-tags"></i> ${blog.category || 'SEO Strategy'}</span>
-                    <span class="seo-score-badge" style="display: inline-flex; align-items: center; gap: 6px; background: #f4f4f5; border: 1px solid #e4e4e7; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 800; color: #52525b; margin-left: auto;" title="SEO Score">
-                        <span style="min-width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; color: #fff; background: ${seoColor};">${seoScoreNum}</span>
-                        SEO Score
-                    </span>
+                <div class="item-meta" style="margin-bottom: 20px; font-size: 14px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; border-bottom: 1px solid #e4e4e7; padding-bottom: 15px; color: #52525b;">
+                    <span style="display: inline-flex; align-items: center; gap: 6px;"><i class="fa-regular fa-calendar" style="color: #fd3f00;"></i> ${formattedDate}</span>
+                    <span style="display: inline-flex; align-items: center; gap: 6px;"><i class="fa-regular fa-user" style="color: #fd3f00;"></i> By avista</span>
+                    <span style="display: inline-flex; align-items: center; gap: 6px;"><i class="fa-regular fa-comments" style="color: #fd3f00;"></i> Comments(0)</span>
                 </div>
-                <h2 class="blog_title" style="font-size: 32px; line-height: 1.3; font-weight: 800; margin-bottom: 25px; color: #111;">
-                    ${blog.title}
-                </h2>
                 <div class="blog-details-content leading-relaxed" style="font-size: 15px; color: #444; line-height: 1.8;">
                     ${contentHtml || '<p>No content available.</p>'}
                 </div>
