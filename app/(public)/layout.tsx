@@ -4,8 +4,9 @@ import { supabase } from '@/lib/supabase';
 import { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
-  let title = 'Avista – Digital Agency & Portfolio WordPress Theme';
-  let description = 'Driving Growth Through Digital Excellence';
+  let title = 'Titan Growth Hub – Pakistan\'s #1 SEO & Digital Marketing Agency';
+  let description = 'Titan Growth Hub helps businesses scale with data-driven SEO, PPC, and content marketing strategies.';
+
   let robots = 'index, follow';
   let ogTitle = '';
   let ogDesc = '';

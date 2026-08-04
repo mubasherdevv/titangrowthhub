@@ -1,9 +1,15 @@
 import React from 'react';
+import { getPageMeta } from '@/lib/getPageMeta';
 
-export const metadata = {
-    title: 'Avista – Digital Agency & Portfolio WordPress Theme',
-    description: 'Driving Growth Through Digital Excellence',
-};
+export async function generateMetadata() {
+  const { title, description } = await getPageMeta(
+    'home',
+    'Titan Growth Hub – Pakistan\'s #1 SEO & Digital Marketing Agency',
+    'Titan Growth Hub helps businesses scale with data-driven SEO, PPC, and content marketing strategies.'
+  );
+  return { title, description };
+}
+
 
 const pageHtml = `
 

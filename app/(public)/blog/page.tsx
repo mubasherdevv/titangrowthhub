@@ -1,10 +1,16 @@
 import React from 'react';
 import { supabase } from '@/lib/supabase';
 import { topHtml, bottomHtml } from './blogTemplates';
+import { getPageMeta } from '@/lib/getPageMeta';
 
-export const metadata = {
-  title: 'Blog – Avista',
-};
+export async function generateMetadata() {
+  const { title, description } = await getPageMeta(
+    'blog',
+    'Blog – Titan Growth Hub',
+    'Read the latest SEO tips, digital marketing strategies, and growth hacks from our expert team.'
+  );
+  return { title, description };
+}
 
 export default async function BlogPage() {
   const { data: dbBlogs, error } = await supabase
