@@ -1,8 +1,15 @@
 import React from 'react';
+import { getPageMeta } from '@/lib/getPageMeta';
 
-export const metadata = {
-  title: `Contact us &#8211; Avista`,
-};
+export async function generateMetadata() {
+  const { title, description } = await getPageMeta(
+    'contact-us',
+    'Contact Us – Titan Growth Hub',
+    "Get in touch with our team. We're here to help you grow your online presence and drive more traffic."
+  );
+  return { title, description };
+}
+
 
 const pageHtml = `
 

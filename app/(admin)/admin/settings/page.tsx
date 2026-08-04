@@ -46,6 +46,20 @@ export default function SettingsPage() {
   const [globalMetaDesc, setGlobalMetaDesc] = useState('');
   const [allowIndexing, setAllowIndexing] = useState(true);
 
+  // Per-page meta state
+  const [pageMeta, setPageMeta] = useState<Array<{
+    slug: string;
+    label: string;
+    url: string;
+    metaTitle: string;
+    metaDesc: string;
+    defaultTitle: string;
+    defaultDesc: string;
+  }>>([]);
+  const [pageMetaLoading, setPageMetaLoading] = useState(false);
+  const [savingSlug, setSavingSlug] = useState<string | null>(null);
+  const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
+
   // API Key States
   const [gscApiKey, setGscApiKey] = useState('');
   const [bingApiKey, setBingApiKey] = useState('');
@@ -74,6 +88,50 @@ export default function SettingsPage() {
       })
       .catch((err) => console.error('Error fetching settings:', err));
   }, []);
+
+  // Load page meta when SEO tab is opened
+  useEffect(() => {
+    if (activeTab === 'seo' && pageMeta.length === 0) {
+      setPageMetaLoading(true);
+      fetch('/api/page-meta')
+        .then((res) => res.json())
+        .then((data) => setPageMeta(data))
+        .catch((err) => console.error('Error fetching page meta:', err))
+        .finally(() => setPageMetaLoading(false));
+    }
+  }, [activeTab]);
+
+  const updatePageMetaField = (slug: string, field: 'metaTitle' | 'metaDesc', value: string) => {
+    setPageMeta((prev) => prev.map((p) => p.slug === slug ? { ...p, [field]: value } : p));
+  };
+
+  const savePageMeta = async (slug: string) => {
+    const page = pageMeta.find((p) => p.slug === slug);
+    if (!page) return;
+    setSavingSlug(slug);
+    try {
+      const res = await fetch('/api/page-meta', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug, metaTitle: page.metaTitle, metaDesc: page.metaDesc }),
+      });
+      if (res.ok) {
+        toast.success(`"${page.label}" meta saved successfully`);
+      } else {
+        toast.error('Failed to save page meta');
+      }
+    } catch (err) {
+      toast.error('Error saving page meta');
+    } finally {
+      setSavingSlug(null);
+    }
+  };
+
+  const resetPageMeta = (slug: string) => {
+    setPageMeta((prev) =>
+      prev.map((p) => p.slug === slug ? { ...p, metaTitle: p.defaultTitle, metaDesc: p.defaultDesc } : p)
+    );
+  };
 
   // Save settings via API
   const handleSave = async () => {
@@ -399,64 +457,184 @@ export default function SettingsPage() {
 
           {/* TAB 2: GLOBAL SEO */}
           {activeTab === 'seo' && (
-            <div className="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm space-y-6">
-              <div className="border-b border-zinc-100 pb-4">
-                <h2 className="font-serif text-lg font-bold text-zinc-950">
-                  Global SEO Configurations
-                </h2>
-                <p className="text-xs text-zinc-500 font-medium mt-0.5">
-                  Set default meta patterns, global descriptions, and indexing behavior.
-                </p>
-              </div>
-
-              {/* Title Pattern */}
-              <div className="space-y-2">
-                <label className="text-xs font-serif font-bold text-zinc-900 block">
-                  Default Title Format
-                </label>
-                <input
-                  type="text"
-                  value={defaultTitlePattern}
-                  onChange={(e) => setDefaultTitlePattern(e.target.value)}
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
-                />
-                <span className="text-[11px] text-zinc-400 font-medium block">
-                  Available tags: %page_title%, %site_name%, %separator%
-                </span>
-              </div>
-
-              {/* Global Meta Description */}
-              <div className="space-y-2">
-                <label className="text-xs font-serif font-bold text-zinc-900 block">
-                  Global Meta Description
-                </label>
-                <textarea
-                  rows={3}
-                  value={globalMetaDesc}
-                  onChange={(e) => setGlobalMetaDesc(e.target.value)}
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 p-4 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:outline-none resize-none leading-relaxed"
-                />
-              </div>
-
-              {/* Search Engine Indexing Toggle */}
-              <div className="flex items-center justify-between rounded-xl border border-zinc-100 bg-zinc-50/40 p-4">
-                <div>
-                  <p className="text-xs font-bold text-zinc-900">Discourage Search Engine Indexing</p>
-                  <p className="text-[11px] text-zinc-400 font-medium">When enabled, adds noindex meta tag to all pages.</p>
+            <div className="space-y-6">
+              {/* Global SEO Card */}
+              <div className="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm space-y-6">
+                <div className="border-b border-zinc-100 pb-4">
+                  <h2 className="font-serif text-lg font-bold text-zinc-950">Global SEO Configurations</h2>
+                  <p className="text-xs text-zinc-500 font-medium mt-0.5">Set default meta patterns, global descriptions, and indexing behavior.</p>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setAllowIndexing(!allowIndexing)}
-                  className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out ${
-                    allowIndexing ? 'bg-orange-600' : 'bg-zinc-200'
-                  }`}
-                >
-                  <span
-                    className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-md transition duration-200 ease-in-out ${
-                      allowIndexing ? 'translate-x-5' : 'translate-x-0'
-                    }`}
+
+                {/* Title Pattern */}
+                <div className="space-y-2">
+                  <label className="text-xs font-serif font-bold text-zinc-900 block">Default Title Format</label>
+                  <input
+                    type="text"
+                    value={defaultTitlePattern}
+                    onChange={(e) => setDefaultTitlePattern(e.target.value)}
+                    className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
                   />
-                </button>
+                  <span className="text-[11px] text-zinc-400 font-medium block">Available tags: %page_title%, %site_name%, %separator%</span>
+                </div>
+
+                {/* Global Meta Description */}
+                <div className="space-y-2">
+                  <label className="text-xs font-serif font-bold text-zinc-900 block">Global Meta Description</label>
+                  <textarea
+                    rows={3}
+                    value={globalMetaDesc}
+                    onChange={(e) => setGlobalMetaDesc(e.target.value)}
+                    className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 p-4 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:outline-none resize-none leading-relaxed"
+                  />
+                </div>
+
+                {/* Search Engine Indexing Toggle */}
+                <div className="flex items-center justify-between rounded-xl border border-zinc-100 bg-zinc-50/40 p-4">
+                  <div>
+                    <p className="text-xs font-bold text-zinc-900">Discourage Search Engine Indexing</p>
+                    <p className="text-[11px] text-zinc-400 font-medium">When enabled, adds noindex meta tag to all pages.</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setAllowIndexing(!allowIndexing)}
+                    className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out ${
+                      allowIndexing ? 'bg-orange-600' : 'bg-zinc-200'
+                    }`}
+                  >
+                    <span
+                      className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-md transition duration-200 ease-in-out ${
+                        allowIndexing ? 'translate-x-5' : 'translate-x-0'
+                      }`}
+                    />
+                  </button>
+                </div>
+              </div>
+
+              {/* ─── PER-PAGE META SECTION ─── */}
+              <div className="rounded-2xl border border-zinc-200/80 bg-white shadow-sm overflow-hidden">
+                <div className="px-6 py-4 border-b border-zinc-100 flex items-center justify-between">
+                  <div>
+                    <h2 className="font-serif text-base font-bold text-zinc-950">Page Meta Title &amp; Description</h2>
+                    <p className="text-xs text-zinc-500 font-medium mt-0.5">Edit meta title and description for each page — controls what Google shows in search results.</p>
+                  </div>
+                  <span className="text-[11px] font-bold text-zinc-400 bg-zinc-100 rounded-full px-2.5 py-1">{pageMeta.length} pages</span>
+                </div>
+
+                {pageMetaLoading ? (
+                  <div className="p-8 text-center text-xs text-zinc-400">Loading pages...</div>
+                ) : (
+                  <div className="divide-y divide-zinc-100">
+                    {pageMeta.map((page) => {
+                      const isExpanded = expandedSlug === page.slug;
+                      const isSaving = savingSlug === page.slug;
+                      const titleLen = page.metaTitle.length;
+                      const descLen = page.metaDesc.length;
+
+                      return (
+                        <div key={page.slug} className="hover:bg-zinc-50/50 transition-colors">
+                          {/* Row Header — click to expand */}
+                          <button
+                            onClick={() => setExpandedSlug(isExpanded ? null : page.slug)}
+                            className="w-full flex items-center justify-between px-6 py-4 text-left"
+                          >
+                            <div className="flex items-center gap-3 min-w-0">
+                              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-orange-50 text-orange-600">
+                                <Globe className="h-3.5 w-3.5" />
+                              </div>
+                              <div className="min-w-0">
+                                <p className="text-xs font-bold text-zinc-900">{page.label}</p>
+                                <p className="text-[11px] text-zinc-400 font-mono">{page.url}</p>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-3 shrink-0 ml-4">
+                              <div className="hidden sm:flex flex-col items-end gap-0.5">
+                                <p className="text-[11px] text-zinc-500 truncate max-w-[200px]">{page.metaTitle}</p>
+                                <p className={`text-[10px] font-bold ${ titleLen > 60 ? 'text-red-500' : titleLen > 50 ? 'text-amber-500' : 'text-emerald-600'}`}>{titleLen}/60</p>
+                              </div>
+                              <ChevronRight className={`h-4 w-4 text-zinc-300 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
+                            </div>
+                          </button>
+
+                          {/* Expanded Edit Panel */}
+                          {isExpanded && (
+                            <div className="px-6 pb-6 space-y-5 border-t border-zinc-100 pt-5 bg-zinc-50/40">
+                              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                {/* Left: Edit Fields */}
+                                <div className="space-y-4">
+                                  <div className="space-y-1.5">
+                                    <div className="flex items-center justify-between">
+                                      <label className="text-xs font-serif font-bold text-zinc-900">Meta Title</label>
+                                      <span className={`text-[11px] font-bold ${ titleLen > 60 ? 'text-red-500' : titleLen > 50 ? 'text-amber-500' : 'text-zinc-400'}`}>{titleLen}/60</span>
+                                    </div>
+                                    <input
+                                      type="text"
+                                      value={page.metaTitle}
+                                      onChange={(e) => updatePageMetaField(page.slug, 'metaTitle', e.target.value)}
+                                      maxLength={70}
+                                      className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:outline-none"
+                                    />
+                                    <p className="text-[11px] text-zinc-400">Recommended: 50–60 characters. Google truncates beyond 60.</p>
+                                  </div>
+
+                                  <div className="space-y-1.5">
+                                    <div className="flex items-center justify-between">
+                                      <label className="text-xs font-serif font-bold text-zinc-900">Meta Description</label>
+                                      <span className={`text-[11px] font-bold ${ descLen > 155 ? 'text-red-500' : descLen > 130 ? 'text-amber-500' : 'text-zinc-400'}`}>{descLen}/155</span>
+                                    </div>
+                                    <textarea
+                                      rows={3}
+                                      value={page.metaDesc}
+                                      onChange={(e) => updatePageMetaField(page.slug, 'metaDesc', e.target.value)}
+                                      maxLength={160}
+                                      className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:outline-none resize-none"
+                                    />
+                                    <p className="text-[11px] text-zinc-400">Recommended: 120–155 characters.</p>
+                                  </div>
+
+                                  <div className="flex items-center gap-3">
+                                    <button
+                                      onClick={() => savePageMeta(page.slug)}
+                                      disabled={isSaving}
+                                      className="flex items-center gap-1.5 rounded-xl bg-orange-600 px-4 py-2 text-[11px] font-extrabold text-white shadow-sm hover:bg-orange-700 disabled:opacity-60 transition-all"
+                                    >
+                                      {isSaving ? (
+                                        <><span className="animate-spin">⏳</span> Saving...</>
+                                      ) : (
+                                        <><Save className="h-3.5 w-3.5" /> Save Page Meta</>
+                                      )}
+                                    </button>
+                                    <button
+                                      onClick={() => resetPageMeta(page.slug)}
+                                      className="text-[11px] font-bold text-zinc-500 hover:text-zinc-700 underline"
+                                    >
+                                      Reset to Default
+                                    </button>
+                                  </div>
+                                </div>
+
+                                {/* Right: Google Preview */}
+                                <div className="space-y-2">
+                                  <p className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider">Google Search Preview</p>
+                                  <div className="rounded-xl border border-zinc-200 bg-white p-4 shadow-sm">
+                                    <div className="flex items-center gap-2 mb-2">
+                                      <div className="w-4 h-4 rounded-full bg-orange-100 flex items-center justify-center">
+                                        <Globe className="h-2.5 w-2.5 text-orange-500" />
+                                      </div>
+                                      <span className="text-[11px] text-zinc-500">titangrowthhub.com{page.url}</span>
+                                    </div>
+                                    <p className="text-[16px] font-normal text-blue-600 leading-snug mb-1 line-clamp-1">{page.metaTitle || 'Meta Title'}</p>
+                                    <p className="text-[12px] text-zinc-600 leading-snug line-clamp-2">{page.metaDesc || 'Meta description will appear here.'}</p>
+                                  </div>
+                                  <p className="text-[10px] text-zinc-400">Preview is approximate. Google may rewrite titles/descriptions.</p>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             </div>
           )}

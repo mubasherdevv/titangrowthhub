@@ -1,9 +1,16 @@
 import React from 'react';
 import { supabase } from '@/lib/supabase';
+import { getPageMeta } from '@/lib/getPageMeta';
 
-export const metadata = {
-  title: 'Our Services – Avista',
-};
+export async function generateMetadata() {
+  const { title, description } = await getPageMeta(
+    'our-services',
+    'Our Services – Titan Growth Hub',
+    'Explore our full suite of digital marketing services including SEO, PPC, content marketing, and web development.'
+  );
+  return { title, description };
+}
+
 
 const topHtml = `
 

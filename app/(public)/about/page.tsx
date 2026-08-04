@@ -1,8 +1,14 @@
 import React from 'react';
+import { getPageMeta } from '@/lib/getPageMeta';
 
-export const metadata = {
-  title: `About &#8211; Avista`,
-};
+export async function generateMetadata() {
+  const { title, description } = await getPageMeta(
+    'about',
+    'About Us – Titan Growth Hub',
+    'Learn about our team, mission, and how we drive measurable SEO results for clients worldwide.'
+  );
+  return { title, description };
+}
 
 const pageHtml = `
 
