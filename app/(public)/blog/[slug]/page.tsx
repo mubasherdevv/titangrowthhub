@@ -679,28 +679,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
             </div>
 
-            <!-- FAQ Section -->
-            <div class="faq-section">
-              <h3 style="font-size: 24px; font-weight: 800; color: #09090b; margin-bottom: 24px; font-family: 'Outfit';">Frequently Asked Questions</h3>
-              <div class="faq-item">
-                <h4 class="faq-question">How often are SEO strategies updated?</h4>
-                <p class="faq-answer">We review and refine search performance weekly to align with algorithm shifts and competitor strategies.</p>
-              </div>
-              <div class="faq-item">
-                <h4 class="faq-question">Can I request a custom SEO audit for my business?</h4>
-                <p class="faq-answer">Yes, we offer comprehensive SEO and growth audits. You can book a free session using the consultation CTA in the sidebar.</p>
-              </div>
-            </div>
 
-            <!-- Newsletter Card -->
-            <div class="newsletter-cta">
-              <h3 class="newsletter-title">Subscribe to our newsletter</h3>
-              <p class="newsletter-desc">Get the latest SEO strategies, growth hacks, and industry insights delivered straight to your inbox weekly.</p>
-              <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
-                <input type="email" placeholder="Enter your email address" class="newsletter-input" required />
-                <button type="submit" class="newsletter-btn">Subscribe</button>
-              </form>
-            </div>
 
             <!-- Related Posts -->
             ${relatedPostsHtml}
@@ -753,18 +732,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       </div>
 
-      <!-- Category widget -->
-      <div id="custom_cat_widget-2" class="tx-blog-widget widget tz-sidebar-widget headline tx-cat-widget">
-        <h4 class="widget-title">Category</h4>
-        <div class="tx-cat-widget category-widget ul-li-block">
-          <ul class="tx-cat-list bs-sidebar-categories">
-            <li><a href="/blog?category=Brand%20Design%20Identity"><span class="text">Brand Design Identity</span><span class="number">(3)</span></a></li>
-            <li><a href="/blog?category=Clock%20Fly%20Strategy"><span class="text">Clock Fly Strategy</span><span class="number">(2)</span></a></li>
-            <li><a href="/blog?category=Digital%20Marketing"><span class="text">Digital Marketing</span><span class="number">(4)</span></a></li>
-            <li><a href="/blog?category=SEO%20Strategy"><span class="text">SEO Strategy</span><span class="number">(1)</span></a></li>
-          </ul>
-        </div>
-      </div>
+
 
       <!-- Tag Cloud widget -->
       <div id="tag_cloud-2" class="tx-blog-widget widget tz-sidebar-widget headline widget_tag_cloud">
