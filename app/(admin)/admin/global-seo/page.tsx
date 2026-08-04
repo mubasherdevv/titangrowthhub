@@ -14,15 +14,25 @@ import {
   AlertCircle,
   Upload,
   Image as ImageIcon,
-  ExternalLink
+  ExternalLink,
+  Search,
+  Eye,
+  ToggleLeft,
+  ToggleRight
 } from 'lucide-react';
 
 export default function GlobalSeoPage() {
   const toast = useToast();
-  const [activeTab, setActiveTab] = useState<'schema' | 'robots' | 'opengraph'>('schema');
+  const [activeTab, setActiveTab] = useState<'meta' | 'schema' | 'robots' | 'opengraph'>('meta');
   const [schemaType, setSchemaType] = useState<'Organization' | 'Article' | 'FAQ' | 'LocalBusiness'>('Organization');
   const [copied, setCopied] = useState(false);
   const [savedSuccess, setSavedSuccess] = useState(false);
+
+  // Meta & Search States (directly controls Google search snippet)
+  const [siteName, setSiteName] = useState('');
+  const [siteTagline, setSiteTagline] = useState('');
+  const [globalMetaDesc, setGlobalMetaDesc] = useState('');
+  const [allowIndexing, setAllowIndexing] = useState(true);
 
   // Schema Form States
   const [orgName, setOrgName] = useState('');
@@ -42,10 +52,14 @@ export default function GlobalSeoPage() {
       .then((res) => res.json())
       .then((data) => {
         if (data) {
+          setSiteName(data.siteName || '');
+          setSiteTagline(data.siteTagline || '');
+          setGlobalMetaDesc(data.globalMetaDesc || '');
+          setAllowIndexing(data.allowIndexing !== false);
           setOrgName(data.orgName || '');
           setOrgUrl(data.orgUrl || '');
           setOrgLogo(data.orgLogo || '');
-          setRobotsText(data.robotsText || `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /api/\n\nSitemap: https://yoursite.com/sitemap.xml`);
+          setRobotsText(data.robotsText || `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /api/\n\nSitemap: https://titangrowthhub.com/sitemap.xml`);
           setOgTitle(data.ogTitle || '');
           setOgDescription(data.ogDescription || '');
         }
@@ -131,6 +145,10 @@ export default function GlobalSeoPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          siteName,
+          siteTagline,
+          globalMetaDesc,
+          allowIndexing,
           orgName,
           orgUrl,
           orgLogo,
@@ -236,6 +254,16 @@ export default function GlobalSeoPage() {
         {/* Navigation Tabs */}
         <div className="flex items-center border-b border-zinc-200/80 px-4 pt-3 text-xs font-bold text-zinc-500 overflow-x-auto">
           <button
+            onClick={() => setActiveTab('meta')}
+            className={`pb-3 px-4 border-b-2 font-serif tracking-wide transition-all ${
+              activeTab === 'meta'
+                ? 'border-orange-600 text-orange-600 font-extrabold'
+                : 'border-transparent hover:text-zinc-950'
+            }`}
+          >
+            Meta & Search
+          </button>
+          <button
             onClick={() => setActiveTab('schema')}
             className={`pb-3 px-4 border-b-2 font-serif tracking-wide transition-all ${
               activeTab === 'schema'
@@ -267,7 +295,116 @@ export default function GlobalSeoPage() {
           </button>
         </div>
 
-        {/* TAB 1: JSON-LD SCHEMA BUILDER */}
+        {/* TAB 0: META & SEARCH (Google Snippet Control) */}
+        {activeTab === 'meta' && (
+          <div className="p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+            {/* Left: Fields */}
+            <div className="lg:col-span-6 space-y-5">
+              <div>
+                <h3 className="font-serif text-sm font-bold text-zinc-950 mb-0.5">Google Search Snippet</h3>
+                <p className="text-xs text-zinc-400 font-medium">These fields control what Google shows for your site in search results.</p>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-serif font-bold text-zinc-900 block">Site Name (Title)</label>
+                <input
+                  type="text"
+                  value={siteName}
+                  onChange={(e) => setSiteName(e.target.value)}
+                  placeholder="e.g. Titan Growth Hub"
+                  maxLength={60}
+                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none"
+                />
+                <p className="text-[11px] text-zinc-400">{siteName.length}/60 characters</p>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-serif font-bold text-zinc-900 block">Site Tagline (Subtitle)</label>
+                <input
+                  type="text"
+                  value={siteTagline}
+                  onChange={(e) => setSiteTagline(e.target.value)}
+                  placeholder="e.g. SEO Growth Agency"
+                  maxLength={60}
+                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none"
+                />
+                <p className="text-[11px] text-zinc-400">Shown in browser tab as: {siteName || 'Site Name'} – {siteTagline || 'Tagline'}</p>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-serif font-bold text-zinc-900 block">Meta Description</label>
+                <textarea
+                  rows={3}
+                  value={globalMetaDesc}
+                  onChange={(e) => setGlobalMetaDesc(e.target.value)}
+                  placeholder="Write a compelling description that convinces users to click your result..."
+                  maxLength={160}
+                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none resize-none"
+                />
+                <p className={`text-[11px] font-medium ${ globalMetaDesc.length > 155 ? 'text-red-500' : globalMetaDesc.length > 120 ? 'text-amber-500' : 'text-zinc-400'}`}>{globalMetaDesc.length}/160 characters</p>
+              </div>
+
+              <div className="flex items-center justify-between rounded-xl border border-zinc-100 bg-zinc-50 p-4">
+                <div>
+                  <p className="text-xs font-bold text-zinc-900">Allow Search Engine Indexing</p>
+                  <p className="text-[11px] text-zinc-400 font-medium mt-0.5">Disable to add noindex / nofollow to all pages</p>
+                </div>
+                <button
+                  onClick={() => setAllowIndexing(!allowIndexing)}
+                  className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold transition-all ${
+                    allowIndexing
+                      ? 'bg-emerald-50 text-emerald-600 border border-emerald-200'
+                      : 'bg-red-50 text-red-600 border border-red-200'
+                  }`}
+                >
+                  {allowIndexing ? <CheckCircle2 className="h-3.5 w-3.5" /> : <AlertCircle className="h-3.5 w-3.5" />}
+                  {allowIndexing ? 'Indexing ON' : 'Indexing OFF'}
+                </button>
+              </div>
+            </div>
+
+            {/* Right: Google Search Preview */}
+            <div className="lg:col-span-6">
+              <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5 space-y-4">
+                <div className="flex items-center gap-2">
+                  <Search className="h-4 w-4 text-zinc-400" />
+                  <span className="text-xs font-bold text-zinc-900">Google Search Preview</span>
+                </div>
+
+                {/* Google snippet mockup */}
+                <div className="bg-white rounded-xl border border-zinc-200 p-4 shadow-sm">
+                  {/* Site favicon + URL */}
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-4 h-4 rounded-full bg-orange-100 flex items-center justify-center">
+                      <Globe className="h-2.5 w-2.5 text-orange-500" />
+                    </div>
+                    <span className="text-[11px] text-zinc-500">titangrowthhub.com</span>
+                  </div>
+                  {/* Title */}
+                  <p className="text-[17px] font-normal text-blue-600 hover:underline cursor-pointer leading-tight mb-1">
+                    {siteName && siteTagline
+                      ? `${siteName} – ${siteTagline}`
+                      : siteName || 'Site Title will appear here'}
+                  </p>
+                  {/* Description */}
+                  <p className="text-[13px] text-zinc-600 leading-snug">
+                    {globalMetaDesc || 'Your meta description will appear here. Write something compelling that convinces users to visit your site.'}
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-amber-100 bg-amber-50/60 p-3 space-y-1">
+                  <p className="text-[11px] font-bold text-amber-700">💡 Google Tips</p>
+                  <ul className="text-[11px] text-amber-700 space-y-0.5 list-disc list-inside">
+                    <li>Title: 50–60 characters recommended</li>
+                    <li>Description: 120–155 characters recommended</li>
+                    <li>Google may rewrite these based on page content</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {activeTab === 'schema' && (
           <div className="p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Left Form (6 Cols) */}

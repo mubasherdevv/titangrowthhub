@@ -10,11 +10,12 @@ export async function generateMetadata(): Promise<Metadata> {
   let ogTitle = '';
   let ogDesc = '';
   let faviconUrl = '/wp-content/uploads/2025/11/fevicon-1.webp';
+  let siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://titangrowthhub.com';
 
   try {
     const { data } = await supabase
       .from('site_settings')
-      .select('site_name, site_tagline, global_meta_desc, allow_indexing, og_title, og_description, favicon_url, default_title_pattern')
+      .select('site_name, site_tagline, global_meta_desc, allow_indexing, og_title, og_description, favicon_url, default_title_pattern, site_url')
       .eq('id', 1)
       .single();
 
@@ -34,6 +35,9 @@ export async function generateMetadata(): Promise<Metadata> {
       if (data.favicon_url) {
         faviconUrl = data.favicon_url;
       }
+      if (data.site_url) {
+        siteUrl = data.site_url.endsWith('/') ? data.site_url.slice(0, -1) : data.site_url;
+      }
     }
   } catch (e) {
     console.error('Error generating layout metadata:', e);
@@ -42,7 +46,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: {
       default: title,
-      template: `%s`, // Can be overridden in pages
+      template: `%s`,
     },
     description: description,
     robots: robots,
@@ -55,17 +59,54 @@ export async function generateMetadata(): Promise<Metadata> {
       title: ogTitle,
       description: ogDesc,
       type: 'website',
+      url: siteUrl,
+      siteName: title,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: ogTitle,
+      description: ogDesc,
+    },
+    alternates: {
+      canonical: siteUrl,
     },
   };
 }
 
-export default function PublicRootLayout({
+async function getJsonLdSchema() {
+  try {
+    const { data } = await supabase
+      .from('site_settings')
+      .select('org_name, org_url, org_logo, site_name, site_url')
+      .eq('id', 1)
+      .single();
+
+    if (!data) return null;
+
+    const schema: any = {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+    };
+    if (data.org_name || data.site_name) schema.name = data.org_name || data.site_name;
+    if (data.org_url || data.site_url) schema.url = data.org_url || data.site_url;
+    if (data.org_logo) schema.logo = data.org_logo;
+
+    return schema;
+  } catch (e) {
+    return null;
+  }
+}
+
+export default async function PublicRootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   // Read template-head.html to dynamically load all WordPress CSS and scripts in head
   const html = getCleanHtml('template-head.html');
+
+  // Fetch JSON-LD schema from Supabase
+  const jsonLd = await getJsonLdSchema();
 
   // Extract head tags
   const headStart = html.indexOf('<head>');
@@ -87,6 +128,13 @@ export default function PublicRootLayout({
     <html lang="en-US">
       <head>
         {parse(headContent)}
+        {/* JSON-LD Structured Data for Google */}
+        {jsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+        )}
       </head>
       <body>
         {children}
