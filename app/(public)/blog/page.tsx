@@ -145,11 +145,17 @@ export default async function BlogPage() {
         </div>
       </div>
 
-      <!-- Consultation CTA Widget -->
-      <div class="tx-blog-widget widget tz-sidebar-widget headline" style="background: linear-gradient(135deg, #09090b 0%, #1e1b4b 100%); padding: 30px; border-radius: 20px; text-align: center; border: 1px solid #312e81;">
-        <h4 style="color: #fff; font-size: 20px; font-weight: 800; margin-bottom: 12px; font-family: 'Outfit';">Scale Your Search Traffic</h4>
-        <p style="color: #cbd5e1; font-size: 14px; margin-bottom: 24px; line-height: 1.5;">Book a free 30-minute growth audit with our SEO specialists. Let's design a blueprint to grow your traffic.</p>
-        <a href="/contact-us" style="background: #fd3f00; color: #fff; display: block; padding: 12px; border-radius: 8px; font-weight: 700; text-decoration: none; text-align: center;">Book Free Audit</a>
+      <!-- Category widget -->
+      <div id="custom_cat_widget-2" class="tx-blog-widget widget tz-sidebar-widget headline tx-cat-widget">
+        <h4 class="widget-title">Category</h4>
+        <div class="tx-cat-widget category-widget ul-li-block">
+          <ul class="tx-cat-list bs-sidebar-categories">
+            <li><a href="/blog?category=Brand%20Design%20Identity"><span class="text">Brand Design Identity</span><span class="number">(3)</span></a></li>
+            <li><a href="/blog?category=Clock%20Fly%20Strategy"><span class="text">Clock Fly Strategy</span><span class="number">(2)</span></a></li>
+            <li><a href="/blog?category=Digital%20Marketing"><span class="text">Digital Marketing</span><span class="number">(4)</span></a></li>
+            <li><a href="/blog?category=SEO%20Strategy"><span class="text">SEO Strategy</span><span class="number">(1)</span></a></li>
+          </ul>
+        </div>
       </div>
     </div>
   `;
