@@ -3,7 +3,7 @@ import { supabase } from '@/lib/supabase';
 
 export default async function robots(): Promise<MetadataRoute.Robots> {
   let robotsText = 'User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /api/';
-  let siteUrl = 'https://yoursite.com';
+  let siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://titangrowthhub.com';
 
   try {
     const { data } = await supabase

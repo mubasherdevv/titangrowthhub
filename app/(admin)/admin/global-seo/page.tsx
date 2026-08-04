@@ -45,6 +45,7 @@ export default function GlobalSeoPage() {
   // OpenGraph State
   const [ogTitle, setOgTitle] = useState('');
   const [ogDescription, setOgDescription] = useState('');
+  const [ogImage, setOgImage] = useState('');
 
   // Fetch current SEO settings on load
   useEffect(() => {
@@ -62,6 +63,7 @@ export default function GlobalSeoPage() {
           setRobotsText(data.robotsText || `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /api/\n\nSitemap: https://titangrowthhub.com/sitemap.xml`);
           setOgTitle(data.ogTitle || '');
           setOgDescription(data.ogDescription || '');
+          setOgImage(data.ogImage || '');
         }
       })
       .catch((err) => console.error('Error fetching global SEO settings:', err));
@@ -155,6 +157,7 @@ export default function GlobalSeoPage() {
           robotsText,
           ogTitle,
           ogDescription,
+          ogImage,
         }),
       });
 
@@ -495,56 +498,156 @@ export default function GlobalSeoPage() {
 
         {/* TAB 2: ROBOTS.TXT EDITOR */}
         {activeTab === 'robots' && (
-          <div className="p-6 space-y-4">
+          <div className="p-6 space-y-5">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-serif text-sm font-bold text-zinc-950">
-                  Robots.txt File Rules
-                </h3>
-                <p className="text-xs text-zinc-400 font-medium mt-0.5">
-                  Control search engine crawlers access to specific routes.
-                </p>
+                <h3 className="font-serif text-sm font-bold text-zinc-950">Robots.txt File Rules</h3>
+                <p className="text-xs text-zinc-400 font-medium mt-0.5">Control which pages search engine crawlers can access.</p>
               </div>
-              <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[11px] font-bold text-emerald-600 border border-emerald-200/60">
-                <CheckCircle2 className="h-3.5 w-3.5" />
-                Valid Syntax
-              </span>
+              <a
+                href="/robots.txt"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-1.5 text-[11px] font-bold text-zinc-600 hover:bg-zinc-100 transition-colors"
+              >
+                <ExternalLink className="h-3 w-3" />
+                View Live robots.txt
+              </a>
             </div>
 
-            <textarea
-              rows={8}
-              value={robotsText}
-              onChange={(e) => setRobotsText(e.target.value)}
-              className="w-full font-mono text-xs bg-zinc-900 text-emerald-400 p-4 rounded-xl border border-zinc-800 focus:outline-none leading-relaxed"
-            />
+            {/* Quick Reference Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="rounded-xl border border-zinc-100 bg-zinc-50 p-3">
+                <p className="text-[11px] font-bold text-zinc-700 mb-1">Allow All</p>
+                <pre className="text-[11px] font-mono text-emerald-600">{`User-agent: *
+Allow: /`}</pre>
+              </div>
+              <div className="rounded-xl border border-zinc-100 bg-zinc-50 p-3">
+                <p className="text-[11px] font-bold text-zinc-700 mb-1">Block Admin</p>
+                <pre className="text-[11px] font-mono text-amber-600">{`Disallow: /admin/
+Disallow: /api/`}</pre>
+              </div>
+              <div className="rounded-xl border border-zinc-100 bg-zinc-50 p-3">
+                <p className="text-[11px] font-bold text-zinc-700 mb-1">Sitemap Line</p>
+                <pre className="text-[11px] font-mono text-blue-600">{`Sitemap: https://titangrowthhub.com/sitemap.xml`}</pre>
+              </div>
+            </div>
+
+            <div>
+              <label className="text-xs font-serif font-bold text-zinc-900 block mb-2">Edit robots.txt Content</label>
+              <textarea
+                rows={10}
+                value={robotsText}
+                onChange={(e) => setRobotsText(e.target.value)}
+                className="w-full font-mono text-xs bg-zinc-900 text-emerald-400 p-4 rounded-xl border border-zinc-800 focus:outline-none leading-relaxed"
+              />
+              <p className="text-[11px] text-zinc-400 mt-1.5">After saving, visit <span className="text-orange-600 font-bold">/robots.txt</span> to verify your changes are live.</p>
+            </div>
           </div>
         )}
 
         {/* TAB 3: OPENGRAPH & SOCIAL CARDS */}
         {activeTab === 'opengraph' && (
-          <div className="p-6 space-y-5">
-            <div className="space-y-1.5 max-w-lg">
-              <label className="text-xs font-serif font-bold text-zinc-900 block">
-                Default OpenGraph Title
-              </label>
-              <input
-                type="text"
-                value={ogTitle}
-                onChange={(e) => setOgTitle(e.target.value)}
-                className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none"
-              />
+          <div className="p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+            {/* Left: Fields */}
+            <div className="lg:col-span-6 space-y-5">
+              <div>
+                <h3 className="font-serif text-sm font-bold text-zinc-950 mb-0.5">OpenGraph & Social Cards</h3>
+                <p className="text-xs text-zinc-400 font-medium">Controls how your site looks when shared on Facebook, WhatsApp, LinkedIn, and Twitter.</p>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-serif font-bold text-zinc-900 block">OG Title (Social Share Title)</label>
+                <input
+                  type="text"
+                  value={ogTitle}
+                  onChange={(e) => setOgTitle(e.target.value)}
+                  placeholder="e.g. Titan Growth Hub – Pakistan's #1 SEO Agency"
+                  maxLength={95}
+                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none"
+                />
+                <p className="text-[11px] text-zinc-400">{ogTitle.length}/95 characters — Facebook shows up to 95 chars</p>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-serif font-bold text-zinc-900 block">OG Description</label>
+                <textarea
+                  rows={3}
+                  value={ogDescription}
+                  onChange={(e) => setOgDescription(e.target.value)}
+                  placeholder="Short description shown when link is shared on social media..."
+                  maxLength={200}
+                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none resize-none"
+                />
+                <p className="text-[11px] text-zinc-400">{ogDescription.length}/200 characters</p>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-serif font-bold text-zinc-900 block">OG Image URL</label>
+                <input
+                  type="url"
+                  value={ogImage}
+                  onChange={(e) => setOgImage(e.target.value)}
+                  placeholder="https://titangrowthhub.com/og-image.jpg (1200×630px recommended)"
+                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none"
+                />
+                <p className="text-[11px] text-zinc-400">Recommended: 1200×630px JPG/PNG. This image appears in social share previews.</p>
+              </div>
+
+              {/* OG Image Preview */}
+              {ogImage && (
+                <div className="rounded-xl border border-zinc-200 overflow-hidden">
+                  <img src={ogImage} alt="OG Preview" className="w-full h-32 object-cover" />
+                  <p className="text-[11px] text-zinc-400 px-3 py-2">OG Image Preview</p>
+                </div>
+              )}
             </div>
 
-            <div className="space-y-1.5 max-w-lg">
-              <label className="text-xs font-serif font-bold text-zinc-900 block">
-                Default OpenGraph Description
-              </label>
-              <textarea
-                rows={3}
-                value={ogDescription}
-                onChange={(e) => setOgDescription(e.target.value)}
-                className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 p-4 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none resize-none"
-              />
+            {/* Right: Social Card Preview */}
+            <div className="lg:col-span-6 space-y-4">
+              <p className="text-xs font-bold text-zinc-900">Social Share Preview</p>
+
+              {/* Facebook Card */}
+              <div className="space-y-1">
+                <p className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider">Facebook / LinkedIn / WhatsApp</p>
+                <div className="rounded-xl border border-zinc-200 overflow-hidden bg-white shadow-sm">
+                  <div className="h-40 bg-zinc-100 flex items-center justify-center overflow-hidden">
+                    {ogImage
+                      ? <img src={ogImage} alt="" className="w-full h-full object-cover" />
+                      : <div className="flex flex-col items-center gap-2 text-zinc-400">
+                          <ImageIcon className="h-8 w-8" />
+                          <span className="text-[11px]">1200×630px image here</span>
+                        </div>
+                    }
+                  </div>
+                  <div className="p-3 border-t border-zinc-100">
+                    <p className="text-[11px] uppercase text-zinc-400 tracking-wider">titangrowthhub.com</p>
+                    <p className="text-sm font-bold text-zinc-900 leading-tight mt-0.5">{ogTitle || 'Your OG Title appears here'}</p>
+                    <p className="text-[12px] text-zinc-500 mt-0.5 line-clamp-2">{ogDescription || 'Your OG description appears here when the link is shared on social media.'}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Twitter Card */}
+              <div className="space-y-1">
+                <p className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider">Twitter / X</p>
+                <div className="rounded-xl border border-zinc-200 overflow-hidden bg-white shadow-sm">
+                  <div className="h-32 bg-zinc-100 flex items-center justify-center overflow-hidden">
+                    {ogImage
+                      ? <img src={ogImage} alt="" className="w-full h-full object-cover" />
+                      : <div className="flex flex-col items-center gap-2 text-zinc-400">
+                          <Share2 className="h-6 w-6" />
+                          <span className="text-[11px]">Twitter card image</span>
+                        </div>
+                    }
+                  </div>
+                  <div className="p-3 border-t border-zinc-100">
+                    <p className="text-[12px] font-bold text-zinc-900">{ogTitle || 'Twitter card title'}</p>
+                    <p className="text-[11px] text-zinc-500">{ogDescription || 'Twitter card description'}</p>
+                    <p className="text-[11px] text-zinc-400 mt-1">titangrowthhub.com</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         )}

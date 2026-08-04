@@ -9,13 +9,14 @@ export async function generateMetadata(): Promise<Metadata> {
   let robots = 'index, follow';
   let ogTitle = '';
   let ogDesc = '';
+  let ogImg = '';
   let faviconUrl = '/wp-content/uploads/2025/11/fevicon-1.webp';
   let siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://titangrowthhub.com';
 
   try {
     const { data } = await supabase
       .from('site_settings')
-      .select('site_name, site_tagline, global_meta_desc, allow_indexing, og_title, og_description, favicon_url, default_title_pattern, site_url')
+      .select('site_name, site_tagline, global_meta_desc, allow_indexing, og_title, og_description, og_image, favicon_url, default_title_pattern, site_url')
       .eq('id', 1)
       .single();
 
@@ -32,6 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
       robots = data.allow_indexing ? 'index, follow' : 'noindex, nofollow';
       ogTitle = data.og_title || title;
       ogDesc = data.og_description || description;
+      ogImg = data.og_image || '';
       if (data.favicon_url) {
         faviconUrl = data.favicon_url;
       }
@@ -61,11 +63,13 @@ export async function generateMetadata(): Promise<Metadata> {
       type: 'website',
       url: siteUrl,
       siteName: title,
+      ...(ogImg ? { images: [{ url: ogImg, width: 1200, height: 630 }] } : {}),
     },
     twitter: {
       card: 'summary_large_image',
       title: ogTitle,
       description: ogDesc,
+      ...(ogImg ? { images: [ogImg] } : {}),
     },
     alternates: {
       canonical: siteUrl,

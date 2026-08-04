@@ -16,6 +16,7 @@ const dbToFrontendSettings = (db: any) => {
     allowIndexing: db.allow_indexing,
     ogTitle: db.og_title,
     ogDescription: db.og_description,
+    ogImage: db.og_image,
     gscApiKey: db.gsc_api_key,
     bingApiKey: db.bing_api_key,
     geminiApiKey: db.gemini_api_key,
@@ -40,6 +41,7 @@ const frontendToDbSettings = (fe: any) => {
   if (fe.allowIndexing !== undefined) db.allow_indexing = fe.allowIndexing;
   if (fe.ogTitle !== undefined) db.og_title = fe.ogTitle;
   if (fe.ogDescription !== undefined) db.og_description = fe.ogDescription;
+  if (fe.ogImage !== undefined) db.og_image = fe.ogImage;
   if (fe.gscApiKey !== undefined) db.gsc_api_key = fe.gscApiKey;
   if (fe.bingApiKey !== undefined) db.bing_api_key = fe.bingApiKey;
   if (fe.geminiApiKey !== undefined) db.gemini_api_key = fe.geminiApiKey;
@@ -63,6 +65,7 @@ const defaultSettings = {
   allowIndexing: true,
   ogTitle: '',
   ogDescription: '',
+  ogImage: '',
   gscApiKey: '',
   bingApiKey: '',
   geminiApiKey: '',
