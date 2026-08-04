@@ -1,5 +1,7 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/(public)/our-team/page": "app/(public)/our-team/page.js",
-  "/(public)/page": "app/(public)/page.js"
+  "/api/dashboard-stats/route": "app/api/dashboard-stats/route.js",
+  "/api/blogs/route": "app/api/blogs/route.js",
+  "/(admin)/admin/page": "app/(admin)/admin/page.js",
+  "/(admin)/admin/blog-posts/create/page": "app/(admin)/admin/blog-posts/create/page.js",
+  "/(admin)/admin/blog-posts/page": "app/(admin)/admin/blog-posts/page.js"
 }

@@ -3,7 +3,40 @@
 import React from 'react';
 import { FileText, Briefcase, TrendingUp, AlertTriangle, ChevronRight } from 'lucide-react';
 
-export default function StatCards() {
+interface StatCardsProps {
+  stats?: {
+    totalBlogs: number;
+    publishedBlogs: number;
+    draftBlogs: number;
+    totalServices: number;
+    publishedServices: number;
+    draftServices: number;
+    avgSeoScore: number;
+    pagesWithIssues: number;
+  };
+  loading?: boolean;
+}
+
+export default function StatCards({ stats, loading }: StatCardsProps) {
+  if (loading || !stats) {
+    return (
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {[1, 2, 3, 4].map((i) => (
+          <div key={i} className="animate-pulse rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm">
+            <div className="flex items-start justify-between">
+              <div className="h-12 w-12 rounded-2xl bg-zinc-200" />
+              <div className="space-y-2 text-right">
+                <div className="h-3.5 w-24 bg-zinc-200 rounded ml-auto" />
+                <div className="h-8 w-12 bg-zinc-200 rounded ml-auto" />
+              </div>
+            </div>
+            <div className="mt-6 h-4 w-32 bg-zinc-200 rounded pt-3" />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {/* Card 1: Total Blog Posts */}
@@ -14,13 +47,13 @@ export default function StatCards() {
           </div>
           <div className="text-right">
             <span className="text-xs font-serif font-bold text-zinc-500 uppercase tracking-widest">Total Blog Posts</span>
-            <p className="mt-1 font-serif text-3xl font-black tracking-tight text-zinc-950">24</p>
+            <p className="mt-1 font-serif text-3xl font-black tracking-tight text-zinc-950">{stats.totalBlogs}</p>
           </div>
         </div>
         <div className="mt-6 flex items-center gap-3 text-xs border-t border-zinc-100 pt-3">
-          <span className="font-bold text-emerald-600">12 Published</span>
+          <span className="font-bold text-emerald-600">{stats.publishedBlogs} Published</span>
           <span className="text-zinc-300">•</span>
-          <span className="text-zinc-400 font-medium">12 Drafts</span>
+          <span className="text-zinc-400 font-medium">{stats.draftBlogs} Drafts</span>
         </div>
       </div>
 
@@ -32,13 +65,13 @@ export default function StatCards() {
           </div>
           <div className="text-right">
             <span className="text-xs font-serif font-bold text-zinc-500 uppercase tracking-widest">Total Services</span>
-            <p className="mt-1 font-serif text-3xl font-black tracking-tight text-zinc-950">8</p>
+            <p className="mt-1 font-serif text-3xl font-black tracking-tight text-zinc-950">{stats.totalServices}</p>
           </div>
         </div>
         <div className="mt-6 flex items-center gap-3 text-xs border-t border-zinc-100 pt-3">
-          <span className="font-bold text-emerald-600">6 Published</span>
+          <span className="font-bold text-emerald-600">{stats.publishedServices} Published</span>
           <span className="text-zinc-300">•</span>
-          <span className="text-zinc-400 font-medium">2 Drafts</span>
+          <span className="text-zinc-400 font-medium">{stats.draftServices} Drafts</span>
         </div>
       </div>
 
@@ -51,17 +84,19 @@ export default function StatCards() {
           <div className="text-right">
             <span className="text-xs font-serif font-bold text-zinc-500 uppercase tracking-widest">SEO Score</span>
             <p className="mt-1 font-serif text-3xl font-black tracking-tight text-zinc-950">
-              85<span className="text-lg font-normal text-zinc-400">/100</span>
+              {stats.avgSeoScore}<span className="text-lg font-normal text-zinc-400">/100</span>
             </p>
           </div>
         </div>
         <div className="mt-4 space-y-2">
           {/* Progress Bar */}
           <div className="h-2.5 w-full overflow-hidden rounded-full bg-zinc-100">
-            <div className="h-full rounded-full bg-gradient-to-r from-orange-500 to-amber-500 shadow-sm" style={{ width: '85%' }} />
+            <div className="h-full rounded-full bg-gradient-to-r from-orange-500 to-amber-500 shadow-sm" style={{ width: `${stats.avgSeoScore}%` }} />
           </div>
           <div className="flex items-center justify-between text-xs pt-1">
-            <span className="font-extrabold text-emerald-600">Good</span>
+            <span className="font-extrabold text-emerald-600">
+              {stats.avgSeoScore >= 90 ? 'Excellent' : stats.avgSeoScore >= 70 ? 'Good' : 'Needs Work'}
+            </span>
           </div>
         </div>
       </div>
@@ -74,7 +109,7 @@ export default function StatCards() {
           </div>
           <div className="text-right">
             <span className="text-xs font-serif font-bold text-zinc-500 uppercase tracking-widest">Pages with Issues</span>
-            <p className="mt-1 font-serif text-3xl font-black tracking-tight text-zinc-950">3</p>
+            <p className="mt-1 font-serif text-3xl font-black tracking-tight text-zinc-950">{stats.pagesWithIssues}</p>
           </div>
         </div>
         <div className="mt-6 flex items-center border-t border-zinc-100 pt-3">

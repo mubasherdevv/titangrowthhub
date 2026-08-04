@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Code,
   FileText,
@@ -23,18 +23,33 @@ export default function GlobalSeoPage() {
   const [savedSuccess, setSavedSuccess] = useState(false);
 
   // Schema Form States
-  const [orgName, setOrgName] = useState('VistaSEO Inc.');
-  const [orgUrl, setOrgUrl] = useState('https://yoursite.com');
-  const [orgLogo, setOrgLogo] = useState('https://yoursite.com/logo.png');
+  const [orgName, setOrgName] = useState('');
+  const [orgUrl, setOrgUrl] = useState('');
+  const [orgLogo, setOrgLogo] = useState('');
 
   // Robots.txt State
-  const [robotsText, setRobotsText] = useState(
-    `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /api/\n\nSitemap: https://yoursite.com/sitemap.xml`
-  );
+  const [robotsText, setRobotsText] = useState('');
 
   // OpenGraph State
-  const [ogTitle, setOgTitle] = useState('VistaSEO | Scale Organic Search Traffic');
-  const [ogDescription, setOgDescription] = useState('Automated SEO audits, sitemap management, and rank tracking platform.');
+  const [ogTitle, setOgTitle] = useState('');
+  const [ogDescription, setOgDescription] = useState('');
+
+  // Fetch current SEO settings on load
+  useEffect(() => {
+    fetch('/api/settings')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          setOrgName(data.orgName || '');
+          setOrgUrl(data.orgUrl || '');
+          setOrgLogo(data.orgLogo || '');
+          setRobotsText(data.robotsText || `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /api/\n\nSitemap: https://yoursite.com/sitemap.xml`);
+          setOgTitle(data.ogTitle || '');
+          setOgDescription(data.ogDescription || '');
+        }
+      })
+      .catch((err) => console.error('Error fetching global SEO settings:', err));
+  }, []);
 
   // JSON-LD Generator Output
   const generateJsonLd = () => {
@@ -43,9 +58,9 @@ export default function GlobalSeoPage() {
         {
           '@context': 'https://schema.org',
           '@type': 'Organization',
-          name: orgName,
-          url: orgUrl,
-          logo: orgLogo,
+          name: orgName || undefined,
+          url: orgUrl || undefined,
+          logo: orgLogo || undefined,
           sameAs: [
             'https://twitter.com/vistaseo',
             'https://facebook.com/vistaseo',
@@ -67,10 +82,10 @@ export default function GlobalSeoPage() {
           },
           publisher: {
             '@type': 'Organization',
-            name: orgName,
+            name: orgName || undefined,
             logo: {
               '@type': 'ImageObject',
-              url: orgLogo,
+              url: orgLogo || undefined,
             },
           },
         },
@@ -107,9 +122,28 @@ export default function GlobalSeoPage() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleSave = () => {
-    setSavedSuccess(true);
-    setTimeout(() => setSavedSuccess(false), 2000);
+  const handleSave = async () => {
+    try {
+      const response = await fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          orgName,
+          orgUrl,
+          orgLogo,
+          robotsText,
+          ogTitle,
+          ogDescription,
+        }),
+      });
+
+      if (response.ok) {
+        setSavedSuccess(true);
+        setTimeout(() => setSavedSuccess(false), 2000);
+      }
+    } catch (err) {
+      console.error('Error saving global SEO:', err);
+    }
   };
 
   return (

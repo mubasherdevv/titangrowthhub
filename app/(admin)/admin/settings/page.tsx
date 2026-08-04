@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Sliders,
   Globe,
@@ -26,11 +26,12 @@ import {
 export default function SettingsPage() {
   const [activeTab, setActiveTab] = useState<'general' | 'seo' | 'api' | 'team' | 'security' | 'notifications'>('general');
   const [savedSuccess, setSavedSuccess] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   // General Form States
-  const [siteName, setSiteName] = useState('VistaSEO');
-  const [siteTagline, setSiteTagline] = useState('Advanced SEO Analytics & Site Management Platform');
-  const [siteUrl, setSiteUrl] = useState('https://yoursite.com');
+  const [siteName, setSiteName] = useState('');
+  const [siteTagline, setSiteTagline] = useState('');
+  const [siteUrl, setSiteUrl] = useState('');
   const [timezone, setTimezone] = useState('UTC (GMT+00:00)');
   const [language, setLanguage] = useState('English (US)');
 
@@ -40,22 +41,83 @@ export default function SettingsPage() {
 
   // SEO Form States
   const [defaultTitlePattern, setDefaultTitlePattern] = useState('%page_title% | %site_name%');
-  const [globalMetaDesc, setGlobalMetaDesc] = useState(
-    'VistaSEO helps businesses scale organic search traffic with automated SEO audits, sitemap management, and analytics.'
-  );
+  const [globalMetaDesc, setGlobalMetaDesc] = useState('');
   const [allowIndexing, setAllowIndexing] = useState(true);
 
   // API Key States
-  const [gscApiKey, setGscApiKey] = useState('gsc_live_99a8b7c6d5e4f3a2b1c0');
-  const [bingApiKey, setBingApiKey] = useState('bing_webmaster_88f7e6d5c4b3a2');
-  const [geminiApiKey, setGeminiApiKey] = useState('AIzaSyD-sample-gemini-api-key-9988');
+  const [gscApiKey, setGscApiKey] = useState('');
+  const [bingApiKey, setBingApiKey] = useState('');
+  const [geminiApiKey, setGeminiApiKey] = useState('');
 
-  // Trigger Save
-  const handleSave = () => {
-    setSavedSuccess(true);
-    setTimeout(() => {
-      setSavedSuccess(false);
-    }, 2000);
+  // Fetch settings on load
+  useEffect(() => {
+    fetch('/api/settings')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          setSiteName(data.siteName || '');
+          setSiteTagline(data.siteTagline || '');
+          setSiteUrl(data.siteUrl || '');
+          setTimezone(data.timezone || 'UTC (GMT+00:00)');
+          setLanguage(data.language || 'English (US)');
+          setLogoPreview(data.logoUrl || null);
+          setFaviconPreview(data.faviconUrl || null);
+          setDefaultTitlePattern(data.defaultTitlePattern || '%page_title% | %site_name%');
+          setGlobalMetaDesc(data.globalMetaDesc || '');
+          setAllowIndexing(data.allowIndexing !== undefined ? data.allowIndexing : true);
+          setGscApiKey(data.gscApiKey || '');
+          setBingApiKey(data.bingApiKey || '');
+          setGeminiApiKey(data.geminiApiKey || '');
+        }
+      })
+      .catch((err) => console.error('Error fetching settings:', err));
+  }, []);
+
+  // Save settings via API
+  const handleSave = async () => {
+    setIsSaving(true);
+    try {
+      const response = await fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          siteName,
+          siteTagline,
+          siteUrl,
+          timezone,
+          language,
+          logoUrl: logoPreview,
+          faviconUrl: faviconPreview,
+          defaultTitlePattern,
+          globalMetaDesc,
+          allowIndexing,
+          gscApiKey,
+          bingApiKey,
+          geminiApiKey,
+        }),
+      });
+
+      if (response.ok) {
+        setSavedSuccess(true);
+        setTimeout(() => setSavedSuccess(false), 2000);
+      }
+    } catch (err) {
+      console.error('Error saving settings:', err);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  // Base64 file uploader
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, setPreview: (val: string) => void) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const navItems = [
@@ -230,11 +292,7 @@ export default function SettingsPage() {
                             type="file"
                             accept="image/*"
                             className="hidden"
-                            onChange={(e) => {
-                              if (e.target.files && e.target.files[0]) {
-                                setLogoPreview(URL.createObjectURL(e.target.files[0]));
-                              }
-                            }}
+                           onChange={(e) => handleFileChange(e, setLogoPreview)}
                           />
                         </label>
                         {logoPreview && (
@@ -277,11 +335,7 @@ export default function SettingsPage() {
                             type="file"
                             accept="image/*,.ico"
                             className="hidden"
-                            onChange={(e) => {
-                              if (e.target.files && e.target.files[0]) {
-                                setFaviconPreview(URL.createObjectURL(e.target.files[0]));
-                              }
-                            }}
+                             onChange={(e) => handleFileChange(e, setFaviconPreview)}
                           />
                         </label>
                         {faviconPreview && (

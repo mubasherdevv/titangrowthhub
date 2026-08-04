@@ -3,30 +3,34 @@
 import React from 'react';
 import { ChevronRight, ExternalLink } from 'lucide-react';
 
-const pagesData = [
-  {
-    path: '/blog/seo-best-practices',
-    impressions: '3.2K',
-    clicks: '320',
-    ctr: '10.00%',
-  },
-  {
-    path: '/services/local-seo',
-    impressions: '2.7K',
-    clicks: '280',
-    ctr: '10.37%',
-  },
-  {
-    path: '/blog/technical-seo-guide',
-    impressions: '1.9K',
-    clicks: '180',
-    ctr: '9.47%',
-  },
-];
+interface TopPagesTableProps {
+  pages?: Array<{
+    path: string;
+    impressions: string;
+    clicks: string;
+    ctr: string;
+  }>;
+  loading?: boolean;
+}
 
-export default function TopPagesTable() {
+export default function TopPagesTable({ pages, loading }: TopPagesTableProps) {
+  if (loading || !pages) {
+    return (
+      <div className="flex flex-col justify-between rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm min-h-[250px]">
+        <div>
+          <h3 className="font-serif text-lg font-bold text-zinc-950">Top Pages</h3>
+          <div className="mt-4 animate-pulse space-y-3">
+            <div className="h-4 w-full bg-zinc-200 rounded" />
+            <div className="h-4 w-full bg-zinc-200 rounded" />
+            <div className="h-4 w-full bg-zinc-200 rounded" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex flex-col justify-between rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm">
+    <div className="flex flex-col justify-between rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm min-h-[250px]">
       <div>
         <h3 className="font-serif text-lg font-bold text-zinc-950">Top Pages</h3>
         
@@ -41,19 +45,25 @@ export default function TopPagesTable() {
               </tr>
             </thead>
             <tbody className="divide-y divide-zinc-100">
-              {pagesData.map((row) => (
-                <tr key={row.path} className="group hover:bg-orange-50/40 transition-colors">
-                  <td className="py-3 font-semibold text-zinc-700 group-hover:text-orange-600">
-                    <div className="flex items-center gap-1.5">
-                      <span>{row.path}</span>
-                      <ExternalLink className="h-3 w-3 text-zinc-300 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                  </td>
-                  <td className="py-3 text-right font-serif font-bold text-zinc-950">{row.impressions}</td>
-                  <td className="py-3 text-right font-semibold text-zinc-700">{row.clicks}</td>
-                  <td className="py-3 text-right font-semibold text-zinc-700">{row.ctr}</td>
+              {pages.length > 0 ? (
+                pages.map((row) => (
+                  <tr key={row.path} className="group hover:bg-orange-50/40 transition-colors">
+                    <td className="py-3 font-semibold text-zinc-700 group-hover:text-orange-600">
+                      <div className="flex items-center gap-1.5">
+                        <span>{row.path}</span>
+                        <ExternalLink className="h-3 w-3 text-zinc-300 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                    </td>
+                    <td className="py-3 text-right font-serif font-bold text-zinc-950">{row.impressions}</td>
+                    <td className="py-3 text-right font-semibold text-zinc-700">{row.clicks}</td>
+                    <td className="py-3 text-right font-semibold text-zinc-700">{row.ctr}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={4} className="py-6 text-center text-zinc-400">No page data available.</td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>

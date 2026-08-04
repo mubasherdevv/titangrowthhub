@@ -1,10 +1,11 @@
 import React from 'react';
+import { supabase } from '@/lib/supabase';
 
 export const metadata = {
-  title: `Blog &#8211; Avista`,
+  title: 'Blog – Avista',
 };
 
-const pageHtml = `
+const topHtml = `
 
 <div class="page-wrapper">
 
@@ -312,88 +313,8 @@ const pageHtml = `
 	<div class="container lbt-container-2">
         <div class="row">
 			<div class="col-xxl-8 col-xl-8 col-lg-8">
-				<div class="blog__wrapper blog-list-content mt-none-30">
-										
-    <article id="post-1881" class="tx-blog-box mt-30 post-1881 post type-post status-publish format-standard has-post-thumbnail hentry category-brand-design-identity category-digital-marketing tag-marketing tag-technology">
-        <div class="tz-blog-item list-view-item">
-                        <div class="item-img">
-                <img fetchpriority="high" width="1824" height="839" src="/wp-content/uploads/2025/11/p2-img-3.webp" class="img-responsive w-100 wp-post-image" alt="" decoding="async" srcset="https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-3.webp 1824w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-3-600x276.webp 600w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-3-300x138.webp 300w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-3-1024x471.webp 1024w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-3-768x353.webp 768w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-3-1536x707.webp 1536w" sizes="(max-width: 1824px) 100vw, 1824px" />            </div>
-                        <div class="item-text headline pera-content">
-                <div class="item-meta">
-                                        <a href="../how-businesses-can-leverage-data-for-smarter-decisions/index.html"><i class="fa-regular fa-calendar"></i> May 17, 2025</a>
-                    
-                                        <a href="../how-businesses-can-leverage-data-for-smarter-decisions/index.html"><i class="fa-regular fa-user"></i> avista</a>
-                    
-                                        <a href="../how-businesses-can-leverage-data-for-smarter-decisions/index.html">
-                        <i class="fa-solid fa-comments"></i>
-                         Comments(0)                    </a>
-                                    </div>
-                <h3 class="blog_title">
-                    <a href="../how-businesses-can-leverage-data-for-smarter-decisions/index.html" aria-label="How Businesses Can Leverage Data for Smarter Decisions">
-                        How Businesses Can Leverage Data for Smarter Decisions                    </a>
-                </h3>
-                                <p>
-                    IT consulting involves evaluating a company’s existing technology infrastructure, identifying inefficiencies, and recommending solutions to enhance productivity, security, and sc...                </p>
-                
-                                <a class="read_more" href="../how-businesses-can-leverage-data-for-smarter-decisions/index.html">Read More <i class="fa-solid fa-angles-right"></i></a>
-                            </div>
-        </div>
-    </article>
-    
-    <article id="post-1879" class="tx-blog-box mt-30 post-1879 post type-post status-publish format-standard has-post-thumbnail hentry category-brand-design-identity category-digital-marketing tag-marketing tag-technology">
-        <div class="tz-blog-item list-view-item">
-                        <div class="item-img">
-                <img width="1824" height="839" src="/wp-content/uploads/2025/11/p2-img-2.webp" class="img-responsive w-100 wp-post-image" alt="" decoding="async" srcset="https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-2.webp 1824w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-2-600x276.webp 600w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-2-300x138.webp 300w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-2-1024x471.webp 1024w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-2-768x353.webp 768w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-2-1536x707.webp 1536w" sizes="(max-width: 1824px) 100vw, 1824px" />            </div>
-                        <div class="item-text headline pera-content">
-                <div class="item-meta">
-                                        <a href="../it-industry-key-strategies-for-business-growth/index.html"><i class="fa-regular fa-calendar"></i> May 17, 2025</a>
-                    
-                                        <a href="../it-industry-key-strategies-for-business-growth/index.html"><i class="fa-regular fa-user"></i> avista</a>
-                    
-                                        <a href="../it-industry-key-strategies-for-business-growth/index.html">
-                        <i class="fa-solid fa-comments"></i>
-                         Comments(0)                    </a>
-                                    </div>
-                <h3 class="blog_title">
-                    <a href="../it-industry-key-strategies-for-business-growth/index.html" aria-label="IT Industry Key Strategies for Business Growth">
-                        IT Industry Key Strategies for Business Growth                    </a>
-                </h3>
-                                <p>
-                    IT consulting involves evaluating a company’s existing technology infrastructure, identifying inefficiencies, and recommending solutions to enhance productivity, security, and sc...                </p>
-                
-                                <a class="read_more" href="../it-industry-key-strategies-for-business-growth/index.html">Read More <i class="fa-solid fa-angles-right"></i></a>
-                            </div>
-        </div>
-    </article>
-    
-    <article id="post-1181" class="tx-blog-box mt-30 post-1181 post type-post status-publish format-standard has-post-thumbnail hentry category-clock-fly-strategy category-digital-marketing tag-business tag-marketing tag-trendy">
-        <div class="tz-blog-item list-view-item">
-                        <div class="item-img">
-                <img width="1920" height="940" src="/wp-content/uploads/2025/11/h2-img-3.webp" class="img-responsive w-100 wp-post-image" alt="" decoding="async" srcset="https://themexriver.com/wp/avista/wp-content/uploads/2025/11/h2-img-3.webp 1920w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/h2-img-3-600x294.webp 600w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/h2-img-3-300x147.webp 300w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/h2-img-3-1024x501.webp 1024w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/h2-img-3-768x376.webp 768w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/h2-img-3-1536x752.webp 1536w" sizes="(max-width: 1920px) 100vw, 1920px" />            </div>
-                        <div class="item-text headline pera-content">
-                <div class="item-meta">
-                                        <a href="../get-the-most-out-og-the-creativity/index.html"><i class="fa-regular fa-calendar"></i> January 10, 2024</a>
-                    
-                                        <a href="../get-the-most-out-og-the-creativity/index.html"><i class="fa-regular fa-user"></i> avista</a>
-                    
-                                        <a href="../get-the-most-out-og-the-creativity/index.html">
-                        <i class="fa-solid fa-comments"></i>
-                         Comments(0)                    </a>
-                                    </div>
-                <h3 class="blog_title">
-                    <a href="../get-the-most-out-og-the-creativity/index.html" aria-label="Get The Most Out Og The Creativity">
-                        Get The Most Out Og The Creativity                    </a>
-                </h3>
-                                <p>
-                    IT consulting involves evaluating a company’s existing technology infrastructure, identifying inefficiencies, and recommending solutions to enhance productivity, security, and sc...                </p>
-                
-                                <a class="read_more" href="../get-the-most-out-og-the-creativity/index.html">Read More <i class="fa-solid fa-angles-right"></i></a>
-                            </div>
-        </div>
-    </article>
-    						<div class="tx-pagination mt-30">
-							<ul class="p-0 list-unstyled m-0 tz-pagination mt-30 ul-li text-center"><li class="pagination-item pf-page-pagination-item"><span aria-current="page" class="page-numbers current">1</span></li><li class="pagination-item pf-page-pagination-item"><a class="page-numbers" href="page/2/index.html">2</a></li><li class="pagination-item pf-page-pagination-item"><a class="next page-numbers" href="page/2/index.html"><i class="fa-solid fa-angles-right"></i>  </a></li></ul>						</div>
-										</div>
+				<div class="blog__wrapper blog-list-content mt-none-30">`;
+const bottomHtml = `</div>
 			</div>
 
 						<div class="col-xxl-4 col-xl-4 col-lg-4 mt-30 mt-lg-0">
@@ -667,11 +588,11 @@ const pageHtml = `
 				</div>
 				</div>
 						<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="speculationrules">
-{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/wp/avista/*"},{"not":{"href_matches":["/wp/avista/wp-*.php","/wp/avista/wp-admin/*","/wp/avista/wp-content/uploads/*","/wp/avista/wp-content/*","/wp/avista/wp-content/plugins/*","/wp/avista/wp-content/themes/avista/*","/wp/avista/*\\\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\\"nofollow\\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/wp/avista/*"},{"not":{"href_matches":["/wp/avista/wp-*.php","/wp/avista/wp-admin/*","/wp/avista/wp-content/uploads/*","/wp/avista/wp-content/*","/wp/avista/wp-content/plugins/*","/wp/avista/wp-content/themes/avista/*","/wp/avista/*\\\\\\\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\\\\"nofollow\\\\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
 </script>
 			<script>
 				const lazyloadRunObserver = () => {
-					const lazyloadBackgrounds = document.querySelectorAll( \`.e-con.e-parent:not(.e-lazyloaded)\` );
+					const lazyloadBackgrounds = document.querySelectorAll( \\\`.e-con.e-parent:not(.e-lazyloaded)\\\` );
 					const lazyloadBackgroundObserver = new IntersectionObserver( ( entries ) => {
 						entries.forEach( ( entry ) => {
 							if ( entry.isIntersecting ) {
@@ -715,15 +636,15 @@ const pageHtml = `
 <script src="/wp-includes/js/dist/hooks.minaf5f.js?ver=dd5603f07f9220ed27f1" id="wp-hooks-js"></script>
 <script src="/wp-includes/js/dist/i18n.min1cde.js?ver=c26c3dc7bed366793375" id="wp-i18n-js"></script>
 <script id="wp-i18n-js-after">
-wp.i18n.setLocaleData( { 'text direction\\u0004ltr': [ 'ltr' ] } );
+wp.i18n.setLocaleData( { 'text direction\\\\u0004ltr': [ 'ltr' ] } );
 //# sourceURL=wp-i18n-js-after
 </script>
 <script src="/wp-content/plugins/contact-form-7/includes/swv/js/index1b46.js?ver=6.1.4" id="swv-js"></script>
 <script id="contact-form-7-js-before">
 var wpcf7 = {
     "api": {
-        "root": "https:\\/\\/themexriver.com\\/wp\\/avista\\/wp-json\\/",
-        "namespace": "contact-form-7\\/v1"
+        "root": "https:\\\\/\\\\/themexriver.com\\\\/wp\\\\/avista\\\\/wp-json\\\\/",
+        "namespace": "contact-form-7\\\\/v1"
     }
 };
 //# sourceURL=contact-form-7-js-before
@@ -757,7 +678,7 @@ var wc_order_attribution = {"params":{"lifetime":1.0e-5,"session":30,"base64":fa
 <script src="/wp-content/plugins/elementor/assets/js/frontend-modules.min37de.js?ver=3.33.4" id="elementor-frontend-modules-js"></script>
 <script src="/wp-includes/js/jquery/ui/core.minb37e.js?ver=1.13.3" id="jquery-ui-core-js"></script>
 <script id="elementor-frontend-js-before">
-var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"3.33.4","is_static":false,"experimentalFeatures":{"additional_custom_breakpoints":true,"container":true,"e_optimized_markup":true,"e_pro_free_trial_popup":true,"nested-elements":true,"home_screen":true,"global_classes_should_enforce_capabilities":true,"e_variables":true,"cloud-library":true,"e_opt_in_v4_page":true,"import-export-customization":true},"urls":{"assets":"https:\\/\\/themexriver.com\\/wp\\/avista\\/wp-content\\/plugins\\/elementor\\/assets\\/","ajaxurl":"https:\\/\\/themexriver.com\\/wp\\/avista\\/wp-admin\\/admin-ajax.php","uploadUrl":"https:\\/\\/themexriver.com\\/wp\\/avista\\/wp-content\\/uploads"},"nonces":{"floatingButtonsClickTracking":"1401e7d743"},"swiperClass":"swiper","settings":{"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":0,"title":"Blog &#8211; Avista","excerpt":""}};
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"3.33.4","is_static":false,"experimentalFeatures":{"additional_custom_breakpoints":true,"container":true,"e_optimized_markup":true,"e_pro_free_trial_popup":true,"nested-elements":true,"home_screen":true,"global_classes_should_enforce_capabilities":true,"e_variables":true,"cloud-library":true,"e_opt_in_v4_page":true,"import-export-customization":true},"urls":{"assets":"https:\\\\/\\\\/themexriver.com\\\\/wp\\\\/avista\\\\/wp-content\\\\/plugins\\\\/elementor\\\\/assets\\\\/","ajaxurl":"https:\\\\/\\\\/themexriver.com\\\\/wp\\\\/avista\\\\/wp-admin\\\\/admin-ajax.php","uploadUrl":"https:\\\\/\\\\/themexriver.com\\\\/wp\\\\/avista\\\\/wp-content\\\\/uploads"},"nonces":{"floatingButtonsClickTracking":"1401e7d743"},"swiperClass":"swiper","settings":{"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":0,"title":"Blog &#8211; Avista","excerpt":""}};
 //# sourceURL=elementor-frontend-js-before
 </script>
 <script src="/wp-content/plugins/elementor/assets/js/frontend.min37de.js?ver=3.33.4" id="elementor-frontend-js"></script>
@@ -767,22 +688,73 @@ var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false
 </script>
 <script type="module">
 /*! This file is auto-generated */
-const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(window._wpemojiSettings=a,"wpEmojiSettingsSupports"),s=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const a=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===a[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,a){switch(t){case"flag":return n(e,"\\ud83c\\udff3\\ufe0f\\u200d\\u26a7\\ufe0f","\\ud83c\\udff3\\ufe0f\\u200b\\u26a7\\ufe0f")?!1:!n(e,"\\ud83c\\udde8\\ud83c\\uddf6","\\ud83c\\udde8\\u200b\\ud83c\\uddf6")&&!n(e,"\\ud83c\\udff4\\udb40\\udc67\\udb40\\udc62\\udb40\\udc65\\udb40\\udc6e\\udb40\\udc67\\udb40\\udc7f","\\ud83c\\udff4\\u200b\\udb40\\udc67\\u200b\\udb40\\udc62\\u200b\\udb40\\udc65\\u200b\\udb40\\udc6e\\u200b\\udb40\\udc67\\u200b\\udb40\\udc7f");case"emoji":return!a(e,"\\ud83e\\u1fac8")}return!1}function f(e,t,n,a){let r;const o=(r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),s=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(e=>{s[e]=t(o,e,n,a)}),s}function r(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}a.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),c.toString(),p.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"});const r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=e=>{i(n=e.data),r.terminate(),t(n)})}catch(e){}i(n=f(s,u,c,p))}t(n)}).then(e=>{for(const n in e)a.supports[n]=e[n],a.supports.everything=a.supports.everything&&a.supports[n],"flag"!==n&&(a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&a.supports[n]);var t;a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&!a.supports.flag,a.supports.everything||((t=a.source||{}).concatemoji?r(t.concatemoji):t.wpemoji&&t.twemoji&&(r(t.twemoji),r(t.wpemoji)))});
+const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(window._wpemojiSettings=a,"wpEmojiSettingsSupports"),s=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const a=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===a[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,a){switch(t){case"flag":return n(e,"\\\\ud83c\\\\udff3\\\\ufe0f\\\\u200d\\\\u26a7\\\\ufe0f","\\\\ud83c\\\\udff3\\\\ufe0f\\\\u200b\\\\u26a7\\\\ufe0f")?!1:!n(e,"\\\\ud83c\\\\udde8\\\\ud83c\\\\uddf6","\\\\ud83c\\\\udde8\\\\u200b\\\\ud83c\\\\uddf6")&&!n(e,"\\\\ud83c\\\\udff4\\\\udb40\\\\udc67\\\\udb40\\\\udc62\\\\udb40\\\\udc65\\\\udb40\\\\udc6e\\\\udb40\\\\udc67\\\\udb40\\\\udc7f","\\\\ud83c\\\\udff4\\\\u200b\\\\udb40\\\\udc67\\\\u200b\\\\udb40\\\\udc62\\\\u200b\\\\udb40\\\\udc65\\\\u200b\\\\udb40\\\\udc6e\\\\u200b\\\\udb40\\\\udc67\\\\u200b\\\\udb40\\\\udc7f");case"emoji":return!a(e,"\\\\ud83e\\\\u1fac8")}return!1}function f(e,t,n,a){let r;const o=(r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),s=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(e=>{s[e]=t(o,e,n,a)}),s}function r(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}a.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),c.toString(),p.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"});const r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=e=>{i(n=e.data),r.terminate(),t(n)})}catch(e){}i(n=f(s,u,c,p))}t(n)}).then(e=>{for(const n in e)a.supports[n]=e[n],a.supports.everything=a.supports.everything&&a.supports[n],"flag"!==n&&(a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&a.supports[n]);var t;a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&!a.supports.flag,a.supports.everything||((t=a.source||{}).concatemoji?r(t.concatemoji):t.wpemoji&&t.twemoji&&(r(t.twemoji),r(t.wpemoji)))});
 //# sourceURL=https://themexriver.com/wp/avista/wp-includes/js/wp-emoji-loader.min.js
 </script>
         </div>
     <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"daf30b97c9e94fec9725b4f69e8dd5ef","r":1}' crossorigin="anonymous"></script>
 `;
 
-export default function Page() {
+export default async function Page() {
+  let blogs: any[] = [];
+  try {
+    const { data, error } = await supabase
+      .from('blogs')
+      .select('*')
+      .eq('status', 'Published')
+      .order('created_at', { ascending: false });
+    
+    if (error) throw error;
+    if (data) blogs = data;
+  } catch (err) {
+    console.error('Error fetching blogs from Supabase:', err);
+  }
+
+  const blogsListHtml = blogs.length > 0 
+    ? blogs.map((blog) => {
+        const dateObj = new Date(blog.created_at);
+        const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+        const slug = blog.slug.startsWith('/') ? blog.slug : `/blog/${blog.slug.replace(/^\/blog\//, '')}`;
+        const desc = blog.metaDesc || (blog.content ? blog.content.substring(0, 150) + '...' : '');
+
+        return `
+          <article class="tx-blog-box mt-30">
+            <div class="tz-blog-item list-view-item">
+              <div class="item-img">
+                <img width="1824" height="839" src="/wp-content/uploads/2025/11/p2-img-3.webp" class="img-responsive w-100 wp-post-image" alt="" />
+              </div>
+              <div class="item-text headline pera-content">
+                <div class="item-meta" style="margin-bottom: 10px; display: flex; gap: 15px; font-size: 13px; color: #fd3f00;">
+                  <span><i class="fa-regular fa-calendar"></i> ${formattedDate}</span>
+                  <span><i class="fa-regular fa-user"></i> avista</span>
+                  <span><i class="fa-solid fa-tags"></i> ${blog.category || 'SEO Strategy'}</span>
+                </div>
+                <h3 class="blog_title" style="font-size: 22px; font-weight: 800; line-height: 1.4; margin-bottom: 15px;">
+                  <a href="${slug}">
+                    ${blog.title}
+                  </a>
+                </h3>
+                <p style="margin-bottom: 15px; color: #666; line-height: 1.6;">
+                  ${desc}
+                </p>
+                <a class="read_more" href="${slug}">Read More <i class="fa-solid fa-angles-right"></i></a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('\n')
+    : `<div class="mt-30 text-center" style="padding: 40px; background: #fff; border-radius: 20px;"><h3>No blog posts published yet.</h3></div>`;
+
+  const finalHtml = `${topHtml}${blogsListHtml}${bottomHtml}`;
+
   return (
     <>
       <script
         dangerouslySetInnerHTML={{
-          __html: `document.body.className = "blog wp-embed-responsive wp-theme-avista theme-avista woocommerce-no-js hfeed no-sidebar elementor-default elementor-kit-7";`,
+          __html: `document.body.className = "blog";`,
         }}
       />
-      <div dangerouslySetInnerHTML={{ __html: pageHtml }} />
+      <div dangerouslySetInnerHTML={{ __html: finalHtml }} />
     </>
   );
 }

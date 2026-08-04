@@ -1,75 +1,77 @@
 'use client';
 
 import React from 'react';
-import { FileText, Edit3, Image as ImageIcon, Globe, ChevronRight } from 'lucide-react';
+import { FileText, Edit3, Globe, ChevronRight } from 'lucide-react';
 
-const activities = [
-  {
-    id: 1,
-    icon: FileText,
-    iconBg: 'bg-emerald-50 text-emerald-600',
-    text: (
-      <>
-        Blog post <span className="font-bold font-serif text-zinc-950">“SEO Best Practices”</span> published
-      </>
-    ),
-    time: '2 hours ago',
-  },
-  {
-    id: 2,
-    icon: Edit3,
-    iconBg: 'bg-blue-50 text-blue-600',
-    text: (
-      <>
-        Service <span className="font-bold font-serif text-zinc-950">“Local SEO”</span> updated
-      </>
-    ),
-    time: '5 hours ago',
-  },
-  {
-    id: 3,
-    icon: ImageIcon,
-    iconBg: 'bg-amber-50 text-amber-600',
-    text: (
-      <>
-        Meta description updated for <span className="font-bold font-serif text-zinc-950">3 pages</span>
-      </>
-    ),
-    time: '1 day ago',
-  },
-  {
-    id: 4,
-    icon: Globe,
-    iconBg: 'bg-orange-50 text-orange-600',
-    text: (
-      <>
-        Global SEO settings updated
-      </>
-    ),
-    time: '2 days ago',
-  },
-];
+interface RecentActivityProps {
+  activities?: Array<{
+    id: number;
+    text: string;
+    time: string;
+    iconType: 'blog' | 'service' | 'settings';
+    iconBg: string;
+  }>;
+  loading?: boolean;
+}
 
-export default function RecentActivity() {
+const getIcon = (type: string) => {
+  switch (type) {
+    case 'blog':
+      return FileText;
+    case 'service':
+      return Edit3;
+    case 'settings':
+      return Globe;
+    default:
+      return FileText;
+  }
+};
+
+export default function RecentActivity({ activities, loading }: RecentActivityProps) {
+  if (loading || !activities) {
+    return (
+      <div className="flex flex-col justify-between rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm min-h-[300px]">
+        <div>
+          <h3 className="font-serif text-lg font-bold text-zinc-950">Recent Activity</h3>
+          <div className="mt-5 space-y-4 animate-pulse">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="flex items-center justify-between text-xs py-1">
+                <div className="flex items-center gap-3">
+                  <div className="h-9 w-9 bg-zinc-200 rounded-xl" />
+                  <div className="h-3 w-40 bg-zinc-200 rounded" />
+                </div>
+                <div className="h-3 w-12 bg-zinc-200 rounded" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex flex-col justify-between rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm">
+    <div className="flex flex-col justify-between rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm min-h-[300px]">
       <div>
         <h3 className="font-serif text-lg font-bold text-zinc-950">Recent Activity</h3>
         <div className="mt-5 space-y-4">
-          {activities.map((item) => {
-            const Icon = item.icon;
-            return (
-              <div key={item.id} className="flex items-center justify-between text-xs py-1">
-                <div className="flex items-center gap-3">
-                  <div className={`flex h-9 w-9 items-center justify-center rounded-xl ${item.iconBg}`}>
-                    <Icon className="h-4 w-4" />
+          {activities.length > 0 ? (
+            activities.map((item) => {
+              const Icon = getIcon(item.iconType);
+              return (
+                <div key={item.id} className="flex items-center justify-between text-xs py-1">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${item.iconBg}`}>
+                      <Icon className="h-4 w-4" />
+                    </div>
+                    <p className="text-zinc-600 font-medium truncate">{item.text}</p>
                   </div>
-                  <p className="text-zinc-600 font-medium leading-relaxed">{item.text}</p>
+                  <span className="text-zinc-400 font-semibold whitespace-nowrap ml-2">{item.time}</span>
                 </div>
-                <span className="text-zinc-400 font-semibold whitespace-nowrap ml-2">{item.time}</span>
-              </div>
-            );
-          })}
+              );
+            })
+          ) : (
+            <div className="text-center py-8 text-zinc-400">No recent activities found.</div>
+          )}
         </div>
       </div>
 

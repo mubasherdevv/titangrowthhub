@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StatCards from '@/components/StatCards';
 import SeoOverviewChart from '@/components/SeoOverviewChart';
 import RecentActivity from '@/components/RecentActivity';
@@ -10,6 +10,21 @@ import { Calendar, ChevronDown } from 'lucide-react';
 export default function HomePage() {
   const [dateRange, setDateRange] = useState('May 20, 2025 - May 26, 2025');
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const [dashboardData, setDashboardData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/dashboard-stats')
+      .then((res) => res.json())
+      .then((data) => {
+        setDashboardData(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Error fetching dashboard stats:', err);
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <>
@@ -20,7 +35,7 @@ export default function HomePage() {
             Dashboard
           </h1>
           <p className="mt-1 text-xs md:text-sm text-zinc-500 font-medium">
-            Welcome back, John! Here&apos;s what&apos;s happening with your website.
+            Welcome back! Here&apos;s what&apos;s happening with your website.
           </p>
         </div>
 
@@ -70,7 +85,7 @@ export default function HomePage() {
       </div>
 
       {/* Section 1: Stat Cards Grid */}
-      <StatCards />
+      <StatCards stats={dashboardData?.stats} loading={loading} />
 
       {/* Section 2: Middle Row (SEO Overview & Recent Activity) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -78,13 +93,13 @@ export default function HomePage() {
           <SeoOverviewChart />
         </div>
         <div className="lg:col-span-5">
-          <RecentActivity />
+          <RecentActivity activities={dashboardData?.recentActivity} loading={loading} />
         </div>
       </div>
 
       {/* Section 3: Bottom Row (Top Pages Table) */}
       <div>
-        <TopPagesTable />
+        <TopPagesTable pages={dashboardData?.topPages} loading={loading} />
       </div>
     </>
   );
