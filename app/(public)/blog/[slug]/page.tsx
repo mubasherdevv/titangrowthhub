@@ -189,100 +189,56 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   // Custom styled CSS tags
   const styleTags = `
     <style>
-      /* Typography */
-      .blog-list-content .article-header {
-        margin-bottom: 40px;
+      /* Typography & Content Improvements */
+      .tz-blog-details-text .article-header {
+        margin-bottom: 30px;
       }
-      .blog-list-content .article-title {
-        font-size: 48px;
+      .tz-blog-details-text .article-title {
+        font-size: 40px;
         line-height: 1.25;
         font-weight: 800;
         color: #09090b;
-        margin-bottom: 24px;
+        margin-bottom: 20px;
         letter-spacing: -0.02em;
         font-family: 'Outfit', sans-serif;
       }
       @media (max-width: 768px) {
-        .blog-list-content .article-title {
-          font-size: 34px;
+        .tz-blog-details-text .article-title {
+          font-size: 30px;
         }
       }
-      .blog-list-content .article-meta {
+      .tz-blog-details-text .article-meta-row {
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: 15px;
         flex-wrap: wrap;
         color: #71717a;
-        font-size: 14px;
-        padding-bottom: 24px;
+        font-size: 13px;
+        padding-bottom: 20px;
         border-bottom: 1px solid #e4e4e7;
         margin-bottom: 30px;
       }
-      .blog-list-content .meta-item {
+      .tz-blog-details-text .meta-item {
         display: inline-flex;
         align-items: center;
         gap: 6px;
       }
-      .blog-list-content .meta-item i {
+      .tz-blog-details-text .meta-item i {
         color: #fd3f00;
       }
-      .blog-list-content .meta-category {
+      .tz-blog-details-text .meta-category {
         background: rgba(253, 63, 0, 0.1);
         color: #fd3f00;
-        padding: 4px 12px;
+        padding: 3px 10px;
         border-radius: 100px;
         font-weight: 700;
-        font-size: 12px;
+        font-size: 11px;
         text-transform: uppercase;
         letter-spacing: 0.05em;
       }
 
-      /* Featured Image */
-      .blog-list-content .featured-image-wrapper {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        border-radius: 20px;
-        overflow: hidden;
-        margin-bottom: 50px;
-        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
-      }
-      .blog-list-content .featured-image-wrapper img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-      }
-
-      /* Body Content */
-      .blog-list-content .article-body {
-        font-size: 18px;
-        line-height: 1.8;
-        color: #27272a;
-      }
-      .blog-list-content .article-body p {
-        margin-bottom: 24px;
-      }
-      .blog-list-content .article-body h2 {
-        font-size: 30px;
-        font-weight: 800;
-        color: #09090b;
-        margin-top: 48px;
-        margin-bottom: 20px;
-        scroll-margin-top: 100px;
-        font-family: 'Outfit', sans-serif;
-      }
-      .blog-list-content .article-body h3 {
-        font-size: 24px;
-        font-weight: 800;
-        color: #09090b;
-        margin-top: 36px;
-        margin-bottom: 16px;
-        scroll-margin-top: 100px;
-        font-family: 'Outfit', sans-serif;
-      }
-
       /* Table of Contents */
-      .blog-list-content .toc-container {
+      .tz-blog-details-text .toc-container {
         background: #fafafa;
         border-left: 4px solid #fd3f00;
         padding: 24px;
@@ -292,7 +248,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         border-right: 1px solid #f4f4f5;
         border-bottom: 1px solid #f4f4f5;
       }
-      .blog-list-content .toc-title {
+      .tz-blog-details-text .toc-title {
         font-weight: 800;
         font-size: 14px;
         color: #09090b;
@@ -300,89 +256,27 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         text-transform: uppercase;
         letter-spacing: 0.05em;
       }
-      .blog-list-content .toc-list {
+      .tz-blog-details-text .toc-list {
         list-style: none;
         padding: 0;
         margin: 0;
       }
-      .blog-list-content .toc-item {
+      .tz-blog-details-text .toc-item {
         margin-bottom: 10px;
       }
-      .blog-list-content .toc-link {
+      .tz-blog-details-text .toc-link {
         color: #52525b;
         text-decoration: none;
         font-size: 15px;
         transition: color 0.2s;
         font-weight: 500;
       }
-      .blog-list-content .toc-link:hover {
-        color: #fd3f00;
-      }
-
-      /* Author Box */
-      .blog-list-content .author-box {
-        display: flex;
-        gap: 24px;
-        background: #fafafa;
-        padding: 32px;
-        border-radius: 20px;
-        margin-top: 60px;
-        border: 1px solid #f4f4f5;
-      }
-      @media (max-width: 576px) {
-        .blog-list-content .author-box {
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-        }
-      }
-      .blog-list-content .author-avatar {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        overflow: hidden;
-        flex-shrink: 0;
-        border: 3px solid #fff;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      }
-      .blog-list-content .author-avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .blog-list-content .author-info h4 {
-        font-size: 18px;
-        font-weight: 800;
-        color: #09090b;
-        margin-bottom: 8px;
-        font-family: 'Outfit', sans-serif;
-      }
-      .blog-list-content .author-info p {
-        font-size: 15px;
-        color: #52525b;
-        line-height: 1.6;
-        margin-bottom: 16px;
-      }
-      .blog-list-content .author-socials {
-        display: flex;
-        gap: 12px;
-      }
-      @media (max-width: 576px) {
-        .blog-list-content .author-socials {
-          justify-content: center;
-        }
-      }
-      .blog-list-content .author-socials a {
-        color: #a1a1aa;
-        font-size: 16px;
-        transition: color 0.2s;
-      }
-      .blog-list-content .author-socials a:hover {
+      .tz-blog-details-text .toc-link:hover {
         color: #fd3f00;
       }
 
       /* Social Sharing */
-      .blog-list-content .share-bar {
+      .tz-blog-details-text .share-bar {
         display: flex;
         align-items: center;
         gap: 12px;
@@ -391,7 +285,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         border-top: 1px solid #f4f4f5;
         border-bottom: 1px solid #f4f4f5;
       }
-      .blog-list-content .share-title {
+      .tz-blog-details-text .share-title {
         font-weight: 800;
         font-size: 13px;
         color: #09090b;
@@ -399,7 +293,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         letter-spacing: 0.05em;
         margin-right: auto;
       }
-      .blog-list-content .share-btn {
+      .tz-blog-details-text .share-btn {
         width: 40px;
         height: 40px;
         border-radius: 50%;
@@ -412,118 +306,120 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         border: 1px solid #e4e4e7;
         text-decoration: none;
       }
-      .blog-list-content .share-btn:hover {
+      .tz-blog-details-text .share-btn:hover {
         color: #fff;
         background: #fd3f00;
         border-color: #fd3f00;
         transform: translateY(-2px);
       }
 
-      /* Newsletter CTA */
-      .blog-list-content .newsletter-cta {
-        background: #09090b;
-        color: #fff;
-        padding: 40px;
+      /* Author Box */
+      .tz-blog-details-text .author-box {
+        display: flex;
+        gap: 24px;
+        background: #fafafa;
+        padding: 32px;
         border-radius: 20px;
         margin-top: 60px;
-        position: relative;
-        overflow: hidden;
+        border: 1px solid #f4f4f5;
       }
-      .blog-list-content .newsletter-title {
-        font-size: 26px;
+      @media (max-width: 576px) {
+        .tz-blog-details-text .author-box {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+      }
+      .tz-blog-details-text .author-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        flex-shrink: 0;
+        border: 3px solid #fff;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      }
+      .tz-blog-details-text .author-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .tz-blog-details-text .author-info h4 {
+        font-size: 18px;
         font-weight: 800;
-        margin-bottom: 12px;
-        color: #fff;
+        color: #09090b;
+        margin-bottom: 8px;
         font-family: 'Outfit', sans-serif;
       }
-      .blog-list-content .newsletter-desc {
-        color: #a1a1aa;
+      .tz-blog-details-text .author-info p {
         font-size: 15px;
-        margin-bottom: 24px;
-        line-height: 1.5;
+        color: #52525b;
+        line-height: 1.6;
+        margin-bottom: 16px;
       }
-      .blog-list-content .newsletter-form {
+      .tz-blog-details-text .author-socials {
         display: flex;
         gap: 12px;
       }
       @media (max-width: 576px) {
-        .blog-list-content .newsletter-form {
-          flex-direction: column;
+        .tz-blog-details-text .author-socials {
+          justify-content: center;
         }
       }
-      .blog-list-content .newsletter-input {
-        flex-grow: 1;
-        background: #18181b;
-        border: 1px solid #27272a;
-        border-radius: 8px;
-        padding: 12px 16px;
-        color: #fff;
-        font-size: 14px;
-        outline: none;
+      .tz-blog-details-text .author-socials a {
+        color: #a1a1aa;
+        font-size: 16px;
+        transition: color 0.2s;
       }
-      .blog-list-content .newsletter-input::placeholder {
-        color: #71717a;
-      }
-      .blog-list-content .newsletter-btn {
-        background: #fd3f00;
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        padding: 12px 24px;
-        font-weight: 700;
-        font-size: 14px;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-      .blog-list-content .newsletter-btn:hover {
-        background: #d33400;
+      .tz-blog-details-text .author-socials a:hover {
+        color: #fd3f00;
       }
 
       /* Related Posts */
-      .blog-list-content .related-section {
-        margin-top: 80px;
+      .tz-blog-details-text .related-section {
+        margin-top: 60px;
       }
-      .blog-list-content .related-header-title {
-        font-size: 28px;
+      .tz-blog-details-text .related-header-title {
+        font-size: 24px;
         font-weight: 800;
         color: #09090b;
-        margin-bottom: 32px;
+        margin-bottom: 25px;
         font-family: 'Outfit', sans-serif;
       }
-      .blog-list-content .related-grid {
+      .tz-blog-details-text .related-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
+        gap: 24px;
       }
       @media (max-width: 768px) {
-        .blog-list-content .related-grid {
+        .tz-blog-details-text .related-grid {
           grid-template-columns: 1fr;
         }
       }
-      .blog-list-content .related-card {
+      .tz-blog-details-text .related-card {
         background: #fff;
         border-radius: 16px;
         overflow: hidden;
         border: 1px solid #f4f4f5;
         transition: all 0.3s;
       }
-      .blog-list-content .related-card:hover {
+      .tz-blog-details-text .related-card:hover {
         transform: translateY(-4px);
         box-shadow: 0 12px 20px -8px rgba(0,0,0,0.08);
       }
-      .blog-list-content .related-img {
+      .tz-blog-details-text .related-img {
         aspect-ratio: 16/10;
         overflow: hidden;
       }
-      .blog-list-content .related-img img {
+      .tz-blog-details-text .related-img img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
-      .blog-list-content .related-info {
+      .tz-blog-details-text .related-info {
         padding: 20px;
       }
-      .blog-list-content .related-meta {
+      .tz-blog-details-text .related-meta {
         font-size: 12px;
         color: #fd3f00;
         margin-bottom: 8px;
@@ -531,169 +427,138 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         text-transform: uppercase;
         letter-spacing: 0.05em;
       }
-      .blog-list-content .related-card-title {
-        font-size: 18px;
+      .tz-blog-details-text .related-card-title {
+        font-size: 16px;
         font-weight: 800;
         color: #09090b;
         line-height: 1.4;
         margin-bottom: 12px;
         font-family: 'Outfit', sans-serif;
       }
-      .blog-list-content .related-card-title a {
+      .tz-blog-details-text .related-card-title a {
         color: inherit;
         text-decoration: none;
       }
-      .blog-list-content .related-card-title a:hover {
+      .tz-blog-details-text .related-card-title a:hover {
         color: #fd3f00;
       }
 
-      /* FAQ Section */
-      .blog-list-content .faq-section {
-        margin-top: 80px;
-        padding-top: 60px;
-        border-top: 1px solid #f4f4f5;
-      }
-      .blog-list-content .faq-item {
-        background: #fafafa;
-        border: 1px solid #f4f4f5;
-        border-radius: 12px;
-        margin-bottom: 16px;
-        padding: 20px;
-      }
-      .blog-list-content .faq-question {
-        font-size: 16px;
-        font-weight: 800;
-        color: #09090b;
-        margin-bottom: 8px;
-        font-family: 'Outfit', sans-serif;
-      }
-      .blog-list-content .faq-answer {
-        font-size: 15px;
-        color: #52525b;
-        line-height: 1.6;
-      }
-
-      /* Comments */
-      .blog-list-content .comments-section {
-        margin-top: 80px;
-        padding-top: 60px;
-        border-top: 1px solid #f4f4f5;
-      }
-      .blog-list-content .comment-form {
-        margin-bottom: 40px;
-      }
-      .blog-list-content .comment-textarea {
-        width: 100%;
-        height: 120px;
-        background: #fff;
-        border: 1px solid #e4e4e7;
-        border-radius: 8px;
-        padding: 16px;
-        font-size: 15px;
-        outline: none;
-        resize: none;
-        margin-bottom: 16px;
-      }
-      .blog-list-content .comment-submit {
-        background: #09090b;
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        padding: 12px 24px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-      .blog-list-content .comment-submit:hover {
-        background: #fd3f00;
-      }
-
-      /* Sidebar widgets */
+      /* Custom Sidebar Sticky */
       .tx-sidebarWrapper.saas-sidebar {
         position: sticky;
         top: 100px;
       }
-      .tx-sidebarWrapper.saas-sidebar .widget {
-        background: #fff;
-        border: 1px solid #f4f4f5;
-        border-radius: 16px;
-        padding: 24px;
-        margin-bottom: 30px;
-        box-shadow: 0 1px 3px 0 rgba(0,0,0,0.02);
-      }
     </style>
   `;
 
-  // Main content HTML
+  // Main content HTML using exact imported WordPress layout classes
   const singlePostHtml = `
     ${styleTags}
-    <article class="tx-blog-box type-post status-publish format-standard hentry" style="margin-top: 0;">
-        <div class="tz-blog-item" style="border-radius: 0; overflow: visible; background: transparent; padding: 0; box-shadow: none; border: none;">
-            <!-- Title & Meta Header -->
-            <div class="article-header">
-              <h1 class="article-title">${blog.title}</h1>
-              <div class="article-meta">
-                <span class="meta-item"><i class="fa-regular fa-calendar"></i> ${formattedDate}</span>
-                <span class="meta-item"><i class="fa-regular fa-user"></i> By avista</span>
-                <span class="meta-category">${blog.category || 'SEO Strategy'}</span>
-                <span class="meta-item"><i class="fa-regular fa-clock"></i> ${readTime} min read</span>
-                <span class="meta-item"><i class="fa-regular fa-eye"></i> ${viewsCount} views</span>
-              </div>
-            </div>
+    <article class="tx-blog-box tx-blogDetails-box type-post status-publish format-standard has-post-thumbnail hentry">
+        <div class="blog-details-page-content">
+            <div class="blog-details-item">
+                <div class="tx-blogDetails-box__wrapper">
+                    <div class="post-details-content tz-blog-details-text headline pera-content">
+                        
+                        <!-- Title & Meta Header -->
+                        <div class="article-header">
+                          <h1 class="article-title">${blog.title}</h1>
+                          <div class="article-meta-row">
+                            <span class="meta-item"><i class="fa-regular fa-calendar"></i> ${formattedDate}</span>
+                            <span class="meta-item"><i class="fa-regular fa-user"></i> By avista</span>
+                            <span class="meta-category">${blog.category || 'SEO Strategy'}</span>
+                            <span class="meta-item"><i class="fa-regular fa-clock"></i> ${readTime} min read</span>
+                            <span class="meta-item"><i class="fa-regular fa-eye"></i> ${viewsCount} views</span>
+                          </div>
+                        </div>
 
-            <!-- Featured Image -->
-            <div class="featured-image-wrapper">
-              <img src="${featuredImg}" alt="${blog.title || ''}" />
-            </div>
+                        <!-- Featured Image Banner -->
+                        <div class="tz-thumb mb-30" style="border-radius: 15px; overflow: hidden; height: 420px; width: 100%;">
+                            <img src="${featuredImg}" class="img-responsive w-100 wp-post-image" alt="${blog.title || ''}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;" />
+                        </div>
+                        
+                        <!-- Table of Contents -->
+                        ${headingsHtml}
 
-            <!-- Table of Contents -->
-            ${headingsHtml}
+                        <!-- Article Content Body -->
+                        <div class="article-body-content" style="font-size: 16px; color: #3f3f46; line-height: 1.8;">
+                            ${contentHtml}
+                        </div>
 
-            <!-- Article Body -->
-            <div class="article-body">
-              ${contentHtml}
-            </div>
+                        <!-- Social Sharing -->
+                        <div class="share-bar">
+                          <span class="share-title">Share this article:</span>
+                          <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(blog.title)}" target="_blank" class="share-btn" title="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
+                          <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}" target="_blank" class="share-btn" title="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                          <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}" target="_blank" class="share-btn" title="Share on Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                          <a href="#" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied to clipboard!'); return false;" class="share-btn" title="Copy Link"><i class="fa-solid fa-link"></i></a>
+                        </div>
 
-            <!-- Social Sharing -->
-            <div class="share-bar">
-              <span class="share-title">Share this article:</span>
-              <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(blog.title)}" target="_blank" class="share-btn" title="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-              <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}" target="_blank" class="share-btn" title="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-              <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}" target="_blank" class="share-btn" title="Share on Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-              <a href="#" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied to clipboard!'); return false;" class="share-btn" title="Copy Link"><i class="fa-solid fa-link"></i></a>
-            </div>
+                        <!-- Author Box -->
+                        <div class="author-box">
+                          <div class="author-avatar">
+                            <img src="/wp-content/uploads/2025/11/fevicon-1.webp" alt="Muhammad Mubasher" />
+                          </div>
+                          <div class="author-info">
+                            <h4>Muhammad Mubasher</h4>
+                            <p>Senior SEO Consultant & Founder of Titan Growth Hub. Helping businesses scale search visibility and drive revenue through data-backed SEO strategies.</p>
+                            <div class="author-socials">
+                              <a href="#" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                              <a href="#" target="_blank" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                              <a href="https://titangrowthhub.com" target="_blank" title="Website"><i class="fa-solid fa-globe"></i></a>
+                            </div>
+                          </div>
+                        </div>
 
-            <!-- Author Box -->
-            <div class="author-box">
-              <div class="author-avatar">
-                <img src="/wp-content/uploads/2025/11/fevicon-1.webp" alt="Muhammad Mubasher" />
-              </div>
-              <div class="author-info">
-                <h4>Muhammad Mubasher</h4>
-                <p>Senior SEO Consultant & Founder of Titan Growth Hub. Helping businesses scale search visibility and drive revenue through data-backed SEO strategies.</p>
-                <div class="author-socials">
-                  <a href="#" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                  <a href="#" target="_blank" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                  <a href="https://titangrowthhub.com" target="_blank" title="Website"><i class="fa-solid fa-globe"></i></a>
+                        <!-- Related Posts -->
+                        ${relatedPostsHtml}
+                    </div>
                 </div>
-              </div>
-            </div>
-
-
-
-            <!-- Related Posts -->
-            ${relatedPostsHtml}
-
-            <!-- Comments Box -->
-            <div class="comments-section">
-              <h3 style="font-size: 24px; font-weight: 800; color: #09090b; margin-bottom: 30px; font-family: 'Outfit';">Comments</h3>
-              <form class="comment-form" onsubmit="event.preventDefault(); alert('Comment submitted for moderation.');">
-                <textarea class="comment-textarea" placeholder="Join the discussion... Type your comment here." required></textarea>
-                <button type="submit" class="comment-submit">Post Comment</button>
-              </form>
             </div>
         </div>
     </article>
+    
+    <!-- Native Comments form matching WordPress styles -->
+    <div class="tx-commentsWrapper mt-40">
+        <div class="contact-form-wrapper post-comment-form">
+            <div id="respond" class="comment-respond">
+                <h3 class="fti-heading-3 blog-details-form-title mt-0">Leave a Reply</h3>
+                <form action="#" method="post" id="commentform" class="comment-form" onsubmit="event.preventDefault(); alert('Comment submitted for moderation.');">
+                    <div class="contact-form">
+                        <div class="row">
+                            <div class="col-xl-12 form-group">
+                                <div class="tx-input-field bs-form-1-item">
+                                    <textarea id="comment" name="comment" class="bs-form-1-item-input" placeholder="Write your message here..." required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bs-form-1-item" style="margin-bottom: 15px;">
+                        <input class="bs-form-1-item-input" type="text" name="author" id="author" placeholder="Full Name" required />
+                    </div>
+                    <div class="bs-form-1-item" style="margin-bottom: 15px;">
+                        <input class="bs-form-1-item-input" type="email" name="email" id="email" placeholder="info@example.com" required />
+                    </div>
+                    <div class="bs-form-1-item" style="margin-bottom: 25px;">
+                        <input class="bs-form-1-item-input" type="tel" name="phone" id="phone" placeholder="+1 234 567 890" />
+                    </div>
+                    <div class="col-xl-12 submit-button">
+                        <div class="tz-commentButton tx-button-wrapper m-0">
+                            <button type="submit" class="as-pr-btn-1 wa_btn_split_1 wa_magnetic_btn_1">
+                                <span class="text">Send Message</span>
+                                <span class="icon">
+                                    <span class="icon-fix wa-fix">
+                                        <i class="flaticon-dot-arrow-1 flaticon"></i>
+                                        <i class="flaticon-next flaticon"></i>
+                                    </span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
   `;
 
   // Make breadcrumb dynamic
@@ -709,6 +574,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <li class="item taBcrumb-end"><span>${blog.title}</span></li>
   `;
   dynamicTopHtml = dynamicTopHtml.replace(oldBreadcrumb, newBreadcrumb);
+
+  // Convert outer wrappers of the page from "blog list" layout to "blog details" layout
+  dynamicTopHtml = dynamicTopHtml.replace(
+    'tx-blog-area tz-blog-list-sec pt-110 pb-120 fix',
+    'tx-blog-area bs-blog-details-area wa-p-relative pt-110 pb-120 tx-detailsWrapper__prev'
+  );
+  dynamicTopHtml = dynamicTopHtml.replace(
+    'blog__wrapper blog-list-content mt-none-30',
+    'tx-detailsWrapper blog-details-content bs-blog-details-content tx-detailsWrapper__prev'
+  );
 
   // Construct the custom sidebar HTML
   const customSidebarHtml = `
@@ -731,8 +606,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           ${recentPostsHtml}
         </div>
       </div>
-
-
 
       <!-- Tag Cloud widget -->
       <div id="tag_cloud-2" class="tx-blog-widget widget tz-sidebar-widget headline widget_tag_cloud">
