@@ -1,7 +1,0 @@
-{
-  "/api/dashboard-stats/route": "app/api/dashboard-stats/route.js",
-  "/api/blogs/route": "app/api/blogs/route.js",
-  "/(admin)/admin/page": "app/(admin)/admin/page.js",
-  "/(admin)/admin/blog-posts/create/page": "app/(admin)/admin/blog-posts/create/page.js",
-  "/(admin)/admin/blog-posts/page": "app/(admin)/admin/blog-posts/page.js"
-}
