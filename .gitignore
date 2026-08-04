@@ -13,6 +13,11 @@ node_modules/
 # production
 /build
 
+# Allow WordPress static assets needed by Next.js public pages
+!public/index.html
+!public/wp-content/
+!public/wp-includes/
+
 # env files (DO NOT commit these!)
 .env
 .env.local
