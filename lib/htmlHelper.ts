@@ -9,12 +9,21 @@ export function getCleanHtml(relativePath: string): string {
   let html = fs.readFileSync(filePath, 'utf8');
 
   // Replace relative asset paths to absolute paths
+  // Double quotes
   html = html.replaceAll('src="../wp-', 'src="/wp-');
   html = html.replaceAll('href="../wp-', 'href="/wp-');
   html = html.replaceAll('src="../../wp-', 'src="/wp-');
   html = html.replaceAll('href="../../wp-', 'href="/wp-');
   html = html.replaceAll('src="wp-', 'src="/wp-');
   html = html.replaceAll('href="wp-', 'href="/wp-');
+
+  // Single quotes
+  html = html.replaceAll("src='../wp-", "src='/wp-");
+  html = html.replaceAll("href='../wp-", "href='/wp-");
+  html = html.replaceAll("src='../../wp-", "src='/wp-");
+  html = html.replaceAll("href='../../wp-", "href='/wp-");
+  html = html.replaceAll("src='wp-", "src='/wp-");
+  html = html.replaceAll("href='wp-", "href='/wp-");
 
   // Replace links to point to Next.js routes
   html = html.replaceAll('href="../about/index.html"', 'href="/about"');
