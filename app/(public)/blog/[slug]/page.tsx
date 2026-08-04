@@ -627,9 +627,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     </div>
   `;
 
-  // Make a clean replace of the sidebar wrapper in bottomHtml to preserve layout closing tags and footer intact
-  const sidebarRegex = /<div class="tx-sidebarWrapper tz-ser-sidebar">[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/i;
-  const newBottomHtml = bottomHtml.replace(sidebarRegex, `${customSidebarHtml}\n\t\t\t</div>`);
+  // Find where the footer starts in bottomHtml
+  const footerIndex = bottomHtml.indexOf('<div data-elementor-type="wp-post" data-elementor-id="2686"');
+  const footerHtml = footerIndex !== -1 ? bottomHtml.substring(footerIndex) : '';
+
+  // Construct newBottomHtml cleanly to avoid regex matching errors and unclosed tags
+  const newBottomHtml = `
+      </div>
+    </div>
+    <div class="col-xxl-4 col-xl-4 col-lg-4 mt-30 mt-lg-0">
+      ${customSidebarHtml}
+    </div>
+    </div>
+    </div>
+    </div>
+    ${footerHtml}
+  `;
 
   const finalHtml = `${dynamicTopHtml}${singlePostHtml}${newBottomHtml}`;
 

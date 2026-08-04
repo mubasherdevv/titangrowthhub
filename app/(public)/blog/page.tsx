@@ -46,9 +46,9 @@ export default async function BlogPage() {
         return `
           <article class="tx-blog-box mt-30 type-post status-publish format-standard hentry">
             <div class="tz-blog-item" style="padding: 20px; background: #fff; border-radius: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-              <div class="item-img" style="border-radius: 15px; overflow: hidden; margin-bottom: 20px;">
+              <div class="item-img" style="border-radius: 15px; overflow: hidden; margin-bottom: 20px; aspect-ratio: 16/9; max-height: 350px;">
                 <a href="${slug}">
-                  <img width="1824" height="839" src="${featuredImg}" class="img-responsive w-100 wp-post-image" alt="${blog.title || ''}" />
+                  <img src="${featuredImg}" class="img-responsive w-100 wp-post-image" alt="${blog.title || ''}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;" />
                 </a>
               </div>
               <div class="item-text headline pera-content">
@@ -73,7 +73,105 @@ export default async function BlogPage() {
       }).join('\n')
     : `<div class="mt-30 text-center" style="padding: 40px; background: #fff; border-radius: 20px;"><h3>No blog posts published yet.</h3></div>`;
 
-  const finalHtml = `${topHtml}${blogsListHtml}${bottomHtml}`;
+  // Build recent posts HTML for sidebar
+  const recentBlogs = activeBlogs.slice(0, 3);
+  let recentPostsHtml = '';
+  if (recentBlogs.length > 0) {
+    recentPostsHtml = recentBlogs.map((b: any) => {
+      const bDate = new Date(b.created_at).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+      const bImg = b.featured_image || '/wp-content/uploads/2025/11/p2-img-3.webp';
+      
+      let cleanSlug = b.slug;
+      if (!cleanSlug.startsWith('/blog/') && !cleanSlug.startsWith('/')) {
+        cleanSlug = `/blog/${cleanSlug}`;
+      } else if (cleanSlug.startsWith('/')) {
+        if (!cleanSlug.startsWith('/blog/')) {
+          cleanSlug = `/blog${cleanSlug}`;
+        }
+      }
+
+      return `
+        <div class="tz-rcw-item has-thumbnail">
+          <div class="item-img" style="border-radius: 8px; overflow: hidden; width: 65px; height: 65px; flex-shrink: 0;">
+            <a href="${cleanSlug}">
+              <img src="${bImg}" class="sidebar-post-img wp-post-image" alt="" style="width: 100%; height: 100%; object-fit: cover;" />
+            </a>
+          </div>
+          <div class="item-text headline" style="padding-left: 12px;">
+            <div class="item-meta" style="margin-bottom: 4px; font-size: 11px;">
+              <a href="${cleanSlug}" style="color: #fd3f00; font-weight: 500;">
+                <i class="fa-regular fa-calendar"></i> ${bDate}
+              </a>
+            </div>
+            <h3 style="font-size: 13px; font-weight: 700; line-height: 1.4; margin: 0; font-family: 'Outfit';">
+              <a href="${cleanSlug}" style="color: #27272a; text-decoration: none;">${b.title}</a>
+            </h3>
+          </div>
+        </div>
+      `;
+    }).join('\n');
+  }
+
+  // Construct Custom Sidebar HTML matching details view exactly
+  const customSidebarHtml = `
+    <div class="tx-sidebarWrapper tz-ser-sidebar saas-sidebar" style="position: sticky; top: 100px;">
+      <!-- Search widget -->
+      <div id="search-2" class="tx-blog-widget widget tz-sidebar-widget headline widget_search">
+        <h4 class="widget-title">Search</h4>
+        <div class="search-widget">
+          <form class="tx-search-widget tx-input-field bs-sidebar-search" action="/blog" method="get">
+            <input type="search" required name="s" placeholder="Search..." class="bs-sidebar-search-input" />
+            <button type="submit" aria-label="search" class="bs-sidebar-search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Recent Posts widget -->
+      <div id="tc-latest-posts-2" class="tx-blog-widget widget tz-sidebar-widget headline widget_tc-latest-posts">
+        <h4 class="widget-title">Recent Posts</h4>
+        <div class="recent-post-widget">
+          ${recentPostsHtml}
+        </div>
+      </div>
+
+      <!-- Tag Cloud widget -->
+      <div id="tag_cloud-2" class="tx-blog-widget widget tz-sidebar-widget headline widget_tag_cloud">
+        <h4 class="widget-title">Popular Tags</h4>
+        <div class="tagcloud">
+          <a href="/blog?tag=marketing" class="tag-cloud-link" style="font-size: 14px;">Marketing</a>
+          <a href="/blog?tag=digital" class="tag-cloud-link" style="font-size: 14px;">Digital</a>
+          <a href="/blog?tag=technology" class="tag-cloud-link" style="font-size: 14px;">Technology</a>
+          <a href="/blog?tag=business" class="tag-cloud-link" style="font-size: 14px;">Business</a>
+        </div>
+      </div>
+
+      <!-- Consultation CTA Widget -->
+      <div class="tx-blog-widget widget tz-sidebar-widget headline" style="background: linear-gradient(135deg, #09090b 0%, #1e1b4b 100%); padding: 30px; border-radius: 20px; text-align: center; border: 1px solid #312e81;">
+        <h4 style="color: #fff; font-size: 20px; font-weight: 800; margin-bottom: 12px; font-family: 'Outfit';">Scale Your Search Traffic</h4>
+        <p style="color: #cbd5e1; font-size: 14px; margin-bottom: 24px; line-height: 1.5;">Book a free 30-minute growth audit with our SEO specialists. Let's design a blueprint to grow your traffic.</p>
+        <a href="/contact-us" style="background: #fd3f00; color: #fff; display: block; padding: 12px; border-radius: 8px; font-weight: 700; text-decoration: none; text-align: center;">Book Free Audit</a>
+      </div>
+    </div>
+  `;
+
+  // Find where the footer starts in bottomHtml
+  const footerIndex = bottomHtml.indexOf('<div data-elementor-type="wp-post" data-elementor-id="2686"');
+  const footerHtml = footerIndex !== -1 ? bottomHtml.substring(footerIndex) : '';
+
+  // Construct newBottomHtml cleanly to avoid duplicates and leaks
+  const newBottomHtml = `
+      </div>
+    </div>
+    <div class="col-xxl-4 col-xl-4 col-lg-4 mt-30 mt-lg-0">
+      ${customSidebarHtml}
+    </div>
+    </div>
+    </div>
+    </div>
+    ${footerHtml}
+  `;
+
+  const finalHtml = `${topHtml}${blogsListHtml}${newBottomHtml}`;
 
   return (
     <>
