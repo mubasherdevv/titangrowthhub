@@ -407,7 +407,7 @@ export const bottomHtml = `</div>
 				<div class="elementor-element elementor-element-4024d54 e-con-full e-flex e-con e-parent" data-id="4024d54" data-element_type="container">
 				<div class="elementor-element elementor-element-fdd45c3 elementor-widget elementor-widget-tx_footers elh-el tx_footers" data-id="fdd45c3" data-element_type="widget" data-settings="{&quot;design_style&quot;:&quot;style_1&quot;}" data-widget_type="tx_footers.default">
 				<div class="elementor-widget-container">
-					<footer class="as-footer-1-area wa-bg-default pt-95 pb-120 tx-section" data-background="../wp-content/uploads/2025/11/f1-bg-img.webp">
+					<footer class="as-footer-1-area wa-bg-default pt-95 pb-120 tx-section" data-background="/wp-content/uploads/2025/11/f1-bg-img.webp">
     <div class="container as-container-1">
         <div class="as-footer-1-container">
 
@@ -623,16 +623,16 @@ export const bottomHtml = `</div>
 			document.body.className = c;
 		})();
 	</script>
-	<link rel='stylesheet' id='wc-blocks-style-css' href='../wp-content/plugins/woocommerce/assets/client/blocks/wc-blocks6dd8.css?ver=wc-10.4.2' media='all' />
-<link rel='stylesheet' id='elementor-frontend-css' href='../wp-content/plugins/elementor/assets/css/frontend.min37de.css?ver=3.33.4' media='all' />
-<link rel='stylesheet' id='elementor-post-2582-css' href='../wp-content/uploads/elementor/css/post-258288fa.css?ver=1776695811' media='all' />
-<link rel='stylesheet' id='elementor-post-2686-css' href='../wp-content/uploads/elementor/css/post-268688fa.css?ver=1776695811' media='all' />
-<link rel='stylesheet' id='elementor-icons-css' href='../wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.mine085.css?ver=5.44.0' media='all' />
-<link rel='stylesheet' id='elementor-post-7-css' href='../wp-content/uploads/elementor/css/post-788fa.css?ver=1776695811' media='all' />
+	<link rel='stylesheet' id='wc-blocks-style-css' href='/wp-content/plugins/woocommerce/assets/client/blocks/wc-blocks6dd8.css?ver=wc-10.4.2' media='all' />
+<link rel='stylesheet' id='elementor-frontend-css' href='/wp-content/plugins/elementor/assets/css/frontend.min37de.css?ver=3.33.4' media='all' />
+<link rel='stylesheet' id='elementor-post-2582-css' href='/wp-content/uploads/elementor/css/post-258288fa.css?ver=1776695811' media='all' />
+<link rel='stylesheet' id='elementor-post-2686-css' href='/wp-content/uploads/elementor/css/post-268688fa.css?ver=1776695811' media='all' />
+<link rel='stylesheet' id='elementor-icons-css' href='/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.mine085.css?ver=5.44.0' media='all' />
+<link rel='stylesheet' id='elementor-post-7-css' href='/wp-content/uploads/elementor/css/post-788fa.css?ver=1776695811' media='all' />
 <link rel='stylesheet' id='elementor-gf-roboto-css' href='https://fonts.googleapis.com/css?family=Roboto:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&amp;display=swap' media='all' />
 <link rel='stylesheet' id='elementor-gf-robotoslab-css' href='https://fonts.googleapis.com/css?family=Roboto+Slab:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&amp;display=swap' media='all' />
-<link rel='stylesheet' id='elementor-icons-shared-2-css' href='../wp-content/plugins/avista-core/assets/css/flaticon-avista139e.css?ver=1785262585' media='all' />
-<link rel='stylesheet' id='elementor-icons-element-helper-flaticon-css' href='../wp-content/plugins/avista-core/assets/css/flaticon-avista139e.css?ver=1785262585' media='all' />
+<link rel='stylesheet' id='elementor-icons-shared-2-css' href='/wp-content/plugins/avista-core/assets/css/flaticon-avista139e.css?ver=1785262585' media='all' />
+<link rel='stylesheet' id='elementor-icons-element-helper-flaticon-css' href='/wp-content/plugins/avista-core/assets/css/flaticon-avista139e.css?ver=1785262585' media='all' />
 <script src="/wp-includes/js/dist/hooks.minaf5f.js?ver=dd5603f07f9220ed27f1" id="wp-hooks-js"></script>
 <script src="/wp-includes/js/dist/i18n.min1cde.js?ver=c26c3dc7bed366793375" id="wp-i18n-js"></script>
 <script id="wp-i18n-js-after">
