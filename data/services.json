@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "title": "Local SEO Services",
+    "slug": "/services/local-seo",
+    "category": "SEO Services",
+    "status": "Published",
+    "seoScore": 92,
+    "updatedDate": "May 26, 2025",
+    "updatedTime": "10:30 AM",
+    "shortDesc": "Boost your business with our professional Local SEO services.",
+    "content": "Comprehensive local SEO strategies tailored for growing businesses..."
+  },
+  {
+    "id": "2",
+    "title": "Technical SEO Audit",
+    "slug": "/services/technical-seo-audit",
+    "category": "SEO Services",
+    "status": "Published",
+    "seoScore": 88,
+    "updatedDate": "May 25, 2025",
+    "updatedTime": "02:15 PM",
+    "shortDesc": "Identify and fix technical issues impacting your website search performance.",
+    "content": "Detailed technical audit covering indexability, speed, and mobile friendliness..."
+  },
+  {
+    "id": "3",
+    "title": "SEO Consulting",
+    "slug": "/services/seo-consulting",
+    "category": "Consulting",
+    "status": "Published",
+    "seoScore": 85,
+    "updatedDate": "May 23, 2025",
+    "updatedTime": "04:10 PM",
+    "shortDesc": "Expert SEO advice and strategic growth planning.",
+    "content": "Tailored consulting sessions with enterprise SEO strategists..."
+  }
+]

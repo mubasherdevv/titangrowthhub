@@ -1,0 +1,418 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import {
+  Search,
+  Upload,
+  Plus,
+  RotateCcw,
+  Edit2,
+  Eye,
+  MoreVertical,
+  ChevronLeft,
+  ChevronRight,
+  SearchCode,
+  FileCheck,
+  Zap,
+  Link2,
+  FileText
+} from 'lucide-react';
+
+interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  status: 'Published' | 'Draft' | 'Archived';
+  seoScore: number;
+  updatedDate: string;
+  updatedTime: string;
+  category: string;
+  metaDesc?: string;
+  content?: string;
+}
+
+const getCategoryIcon = (category: string) => {
+  switch (category) {
+    case 'Guides':
+    case 'SEO Strategy':
+      return SearchCode;
+    case 'Link Building':
+      return Link2;
+    case 'On-Page SEO':
+      return FileCheck;
+    case 'Technical':
+      return Zap;
+    default:
+      return FileText;
+  }
+};
+
+const getCategoryIconBg = (category: string) => {
+  switch (category) {
+    case 'Guides':
+    case 'SEO Strategy':
+      return 'bg-emerald-100 text-emerald-600';
+    case 'Link Building':
+      return 'bg-amber-100 text-amber-600';
+    case 'On-Page SEO':
+      return 'bg-blue-100 text-blue-600';
+    case 'Technical':
+      return 'bg-purple-100 text-purple-600';
+    default:
+      return 'bg-orange-100 text-orange-600';
+  }
+};
+
+export default function BlogPostsPage() {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [statusFilter, setStatusFilter] = useState('All');
+  const [scoreFilter, setScoreFilter] = useState('All');
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    fetch('/api/blogs')
+      .then((res) => res.json())
+      .then((data) => {
+        setPosts(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, []);
+
+  // Toggle select all
+  const handleSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      setSelectedIds(posts.map((p) => p.id));
+    } else {
+      setSelectedIds([]);
+    }
+  };
+
+  // Toggle single row selection
+  const handleSelectRow = (id: string) => {
+    setSelectedIds((prev) =>
+      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
+    );
+  };
+
+  // Clear filters
+  const handleClearFilters = () => {
+    setSearchQuery('');
+    setStatusFilter('All');
+    setScoreFilter('All');
+  };
+
+  // Filtered posts
+  const filteredPosts = posts.filter((post) => {
+    const matchesSearch =
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.slug.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesStatus =
+      statusFilter === 'All' || post.status === statusFilter;
+    const matchesScore =
+      scoreFilter === 'All' ||
+      (scoreFilter === '90+' && post.seoScore >= 90) ||
+      (scoreFilter === '70-89' && post.seoScore >= 70 && post.seoScore < 90) ||
+      (scoreFilter === 'Below 70' && post.seoScore < 70);
+
+    return matchesSearch && matchesStatus && matchesScore;
+  });
+
+  return (
+    <div className="space-y-6">
+      {/* Top Title & Main Actions */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="font-serif text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-950">
+            Blog Posts
+          </h1>
+          <p className="mt-1 text-xs md:text-sm text-zinc-500 font-medium">
+            Manage and optimize your blog posts SEO.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <button className="flex items-center gap-2 rounded-2xl border border-zinc-200 bg-white px-4 py-2.5 text-xs font-bold text-zinc-700 shadow-sm transition-all hover:bg-zinc-50 hover:border-zinc-300">
+            <Upload className="h-4 w-4 text-zinc-500" />
+            <span>Import CSV</span>
+          </button>
+          <Link
+            href="/admin/blog-posts/create"
+            className="flex items-center gap-2 rounded-2xl bg-orange-600 px-4 py-2.5 text-xs font-extrabold text-white shadow-md shadow-orange-600/20 transition-all hover:bg-orange-700"
+          >
+            <Plus className="h-4 w-4" />
+            <span>New Blog Post</span>
+          </Link>
+        </div>
+      </div>
+
+      {/* Filter & Toolbar Card */}
+      <div className="rounded-2xl border border-zinc-200/80 bg-white p-4 shadow-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-center">
+          {/* Search Input */}
+          <div className="lg:col-span-4 relative">
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search posts..."
+              className="w-full rounded-xl border border-zinc-200 bg-zinc-50/60 pl-10 pr-4 py-2 text-xs font-medium text-zinc-800 placeholder-zinc-400 focus:border-orange-500 focus:bg-white focus:outline-none transition-all"
+            />
+          </div>
+
+          {/* Status Dropdown */}
+          <div className="lg:col-span-2">
+            <label className="text-[10px] font-serif font-bold uppercase tracking-wider text-zinc-400 block mb-1">Status</label>
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              aria-label="Filter by Status"
+              className="w-full rounded-xl border border-zinc-200 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-700 focus:border-orange-500 focus:outline-none"
+            >
+              <option value="All">All Status</option>
+              <option value="Published">Published</option>
+              <option value="Draft">Draft</option>
+            </select>
+          </div>
+
+          {/* Category Dropdown */}
+          <div className="lg:col-span-2">
+            <label className="text-[10px] font-serif font-bold uppercase tracking-wider text-zinc-400 block mb-1">Category</label>
+            <select
+              aria-label="Filter by Category"
+              className="w-full rounded-xl border border-zinc-200 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-700 focus:border-orange-500 focus:outline-none"
+            >
+              <option value="All">All Categories</option>
+              <option value="Guides">Guides</option>
+              <option value="SEO">SEO Strategy</option>
+            </select>
+          </div>
+
+          {/* SEO Score Dropdown */}
+          <div className="lg:col-span-2">
+            <label className="text-[10px] font-serif font-bold uppercase tracking-wider text-zinc-400 block mb-1">SEO Score</label>
+            <select
+              value={scoreFilter}
+              onChange={(e) => setScoreFilter(e.target.value)}
+              aria-label="Filter by SEO Score"
+              className="w-full rounded-xl border border-zinc-200 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-700 focus:border-orange-500 focus:outline-none"
+            >
+              <option value="All">All Scores</option>
+              <option value="90+">90+ Excellent</option>
+              <option value="70-89">70 - 89 Good</option>
+              <option value="Below 70">Below 70 Needs Work</option>
+            </select>
+          </div>
+
+          {/* Clear Filters */}
+          <div className="lg:col-span-2 flex items-end">
+            <button
+              onClick={handleClearFilters}
+              className="w-full flex items-center justify-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs font-bold text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 transition-colors"
+            >
+              <RotateCcw className="h-3.5 w-3.5 text-zinc-500" />
+              <span>Clear Filters</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Table Container */}
+      <div className="rounded-2xl border border-zinc-200/80 bg-white shadow-sm overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs">
+            <thead>
+              <tr className="border-b border-zinc-200/80 bg-zinc-50/50 text-zinc-400 font-serif font-bold uppercase tracking-wider">
+                <th className="py-4 px-4 w-10">
+                  <input
+                    type="checkbox"
+                    checked={selectedIds.length === posts.length && posts.length > 0}
+                    onChange={handleSelectAll}
+                    aria-label="Select all posts"
+                    className="h-4 w-4 rounded border-zinc-300 text-orange-600 focus:ring-orange-500"
+                  />
+                </th>
+                <th className="py-4 px-4">Title</th>
+                <th className="py-4 px-4">Status</th>
+                <th className="py-4 px-4">SEO Score</th>
+                <th className="py-4 px-4">Updated</th>
+                <th className="py-4 px-4 text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-zinc-100">
+              {filteredPosts.map((post) => {
+                const isSelected = selectedIds.includes(post.id);
+                const IconComponent = getCategoryIcon(post.category);
+                const iconBg = getCategoryIconBg(post.category);
+
+                return (
+                  <tr
+                    key={post.id}
+                    className={`group hover:bg-orange-50/30 transition-colors ${
+                      isSelected ? 'bg-orange-50/50' : ''
+                    }`}
+                  >
+                    {/* Checkbox */}
+                    <td className="py-4 px-4">
+                      <input
+                        type="checkbox"
+                        checked={isSelected}
+                        onChange={() => handleSelectRow(post.id)}
+                        aria-label={`Select ${post.title}`}
+                        className="h-4 w-4 rounded border-zinc-300 text-orange-600 focus:ring-orange-500"
+                      />
+                    </td>
+
+                    {/* Title + Thumbnail */}
+                    <td className="py-4 px-4">
+                      <div className="flex items-center gap-3.5">
+                        <div
+                          className={`flex h-12 w-14 shrink-0 items-center justify-center rounded-xl ${iconBg} shadow-sm`}
+                        >
+                          <IconComponent className="h-6 w-6" />
+                        </div>
+                        <div>
+                          <p className="font-serif font-extrabold text-zinc-950 text-xs md:text-sm group-hover:text-orange-600 transition-colors">
+                            {post.title}
+                          </p>
+                          <span className="text-[11px] text-zinc-400 font-medium">
+                            {post.slug}
+                          </span>
+                        </div>
+                      </div>
+                    </td>
+
+                    {/* Status Badge */}
+                    <td className="py-4 px-4">
+                      {post.status === 'Published' ? (
+                        <span className="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-600 border border-emerald-200/50">
+                          Published
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center rounded-full bg-amber-50 px-2.5 py-1 text-[11px] font-bold text-amber-600 border border-amber-200/50">
+                          Draft
+                        </span>
+                      )}
+                    </td>
+
+                    {/* SEO Score Badge */}
+                    <td className="py-4 px-4">
+                      <div
+                        className={`flex h-9 w-9 items-center justify-center rounded-full border-2 text-xs font-serif font-extrabold ${
+                          post.seoScore >= 90
+                            ? 'border-emerald-500 text-emerald-600 bg-emerald-50/50'
+                            : post.seoScore >= 70
+                            ? 'border-orange-500 text-orange-600 bg-orange-50/50'
+                            : 'border-amber-500 text-amber-600 bg-amber-50/50'
+                        }`}
+                      >
+                        {post.seoScore}
+                      </div>
+                    </td>
+
+                    {/* Updated Date */}
+                    <td className="py-4 px-4">
+                      <div className="text-xs">
+                        <p className="font-bold text-zinc-800">{post.updatedDate}</p>
+                        <p className="text-[11px] text-zinc-400 font-medium">{post.updatedTime}</p>
+                      </div>
+                    </td>
+
+                    {/* Action Buttons */}
+                    <td className="py-4 px-4">
+                      <div className="flex items-center justify-center gap-1">
+                        <button
+                          title="Edit Post"
+                          className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-100 hover:text-zinc-800"
+                        >
+                          <Edit2 className="h-3.5 w-3.5" />
+                        </button>
+                        <button
+                          title="Preview Post"
+                          className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-100 hover:text-zinc-800"
+                        >
+                          <Eye className="h-3.5 w-3.5" />
+                        </button>
+                        <button
+                          title="More options"
+                          className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-100 hover:text-zinc-800"
+                        >
+                          <MoreVertical className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Footer & Pagination */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-zinc-100 bg-white px-6 py-4 text-xs font-semibold text-zinc-500">
+          <div>Showing 1 to 5 of 24 results</div>
+          <div className="flex items-center gap-1.5">
+            <button
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-zinc-500 disabled:opacity-40 hover:bg-zinc-50"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <button
+              onClick={() => setCurrentPage(1)}
+              className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-bold transition-all ${
+                currentPage === 1
+                  ? 'bg-orange-600 text-white shadow-sm'
+                  : 'border border-zinc-200 text-zinc-700 hover:bg-zinc-50'
+              }`}
+            >
+              1
+            </button>
+            <button
+              onClick={() => setCurrentPage(2)}
+              className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-bold transition-all ${
+                currentPage === 2
+                  ? 'bg-orange-600 text-white shadow-sm'
+                  : 'border border-zinc-200 text-zinc-700 hover:bg-zinc-50'
+              }`}
+            >
+              2
+            </button>
+            <button
+              onClick={() => setCurrentPage(3)}
+              className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-bold transition-all ${
+                currentPage === 3
+                  ? 'bg-orange-600 text-white shadow-sm'
+                  : 'border border-zinc-200 text-zinc-700 hover:bg-zinc-50'
+              }`}
+            >
+              3
+            </button>
+            <span className="px-1 text-zinc-400">...</span>
+            <button
+              onClick={() => setCurrentPage(5)}
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-xs font-bold text-zinc-700 hover:bg-zinc-50"
+            >
+              5
+            </button>
+            <button
+              onClick={() => setCurrentPage((p) => Math.min(5, p + 1))}
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-zinc-500 hover:bg-zinc-50"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
