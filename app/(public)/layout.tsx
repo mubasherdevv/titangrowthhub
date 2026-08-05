@@ -2,6 +2,7 @@ import { getCleanHtml } from '@/lib/htmlHelper';
 import parse from 'html-react-parser';
 import { supabase } from '@/lib/supabase';
 import { Metadata } from 'next';
+import { getSiteSettings } from '@/lib/getSiteSettings';
 
 export async function generateMetadata(): Promise<Metadata> {
   let title = 'Titan Growth Hub – Pakistan\'s #1 SEO & Digital Marketing Agency';

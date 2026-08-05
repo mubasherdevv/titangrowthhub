@@ -60,9 +60,10 @@ export default function SettingsPage() {
   const [savingSlug, setSavingSlug] = useState<string | null>(null);
   const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
 
-  const [gscApiKey, setGscApiKey] = useState('');
-  const [bingApiKey, setBingApiKey] = useState('');
+  const [aiApiUrl, setAiApiUrl] = useState('');
+  const [aiModel, setAiModel] = useState('');
   const [geminiApiKey, setGeminiApiKey] = useState('');
+  const [isTestingAi, setIsTestingAi] = useState(false);
 
   // Webmaster Verification States
   const [gscVerificationMeta, setGscVerificationMeta] = useState('');
@@ -85,8 +86,8 @@ export default function SettingsPage() {
           setDefaultTitlePattern(data.defaultTitlePattern || '%page_title% | %site_name%');
           setGlobalMetaDesc(data.globalMetaDesc || '');
           setAllowIndexing(data.allowIndexing !== undefined ? data.allowIndexing : true);
-          setGscApiKey(data.gscApiKey || '');
-          setBingApiKey(data.bingApiKey || '');
+          setAiApiUrl(data.aiApiUrl || '');
+          setAiModel(data.aiModel || '');
           setGeminiApiKey(data.geminiApiKey || '');
           setGscVerificationMeta(data.gscVerificationMeta || '');
           setGscVerificationFilename(data.gscVerificationFilename || '');
@@ -158,8 +159,8 @@ export default function SettingsPage() {
           defaultTitlePattern,
           globalMetaDesc,
           allowIndexing,
-          gscApiKey,
-          bingApiKey,
+          aiApiUrl,
+          aiModel,
           geminiApiKey,
           gscVerificationMeta,
           gscVerificationFilename,
@@ -194,6 +195,32 @@ export default function SettingsPage() {
     }
   };
 
+  const testAiConnection = async () => {
+    if (!aiApiUrl || !aiModel || !geminiApiKey) {
+      toast.error('Please fill in Base URL, Model Name, and API Key to test');
+      return;
+    }
+    setIsTestingAi(true);
+    try {
+      const res = await fetch('/api/ai/test', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ aiApiUrl, aiModel, aiApiKey: geminiApiKey })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        toast.success(data.message || 'AI Connection Successful!');
+      } else {
+        toast.error(data.error || 'Connection Failed');
+      }
+    } catch (err) {
+      toast.error('Network error during AI test');
+    } finally {
+      setIsTestingAi(false);
+    }
+  };
+
+  const navItems = [
     { id: 'general', label: 'General', subtitle: 'Site identity, logo & favicon', icon: Sliders },
     { id: 'seo', label: 'Global SEO', subtitle: 'Search engine defaults', icon: Globe },
     { id: 'api', label: 'API & Integrations', subtitle: 'Search console & AI keys', icon: Key },
@@ -654,48 +681,68 @@ export default function SettingsPage() {
             <div className="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm space-y-6">
               <div className="border-b border-zinc-100 pb-4">
                 <h2 className="font-serif text-lg font-bold text-zinc-950">
-                  API & Integrations
+                  AI & Content Generation Models
                 </h2>
                 <p className="text-xs text-zinc-500 font-medium mt-0.5">
-                  Connect third-party services like Google Search Console, Bing, and Gemini.
+                  Configure your preferred AI API provider (e.g., OpenAI, OpenRouter, Gemini, or local models) for automated content features.
                 </p>
               </div>
 
               <div className="space-y-4">
                 <div className="space-y-2">
                   <label className="text-xs font-serif font-bold text-zinc-900 block">
-                    Google Search Console API Key
+                    API Base URL
                   </label>
+                  <p className="text-[11px] text-zinc-500">For standard OpenAI-compatible APIs, e.g., <code>https://api.openai.com/v1</code> or <code>https://openrouter.ai/api/v1</code></p>
                   <input
-                    type="password"
-                    value={gscApiKey}
-                    onChange={(e) => setGscApiKey(e.target.value)}
+                    type="url"
+                    value={aiApiUrl}
+                    onChange={(e) => setAiApiUrl(e.target.value)}
+                    placeholder="https://api.openai.com/v1"
                     className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-xs font-serif font-bold text-zinc-900 block">
-                    Bing Webmaster API Key
-                  </label>
-                  <input
-                    type="password"
-                    value={bingApiKey}
-                    onChange={(e) => setBingApiKey(e.target.value)}
-                    className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
-                  />
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <label className="text-xs font-serif font-bold text-zinc-900 block">
+                      AI Model Name
+                    </label>
+                    <input
+                      type="text"
+                      value={aiModel}
+                      onChange={(e) => setAiModel(e.target.value)}
+                      placeholder="gpt-4o, gemini-1.5-pro, etc."
+                      className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-xs font-serif font-bold text-zinc-900 block">
+                      AI API Key
+                    </label>
+                    <input
+                      type="password"
+                      value={geminiApiKey}
+                      onChange={(e) => setGeminiApiKey(e.target.value)}
+                      placeholder="sk-..."
+                      className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
+                    />
+                  </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-xs font-serif font-bold text-zinc-900 block">
-                    Gemini AI Key (Auto Content Generation)
-                  </label>
-                  <input
-                    type="password"
-                    value={geminiApiKey}
-                    onChange={(e) => setGeminiApiKey(e.target.value)}
-                    className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
-                  />
+                <div className="pt-4 flex items-center justify-start border-t border-zinc-100">
+                  <button
+                    onClick={testAiConnection}
+                    disabled={isTestingAi}
+                    className="flex items-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-[11px] font-bold text-white shadow-sm hover:bg-zinc-800 disabled:opacity-50 transition-all"
+                  >
+                    {isTestingAi ? (
+                      <><span className="animate-spin">⏳</span> Testing Connection...</>
+                    ) : (
+                      <><Sparkles className="h-4 w-4" /> Test AI Connection</>
+                    )}
+                  </button>
                 </div>
               </div>
             </div>
