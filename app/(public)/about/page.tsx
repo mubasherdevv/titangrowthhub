@@ -298,7 +298,7 @@ const pageHtml = `
 
     <!-- wrapper-box start -->
             <!-- breadcrumb-start -->
-        <div class="as-breadcrumb-area wa-p-relative wa-bg-default tx-breadcrumb " data-background="https://themexriver.com/wp/avista/wp-content/uploads/2025/11/tx-bg-img.webp">
+        <div class="as-breadcrumb-area wa-p-relative wa-bg-default tx-breadcrumb " data-background="/public/website_assets/tx-bg-img.webp">
             <div class="container as-container-2">
                 <div class="as-breadcrumb-wrap">
                     <h1 class="as-breadcrumb-title">About</h1>
