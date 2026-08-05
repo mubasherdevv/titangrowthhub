@@ -571,9 +571,6 @@ export const bottomHtml = `</div>
                                 <p class="as-footer-1-copyright as-p-1">
                     © All rights reserved <span class="copyright-year"></span>                </p>
                 
-                                <p class="as-footer-1-make as-p-1">
-                    make with <i class="fa-solid fa-heart"></i> by <a href="#" aria-label="Themexriver">Themexriver</a>                </p>
-                
                                 <div class="as-footer-1-bottom-link">
                                         <a class="link-elm as-p-1" href="#"
                     target="_self"
@@ -703,21 +700,21 @@ export default async function Page() {
       .select('*')
       .eq('status', 'Published')
       .order('created_at', { ascending: false });
-    
+
     if (error) throw error;
     if (data) blogs = data;
   } catch (err) {
     console.error('Error fetching blogs from Supabase:', err);
   }
 
-  const blogsListHtml = blogs.length > 0 
+  const blogsListHtml = blogs.length > 0
     ? blogs.map((blog) => {
-        const dateObj = new Date(blog.created_at);
-        const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
-        const slug = blog.slug.startsWith('/') ? blog.slug : `/blog/${blog.slug.replace(/^\/blog\//, '')}`;
-        const desc = blog.metaDesc || (blog.content ? blog.content.substring(0, 150) + '...' : '');
+      const dateObj = new Date(blog.created_at);
+      const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+      const slug = blog.slug.startsWith('/') ? blog.slug : `/blog/${blog.slug.replace(/^\/blog\//, '')}`;
+      const desc = blog.metaDesc || (blog.content ? blog.content.substring(0, 150) + '...' : '');
 
-        return `
+      return `
           <article class="tx-blog-box mt-30">
             <div class="tz-blog-item list-view-item">
               <div class="item-img">
@@ -742,7 +739,7 @@ export default async function Page() {
             </div>
           </article>
         `;
-      }).join('\n')
+    }).join('\n')
     : `<div class="mt-30 text-center" style="padding: 40px; background: #fff; border-radius: 20px;"><h3>No blog posts published yet.</h3></div>`;
 
   const finalHtml = `${topHtml}${blogsListHtml}${bottomHtml}`;

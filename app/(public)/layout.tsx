@@ -152,6 +152,7 @@ export default async function PublicRootLayout({
 
   // Fetch JSON-LD schemas from Supabase
   const jsonLdSchemas = await getJsonLdSchemas();
+  const settings = await getSiteSettings();
 
 
   // Extract head tags
@@ -168,6 +169,11 @@ export default async function PublicRootLayout({
     headContent = headContent.replace(/<link rel=['"]icon['"][\s\S]*?>/gi, '');
     headContent = headContent.replace(/<link rel=['"]shortcut icon['"][\s\S]*?>/gi, '');
     headContent = headContent.replace(/<link rel=['"]apple-touch-icon['"][\s\S]*?>/gi, '');
+    
+    // Inject GSC Verification Meta Tag if available
+    if (settings && settings.gsc_verification_meta) {
+      headContent += `\n${settings.gsc_verification_meta}\n`;
+    }
   }
 
   return (

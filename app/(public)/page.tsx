@@ -5,12 +5,12 @@ import { getSiteSettings } from '@/lib/getSiteSettings';
 import { injectDynamicSettings } from '@/lib/htmlHelper';
 
 export async function generateMetadata() {
-  const { title, description } = await getPageMeta(
-    'home',
-    'Titan Growth Hub – Pakistan\'s #1 SEO & Digital Marketing Agency',
-    'Titan Growth Hub helps businesses scale with data-driven SEO, PPC, and content marketing strategies.'
-  );
-  return { title, description };
+    const { title, description } = await getPageMeta(
+        'home',
+        'Titan Growth Hub – Pakistan\'s #1 SEO & Digital Marketing Agency',
+        'Titan Growth Hub helps businesses scale with data-driven SEO, PPC, and content marketing strategies.'
+    );
+    return { title, description };
 }
 
 
@@ -3520,9 +3520,7 @@ const pageHtml = `
                                         <p class="as-footer-1-copyright as-p-1">
                                             © All rights reserved <span class="copyright-year"></span> </p>
 
-                                        <p class="as-footer-1-make as-p-1">
-                                            make with <i class="fa-solid fa-heart"></i> by <a href="#"
-                                                aria-label="Themexriver">Themexriver</a> </p>
+
 
                                         <div class="as-footer-1-bottom-link">
                                             <a class="link-elm as-p-1" href="#" target="_self" rel="">

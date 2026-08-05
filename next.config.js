@@ -9,6 +9,14 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/:path*.html',
+        destination: '/api/verify-html/:path*',
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

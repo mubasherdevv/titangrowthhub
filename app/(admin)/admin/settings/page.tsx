@@ -60,10 +60,14 @@ export default function SettingsPage() {
   const [savingSlug, setSavingSlug] = useState<string | null>(null);
   const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
 
-  // API Key States
   const [gscApiKey, setGscApiKey] = useState('');
   const [bingApiKey, setBingApiKey] = useState('');
   const [geminiApiKey, setGeminiApiKey] = useState('');
+
+  // Webmaster Verification States
+  const [gscVerificationMeta, setGscVerificationMeta] = useState('');
+  const [gscVerificationFilename, setGscVerificationFilename] = useState('');
+  const [gscVerificationFilecontent, setGscVerificationFilecontent] = useState('');
 
   // Fetch settings on load
   useEffect(() => {
@@ -84,6 +88,9 @@ export default function SettingsPage() {
           setGscApiKey(data.gscApiKey || '');
           setBingApiKey(data.bingApiKey || '');
           setGeminiApiKey(data.geminiApiKey || '');
+          setGscVerificationMeta(data.gscVerificationMeta || '');
+          setGscVerificationFilename(data.gscVerificationFilename || '');
+          setGscVerificationFilecontent(data.gscVerificationFilecontent || '');
         }
       })
       .catch((err) => console.error('Error fetching settings:', err));
@@ -154,6 +161,9 @@ export default function SettingsPage() {
           gscApiKey,
           bingApiKey,
           geminiApiKey,
+          gscVerificationMeta,
+          gscVerificationFilename,
+          gscVerificationFilecontent,
         }),
       });
 
@@ -184,12 +194,12 @@ export default function SettingsPage() {
     }
   };
 
-  const navItems = [
     { id: 'general', label: 'General', subtitle: 'Site identity, logo & favicon', icon: Sliders },
     { id: 'seo', label: 'Global SEO', subtitle: 'Search engine defaults', icon: Globe },
     { id: 'api', label: 'API & Integrations', subtitle: 'Search console & AI keys', icon: Key },
+    { id: 'verifications', label: 'Webmaster Tools', subtitle: 'Google verification', icon: ShieldCheck },
     { id: 'team', label: 'Team & Users', subtitle: 'Access & permissions', icon: Users },
-    { id: 'security', label: 'Security', subtitle: 'Passwords & 2FA', icon: ShieldCheck },
+    { id: 'security', label: 'Security', subtitle: 'Passwords & 2FA', icon: Lock },
     { id: 'notifications', label: 'Notifications', subtitle: 'Email alerts & webhooks', icon: Bell },
   ];
 
@@ -686,6 +696,69 @@ export default function SettingsPage() {
                     onChange={(e) => setGeminiApiKey(e.target.value)}
                     className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
                   />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 3.5: VERIFICATIONS (Webmaster Tools) */}
+          {activeTab === 'verifications' && (
+            <div className="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm space-y-6">
+              <div className="border-b border-zinc-100 pb-4">
+                <h2 className="font-serif text-lg font-bold text-zinc-950">
+                  Google Search Console Verification
+                </h2>
+                <p className="text-xs text-zinc-500 font-medium mt-0.5">
+                  Verify ownership of your site using a Meta Tag or by uploading the HTML verification file string.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                <div className="space-y-2">
+                  <label className="text-xs font-serif font-bold text-zinc-900 block">
+                    Meta Tag Verification
+                  </label>
+                  <p className="text-[11px] text-zinc-500">Paste the full meta tag (e.g., <code>&lt;meta name="google-site-verification" content="..." /&gt;</code>)</p>
+                  <input
+                    type="text"
+                    value={gscVerificationMeta}
+                    onChange={(e) => setGscVerificationMeta(e.target.value)}
+                    placeholder="<meta name='google-site-verification' content='...' />"
+                    className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
+                  />
+                </div>
+
+                <div className="pt-4 border-t border-zinc-100 space-y-4">
+                  <div>
+                    <label className="text-xs font-serif font-bold text-zinc-900 block">
+                      HTML File Verification
+                    </label>
+                    <p className="text-[11px] text-zinc-500 mb-2">If you prefer HTML file verification, enter the filename and content Google provided.</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div className="space-y-2">
+                      <label className="text-[11px] font-bold text-zinc-700 block">HTML File Name</label>
+                      <input
+                        type="text"
+                        value={gscVerificationFilename}
+                        onChange={(e) => setGscVerificationFilename(e.target.value)}
+                        placeholder="google123456789.html"
+                        className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <label className="text-[11px] font-bold text-zinc-700 block">HTML File Content</label>
+                      <input
+                        type="text"
+                        value={gscVerificationFilecontent}
+                        onChange={(e) => setGscVerificationFilecontent(e.target.value)}
+                        placeholder="google-site-verification: google123456789.html"
+                        className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

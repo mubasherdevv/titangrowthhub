@@ -24,6 +24,9 @@ const dbToFrontendSettings = (db: any) => {
     orgUrl: db.org_url,
     orgLogo: db.org_logo,
     robotsText: db.robots_txt,
+    gscVerificationMeta: db.gsc_verification_meta,
+    gscVerificationFilename: db.gsc_verification_filename,
+    gscVerificationFilecontent: db.gsc_verification_filecontent,
   };
 };
 
@@ -49,6 +52,10 @@ const frontendToDbSettings = (fe: any) => {
   if (fe.orgUrl !== undefined) db.org_url = fe.orgUrl;
   if (fe.orgLogo !== undefined) db.org_logo = fe.orgLogo;
   if (fe.robotsText !== undefined) db.robots_txt = fe.robotsText;
+  if (fe.gscVerificationMeta !== undefined) db.gsc_verification_meta = fe.gscVerificationMeta;
+  if (fe.gscVerificationFilename !== undefined) db.gsc_verification_filename = fe.gscVerificationFilename;
+  if (fe.gscVerificationFilecontent !== undefined) db.gsc_verification_filecontent = fe.gscVerificationFilecontent;
+
   return db;
 };
 

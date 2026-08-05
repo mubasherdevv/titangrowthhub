@@ -530,9 +530,7 @@ const bottomHtml = `</div>
                                 <p class="as-footer-1-copyright as-p-1">
                     © All rights reserved <span class="copyright-year"></span>                </p>
                 
-                                <p class="as-footer-1-make as-p-1">
-                    make with <i class="fa-solid fa-heart"></i> by <a href="#" aria-label="Themexriver">Themexriver</a>                </p>
-                
+                             
                                 <div class="as-footer-1-bottom-link">
                                         <a class="link-elm as-p-1" href="#"
                     target="_self"
@@ -655,7 +653,7 @@ export default async function Page() {
       .select('*')
       .eq('status', 'Published')
       .order('created_at', { ascending: false });
-    
+
     if (error) throw error;
     if (data) services = data;
   } catch (err) {
@@ -664,17 +662,17 @@ export default async function Page() {
 
   const servicesListHtml = services.length > 0
     ? services.map((service, index) => {
-        const slug = service.slug.startsWith('/') ? service.slug : `/services/${service.slug.replace(/^\/services\//, '')}`;
-        const count = String(index + 1).padStart(2, '0');
-        
-        const tags = service.category === 'Technical' 
-          ? ['Performance', 'SEO Audit', 'Optimization', 'Technical Fixes']
-          : ['Responsive Design', 'Branding', 'Market Research', 'SEO Copywriting'];
+      const slug = service.slug.startsWith('/') ? service.slug : `/services/${service.slug.replace(/^\/services\//, '')}`;
+      const count = String(index + 1).padStart(2, '0');
 
-        const tagsHtml = tags.map(tag => `<li class="as-p-1">${tag}</li>`).join('\n');
-        const logoNum = (index % 4) + 1;
+      const tags = service.category === 'Technical'
+        ? ['Performance', 'SEO Audit', 'Optimization', 'Technical Fixes']
+        : ['Responsive Design', 'Branding', 'Market Research', 'SEO Copywriting'];
 
-        return `
+      const tagsHtml = tags.map(tag => `<li class="as-p-1">${tag}</li>`).join('\n');
+      const logoNum = (index % 4) + 1;
+
+      return `
           <div class="as-services-1-item">
             <ul class="wa-ul item-tags">
               ${tagsHtml}
@@ -707,7 +705,7 @@ export default async function Page() {
             </div>
           </div>
         `;
-      }).join('\n')
+    }).join('\n')
     : `<div class="w-100 text-center" style="padding: 40px; background: #fff; border-radius: 20px; grid-column: span 2;"><h3>No services published yet.</h3></div>`;
 
   const finalHtml = `${topHtml}${servicesListHtml}${bottomHtml}`;

@@ -5,12 +5,12 @@ import { getSiteSettings } from '@/lib/getSiteSettings';
 import { injectDynamicSettings } from '@/lib/htmlHelper';
 
 export async function generateMetadata() {
-  const { title, description } = await getPageMeta(
-    'about',
-    'About Us – Titan Growth Hub',
-    'Learn about our team, mission, and how we drive measurable SEO results for clients worldwide.'
-  );
-  return { title, description };
+    const { title, description } = await getPageMeta(
+        'about',
+        'About Us – Titan Growth Hub',
+        'Learn about our team, mission, and how we drive measurable SEO results for clients worldwide.'
+    );
+    return { title, description };
 }
 
 const pageHtml = `
@@ -1064,9 +1064,6 @@ const pageHtml = `
                                 <p class="as-footer-1-copyright as-p-1">
                     © All rights reserved <span class="copyright-year"></span>                </p>
                 
-                                <p class="as-footer-1-make as-p-1">
-                    make with <i class="fa-solid fa-heart"></i> by <a href="#" aria-label="Themexriver">Themexriver</a>                </p>
-                
                                 <div class="as-footer-1-bottom-link">
                                         <a class="link-elm as-p-1" href="#"
                     target="_self"
@@ -1182,21 +1179,21 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 `;
 
 export default async function Page() {
-  const settings = await getSiteSettings();
-  const finalHtml = injectDynamicSettings(pageHtml, settings);
+    const settings = await getSiteSettings();
+    const finalHtml = injectDynamicSettings(pageHtml, settings);
 
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
-      />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `document.body.className = "wp-singular page-template page-template-elementor_header_footer page page-id-23 wp-embed-responsive wp-theme-avista theme-avista woocommerce-no-js no-sidebar elementor-default elementor-template-full-width elementor-kit-7 elementor-page elementor-page-23";`,
-        }}
-      />
-      <div dangerouslySetInnerHTML={{ __html: finalHtml }} />
-    </>
-  );
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
+            />
+            <script
+                dangerouslySetInnerHTML={{
+                    __html: `document.body.className = "wp-singular page-template page-template-elementor_header_footer page page-id-23 wp-embed-responsive wp-theme-avista theme-avista woocommerce-no-js no-sidebar elementor-default elementor-template-full-width elementor-kit-7 elementor-page elementor-page-23";`,
+                }}
+            />
+            <div dangerouslySetInnerHTML={{ __html: finalHtml }} />
+        </>
+    );
 }
