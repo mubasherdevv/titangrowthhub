@@ -374,7 +374,7 @@ export default function RedirectsPage() {
                         type="checkbox"
                         checked={isSelected}
                         onChange={() => handleSelectRow(rule.id)}
-                        aria-label={`Select ${rule.sourceUrl}`}
+                        aria-label={`Select ${rule.from_path}`}
                         className="h-4 w-4 rounded border-zinc-300 text-purple-600 focus:ring-purple-500"
                       />
                     </td>
