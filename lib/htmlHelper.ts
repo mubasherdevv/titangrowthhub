@@ -75,6 +75,23 @@ export function optimizeHtml(html: string): string {
   // 3. Simple Minification (Remove extra white spaces between tags)
   html = html.replace(/>\s+</g, '><');
 
+  // 4. Agentic Browsing & Accessibility Fixes
+  // Add aria-label to missing form elements (e.g. wpcf7 inputs without labels)
+  html = html.replace(/<input([^>]*class="[^"]*wpcf7-form-control[^"]*"[^>]*)>/gi, (match, p1) => {
+    if (!match.includes('aria-label') && !match.includes('id=')) {
+      return `<input aria-label="Form Input" ${p1}>`;
+    }
+    return match;
+  });
+
+  // Add aria-label to footer logo link missing discernible text
+  html = html.replace(/<a([^>]*class="[^"]*tx-logo[^"]*"[^>]*)>/gi, (match, p1) => {
+    if (!match.includes('aria-label')) {
+      return `<a aria-label="Titan Growth Hub Home" ${p1}>`;
+    }
+    return match;
+  });
+
   return html;
 }
 
