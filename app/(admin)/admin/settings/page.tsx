@@ -26,7 +26,7 @@ import {
 
 export default function SettingsPage() {
   const toast = useToast();
-  const [activeTab, setActiveTab] = useState<'general' | 'seo' | 'api' | 'team' | 'security' | 'notifications'>('general');
+  const [activeTab, setActiveTab] = useState<'general' | 'seo' | 'api' | 'team' | 'security' | 'notifications' | 'verifications'>('general');
   const [savedSuccess, setSavedSuccess] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
