@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
-import { v4 as uuidv4 } from 'uuid'; // Next.js crypto.randomUUID() is also an option
+// using native crypto.randomUUID() instead of uuid package
 
 export async function POST(request: NextRequest) {
   try {
