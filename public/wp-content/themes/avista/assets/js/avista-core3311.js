@@ -231,7 +231,7 @@
 			});
 			setTimeout(function () {
 				loader.remove();
-			}, 200);
+			}, 1500);
 		} else {
 			afterPreloader();
 		}

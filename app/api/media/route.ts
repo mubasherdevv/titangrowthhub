@@ -1,93 +1,64 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import fs from 'fs';
+import path from 'path';
 
-export async function GET(request: NextRequest) {
-  try {
-    const { data, error } = await supabase
-      .from('media_library')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-    if (error) {
-      return NextResponse.json({ success: false, error: error.message }, { status: 500 });
-    }
-
-    return NextResponse.json({ success: true, data });
-  } catch (err: any) {
-    return NextResponse.json({ success: false, error: err.message }, { status: 500 });
-  }
-}
-
-export async function DELETE(request: NextRequest) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const id = searchParams.get('id');
-
-    if (!id) {
-      return NextResponse.json({ success: false, error: 'ID is required' }, { status: 400 });
-    }
-
-    // First get the item to find its storage path
-    const { data: item, error: fetchError } = await supabase
-      .from('media_library')
-      .select('storage_path')
-      .eq('id', id)
-      .single();
-
-    if (fetchError || !item) {
-      return NextResponse.json({ success: false, error: 'Item not found' }, { status: 404 });
-    }
-
-    // Delete from Supabase Storage
-    if (item.storage_path) {
-      const { error: storageError } = await supabase
-        .storage
-        .from('media')
-        .remove([item.storage_path]);
-      
-      if (storageError) {
-        console.error('Storage deletion error:', storageError);
-        // We continue to delete from DB even if storage deletion fails
+function getFilesRecursively(dir: string, fileList: string[] = []) {
+  if (!fs.existsSync(dir)) return fileList;
+  
+  const files = fs.readdirSync(dir);
+  for (const file of files) {
+    const filePath = path.join(dir, file);
+    if (fs.statSync(filePath).isDirectory()) {
+      getFilesRecursively(filePath, fileList);
+    } else {
+      if (/\.(jpg|jpeg|png|webp|gif|svg)$/i.test(filePath)) {
+        fileList.push(filePath);
       }
     }
-
-    // Delete from Database
-    const { error: dbError } = await supabase
-      .from('media_library')
-      .delete()
-      .eq('id', id);
-
-    if (dbError) {
-      return NextResponse.json({ success: false, error: dbError.message }, { status: 500 });
-    }
-
-    return NextResponse.json({ success: true });
-  } catch (err: any) {
-    return NextResponse.json({ success: false, error: err.message }, { status: 500 });
   }
+  return fileList;
 }
 
-export async function PATCH(request: NextRequest) {
+export async function GET(req: NextRequest) {
   try {
-    const { id, alt_text } = await request.json();
+    const assetsDir = path.join(process.cwd(), 'public', 'website_assets');
+    const allFiles = getFilesRecursively(assetsDir);
     
-    if (!id || alt_text === undefined) {
-      return NextResponse.json({ success: false, error: 'ID and alt_text are required' }, { status: 400 });
+    const metadataPath = path.join(assetsDir, 'media-metadata.json');
+    let metadataStore: any = {};
+    if (fs.existsSync(metadataPath)) {
+      try {
+        metadataStore = JSON.parse(fs.readFileSync(metadataPath, 'utf8'));
+      } catch(e) {}
     }
 
-    const { data, error } = await supabase
-      .from('media_library')
-      .update({ alt_text })
-      .eq('id', id)
-      .select()
-      .single();
+    const mediaFiles = allFiles.map(filePath => {
+      const stats = fs.statSync(filePath);
+      // Get the relative path for the URL
+      const relativePath = filePath.replace(path.join(process.cwd(), 'public'), '').replace(/\\/g, '/');
+      const filename = path.basename(filePath);
+      
+      const fileMeta = metadataStore[relativePath] || {};
 
-    if (error) {
-      return NextResponse.json({ success: false, error: error.message }, { status: 500 });
-    }
+      return {
+        url: relativePath,
+        name: filename,
+        size: stats.size,
+        createdAt: stats.birthtime,
+        altText: fileMeta.altText || '',
+        originalSize: fileMeta.originalSize || stats.size,
+        width: fileMeta.width || null,
+        height: fileMeta.height || null,
+        isWebpOptimized: fileMeta.isWebpOptimized || relativePath.endsWith('.webp'),
+      };
+    });
 
-    return NextResponse.json({ success: true, data });
-  } catch (err: any) {
-    return NextResponse.json({ success: false, error: err.message }, { status: 500 });
+    // Sort by newest first
+    mediaFiles.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+
+    return NextResponse.json({ files: mediaFiles, metadataStats: { total: mediaFiles.length } });
+  } catch (error: any) {
+    console.error('Error fetching media:', error);
+    return NextResponse.json({ error: 'Failed to load media files' }, { status: 500 });
   }
 }

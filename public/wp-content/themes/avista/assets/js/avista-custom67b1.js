@@ -13,7 +13,7 @@
 				if (typeof callback === "function") {
 					callback();
 				}
-			}, 200); // match your preloader timeout
+			}, 1500); // match your preloader timeout
 		} else {
 			// no preloader found → run immediately
 			if (typeof callback === "function") {

@@ -46,6 +46,11 @@ export async function POST(request: Request) {
       seo_score: body.seoScore || 0,
       short_desc: body.shortDesc || '',
       content: body.content || '',
+      seo_title: body.seoTitle || '',
+      seo_desc: body.seoMetaDesc || '',
+      focus_keyword: body.focusKeyword || '',
+      canonical_url: body.canonicalUrl || '',
+      meta_robots: body.metaRobots || 'Index, Follow',
     };
 
     const { data, error } = await supabase

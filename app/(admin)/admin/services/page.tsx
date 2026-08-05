@@ -10,7 +10,7 @@ import {
   RotateCcw,
   Edit2,
   Eye,
-  MoreVertical,
+  Trash2,
   ChevronLeft,
   ChevronRight,
   TrendingUp,
@@ -68,11 +68,14 @@ export default function ServicesPage() {
   const [statusFilter, setStatusFilter] = useState('All');
   const [categoryFilter, setCategoryFilter] = useState('All');
 
-  useEffect(() => {
+  const fetchServices = () => {
+    setLoading(true);
     fetch('/api/services')
       .then((res) => res.json())
       .then((data) => {
-        setServices(data);
+        if (Array.isArray(data)) {
+          setServices(data);
+        }
         setLoading(false);
       })
       .catch((err) => {
@@ -80,7 +83,29 @@ export default function ServicesPage() {
         toast.error('Failed to load services');
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchServices();
   }, []);
+
+  // Delete a service
+  const handleDelete = async (id: string, title: string) => {
+    if (!confirm(`Are you sure you want to delete "${title}"? This action cannot be undone.`)) return;
+    try {
+      const res = await fetch(`/api/services/${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        setServices((prev) => prev.filter((s) => s.id !== id));
+        setSelectedIds((prev) => prev.filter((i) => i !== id));
+        toast.success('Service deleted successfully');
+      } else {
+        toast.error('Failed to delete service');
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error('Error deleting service');
+    }
+  };
   const [scoreFilter, setScoreFilter] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -340,23 +365,28 @@ export default function ServicesPage() {
                     {/* Action Buttons */}
                     <td className="py-4 px-4">
                       <div className="flex items-center justify-center gap-1">
-                        <button
+                        <Link
+                          href={`/admin/services/${service.id}/edit`}
                           title="Edit Service"
-                          className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-800"
+                          className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
                         >
                           <Edit2 className="h-3.5 w-3.5" />
-                        </button>
-                        <button
-                          title="Preview Service"
-                          className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-800"
+                        </Link>
+                        <a
+                          href={service.slug.startsWith('/') ? `/services${service.slug}` : `/services/${service.slug}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="View Service"
+                          className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-700 transition-colors hover:bg-emerald-50 hover:text-emerald-600"
                         >
                           <Eye className="h-3.5 w-3.5" />
-                        </button>
+                        </a>
                         <button
-                          title="More options"
-                          className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-800"
+                          onClick={() => handleDelete(service.id, service.title)}
+                          title="Delete Service"
+                          className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-700 transition-colors hover:bg-red-50 hover:text-red-600"
                         >
-                          <MoreVertical className="h-3.5 w-3.5" />
+                          <Trash2 className="h-3.5 w-3.5" />
                         </button>
                       </div>
                     </td>
@@ -369,58 +399,11 @@ export default function ServicesPage() {
 
         {/* Footer & Pagination */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-zinc-100 bg-white px-6 py-4 text-xs font-semibold text-zinc-800">
-          <div>Showing 1 to 5 of 12 results</div>
+          <div>Showing {filteredServices.length} of {services.length} services</div>
           <div className="flex items-center gap-1.5">
-            <button
-              disabled={currentPage === 1}
-              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-zinc-800 disabled:opacity-40 hover:bg-zinc-50"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <button
-              onClick={() => setCurrentPage(1)}
-              className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-bold transition-all ${
-                currentPage === 1
-                  ? 'bg-orange-600 text-white shadow-sm'
-                  : 'border border-zinc-200 text-zinc-700 hover:bg-zinc-50'
-              }`}
-            >
-              1
-            </button>
-            <button
-              onClick={() => setCurrentPage(2)}
-              className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-bold transition-all ${
-                currentPage === 2
-                  ? 'bg-orange-600 text-white shadow-sm'
-                  : 'border border-zinc-200 text-zinc-700 hover:bg-zinc-50'
-              }`}
-            >
-              2
-            </button>
-            <button
-              onClick={() => setCurrentPage(3)}
-              className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-bold transition-all ${
-                currentPage === 3
-                  ? 'bg-orange-600 text-white shadow-sm'
-                  : 'border border-zinc-200 text-zinc-700 hover:bg-zinc-50'
-              }`}
-            >
-              3
-            </button>
-            <span className="px-1 text-zinc-700">...</span>
-            <button
-              onClick={() => setCurrentPage(12)}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-xs font-bold text-zinc-700 hover:bg-zinc-50"
-            >
-              12
-            </button>
-            <button
-              onClick={() => setCurrentPage((p) => Math.min(12, p + 1))}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-zinc-800 hover:bg-zinc-50"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
+            <span className="text-zinc-700">
+              {filteredServices.length === 0 ? 'No results' : `${filteredServices.length} total`}
+            </span>
           </div>
         </div>
       </div>

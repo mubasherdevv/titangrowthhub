@@ -5,12 +5,20 @@ import { getSiteSettings } from '@/lib/getSiteSettings';
 import { injectDynamicSettings } from '@/lib/htmlHelper';
 
 export async function generateMetadata() {
+
     const { title, description } = await getPageMeta(
+
         'home',
-        'Titan Growth Hub – Pakistan\'s #1 SEO & Digital Marketing Agency',
+
+        'Titan Growth Hub – Pakistan\'s Leading SEO & Digital Marketing Agency',
+
         'Titan Growth Hub helps businesses scale with data-driven SEO, PPC, and content marketing strategies.'
+
     );
+
     return { title, description };
+
+
 }
 
 
@@ -62,99 +70,29 @@ const pageHtml = `
 
                                     <!-- menu -->
                                     <nav class="as-main-navigation as-header-1-menu d-none d-lg-block">
-                                        <div class="menu-main-menu-container">
-                                            <ul id="main-nav" class="nav navbar-nav menu_1_split">
-                                                <li id="menu-item-2588"
-                                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-15 current_page_item current-menu-ancestor current_page_ancestor dropdown menu-item-2588">
-                                                    <a href="/" aria-current="page">Home</a>
-                                                    <ul class="dropdown-menu clearfix">
-                                                        <li id="menu-item-2865"
-                                                            class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent dropdown menu-item-2865">
-                                                           
-                                                        
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li id="menu-item-2590"
-                                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2590">
-                                                    <a href="/about">About</a></li>
-                                                <li id="menu-item-2599"
-                                                    class="menu-item menu-item-type-post_type menu-item-object-page dropdown menu-item-2599">
-                                                    <a href="/our-services">Services</a>
-                                                    <ul class="dropdown-menu clearfix">
-                                                        <li id="menu-item-2613"
-                                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2613">
-                                                            <a href="/our-services">Services</a></li>
-                                                        <li id="menu-item-2609"
-                                                            class="menu-item menu-item-type-post_type menu-item-object-services menu-item-2609">
-                                                            <a href="#">Service
-                                                                Details</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li id="menu-item-2605"
-                                                    class="menu-item menu-item-type-custom menu-item-object-custom dropdown menu-item-2605">
-                                                    <a href="#0">Pages</a>
-                                                    <ul class="dropdown-menu clearfix">
-                                                        <li id="menu-item-2600"
-                                                            class="menu-item menu-item-type-post_type menu-item-object-page dropdown menu-item-2600">
-                                                            <a href="/our-team">Team</a>
-                                                            <ul class="dropdown-menu clearfix">
-                                                                <li id="menu-item-2606"
-                                                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2606">
-                                                                    <a href="/our-team">Team</a></li>
-                                                                <li id="menu-item-2610"
-                                                                    class="menu-item menu-item-type-post_type menu-item-object-teams menu-item-2610">
-                                                                    <a href="#">Team
-                                                                        Details</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li id="menu-item-2594"
-                                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2594">
-                                                            <a href="/faqs">Faqs</a></li>
-                                                        <li id="menu-item-2603"
-                                                            class="menu-item menu-item-type-post_type menu-item-object-page dropdown menu-item-2603">
-                                                            <a href="#">Shop</a>
-                                                            <ul class="dropdown-menu clearfix">
-                                                                <li id="menu-item-2612"
-                                                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2612">
-                                                                    <a href="#">Shop</a></li>
-                                                                <li id="menu-item-2611"
-                                                                    class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2611">
-                                                                    <a href="#">Shop
-                                                                        Details</a></li>
-                                                                <li id="menu-item-2591"
-                                                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2591">
-                                                                    <a href="#">Cart</a></li>
-                                                                <li id="menu-item-2592"
-                                                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2592">
-                                                                    <a href="#">Checkout</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li id="menu-item-2601"
-                                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2601">
-                                                            <a href="#">Pricing</a></li>
-                                                        <li id="menu-item-2589"
-                                                            class="menu-item menu-item-type-post_type menu-item-object-page dropdown menu-item-2589">
-                                                            <a href="/blog">Blog</a>
-                                                            <ul class="dropdown-menu clearfix">
-                                                                <li id="menu-item-2608"
-                                                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2608">
-                                                                    <a href="/blog">Blog</a></li>
-                                                                <li id="menu-item-2607"
-                                                                    class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2607">
-                                                                    <a
-                                                                        href="#">Blog
-                                                                        Details</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li id="menu-item-2593"
-                                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2593">
-                                                            <a href="/contact-us">Contact us</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </nav>
+            <div class="menu-main-menu-container">
+                <ul id="main-nav" class="nav navbar-nav menu_1_split">
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">About</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page dropdown">
+                        <a href="/our-services">Services</a>
+                        <ul class="dropdown-menu clearfix">
+                            <li class="menu-item"><a href="/our-services">Services</a></li>
+                            <li class="menu-item"><a href="/services/smart-schedule-control">Service Details</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/our-team">Team</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page dropdown">
+                        <a href="/blog">Blog</a>
+                        <ul class="dropdown-menu clearfix">
+                            <li class="menu-item"><a href="/blog">Blog</a></li>
+                            <li class="menu-item"><a href="/blog/how-businesses-can-leverage-data-for-smarter-decisions">Blog Details</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/contact-us">Contact</a></li>
+                </ul>
+            </div>
+            </nav>
 
                                     <div class="as-header-1-menu-toggle-btn">
                                         <span></span>
@@ -202,95 +140,29 @@ const pageHtml = `
 
                                 <!-- mobile-menu-list -->
                                 <nav class="mobile-main-navigation mb-50 d-block d-lg-block">
-                                    <div class="menu-main-menu-container">
-                                        <ul id="m-main-nav" class="nav navbar-nav clearfix list-unstyled">
-                                            <li
-                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-15 current_page_item current-menu-ancestor current_page_ancestor dropdown menu-item-2588">
-                                                <a href="/" aria-current="page">Home</a>
-                                                <ul class="dropdown-menu">
-                                                  
-                                                </ul>
-                                            </li>
-                                            <li
-                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2590">
-                                                <a href="/about">About</a></li>
-                                            <li
-                                                class="menu-item menu-item-type-post_type menu-item-object-page dropdown menu-item-2599">
-                                                <a href="/our-services">Services</a>
-                                                <ul class="dropdown-menu">
-                                                    <li
-                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2613">
-                                                        <a href="/our-services">Services</a></li>
-                                                    <li
-                                                        class="menu-item menu-item-type-post_type menu-item-object-services menu-item-2609">
-                                                        <a href="#">Service
-                                                            Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li
-                                                class="menu-item menu-item-type-custom menu-item-object-custom dropdown menu-item-2605">
-                                                <a href="#0">Pages</a>
-                                                <ul class="dropdown-menu">
-                                                    <li
-                                                        class="menu-item menu-item-type-post_type menu-item-object-page dropdown menu-item-2600">
-                                                        <a href="/our-team">Team</a>
-                                                        <ul class="dropdown-menu">
-                                                            <li
-                                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2606">
-                                                                <a href="/our-team">Team</a></li>
-                                                            <li
-                                                                class="menu-item menu-item-type-post_type menu-item-object-teams menu-item-2610">
-                                                                <a href="#">Team Details</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li
-                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2594">
-                                                        <a href="/faqs">Faqs</a></li>
-                                                    <li
-                                                        class="menu-item menu-item-type-post_type menu-item-object-page dropdown menu-item-2603">
-                                                        <a href="#">Shop</a>
-                                                        <ul class="dropdown-menu">
-                                                            <li
-                                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2612">
-                                                                <a href="#">Shop</a></li>
-                                                            <li
-                                                                class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2611">
-                                                                <a href="#">Shop
-                                                                    Details</a></li>
-                                                            <li
-                                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2591">
-                                                                <a href="#">Cart</a></li>
-                                                            <li
-                                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2592">
-                                                                <a href="#">Checkout</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li
-                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2601">
-                                                        <a href="#">Pricing</a></li>
-                                                    <li
-                                                        class="menu-item menu-item-type-post_type menu-item-object-page dropdown menu-item-2589">
-                                                        <a href="/blog">Blog</a>
-                                                        <ul class="dropdown-menu">
-                                                            <li
-                                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2608">
-                                                                <a href="/blog">Blog</a></li>
-                                                            <li
-                                                                class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2607">
-                                                                <a
-                                                                    href="#">Blog
-                                                                    Details</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li
-                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2593">
-                                                        <a href="/contact-us">Contact us</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </nav>
+            <div class="menu-main-menu-container">
+                <ul id="m-main-nav" class="nav navbar-nav clearfix list-unstyled">
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">About</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page dropdown">
+                        <a href="/our-services">Services</a>
+                        <ul class="dropdown-menu">
+                            <li class="menu-item"><a href="/our-services">Services</a></li>
+                            <li class="menu-item"><a href="/services/smart-schedule-control">Service Details</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/our-team">Team</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page dropdown">
+                        <a href="/blog">Blog</a>
+                        <ul class="dropdown-menu">
+                            <li class="menu-item"><a href="/blog">Blog</a></li>
+                            <li class="menu-item"><a href="/blog/how-businesses-can-leverage-data-for-smarter-decisions">Blog Details</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/contact-us">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
 
                                 <div class="wa-offcanvas-gallery">
                                     <h6 class="wa-offcanvas-gallery-title as-h-1">Stay Inspired with Instagram</h6>
@@ -997,109 +869,7 @@ const pageHtml = `
                     </div>
                 </div>
             </div>
-            <div class="elementor-element elementor-element-ced60b2 e-con-full e-flex e-con e-parent" data-id="ced60b2"
-                data-element_type="container">
-                <div class="elementor-element elementor-element-d9da336 elementor-widget elementor-widget-tx_brand elh-el tx_brand"
-                    data-id="d9da336" data-element_type="widget"
-                    data-settings="{&quot;design_style&quot;:&quot;style_1&quot;}" data-widget_type="tx_brand.default">
-                    <div class="elementor-widget-container">
-                        <section class="as-partner-1-area pt-80 pb-70 wa-fix tx-section ">
-                            <div class="container as-container-1">
-                                <!-- section-title -->
-                                <div class="as-partner-1-sec-title mb-40">
-                                    <h6 class="as-subtitle-1 tx-subTitle">
-                                        <span class="icon">
-                                            {<i aria-hidden="true" class="fas fa-circle"></i>} </span>
-                                        Partners
-                                    </h6>
-                                    <h2 class="tx-title as-sec-title-1 wa_title_spilt_1">We believe in the power of
-                                        collaboration</h2>
-                                    <p class="as-p-1 sec-disc wow fadeInUp2 tx-description">
-                                    </p>
-                                </div>
-
-                                <div class="as-partner-1-wrap wa-p-relative">
-                                    <div class="as-partner-1-circle-text">
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/p1-circle-text.webp"
-                                            alt="p1-circle-text" class="circle-text">
-
-                                        <div class="illus">
-                                            <img decoding="async" src="/wp-content/uploads/2025/10/p1-illus-1.webp"
-                                                alt="p1-illus-1">
-                                        </div>
-                                    </div>
-
-                                    <!-- left-logo -->
-                                    <div class="as-partner-1-logo">
-                                        <div class="as-partner-1-logo-single wa-p-relative wow fadeInRight2"
-                                            data-wow-delay=".1s">
-                                            <img decoding="async" src="/wp-content/uploads/2025/10/p1-logo-3.webp"
-                                                alt="">
-                                            <p class="as-p-1 number">01</p>
-                                        </div>
-                                        <div class="as-partner-1-logo-single wa-p-relative wow fadeInRight2"
-                                            data-wow-delay=".1s">
-                                            <img decoding="async" src="/wp-content/uploads/2025/10/p1-logo-1.webp"
-                                                alt="">
-                                            <p class="as-p-1 number">02</p>
-                                        </div>
-                                        <div class="as-partner-1-logo-single wa-p-relative wow fadeInRight2"
-                                            data-wow-delay=".1s">
-                                            <img decoding="async" src="/wp-content/uploads/2025/10/p1-logo-2.webp"
-                                                alt="">
-                                            <p class="as-p-1 number">03</p>
-                                        </div>
-                                        <div class="as-partner-1-logo-single wa-p-relative wow fadeInRight2"
-                                            data-wow-delay=".1s">
-                                            <img decoding="async" src="/wp-content/uploads/2025/10/p1-logo-6.webp"
-                                                alt="">
-                                            <p class="as-p-1 number">04</p>
-                                        </div>
-                                        <div class="as-partner-1-logo-single wa-p-relative wow fadeInRight2"
-                                            data-wow-delay=".1s">
-                                            <img decoding="async" src="/wp-content/uploads/2025/10/p1-logo-5.webp"
-                                                alt="">
-                                            <p class="as-p-1 number">05</p>
-                                        </div>
-                                        <div class="as-partner-1-logo-single wa-p-relative wow fadeInRight2"
-                                            data-wow-delay=".1s">
-                                            <img decoding="async" src="/wp-content/uploads/2025/10/p1-logo-4.webp"
-                                                alt="">
-                                            <p class="as-p-1 number">06</p>
-                                        </div>
-                                    </div>
-
-                                    <!-- right-cloud -->
-                                    <div class="as-partner-1-right wa-p-relative partner1_trigger">
-
-                                        <div class="as-partner-1-cloud">
-                                            <img decoding="async" src="/wp-content/uploads/2025/10/p1-cloud.webp"
-                                                alt="p1-cloud" class="cloud-1">
-
-                                            <img decoding="async" src="/wp-content/uploads/2025/10/p1-cloud-2.webp"
-                                                alt="p1-cloud-2" class="cloud-2">
-
-                                            <img decoding="async" src="/wp-content/uploads/2025/10/p1-rocket.webp"
-                                                alt="p1-rocket" class="rocket">
-                                        </div>
-
-                                        <div class="as-partner-1-boost">
-                                            <img decoding="async" class="arrow"
-                                                src="/wp-content/uploads/2025/10/p1-arrow.webp" alt="p1-arrow">
-
-                                            <h4 class="as-h-1 title">
-                                                Boost Your </h4>
-
-                                            <h4 class="as-h-1 title">
-                                                Business </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-            </div>
+           
             <div class="elementor-element elementor-element-fe4abe9 e-con-full e-flex e-con e-parent" data-id="fe4abe9"
                 data-element_type="container">
                 <div class="elementor-element elementor-element-795eb14 elementor-widget elementor-widget-tx_service_section elh-el tx_service_section"
@@ -1374,501 +1144,7 @@ const pageHtml = `
                     </div>
                 </div>
             </div>
-            <div class="elementor-element elementor-element-8937092 e-con-full e-flex e-con e-parent" data-id="8937092"
-                data-element_type="container">
-                <div class="elementor-element elementor-element-9970e17 elementor-widget elementor-widget-tx_service_section elh-el tx_service_section"
-                    data-id="9970e17" data-element_type="widget"
-                    data-settings="{&quot;design_style&quot;:&quot;style_2&quot;}"
-                    data-widget_type="tx_service_section.default">
-                    <div class="elementor-widget-container">
-                        <section class="as-portfolio-1-area pb-160 portfolio1_pin_elm_trigger tx-section ">
-                            <div class="container as-container-1">
-                                <!-- section-title -->
-                                <div class="as-portfolio-1-sec-title text-center mb-40 portfolio1_pin_elm">
-                                    <h6 class="as-subtitle-1 tx-subTitle">
-                                        <span class="icon">
-                                            {<i aria-hidden="true" class="fas fa-circle"></i>} </span>
-                                        Portfolio
-                                    </h6>
-                                    <h2 class="tx-title as-sec-title-1 wa_title_spilt_1">Crafting Success Through<br>
-                                        Design &amp; Strategy</h2>
-                                    <h3 class="as-h-1 big-title wa_title_spilt_1">
-                                        Some of Works </h3>
-                                </div>
-
-                                <div class="as-portfolio-1-wrap wa-p-relative">
-
-                                    <div class="left">
-                                        <!-- single-item -->
-                                        <div class="as-portfolio-1-item has-v2 wa_magnetic_1_trigger ">
-                                            <div class="item-img wa-fix wa-img-cover wa-p-relative">
-                                                <img decoding="async" class="wa_magnetic_1_elm"
-                                                    src="/wp-content/uploads/2025/10/p1-img-1.webp" alt="p1-img-1">
-
-                                                <div class="item-tags">
-                                                    <a href="#" target="_self" rel="" aria-label="Web Design"
-                                                        class="link-elm as-p-1">
-                                                        Web Design </a>
-                                                    <a href="#" target="_self" rel="" aria-label="UI/UX Design"
-                                                        class="link-elm as-p-1">
-                                                        UI/UX Design </a>
-                                                </div>
-
-                                            </div>
-                                            <div class="content-wrap">
-                                                <h4 class="as-h-1 title wa_magnetic_btn_1">
-                                                    <a href="#" target="_self"
-                                                        rel="" aria-label="Nimo WordPress Theme">
-                                                        Nimo WordPress Theme </a>
-                                                </h4>
-
-                                                <p class="as-p-1 disc">
-                                                    Design and developed a modern, responsive website </p>
-                                            </div>
-                                        </div>
-                                        <!-- single-item -->
-                                        <div class="as-portfolio-1-item has-v2 wa_magnetic_1_trigger ">
-                                            <div class="item-img wa-fix wa-img-cover wa-p-relative">
-                                                <img decoding="async" class="wa_magnetic_1_elm"
-                                                    src="/wp-content/uploads/2025/10/p1-img-2.webp" alt="p1-img-2">
-
-                                                <div class="item-tags">
-                                                    <a href="#" target="_self" rel="" aria-label="Web Design"
-                                                        class="link-elm as-p-1">
-                                                        Web Design </a>
-                                                    <a href="#" target="_self" rel="" aria-label="UI/UX Design"
-                                                        class="link-elm as-p-1">
-                                                        UI/UX Design </a>
-                                                </div>
-
-                                            </div>
-                                            <div class="content-wrap">
-                                                <h4 class="as-h-1 title wa_magnetic_btn_1">
-                                                    <a href="#" target="_self"
-                                                        rel="" aria-label="Deloite WordPress Theme">
-                                                        Deloite WordPress Theme </a>
-                                                </h4>
-
-                                                <p class="as-p-1 disc">
-                                                    Design and developed a modern, responsive website </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="right">
-                                        <!-- single-item -->
-                                        <div class="as-portfolio-1-item has-v2 wa_magnetic_1_trigger">
-                                            <div class="item-img wa-fix wa-img-cover wa-p-relative">
-                                                <img decoding="async" class="wa_magnetic_1_elm"
-                                                    src="/wp-content/uploads/2025/10/p1-img-3.webp" alt="p1-img-3">
-
-                                                <div class="item-tags">
-                                                    <a href="#" target="_self" rel="" aria-label="Web Design"
-                                                        class="link-elm as-p-1">
-                                                        Web Design </a>
-                                                    <a href="#" target="_self" rel="" aria-label="UI/UX Design"
-                                                        class="link-elm as-p-1">
-                                                        UI/UX Design </a>
-                                                </div>
-
-                                            </div>
-                                            <div class="content-wrap">
-                                                <h4 class="as-h-1 title wa_magnetic_btn_1">
-                                                    <a href="#" target="_self"
-                                                        rel="" aria-label="Company Logo">
-                                                        Company Logo </a>
-                                                </h4>
-
-                                                <p class="as-p-1 disc">
-                                                    Logo &amp; Branding Design </p>
-                                            </div>
-                                        </div>
-                                        <!-- single-item -->
-                                        <div class="as-portfolio-1-item  wa_magnetic_1_trigger">
-                                            <div class="item-img wa-fix wa-img-cover wa-p-relative">
-                                                <img decoding="async" class="wa_magnetic_1_elm"
-                                                    src="/wp-content/uploads/2025/10/p1-img-4.webp" alt="p1-img-4">
-
-                                                <div class="item-tags">
-                                                    <a href="#" target="_self" rel="" aria-label="Web Design"
-                                                        class="link-elm as-p-1">
-                                                        Web Design </a>
-                                                    <a href="#" target="_self" rel="" aria-label="UI/UX Design"
-                                                        class="link-elm as-p-1">
-                                                        UI/UX Design </a>
-                                                </div>
-
-                                            </div>
-                                            <div class="content-wrap">
-                                                <h4 class="as-h-1 title wa_magnetic_btn_1">
-                                                    <a href="#" target="_self"
-                                                        rel="" aria-label="Topaap iOS Game App">
-                                                        Topaap iOS Game App </a>
-                                                </h4>
-
-                                                <p class="as-p-1 disc">
-                                                    iOS App Development </p>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- content -->
-                                <div class="as-portfolio-1-content">
-
-                                    <div class="as-portfolio-1-counter wa-p-relative">
-                                        <h5 class="number">
-                                            <span class="odometer" data-count="40">0</span>
-                                        </h5>
-                                        <p class="as-p-1 title">
-                                            <span>+</span>
-                                            Projects
-                                        </p>
-                                    </div>
-
-                                    <p class="as-p-1 as-portfolio-1-content-disc wow fadeInRight2 tx-description">
-                                        Explore projects that blend creativity and strategy to deliver lasting impact.
-                                    </p>
-
-                                    <div class="btn-wrap wow fadeInRight2">
-                                        <a href="/our-services" target="_self" rel=""
-                                            aria-label="More Services" class="as-pr-btn-1-v2 tx-button">
-                                            <span class="text">More Services</span>
-                                            <span class="icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" id="fi_12116860" height="100"
-                                                    viewBox="0 0 100 100" width="100">
-                                                    <g>
-                                                        <circle cx="90.5" cy="50" r="4.5"></circle>
-                                                        <circle cx="77" cy="50" r="4.5"></circle>
-                                                        <circle cx="77" cy="63.5" r="4.5"></circle>
-                                                        <circle cx="77" cy="36.5" r="4.5"></circle>
-                                                        <circle cx="63.5" cy="50" r="4.5"></circle>
-                                                        <circle cx="50" cy="50" r="4.5"></circle>
-                                                        <circle cx="36.5" cy="50" r="4.5"></circle>
-                                                        <circle cx="23" cy="50" r="4.5"></circle>
-                                                        <circle cx="9.5" cy="50" r="4.5"></circle>
-                                                        <circle cx="63.5" cy="77" r="4.5"></circle>
-                                                        <circle cx="63.5" cy="23" r="4.5"></circle>
-                                                    </g>
-                                                </svg> </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-            </div>
-            <div class="elementor-element elementor-element-28e7e00 e-con-full e-flex e-con e-parent" data-id="28e7e00"
-                data-element_type="container">
-                <div class="elementor-element elementor-element-0329991 elementor-widget elementor-widget-tx_cta elh-el tx_cta"
-                    data-id="0329991" data-element_type="widget"
-                    data-settings="{&quot;design_style&quot;:&quot;style_1&quot;}" data-widget_type="tx_cta.default">
-                    <div class="elementor-widget-container">
-                        <section class="as-cta-1-area tx-section ">
-                            <!-- top-experience -->
-                            <div class="container as-container-1">
-                                <div class="as-cta-1-experi">
-                                    <p class="as-cta-1-experi-title as-h-1">
-                                        <span class="number">
-                                            <span class="odometer" data-count="15">00</span>+ </span>
-                                        Years of experiences of these industries!
-                                    </p>
-
-                                    <div class="as-cta-1-experi-services">
-                                        <a href="#" target="_self" rel="" aria-label="Web Design"
-                                            class="link-elm as-h-1 wow fadeInLeft2" data-wow-delay=".2s">
-                                            Web Design </a>
-                                        <a href="#" target="_self" rel="" aria-label="Logo Design"
-                                            class="link-elm as-h-1 wow fadeInLeft2" data-wow-delay=".1s">
-                                            Logo Design </a>
-                                        <a href="#" target="_self" rel="" aria-label="Web Development"
-                                            class="link-elm as-h-1 wow fadeInLeft2" data-wow-delay="">
-                                            Web Development </a>
-                                        <a href="#" target="_self" rel="" aria-label="App Design"
-                                            class="link-elm as-h-1 wow fadeInLeft2" data-wow-delay=".1s">
-                                            App Design </a>
-                                        <a href="#" target="_self" rel="" aria-label="Digital Marketing"
-                                            class="link-elm as-h-1 wow fadeInLeft2" data-wow-delay=".2s">
-                                            Digital Marketing </a>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <!-- bottom-content -->
-                            <div class="as-cta-1-bg wa-fix">
-                                <div class="container as-container-1">
-                                    <div class="as-cta-1-wrap wa-p-relative cta1_trigger">
-                                        <!-- social -->
-                                        <div class="as-cta-1-social">
-                                            <a href="#" target="_self" rel="" aria-label="Twitter"
-                                                class="link-elm as-p-1 wow fadeInLeft2 wa_magnetic_btn_1"
-                                                data-wow-delay=".2s">
-                                                Twitter <i aria-hidden="true" class=" fas fa-long-arrow-right"></i> </a>
-                                            <a href="#" target="_self" rel="" aria-label="Instagram"
-                                                class="link-elm as-p-1 wow fadeInLeft2 wa_magnetic_btn_1"
-                                                data-wow-delay=".1s">
-                                                Instagram <i aria-hidden="true" class=" fas fa-long-arrow-right"></i>
-                                            </a>
-                                            <a href="#" target="_self" rel="" aria-label="Dribble"
-                                                class="link-elm as-p-1 wow fadeInRight2 wa_magnetic_btn_1"
-                                                data-wow-delay="">
-                                                Dribble <i aria-hidden="true" class=" fas fa-long-arrow-right"></i> </a>
-                                            <a href="#" target="_self" rel="" aria-label="Instagram"
-                                                class="link-elm as-p-1 wow fadeInRight2 wa_magnetic_btn_1"
-                                                data-wow-delay=".1s">
-                                                Instagram <i aria-hidden="true" class=" fas fa-long-arrow-right"></i>
-                                            </a>
-                                        </div>
-
-                                        <div class="as-cta-1-content">
-
-                                            <h3 class="as-h-1 title-1">
-                                                Let&#039;s Work </h3>
-
-                                            <h2 class="as-h-1 title-2">
-                                                Together! </h2>
-
-                                            <div class="btn-wrap">
-
-                                                <!-- pr-btn -->
-                                                <a href="/contact-us" target="_self" rel=""
-                                                    aria-label="Get started today"
-                                                    class="as-pr-btn-1 wa_btn_split_1 wa_magnetic_btn_1">
-                                                    <span class="text">Get started today</span>
-                                                    <span class="icon">
-                                                        <span class="icon-fix wa-fix">
-                                                            <i aria-hidden="true"
-                                                                class="flaticon flaticon-dot-arrow-1"></i> <i
-                                                                aria-hidden="true" class="flaticon flaticon-next"></i>
-                                                        </span>
-                                                    </span>
-                                                </a>
-
-                                                <a href="/contact-us" target="_self" rel=""
-                                                    aria-label="Book an appointment"
-                                                    class="as-pr-btn-1 wa_btn_split_1 wa_magnetic_btn_1">
-                                                    <span class="text">
-                                                        Book an appointment </span>
-                                                    <i aria-hidden="true" class=" fas fa-long-arrow-right"></i> </a>
-
-                                            </div>
-
-                                            <div class="text-center">
-                                                <a href="#testimonial" target="_self" rel="" aria-label="Go Down"
-                                                    class="as-cta-1-scroll-btn">
-                                                    <div class="icon-elm"></div>
-                                                    <p class="as-p-1 text-elm">
-                                                        Go Down </p>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <!-- img-1 -->
-                                        <div class="as-cta-1-img-1 wa-fix wa-img-cover">
-                                            <img decoding="async" src="/wp-content/uploads/2025/10/cta1-img-1.webp"
-                                                alt="cta1-img-1">
-                                        </div>
-
-                                        <!-- img-2 -->
-                                        <div class="as-cta-1-img-2 wa-fix wa-img-cover">
-                                            <img decoding="async" src="/wp-content/uploads/2025/10/cta1-img-2.webp"
-                                                alt="cta1-img-2">
-                                        </div>
-
-                                        <div class="as-cta-1-hand-1 wa-fix">
-                                            <img decoding="async" src="/wp-content/uploads/2025/10/cta1-hand-1.webp"
-                                                alt="cta1-hand-1">
-                                        </div>
-
-                                        <div class="as-cta-1-hand-2 wa-fix">
-                                            <img decoding="async" src="/wp-content/uploads/2025/10/cta1-hand-2.webp"
-                                                alt="cta1-hand-2">
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-            </div>
-            <div class="elementor-element elementor-element-6e0a1fd e-con-full e-flex e-con e-parent" data-id="6e0a1fd"
-                data-element_type="container">
-                <div class="elementor-element elementor-element-c10dfc1 elementor-widget elementor-widget-tx_testimonial elh-el tx_testimonial"
-                    data-id="c10dfc1" data-element_type="widget"
-                    data-settings="{&quot;design_style&quot;:&quot;style_1&quot;}"
-                    data-widget_type="tx_testimonial.default">
-                    <div class="elementor-widget-container">
-                        <section class="as-testimonial-1-area pt-80 tx-section ">
-                            <div class="container as-container-1">
-                                <!-- section-section -->
-                                <div class="as-testimonial-1-sec-title text-center mb-40">
-                                    <h6 class="as-subtitle-1 tx-subTitle">
-                                        <span class="icon">
-                                            {<i aria-hidden="true" class="fas fa-circle"></i>} </span>
-                                        Testimonial
-                                    </h6>
-                                    <h2 class="tx-title as-sec-title-1 wa_title_spilt_1">Our clients' success stories
-                                        inspire us every day.</h2>
-                                </div>
-
-                                <div class="as-testimonial-1-wrap">
-
-                                    <!-- col-1 -->
-                                    <div class="item-col">
-                                        <!-- single-item -->
-                                        <div class="as-testimonial-1-item wow fadeInUp2">
-                                            <h4 class="as-h-1 title">
-                                                Next-level performance, almost unreal! ✨⚡ </h4>
-
-                                            <p class="as-p-1 comment">Avista completely transformed our online presence.
-                                                their creativity and strategy boosted our sales beyond expectations.</p>
-
-                                            <div class="author-x-logo">
-                                                <div class="item-author">
-                                                    <div class="item-author-img wa-fix wa-img-cover">
-                                                        <img decoding="async"
-                                                            src="/wp-content/uploads/2025/10/author-1.webp"
-                                                            alt="author-1">
-                                                    </div>
-                                                    <div class="item-author-content">
-                                                        <h5 class="as-h-1 name">Sarah L</h5>
-
-                                                        <p class="as-p-1 dg">CEO, GreenLeaf</p>
-                                                    </div>
-                                                </div>
-                                                <img decoding="async" src="/wp-content/uploads/2025/10/t1-logo-1.webp"
-                                                    alt="t1-logo-1" class="author-logo">
-                                            </div>
-                                        </div>
-
-                                        <!-- single-item -->
-                                        <div class="as-testimonial-1-video wow fadeInUp2" data-wow-delay=".2s">
-                                            <iframe
-                                                src="https://www.youtube.com/embed/ea6Hd25PobQ?autoplay=1&amp;mute=1&amp;loop=1"
-                                                frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
-                                            </iframe>
-                                        </div>
-                                    </div>
-
-                                    <!-- col-2 -->
-                                    <div class="item-col">
-                                        <!-- single-item -->
-                                        <div class="as-testimonial-1-item wow fadeInUp2">
-                                            <h4 class="as-h-1 title">
-                                                So fast, it feels out of this world!!
-                                                🌍🚀 </h4>
-
-                                            <p class="as-p-1 comment">For several months, Avista has supported us with
-                                                materials for La Soib, Ninja Notion, and Cowabunga. Their innovative
-                                                ideas and fast delivery set them apart.</p>
-
-                                            <div class="author-x-logo">
-                                                <div class="item-author">
-                                                    <div class="item-author-img wa-fix wa-img-cover">
-                                                        <img decoding="async"
-                                                            src="/wp-content/uploads/2025/10/author-2.webp"
-                                                            alt="author-2">
-                                                    </div>
-                                                    <div class="item-author-content">
-                                                        <h5 class="as-h-1 name">Robert Tom</h5>
-
-                                                        <p class="as-p-1 dg">CEO, GreenLeaf</p>
-                                                    </div>
-                                                </div>
-                                                <img decoding="async" src="/wp-content/uploads/2025/10/t1-logo-2.webp"
-                                                    alt="t1-logo-2" class="author-logo">
-                                            </div>
-                                        </div>
-                                        <div class="as-testimonial-1-item wow fadeInUp2">
-                                            <h4 class="as-h-1 title">
-                                                Speed beyond imagination! 👀⚡ </h4>
-
-                                            <p class="as-p-1 comment">Their branding solutions gave our
-                                                business a fresh identity. We’ve
-                                                received amazing feedback from
-                                                clients and partners. Professional,
-                                                innovative, and results-driven. Insane
-                                                speed unlocked!</p>
-
-                                            <div class="author-x-logo">
-                                                <div class="item-author">
-                                                    <div class="item-author-img wa-fix wa-img-cover">
-                                                        <img decoding="async"
-                                                            src="/wp-content/uploads/2025/10/author-3.webp"
-                                                            alt="author-3">
-                                                    </div>
-                                                    <div class="item-author-content">
-                                                        <h5 class="as-h-1 name">Priya k</h5>
-
-                                                        <p class="as-p-1 dg">Founder, styleMart</p>
-                                                    </div>
-                                                </div>
-                                                <img decoding="async" src="/wp-content/uploads/2025/10/t1-logo-3.webp"
-                                                    alt="t1-logo-3" class="author-logo">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- col-3 -->
-                                    <div class="item-col">
-                                        <!-- single-item -->
-                                        <div class="as-testimonial-1-video wow fadeInUp2">
-                                            <div class="as-testimonial-1-video wow fadeInUp2" data-wow-delay=".2s">
-                                                <iframe
-                                                    src="https://www.youtube.com/embed/FvSn_2LtFNg?autoplay=1&amp;mute=1&amp;loop=1"
-                                                    frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
-                                                </iframe>
-                                            </div>
-                                        </div>
-
-                                        <!-- single-item -->
-                                        <div class="as-testimonial-1-item wow fadeInUp2">
-                                            <h4 class="as-h-1 title">
-                                                Speed beyond imagination! </h4>
-
-                                            <p class="as-p-1 comment">Professional, innovative, and results
-                                                driven. The team delivered a website
-                                                that truly reflects our brand. A reliable
-                                                and skilled partner!</p>
-
-                                            <div class="author-x-logo">
-                                                <div class="item-author">
-                                                    <div class="item-author-img wa-fix wa-img-cover">
-                                                        <img decoding="async"
-                                                            src="/wp-content/uploads/2025/10/author-4.webp"
-                                                            alt="author-4">
-                                                    </div>
-                                                    <div class="item-author-content">
-                                                        <h5 class="as-h-1 name">David M</h5>
-
-                                                        <p class="as-p-1 dg">CEO, TechNova</p>
-                                                    </div>
-                                                </div>
-                                                <img decoding="async" src="/wp-content/uploads/2025/10/t1-logo-4.webp"
-                                                    alt="t1-logo-4" class="author-logo">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="as-testimonial-1-marquee wa-fix mt-85">
-                                <div class="wa_marquee_left_nopause d-inline-block">
-                                    <div class="as-testimonial-1-marquee-wrap">
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/t1-marquee-shape.webp"
-                                            alt="t1-marquee-shape">
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/t1-marquee-shape.webp"
-                                            alt="t1-marquee-shape">
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-            </div>
+            
             <div class="elementor-element elementor-element-051322d e-con-full e-flex e-con e-parent" data-id="051322d"
                 data-element_type="container">
                 <div class="elementor-element elementor-element-07da7ef elementor-widget elementor-widget-tx_pricing_section elh-el tx_pricing_section"
@@ -2208,61 +1484,11 @@ const pageHtml = `
                                                     </div>
                                                 </div>
 
-                                                <!-- Cards Grid -->
-                                                <div class="row g-4">
-                                                    <!-- Feature Box 1 -->
-                                                    <div class="col-lg-4 col-md-6">
-                                                        <div class="as-hero-1-content-box wow fadeInUp"
-                                                            data-wow-delay=".3s"
-                                                            style="padding: 40px; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px;">
-                                                            <div class="icon mb-3"
-                                                                style="font-size: 32px; color: var(--as-clr-pr-1);">
-                                                                <i class="fa-solid fa-rocket"></i>
-                                                            </div>
-                                                            <h4 class="as-h-1 box-title mb-2">Fast Performance</h4>
-                                                            <p class="as-p-1">High-speed web solutions optimized for
-                                                                search engines and user conversion.</p>
-                                                        </div>
-                                                    </div>
+                                             
 
-                                                    <!-- Feature Box 2 -->
-                                                    <div class="col-lg-4 col-md-6">
-                                                        <div class="as-hero-1-content-box wow fadeInUp"
-                                                            data-wow-delay=".5s"
-                                                            style="padding: 40px; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px;">
-                                                            <div class="icon mb-3"
-                                                                style="font-size: 32px; color: var(--as-clr-pr-1);">
-                                                                <i class="fa-solid fa-palette"></i>
-                                                            </div>
-                                                            <h4 class="as-h-1 box-title mb-2">Modern UI/UX</h4>
-                                                            <p class="as-p-1">Stunning interactive visual designs built
-                                                                with cutting-edge CSS & GSAP FX.</p>
-                                                        </div>
-                                                    </div>
+                                                  
 
-                                                    <!-- Feature Box 3 -->
-                                                    <div class="col-lg-4 col-md-6">
-                                                        <div class="as-hero-1-content-box wow fadeInUp"
-                                                            data-wow-delay=".7s"
-                                                            style="padding: 40px; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px;">
-                                                            <div class="icon mb-3"
-                                                                style="font-size: 32px; color: var(--as-clr-pr-1);">
-                                                                <i class="fa-solid fa-chart-line"></i>
-                                                            </div>
-                                                            <h4 class="as-h-1 box-title mb-2">Scalable Tech</h4>
-                                                            <p class="as-p-1">Future-proof architecture tailored to grow
-                                                                with your business requirements.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <!-- Magnetic Call-to-Action Button -->
-                                                <div class="text-center mt-5">
-                                                    <a href="/contact-us"
-                                                        class="as-pr-btn-1 wa_btn_split_1 wa_magnetic_btn_1">
-                                                        <span class="text">Explore More Features</span>
-                                                    </a>
-                                                </div>
+                                               
 
                                             </div>
                                         </section>
@@ -3659,21 +2885,33 @@ const pageHtml = `
 `;
 
 export default async function HomePage() {
+
     const settings = await getSiteSettings();
+
     const finalHtml = injectDynamicSettings(pageHtml, settings);
 
+
+
     return (
+
         <>
-            <script
+
+            < script
+
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }
+                }
             />
-            <script
+            < script
                 dangerouslySetInnerHTML={{
+
                     __html: `document.body.className = "home page-template page-template-elementor_header_footer page page-id-17 theme-avista elementor-default elementor-template-full-width elementor-kit-8 elementor-page elementor-page-17";`,
+
+
                 }}
             />
-            <div dangerouslySetInnerHTML={{ __html: finalHtml }} />
+            < div dangerouslySetInnerHTML={{ __html: finalHtml }} />
         </>
     );
 }

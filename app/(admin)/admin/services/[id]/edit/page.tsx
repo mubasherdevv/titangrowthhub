@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useToast } from '@/components/ToastProvider';
 import ContentBlockBuilder from '@/components/ContentBlockBuilder';
 import MediaLibraryPicker from '@/components/MediaLibraryPicker';
+import { useToast } from '@/components/ToastProvider';
 import {
   ArrowLeft,
   Save,
@@ -35,58 +35,69 @@ import {
   CheckCircle2
 } from 'lucide-react';
 
-export default function AddNewServicePage() {
+export default function EditServicePage({ params }: { params: { id: string } }) {
   const router = useRouter();
   const toast = useToast();
-  const [activeTab, setActiveTab] = useState<'general' | 'seo' | 'schema' | 'social'>('seo');
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Tabs
+  const [activeTab, setActiveTab] = useState<'general' | 'seo' | 'schema' | 'social'>('general');
+  const [isSaving, setIsSaving] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   
   // General Tab State
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('SEO Services');
   const [shortDesc, setShortDesc] = useState('');
   const [content, setContent] = useState('');
   const [displayOrder, setDisplayOrder] = useState('0');
   const [featuredImage, setFeaturedImage] = useState('');
   const [showFeaturedImagePicker, setShowFeaturedImagePicker] = useState(false);
+
+  // SEO Settings Tab State
+  const [seoTitle, setSeoTitle] = useState('');
+  const [seoMetaDesc, setSeoMetaDesc] = useState('');
+  const [seoSlug, setSeoSlug] = useState('');
+  const [focusKeyword, setFocusKeyword] = useState('');
+  const [canonicalUrl, setCanonicalUrl] = useState('');
+  const [metaRobots, setMetaRobots] = useState('Index, Follow');
+
+  const [previewDevice, setPreviewDevice] = useState<'desktop' | 'mobile'>('desktop');
+  const [isGeneratingSeo, setIsGeneratingSeo] = useState(false);
   const [siteDomain, setSiteDomain] = useState('yoursite.com');
 
   useEffect(() => {
     setSiteDomain(window.location.host);
   }, []);
 
-  const handlePublish = async (status: 'Published' | 'Draft' = 'Published') => {
+  const handleSave = async (status: 'Draft' | 'Published' = 'Published') => {
     if (!title || !slug) {
-      toast.error('Title and Slug are required!');
+      toast.error('Title and Slug are required');
       return;
     }
-    setIsSubmitting(true);
+    setIsSaving(true);
     try {
-      const res = await fetch('/api/services', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      const res = await fetch(`/api/services/${params.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           title,
           slug,
           category,
           status,
-          seoScore,
           shortDesc,
           content,
+          seoTitle,
+          seoMetaDesc,
+          focusKeyword,
+          canonicalUrl,
+          metaRobots,
           featured_image: featuredImage,
           display_order: parseInt(displayOrder) || 0,
         }),
       });
       if (res.ok) {
-        toast.success(
-          status === 'Published'
-            ? 'Service published successfully!'
-            : 'Service saved as draft.'
-        );
-        router.push('/admin/services');
+        toast.success('Service updated successfully!');
         router.refresh();
       } else {
         toast.error('Failed to save service');
@@ -95,33 +106,74 @@ export default function AddNewServicePage() {
       console.error(err);
       toast.error('Error saving service');
     } finally {
-      setIsSubmitting(false);
+      setIsSaving(false);
     }
   };
 
-  // SEO Settings Tab State
-  const [seoTitle, setSeoTitle] = useState('');
-  const [seoMetaDesc, setSeoMetaDesc] = useState('');
-  const [seoSlug, setSeoSlug] = useState('');
-  const [focusKeyword, setFocusKeyword] = useState('');
-  const [canonicalUrl, setCanonicalUrl] = useState('https://yoursite.com/services/local-seo-services');
-  const [metaRobots, setMetaRobots] = useState('Index, Follow');
+  useEffect(() => {
+    const fetchService = async () => {
+      try {
+        const res = await fetch(`/api/services/${params.id}`);
+        if (res.ok) {
+          const data = await res.json();
+          setTitle(data.title || '');
+          setSlug(data.slug || '');
+          setCategory(data.category || 'SEO Services');
+          setShortDesc(data.shortDesc || '');
+          setContent(data.content || '');
+        setFeaturedImage(data.featured_image || '');
+          setSeoTitle(data.seoTitle || '');
+          setSeoMetaDesc(data.seoDesc || '');
+          setFocusKeyword(data.focusKeyword || '');
+          setCanonicalUrl(data.canonicalUrl || '');
+          setMetaRobots(data.metaRobots || 'Index, Follow');
+        } else {
+          toast.error('Failed to load service');
+        }
+      } catch (err) {
+        toast.error('Error loading service');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchService();
+  }, [params.id]);
 
-  const [previewDevice, setPreviewDevice] = useState<'desktop' | 'mobile'>('desktop');
+  const handleGenerateSeo = async () => {
+    if (!title || !shortDesc) {
+      toast.error('Please fill in the General tab Title and Short Description first.');
+      return;
+    }
+    setIsGeneratingSeo(true);
+    try {
+      const res = await fetch('/api/ai/generate-seo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, shortDesc, category }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setSeoTitle(data.seoTitle);
+        setSeoMetaDesc(data.seoDescription);
+        toast.success('SEO content generated successfully!');
+      } else {
+        const errorData = await res.json().catch(() => ({}));
+        const errorMessage = errorData.details || errorData.error || 'Failed to generate SEO content.';
+        toast.error(`AI Error: ${errorMessage}`);
+      }
+    } catch (err: any) {
+      console.error(err);
+      toast.error(`Error generating SEO content: ${err.message || 'Network error'}`);
+    } finally {
+      setIsGeneratingSeo(false);
+    }
+  };
 
-  // Auto-generate slug from service title
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     setTitle(val);
-    if (!slug || slug === title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')) {
-      const generated = val.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-      setSlug(generated);
-      setSeoSlug(generated);
-      setCanonicalUrl(`https://yoursite.com/services/${generated}`);
-    }
   };
 
-  // Dynamic SEO score calculation
   const calculateSeoScore = () => {
     let score = 0;
     if (seoTitle.length >= 10 && seoTitle.length <= 60) score += 25;
@@ -150,33 +202,30 @@ export default function AddNewServicePage() {
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
-      {/* Top Header & Actions */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <Link
-            href="/admin/services"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-orange-600 hover:text-orange-700 transition-colors mb-2"
+      {/* Header */}
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={() => router.back()}
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-zinc-600 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
           >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            <span>Back to Services</span>
-          </Link>
-          <h1 className="font-serif text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-950">
-            Add New Service
-          </h1>
-          <p className="mt-1 text-xs md:text-sm text-zinc-800 font-medium">
-            Create a new service page and optimize for search engines.
-          </p>
+            <ArrowLeft className="h-4 w-4" />
+          </button>
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight text-zinc-900">Edit Service</h1>
+            <p className="text-sm text-zinc-500">Update the service details and content.</p>
+          </div>
         </div>
 
         {/* Action Buttons */}
         <div className="flex items-center gap-3">
           <button
-            onClick={() => handlePublish('Draft')}
-            disabled={isSubmitting}
+            onClick={() => handleSave('Draft')}
+            disabled={isSaving || isLoading}
             className="flex items-center gap-2 rounded-2xl border border-zinc-200 bg-white px-4 py-2.5 text-xs font-bold text-zinc-700 shadow-sm transition-all hover:bg-zinc-50 hover:border-zinc-300 disabled:opacity-50"
           >
             <Save className="h-4 w-4 text-zinc-800" />
-            <span>{isSubmitting ? 'Saving...' : 'Save Draft'}</span>
+            <span>{isSaving ? 'Saving...' : 'Save Draft'}</span>
           </button>
           <button className="flex items-center gap-2 rounded-2xl border border-zinc-200 bg-white px-4 py-2.5 text-xs font-bold text-zinc-700 shadow-sm transition-all hover:bg-zinc-50 hover:border-zinc-300">
             <Eye className="h-4 w-4 text-zinc-800" />
@@ -184,12 +233,12 @@ export default function AddNewServicePage() {
           </button>
           <div className="relative inline-flex rounded-2xl bg-orange-600 text-white shadow-md shadow-orange-600/20">
             <button
-              onClick={() => handlePublish('Published')}
-              disabled={isSubmitting}
+              onClick={() => handleSave('Published')}
+              disabled={isSaving || isLoading}
               className="flex items-center gap-2 px-4 py-2.5 text-xs font-extrabold transition-all hover:bg-orange-700 rounded-l-2xl disabled:opacity-50"
             >
               <Send className="h-3.5 w-3.5" />
-              <span>{isSubmitting ? 'Publishing...' : 'Publish'}</span>
+              <span>{isSaving ? 'Saving...' : 'Publish'}</span>
             </button>
             <button className="px-2.5 py-2.5 border-l border-orange-500/40 hover:bg-orange-700 rounded-r-2xl">
               <ChevronDown className="h-4 w-4" />
@@ -357,7 +406,7 @@ export default function AddNewServicePage() {
                     </div>
                   </div>
                   <button 
-                    type="button"
+                    type="button" 
                     onClick={() => setShowFeaturedImagePicker(true)}
                     className="rounded-xl border border-zinc-200 bg-white px-4 py-2 text-xs font-bold text-zinc-700 shadow-sm hover:bg-zinc-50 hover:border-zinc-300 shrink-0"
                   >
@@ -455,13 +504,22 @@ export default function AddNewServicePage() {
                     {seoTitle.length} / 60
                   </span>
                 </div>
-                <input
-                  type="text"
-                  value={seoTitle}
-                  onChange={(e) => setSeoTitle(e.target.value)}
-                  placeholder="Local SEO Services | Rank Higher & Get More Traffic"
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50/30 px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none transition-all"
-                />
+                <div className="flex gap-2 items-start">
+                  <input
+                    type="text"
+                    value={seoTitle}
+                    onChange={(e) => setSeoTitle(e.target.value)}
+                    placeholder="Local SEO Services | Rank Higher & Get More Traffic"
+                    className="w-full rounded-xl border border-zinc-200 bg-zinc-50/30 px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none transition-all"
+                  />
+                  <button
+                    onClick={handleGenerateSeo}
+                    disabled={isGeneratingSeo}
+                    className="shrink-0 flex items-center gap-1.5 rounded-xl bg-purple-50 px-3 py-2.5 text-xs font-bold text-purple-700 border border-purple-200/60 hover:bg-purple-100 transition-colors disabled:opacity-50"
+                  >
+                    <span>✨</span> Generate
+                  </button>
+                </div>
                 
                 {/* Green Progress Bar & Feedback */}
                 <div className="space-y-1.5 pt-1">
@@ -499,6 +557,13 @@ export default function AddNewServicePage() {
                     {seoMetaDesc.length} / 160
                   </span>
                 </div>
+                <button
+                  onClick={handleGenerateSeo}
+                  disabled={isGeneratingSeo}
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-purple-50 px-3 py-2 text-[11px] font-bold text-purple-700 border border-purple-200/60 hover:bg-purple-100 transition-colors disabled:opacity-50 mt-1"
+                >
+                  <span>✨</span> Generate Description with AI
+                </button>
 
                 {/* Green Progress Bar & Feedback */}
                 <div className="space-y-1.5 pt-1">
@@ -524,7 +589,7 @@ export default function AddNewServicePage() {
                 </div>
                 <div className="flex items-center rounded-xl border border-zinc-200 bg-zinc-50/40 overflow-hidden focus-within:border-orange-500 focus-within:bg-white transition-all">
                   <span className="bg-zinc-100 px-3.5 py-2.5 text-xs font-medium text-zinc-800 border-r border-zinc-200 shrink-0">
-                    {siteDomain}/services/
+                    {typeof window !== 'undefined' ? window.location.host : 'yoursite.com'}/services/
                   </span>
                   <input
                     type="text"

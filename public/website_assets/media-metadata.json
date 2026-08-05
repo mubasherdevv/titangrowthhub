@@ -1,0 +1,26 @@
+{
+  "/website_assets/footer-logo.png": {
+    "altText": "logo",
+    "updatedAt": "2026-08-05T20:08:11.899Z",
+    "width": 1536,
+    "height": 1024,
+    "isWebpOptimized": false
+  },
+  "\\website_assets\\footer-logo.png": {
+    "width": 1536,
+    "height": 1024,
+    "isWebpOptimized": false
+  },
+  "\\website_assets\\tx-bg-img.webp": {
+    "width": 1920,
+    "height": 500,
+    "isWebpOptimized": true
+  },
+  "/website_assets/tx-bg-img.webp": {
+    "altText": "ss",
+    "updatedAt": "2026-08-05T20:08:15.344Z",
+    "width": 1920,
+    "height": 500,
+    "isWebpOptimized": true
+  }
+}

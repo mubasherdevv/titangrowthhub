@@ -56,69 +56,29 @@ const pageHtml = `
 
             <!-- menu -->
             <nav class="as-main-navigation as-header-1-menu d-none d-lg-block">
-                <div class="menu-main-menu-container"><ul id="main-nav" class="nav navbar-nav menu_1_split"><li id="menu-item-2588" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home dropdown menu-item-2588"><a href="../index.html">Home</a>
-<ul class="dropdown-menu clearfix">
-	<li id="menu-item-2865" class="menu-item menu-item-type-custom menu-item-object-custom dropdown menu-item-2865"><a href="#0">Multipage</a>
-	<ul class="dropdown-menu clearfix">
-		<li id="menu-item-2604" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-2604"><a href="../index.html">Home 01</a></li>
-		<li id="menu-item-2595" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2595"><a href="../home-02/index.html">Home 02</a></li>
-		<li id="menu-item-2596" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2596"><a href="../home-03/index.html">Home 03</a></li>
-		<li id="menu-item-2597" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2597"><a href="../home-04/index.html">Home 04</a></li>
-	</ul>
-</li>
-	<li id="menu-item-2866" class="menu-item menu-item-type-custom menu-item-object-custom dropdown menu-item-2866"><a href="#0">Onepage</a>
-	<ul class="dropdown-menu clearfix">
-		<li id="menu-item-2924" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2924"><a href="../home-01-onepage/index.html">Home 01 Onepage</a></li>
-		<li id="menu-item-2919" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2919"><a href="../home-02-onepage/index.html">Home 02 Onepage</a></li>
-		<li id="menu-item-2920" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2920"><a href="../home-03-onepage/index.html">Home 03 Onepage</a></li>
-		<li id="menu-item-2921" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2921"><a href="../home-04-onepage/index.html">Home 04 Onepage</a></li>
-	</ul>
-</li>
-	<li id="menu-item-2864" class="menu-item menu-item-type-custom menu-item-object-custom dropdown menu-item-2864"><a href="#0">Darkpage</a>
-	<ul class="dropdown-menu clearfix">
-		<li id="menu-item-2870" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2870"><a href="../home-01-dark/index.html">Home 01 Dark</a></li>
-		<li id="menu-item-2869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869"><a href="../home-02-dark/index.html">Home 02 Dark</a></li>
-		<li id="menu-item-2868" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2868"><a href="../home-03-dark/index.html">Home 03 Dark</a></li>
-		<li id="menu-item-2867" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2867"><a href="../home-04-dark/index.html">Home 04 Dark</a></li>
-	</ul>
-</li>
-</ul>
-</li>
-<li id="menu-item-2590" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-23 current_page_item menu-item-2590"><a href="index.html" aria-current="page">About</a></li>
-<li id="menu-item-2599" class="menu-item menu-item-type-post_type menu-item-object-page dropdown menu-item-2599"><a href="../our-services/index.html">Services</a>
-<ul class="dropdown-menu clearfix">
-	<li id="menu-item-2613" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2613"><a href="../our-services/index.html">Services</a></li>
-	<li id="menu-item-2609" class="menu-item menu-item-type-post_type menu-item-object-services menu-item-2609"><a href="../services/smart-schedule-control/index.html">Service Details</a></li>
-</ul>
-</li>
-<li id="menu-item-2605" class="menu-item menu-item-type-custom menu-item-object-custom dropdown menu-item-2605"><a href="#0">Pages</a>
-<ul class="dropdown-menu clearfix">
-	<li id="menu-item-2600" class="menu-item menu-item-type-post_type menu-item-object-page dropdown menu-item-2600"><a href="../our-team/index.html">Team</a>
-	<ul class="dropdown-menu clearfix">
-		<li id="menu-item-2606" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2606"><a href="../our-team/index.html">Team</a></li>
-		<li id="menu-item-2610" class="menu-item menu-item-type-post_type menu-item-object-teams menu-item-2610"><a href="../teams/melissa-lee/index.html">Team Details</a></li>
-	</ul>
-</li>
-	<li id="menu-item-2594" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2594"><a href="../faqs/index.html">Faqs</a></li>
-	<li id="menu-item-2603" class="menu-item menu-item-type-post_type menu-item-object-page dropdown menu-item-2603"><a href="../shop/index.html">Shop</a>
-	<ul class="dropdown-menu clearfix">
-		<li id="menu-item-2612" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2612"><a href="../shop/index.html">Shop</a></li>
-		<li id="menu-item-2611" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2611"><a href="../product/black-headphone/index.html">Shop Details</a></li>
-		<li id="menu-item-2591" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2591"><a href="../cart/index.html">Cart</a></li>
-		<li id="menu-item-2592" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2592"><a href="../checkout/index.html">Checkout</a></li>
-	</ul>
-</li>
-	<li id="menu-item-2601" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2601"><a href="../pricing/index.html">Pricing</a></li>
-	<li id="menu-item-2589" class="menu-item menu-item-type-post_type menu-item-object-page dropdown menu-item-2589"><a href="../blog/index.html">Blog</a>
-	<ul class="dropdown-menu clearfix">
-		<li id="menu-item-2608" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2608"><a href="../blog/index.html">Blog</a></li>
-		<li id="menu-item-2607" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2607"><a href="../how-businesses-can-leverage-data-for-smarter-decisions/index.html">Blog Details</a></li>
-	</ul>
-</li>
-	<li id="menu-item-2593" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2593"><a href="../contact-us/index.html">Contact us</a></li>
-</ul>
-</li>
-</ul></div>            </nav>
+            <div class="menu-main-menu-container">
+                <ul id="main-nav" class="nav navbar-nav menu_1_split">
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">About</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page dropdown">
+                        <a href="/our-services">Services</a>
+                        <ul class="dropdown-menu clearfix">
+                            <li class="menu-item"><a href="/our-services">Services</a></li>
+                            <li class="menu-item"><a href="/services/smart-schedule-control">Service Details</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/our-team">Team</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page dropdown">
+                        <a href="/blog">Blog</a>
+                        <ul class="dropdown-menu clearfix">
+                            <li class="menu-item"><a href="/blog">Blog</a></li>
+                            <li class="menu-item"><a href="/blog/how-businesses-can-leverage-data-for-smarter-decisions">Blog Details</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/contact-us">Contact</a></li>
+                </ul>
+            </div>
+            </nav>
 
             <div class="as-header-1-menu-toggle-btn">
                 <span></span>
@@ -167,69 +127,29 @@ const pageHtml = `
 
         <!-- mobile-menu-list -->
                 <nav class="mobile-main-navigation mb-50 d-block d-lg-block">
-            <div class="menu-main-menu-container"><ul id="m-main-nav" class="nav navbar-nav clearfix list-unstyled"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home dropdown menu-item-2588"><a href="../index.html">Home</a>
-<ul class="dropdown-menu">
-	<li class="menu-item menu-item-type-custom menu-item-object-custom dropdown menu-item-2865"><a href="#0">Multipage</a>
-	<ul class="dropdown-menu">
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-2604"><a href="../index.html">Home 01</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2595"><a href="../home-02/index.html">Home 02</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2596"><a href="../home-03/index.html">Home 03</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2597"><a href="../home-04/index.html">Home 04</a></li>
-	</ul>
-</li>
-	<li class="menu-item menu-item-type-custom menu-item-object-custom dropdown menu-item-2866"><a href="#0">Onepage</a>
-	<ul class="dropdown-menu">
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2924"><a href="../home-01-onepage/index.html">Home 01 Onepage</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2919"><a href="../home-02-onepage/index.html">Home 02 Onepage</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2920"><a href="../home-03-onepage/index.html">Home 03 Onepage</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2921"><a href="../home-04-onepage/index.html">Home 04 Onepage</a></li>
-	</ul>
-</li>
-	<li class="menu-item menu-item-type-custom menu-item-object-custom dropdown menu-item-2864"><a href="#0">Darkpage</a>
-	<ul class="dropdown-menu">
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2870"><a href="../home-01-dark/index.html">Home 01 Dark</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2869"><a href="../home-02-dark/index.html">Home 02 Dark</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2868"><a href="../home-03-dark/index.html">Home 03 Dark</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2867"><a href="../home-04-dark/index.html">Home 04 Dark</a></li>
-	</ul>
-</li>
-</ul>
-</li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-23 current_page_item menu-item-2590"><a href="index.html" aria-current="page">About</a></li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page dropdown menu-item-2599"><a href="../our-services/index.html">Services</a>
-<ul class="dropdown-menu">
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2613"><a href="../our-services/index.html">Services</a></li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-services menu-item-2609"><a href="../services/smart-schedule-control/index.html">Service Details</a></li>
-</ul>
-</li>
-<li class="menu-item menu-item-type-custom menu-item-object-custom dropdown menu-item-2605"><a href="#0">Pages</a>
-<ul class="dropdown-menu">
-	<li class="menu-item menu-item-type-post_type menu-item-object-page dropdown menu-item-2600"><a href="../our-team/index.html">Team</a>
-	<ul class="dropdown-menu">
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2606"><a href="../our-team/index.html">Team</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-teams menu-item-2610"><a href="../teams/melissa-lee/index.html">Team Details</a></li>
-	</ul>
-</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2594"><a href="../faqs/index.html">Faqs</a></li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page dropdown menu-item-2603"><a href="../shop/index.html">Shop</a>
-	<ul class="dropdown-menu">
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2612"><a href="../shop/index.html">Shop</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-product menu-item-2611"><a href="../product/black-headphone/index.html">Shop Details</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2591"><a href="../cart/index.html">Cart</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2592"><a href="../checkout/index.html">Checkout</a></li>
-	</ul>
-</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2601"><a href="../pricing/index.html">Pricing</a></li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page dropdown menu-item-2589"><a href="../blog/index.html">Blog</a>
-	<ul class="dropdown-menu">
-		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2608"><a href="../blog/index.html">Blog</a></li>
-		<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2607"><a href="../how-businesses-can-leverage-data-for-smarter-decisions/index.html">Blog Details</a></li>
-	</ul>
-</li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2593"><a href="../contact-us/index.html">Contact us</a></li>
-</ul>
-</li>
-</ul></div>        </nav>
+            <div class="menu-main-menu-container">
+                <ul id="m-main-nav" class="nav navbar-nav clearfix list-unstyled">
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">About</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page dropdown">
+                        <a href="/our-services">Services</a>
+                        <ul class="dropdown-menu">
+                            <li class="menu-item"><a href="/our-services">Services</a></li>
+                            <li class="menu-item"><a href="/services/smart-schedule-control">Service Details</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/our-team">Team</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page dropdown">
+                        <a href="/blog">Blog</a>
+                        <ul class="dropdown-menu">
+                            <li class="menu-item"><a href="/blog">Blog</a></li>
+                            <li class="menu-item"><a href="/blog/how-businesses-can-leverage-data-for-smarter-decisions">Blog Details</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/contact-us">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
         
                 <div class="wa-offcanvas-gallery">
                         <h6 class="wa-offcanvas-gallery-title as-h-1">Stay Inspired with Instagram</h6>
@@ -298,7 +218,7 @@ const pageHtml = `
 
     <!-- wrapper-box start -->
             <!-- breadcrumb-start -->
-        <div class="as-breadcrumb-area wa-p-relative wa-bg-default tx-breadcrumb " data-background="/public/website_assets/tx-bg-img.webp">
+        <div class="as-breadcrumb-area wa-p-relative wa-bg-default tx-breadcrumb " data-background="/website_assets/tx-bg-img.webp">
             <div class="container as-container-2">
                 <div class="as-breadcrumb-wrap">
                     <h1 class="as-breadcrumb-title">About</h1>

@@ -7,15 +7,59 @@ import { injectDynamicSettings } from '@/lib/htmlHelper';
 
 export const revalidate = 0;
 
-export async function generateMetadata() {
-  const { title, description } = await getPageMeta(
-    'our-services',
-    'Our Services – Titan Growth Hub',
-    'Explore our full suite of digital marketing services including SEO, PPC, content marketing, and web development.'
-  );
-  return { title, description };
-}
+type Props = {
+  params: { slug: string };
+};
 
+export async function generateMetadata({ params }: Props): Promise<import("next").Metadata> {
+  const cleanSlug = params.slug.replace(/^\/+/, '').replace(/^services\//, '');
+
+  let title = 'Our Services – Titan Growth Hub';
+  let description = 'Explore our full suite of digital marketing services including SEO, PPC, content marketing, and web development.';
+  let siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://titangrowthhub.com';
+
+  try {
+    const { data: settings } = await supabase
+      .from('site_settings')
+      .select('site_url')
+      .eq('id', 1)
+      .single();
+    if (settings?.site_url) {
+      siteUrl = settings.site_url.endsWith('/') ? settings.site_url.slice(0, -1) : settings.site_url;
+    }
+
+    const { data } = await supabase
+      .from('services')
+      .select('seoTitle, seoDesc, canonicalUrl, title, shortDesc')
+      .eq('slug', cleanSlug)
+      .or(`slug.eq./${cleanSlug},slug.eq./services/${cleanSlug},slug.eq.services/${cleanSlug}`)
+      .limit(1)
+      .single();
+
+    if (data) {
+      title = data.seoTitle || data.title || title;
+      description = data.seoDesc || data.shortDesc || description;
+      if (data.canonicalUrl) {
+        siteUrl = data.canonicalUrl;
+      } else {
+        siteUrl = `${siteUrl}/services/${cleanSlug}`;
+      }
+    } else {
+      siteUrl = `${siteUrl}/services/${cleanSlug}`;
+    }
+  } catch (err) {
+    console.error('Error in metadata:', err);
+    siteUrl = `${siteUrl}/services/${cleanSlug}`;
+  }
+
+  return { 
+    title, 
+    description,
+    alternates: {
+      canonical: siteUrl
+    }
+  };
+}
 
 const topHtml = `
 
@@ -240,46 +284,7 @@ const topHtml = `
             </div>
         </div>
         <!-- breadcrumb-end -->
-        		<div data-elementor-type="wp-page" data-elementor-id="25" class="elementor elementor-25">
-				<div class="elementor-element elementor-element-4270d64 e-con-full e-flex e-con e-parent" data-id="4270d64" data-element_type="container">
-				<div class="elementor-element elementor-element-99802ea elementor-widget elementor-widget-tx_service_section elh-el tx_service_section" data-id="99802ea" data-element_type="widget" data-settings="{&quot;design_style&quot;:&quot;style_1&quot;}" data-widget_type="tx_service_section.default">
-				<div class="elementor-widget-container">
-					<section class="as-services-1-area pt-70 pb-120 tx-section ">
-    <div class="container as-container-1">
-        <div class="as-services-1-container">
-            <!-- section-title -->
-            <div class="as-services-1-sec-title mb-50">
-                <div class="left">
-                                        <h6 class="as-subtitle-1 tx-subTitle">
-                        <span class="icon">
-                            {<i aria-hidden="true" class="fas fa-circle"></i>}                        </span>
-                        Services                    </h6>
-                                        <h2 class="tx-title as-sec-title-1 wa_title_spilt_1">Driving Growth Through Digital Excellence</h2>                </div>
-
-                                <div class="img-elm wow fadeInRight2">
-                    <img decoding="async" src="/wp-content/uploads/2025/10/s1-img-1.webp" alt="s1-img-1">
-                </div>
-                
-                <div class="right">
-                                        <p class="as-p-1 sec-disc wow fadeInRight2 tx-description">
-                        At Avista Digital Agency, we provide a full range of digital solutions designed
-                                    to help businesses grow, connect, and succeed.                    </p>
-                    
-                                        <div class="btn-wrap wow fadeInRight2">
-                        <a href="/"
-                        target="_self"
-                        rel=""
-                        aria-label="More Services" class="as-pr-btn-1-v2 tx-button">
-                            <span class="text">More Services</span>
-                                                        <span class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" id="fi_12116860" height="100" viewBox="0 0 100 100" width="100"><g><circle cx="90.5" cy="50" r="4.5"></circle><circle cx="77" cy="50" r="4.5"></circle><circle cx="77" cy="63.5" r="4.5"></circle><circle cx="77" cy="36.5" r="4.5"></circle><circle cx="63.5" cy="50" r="4.5"></circle><circle cx="50" cy="50" r="4.5"></circle><circle cx="36.5" cy="50" r="4.5"></circle><circle cx="23" cy="50" r="4.5"></circle><circle cx="9.5" cy="50" r="4.5"></circle><circle cx="63.5" cy="77" r="4.5"></circle><circle cx="63.5" cy="23" r="4.5"></circle></g></svg>                            </span>
-                                                    </a>
-                    </div>
-                    
-                </div>
-            </div>
-
-            <div class="as-services-1-wrap">`;
+        		`;
 const bottomHtml = `</div>
 				</div>
 				</div>
@@ -567,80 +572,86 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
     <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"daf30b97c9e94fec9725b4f69e8dd5ef","r":1}' crossorigin="anonymous"></script>
 `;
 
-export default async function Page() {
-  let services: any[] = [];
+export default async function Page({ params }: { params: { slug: string } }) {
+  let service = null;
   try {
+    const slug = params.slug;
     const { data, error } = await supabase
       .from('services')
       .select('*')
-      .eq('status', 'Published')
-      .order('created_at', { ascending: false });
+      .or(`slug.eq.${slug},slug.eq./${slug},slug.eq./services/${slug}`)
+      .maybeSingle();
 
     if (error) throw error;
-    if (data) services = data;
+    if (data) service = data;
   } catch (err) {
-    console.error('Error fetching services from Supabase:', err);
+    console.error('Error fetching service from Supabase:', err);
   }
 
-  const servicesListHtml = services.length > 0
-    ? services.map((service, index) => {
-      const cleanSlug = service.slug.replace(/^\/+/, '').replace(/^services\//, '');
-      const slug = `/services/${cleanSlug}`;
-      const count = String(index + 1).padStart(2, '0');
+  if (!service) {
+    return (
+      <div style={{ textAlign: 'center', padding: '100px' }}>
+        <h1>Service not found</h1>
+        <p>The requested service could not be found.</p>
+        <a href="/our-services" style={{ color: '#fd3f00', textDecoration: 'underline' }}>Return to Services</a>
+      </div>
+    );
+  }
 
-      const tags = service.category === 'Technical'
-        ? ['Performance', 'SEO Audit', 'Optimization', 'Technical Fixes']
-        : ['Responsive Design', 'Branding', 'Market Research', 'SEO Copywriting'];
+  // Format date
+  const dateObj = new Date(service.created_at || new Date());
+  const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+  const authorName = 'avista';
 
-      const tagsHtml = tags.map(tag => `<li class="as-p-1">${tag}</li>`).join('\n');
-      const logoNum = (index % 4) + 1;
+  // Replace static "Our Services" in breadcrumb to match service title dynamically
+  let dynamicTopHtml = topHtml.replace(
+    /<h1 class="as-breadcrumb-title">Our Services<\/h1>/g,
+    `<h1 class="as-breadcrumb-title">${service.title}</h1>`
+  );
+  
+  dynamicTopHtml = dynamicTopHtml.replace(
+    /<li class="item taBcrumb-end"><span>Our Services<\/span><\/li>/g,
+    `<li class="item taBcrumb-end"><a href="/our-services"><span itemprop="name">Our Services</span></a><meta itemprop="position" content="2" /></li><li class="item taBcrumb-end" style="color:#fd3f00;"><span>${service.title}</span></li>`
+  );
 
-      return `
-          <div class="as-services-1-item">
-            <ul class="wa-ul item-tags">
-              ${tagsHtml}
-            </ul>
-            <img class="star-icon" src="/wp-content/uploads/2025/10/star-icon.webp" alt="star-icon">
-            <div class="icon-elm">
-              <img src="/wp-content/uploads/2025/10/s1-logo-${logoNum}.webp" alt="s1-logo-${logoNum}">
+  const singleServiceHtml = `
+    <div class="container as-container-1" style="padding-top: 60px; padding-bottom: 120px; max-width: 900px; margin: 0 auto;">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Meta -->
+                <div class="service-meta" style="margin-bottom: 25px; font-size: 15px; color: #666; font-weight: 500; display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                    <span><i class="fa-regular fa-calendar"></i> ${formattedDate}</span>
+                    <span style="color: #ccc;">|</span>
+                    <span><i class="fa-regular fa-user"></i> By ${authorName}</span>
+                    <span style="color: #ccc;">|</span>
+                    <span><i class="fa-regular fa-folder"></i> ${service.category || 'Service'}</span>
+                </div>
+
+                <!-- Title -->
+                <h2 style="font-size: 42px; font-weight: 800; margin-bottom: 25px; color: #111;">${service.title}</h2>
+                <div style="width: 50px; height: 3px; background-color: #fd3f00; margin-bottom: 40px;"></div>
+
+                <!-- Short Desc -->
+                ${service.short_desc ? `<p style="font-size: 18px; color: #555; line-height: 1.6; margin-bottom: 40px;">${service.short_desc}</p>` : ''}
+
+                <!-- Featured Image -->
+                ${service.featured_image ? `<div style="margin-bottom: 40px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05);"><img src="${service.featured_image}" alt="${service.title}" style="width: 100%; height: auto; display: block;" /></div>` : ''}
+                
+                <!-- Main Content -->
+                <div class="service-content prose prose-lg max-w-none prose-orange prose-headings:font-bold prose-a:text-orange-600 hover:prose-a:text-orange-700" style="color: #444; line-height: 1.8;">
+                    ${service.content || ''}
+                </div>
             </div>
-            <img class="star-icon" src="/wp-content/uploads/2025/10/star-icon.webp" alt="star-icon">
-            <div class="right-content wa-fix">
-              <div class="right-content-bg-img wa-fix wa-img-cover">
-                <img src="/wp-content/uploads/2025/11/s1-card-img-${logoNum}.webp" alt="s1-card-img-${logoNum}">
-              </div>
-              <div class="title-wrap">
-                <h4 class="as-h-1 title">
-                  <a href="${slug}">
-                    ${service.title}
-                  </a>
-                </h4>
-                <h4 class="as-h-1 title">
-                  <a href="${slug}">
-                    <img src="/wp-content/uploads/2025/10/right-up.webp" alt="right-up">
-                    ${service.title}
-                  </a>
-                </h4>
-              </div>
-              <p class="as-p-1 number">
-                {${count}}
-              </p>
-            </div>
-          </div>
-        `;
-    }).join('\n')
-    : `<div class="w-100 text-center" style="padding: 40px; background: #fff; border-radius: 20px; grid-column: span 2;"><h3>No services published yet.</h3></div>`;
+        </div>
+    </div>
+  `;
 
-  const finalHtml = `${topHtml}${servicesListHtml}${bottomHtml}`;
+  const finalHtml = `${dynamicTopHtml}${singleServiceHtml}${bottomHtml}`;
   const settings = await getSiteSettings();
   const injectedHtml = injectDynamicSettings(finalHtml, settings);
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesPageSchema) }}
-      />
       <script
         dangerouslySetInnerHTML={{
           __html: `document.body.className = "services";`,

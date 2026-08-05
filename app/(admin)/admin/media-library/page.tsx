@@ -1,52 +1,30 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { Upload, Search, ImageIcon, Trash2, Copy, Check, AlertTriangle, CheckCircle2, Activity, Sparkles, ExternalLink } from 'lucide-react';
 import { useToast } from '@/components/ToastProvider';
-import {
-  Upload,
-  Search,
-  Image as ImageIcon,
-  Wand2,
-  CheckCircle2,
-  AlertTriangle,
-  Download,
-  Copy,
-  Trash2,
-  ExternalLink,
-  Check
-} from 'lucide-react';
 
-interface MediaItem {
-  id: string;
-  file_name: string;
-  file_url: string;
-  file_size: number;
-  file_format: string;
-  dimensions: string;
-  alt_text: string;
-  storage_path: string;
-  created_at: string;
+interface MediaFile {
+  url: string;
+  name: string;
+  size: number;
+  createdAt: string;
+  altText?: string;
+  originalSize?: number;
+  width?: number;
+  height?: number;
+  isWebpOptimized?: boolean;
 }
 
-const formatBytes = (bytes: number, decimals = 2) => {
-  if (!+bytes) return '0 Bytes';
-  const k = 1024;
-  const dm = decimals < 0 ? 0 : decimals;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
-};
-
 export default function MediaLibraryPage() {
-  const toast = useToast();
-  const [mediaList, setMediaList] = useState<MediaItem[]>([]);
+  const [files, setFiles] = useState<MediaFile[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filterType, setFilterType] = useState<'all' | 'missing' | 'webp'>('all');
-  const [copiedId, setCopiedId] = useState<string | null>(null);
-  const [isUploading, setIsUploading] = useState(false);
-  const [generatingAltId, setGeneratingAltId] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterTab, setFilterTab] = useState<'all' | 'missing_alt' | 'webp'>('all');
+  const [copiedUrl, setCopiedUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const toast = useToast();
 
   useEffect(() => {
     fetchMedia();
@@ -57,425 +35,315 @@ export default function MediaLibraryPage() {
       setLoading(true);
       const res = await fetch('/api/media');
       const data = await res.json();
-      if (data.success) {
-        setMediaList(data.data);
-      } else {
-        toast.error('Failed to load media');
+      if (res.ok) {
+        setFiles(data.files || []);
       }
     } catch (err) {
-      toast.error('Error loading media');
+      console.error(err);
+      toast.error('Failed to load media');
     } finally {
       setLoading(false);
     }
   };
 
-  const handleUploadClick = () => {
-    fileInputRef.current?.click();
-  };
-
-  const processFile = async (file: File): Promise<{ blob: Blob; dimensions: string; format: string }> => {
-    return new Promise((resolve, reject) => {
-      const isImage = file.type.startsWith('image/');
-      if (!isImage) {
-        resolve({ blob: file, dimensions: '', format: file.name.split('.').pop() || '' });
-        return;
-      }
-
-      const img = new Image();
-      const url = URL.createObjectURL(file);
-      img.onload = () => {
-        const dimensions = `${img.width}x${img.height}`;
-        // Resize if too large (Max width 1920px for modern web)
-        const MAX_WIDTH = 1920;
-        let targetWidth = img.width;
-        let targetHeight = img.height;
-
-        if (targetWidth > MAX_WIDTH) {
-          const ratio = MAX_WIDTH / targetWidth;
-          targetWidth = MAX_WIDTH;
-          targetHeight = img.height * ratio;
-        }
-
-        // Automatically convert images to webp to save space, unless it's an svg
-        if (file.type !== 'image/svg+xml') {
-          const canvas = document.createElement('canvas');
-          canvas.width = targetWidth;
-          canvas.height = targetHeight;
-          const ctx = canvas.getContext('2d');
-          ctx?.drawImage(img, 0, 0, targetWidth, targetHeight);
-          canvas.toBlob(
-            (blob) => {
-              if (blob) {
-                resolve({ blob, dimensions: `${Math.round(targetWidth)}x${Math.round(targetHeight)}`, format: 'webp' });
-              } else {
-                resolve({ blob: file, dimensions, format: file.name.split('.').pop() || '' });
-              }
-            },
-            'image/webp',
-            0.8
-          );
-        } else {
-          resolve({ blob: file, dimensions, format: 'svg' });
-        }
-        URL.revokeObjectURL(url);
-      };
-      img.onerror = () => reject('Failed to load image');
-      img.src = url;
-    });
-  };
-
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    setIsUploading(true);
-    const loadingToastId = toast.success('Processing and uploading...');
-
     try {
-      const { blob, dimensions, format } = await processFile(file);
-      
+      setUploading(true);
       const formData = new FormData();
-      // If we converted to webp, rename file
-      const fileName = format === 'webp' 
-        ? file.name.replace(/\.[^/.]+$/, "") + '.webp'
-        : file.name;
-        
-      formData.append('file', blob, fileName);
-      formData.append('dimensions', dimensions);
-      formData.append('isWebp', String(format === 'webp'));
-      
-      const res = await fetch('/api/media/upload', {
+      formData.append('file', file);
+      formData.append('folderName', 'uploads');
+
+      const res = await fetch('/api/upload', {
         method: 'POST',
         body: formData,
       });
-
       const data = await res.json();
-      if (res.ok && data.success) {
-        toast.success('Upload successful!');
-        setMediaList([data.data, ...mediaList]);
+
+      if (res.ok) {
+        toast.success('Image uploaded successfully');
+        await fetchMedia();
       } else {
         toast.error(data.error || 'Upload failed');
       }
-    } catch (err: any) {
-      toast.error('Error during upload: ' + err.message);
+    } catch (err) {
+      console.error(err);
+      toast.error('Upload failed');
     } finally {
-      setIsUploading(false);
+      setUploading(false);
       if (fileInputRef.current) fileInputRef.current.value = '';
     }
   };
 
-  // Generate AI Alt Text
-  const handleGenerateAlt = async (id: string, name: string, url: string) => {
-    setGeneratingAltId(id);
+  const copyToClipboard = async (url: string) => {
     try {
-      const res = await fetch('/api/ai/generate-alt', {
+      await navigator.clipboard.writeText(window.location.origin + url);
+      setCopiedUrl(url);
+      toast.success('URL copied to clipboard!');
+      setTimeout(() => setCopiedUrl(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy', err);
+    }
+  };
+
+  const updateAltText = async (url: string, newAltText: string) => {
+    try {
+      const res = await fetch('/api/media/metadata', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fileName: name, imageUrl: url })
+        body: JSON.stringify({ url, altText: newAltText }),
       });
-      const data = await res.json();
-      if (res.ok && data.success) {
-        // Save to DB
-        const saveRes = await fetch('/api/media', {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ id, alt_text: data.altText })
-        });
-        
-        if (saveRes.ok) {
-          setMediaList((prev) =>
-            prev.map((item) =>
-              item.id === id ? { ...item, alt_text: data.altText } : item
-            )
-          );
-          toast.success('AI alt text generated & saved!');
-        } else {
-          toast.error('Generated but failed to save');
-        }
-      } else {
-        toast.error(data.error || 'AI Generation Failed');
-      }
-    } catch (err) {
-      toast.error('Network error generating Alt Text');
-    } finally {
-      setGeneratingAltId(null);
-    }
-  };
-
-  // Copy Image URL
-  const handleCopyUrl = (id: string, url: string) => {
-    navigator.clipboard.writeText(url);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
-    toast.success('Image URL copied to clipboard');
-  };
-
-  // Delete Image
-  const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this image?')) return;
-    
-    try {
-      const res = await fetch(`/api/media?id=${id}`, { method: 'DELETE' });
+      
       if (res.ok) {
-        setMediaList((prev) => prev.filter((m) => m.id !== id));
-        toast.success('Image deleted successfully');
+        setFiles(files.map(f => f.url === url ? { ...f, altText: newAltText } : f));
+        toast.success('Alt text saved');
       } else {
-        toast.error('Failed to delete image');
+        toast.error('Failed to save alt text');
       }
-    } catch (err) {
-      toast.error('Error deleting image');
+    } catch (error) {
+      toast.error('Failed to save alt text');
     }
   };
 
-  // Filtered List
-  const filteredMedia = mediaList.filter((item) => {
-    const matchesSearch =
-      item.file_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (item.alt_text && item.alt_text.toLowerCase().includes(searchQuery.toLowerCase()));
-    if (filterType === 'missing') return matchesSearch && !item.alt_text;
-    if (filterType === 'webp') return matchesSearch && item.file_format === 'webp';
-    return matchesSearch;
+  const formatSize = (bytes: number) => {
+    if (bytes < 1024) return bytes + ' B';
+    else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+    else return (bytes / 1048576).toFixed(1) + ' MB';
+  };
+
+  // Stats
+  const totalImages = files.length;
+  const missingAltCount = files.filter(f => !f.altText || f.altText.trim() === '').length;
+  const webpCount = files.filter(f => f.isWebpOptimized).length;
+  const seoHealth = totalImages > 0 ? Math.round(((totalImages - missingAltCount) / totalImages) * 100) : 100;
+
+  // Filtering
+  const filteredFiles = files.filter(f => {
+    const matchesSearch = f.name.toLowerCase().includes(searchTerm.toLowerCase()) || (f.altText && f.altText.toLowerCase().includes(searchTerm.toLowerCase()));
+    if (!matchesSearch) return false;
+    
+    if (filterTab === 'missing_alt') return !f.altText || f.altText.trim() === '';
+    if (filterTab === 'webp') return f.isWebpOptimized;
+    return true;
   });
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto">
-      {/* Top Header & Actions */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div className="p-8 max-w-6xl mx-auto font-sans">
+      <div className="mb-8 flex items-start justify-between">
         <div>
-          <h1 className="font-serif text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-950">
+          <h1 className="text-[32px] font-extrabold text-zinc-900 tracking-tight font-serif">
             Media Library & Image SEO
           </h1>
-          <p className="mt-1 text-xs md:text-sm text-zinc-800 font-medium">
+          <p className="text-zinc-500 mt-2 text-[15px]">
             Manage images, auto-generate AI Alt tags, and optimize WebP image compression.
           </p>
         </div>
-
-        <input 
-          type="file" 
-          ref={fileInputRef} 
-          onChange={handleFileChange} 
-          accept="image/*" 
-          className="hidden" 
-        />
-        <button 
-          onClick={handleUploadClick}
-          disabled={isUploading}
-          className="flex items-center gap-2 rounded-2xl bg-orange-600 px-5 py-2.5 text-xs font-extrabold text-white shadow-md shadow-orange-600/20 transition-all hover:bg-orange-700 active:scale-95 self-start sm:self-auto disabled:opacity-50"
-        >
-          {isUploading ? <span className="animate-spin">⏳</span> : <Upload className="h-4 w-4" />}
-          <span>{isUploading ? 'Uploading...' : 'Upload Image'}</span>
-        </button>
-      </div>
-
-      {/* Overview Cards (4 Grid Items) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="flex items-center gap-4 rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-orange-100 text-orange-600">
-            <ImageIcon className="h-6 w-6" />
-          </div>
-          <div>
-            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-700 uppercase">Total Images</p>
-            <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">{mediaList.length}</p>
-            <p className="text-[11px] text-zinc-700 font-medium">In media directory</p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-4 rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-100 text-amber-600">
-            <AlertTriangle className="h-6 w-6" />
-          </div>
-          <div>
-            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-700 uppercase">Missing Alt Text</p>
-            <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">
-              {mediaList.filter((m) => !m.alt_text).length}
-            </p>
-            <p className="text-[11px] text-amber-600 font-bold">Needs Optimization</p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-4 rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600">
-            <CheckCircle2 className="h-6 w-6" />
-          </div>
-          <div>
-            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-700 uppercase">WebP Optimized</p>
-            <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">
-              {mediaList.filter((m) => m.file_format === 'webp').length}
-            </p>
-            <p className="text-[11px] text-emerald-600 font-bold">Fast Load Speed</p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-4 rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-purple-100 text-purple-600">
-            <Wand2 className="h-6 w-6" />
-          </div>
-          <div>
-            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-700 uppercase">SEO Health</p>
-            <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">96%</p>
-            <p className="text-[11px] text-purple-600 font-bold">High Image Rank</p>
-          </div>
+        <div className="flex gap-4">
+          <input 
+            type="file" 
+            ref={fileInputRef}
+            onChange={handleUpload}
+            accept="image/*"
+            className="hidden"
+          />
+          <button 
+            onClick={() => fileInputRef.current?.click()}
+            disabled={uploading}
+            className="flex items-center gap-2 px-6 py-2.5 bg-[#f97316] text-white font-bold rounded-xl hover:bg-[#ea580c] transition-colors shadow-lg shadow-orange-500/20 disabled:opacity-50 text-[15px]"
+          >
+            <Upload className="w-5 h-5" />
+            {uploading ? 'Uploading...' : 'Upload Image'}
+          </button>
         </div>
       </div>
 
-      {/* Filter Bar */}
-      <div className="rounded-2xl border border-zinc-200/80 bg-white p-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
-        <div className="relative w-full sm:w-80">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-700" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+        <div className="bg-white rounded-2xl p-5 border border-zinc-100 shadow-sm flex items-center gap-4">
+          <div className="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center text-orange-500 shrink-0">
+            <ImageIcon className="w-6 h-6" />
+          </div>
+          <div>
+            <p className="text-[11px] font-bold text-zinc-400 tracking-widest uppercase mb-1">Total Images</p>
+            <div className="flex items-baseline gap-2">
+              <span className="text-2xl font-black text-zinc-900">{totalImages}</span>
+            </div>
+            <p className="text-xs text-zinc-500 mt-1">In media directory</p>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl p-5 border border-zinc-100 shadow-sm flex items-center gap-4">
+          <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center text-amber-500 shrink-0">
+            <AlertTriangle className="w-6 h-6" />
+          </div>
+          <div>
+            <p className="text-[11px] font-bold text-zinc-400 tracking-widest uppercase mb-1">Missing Alt Text</p>
+            <div className="flex items-baseline gap-2">
+              <span className="text-2xl font-black text-zinc-900">{missingAltCount}</span>
+            </div>
+            <p className="text-xs text-amber-600 font-medium mt-1">Needs Optimization</p>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl p-5 border border-zinc-100 shadow-sm flex items-center gap-4">
+          <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-500 shrink-0">
+            <CheckCircle2 className="w-6 h-6" />
+          </div>
+          <div>
+            <p className="text-[11px] font-bold text-zinc-400 tracking-widest uppercase mb-1">WebP Optimized</p>
+            <div className="flex items-baseline gap-2">
+              <span className="text-2xl font-black text-zinc-900">{webpCount}</span>
+            </div>
+            <p className="text-xs text-emerald-600 font-medium mt-1">Fast Load Speed</p>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl p-5 border border-zinc-100 shadow-sm flex items-center gap-4">
+          <div className="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center text-purple-500 shrink-0">
+            <Activity className="w-6 h-6" />
+          </div>
+          <div>
+            <p className="text-[11px] font-bold text-zinc-400 tracking-widest uppercase mb-1">SEO Health</p>
+            <div className="flex items-baseline gap-2">
+              <span className="text-2xl font-black text-zinc-900">{seoHealth}%</span>
+            </div>
+            <p className="text-xs text-purple-600 font-medium mt-1">High Image Rank</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Filters & Search */}
+      <div className="bg-white rounded-2xl p-2 shadow-sm border border-zinc-100 mb-6 flex items-center justify-between">
+        <div className="relative w-[400px]">
+          <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" />
+          <input 
+            type="text" 
             placeholder="Search images by name or alt tag..."
-            className="w-full rounded-xl border border-zinc-200 bg-zinc-50/60 pl-10 pr-4 py-2 text-xs font-medium text-zinc-800 placeholder-zinc-400 focus:border-orange-500 focus:bg-white focus:outline-none transition-all"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full pl-11 pr-4 py-2.5 bg-zinc-50/50 border-none rounded-xl text-[14px] text-zinc-900 focus:ring-0 focus:bg-zinc-100 transition-colors"
           />
         </div>
-
-        <div className="flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 p-1 text-xs">
-          <button
-            onClick={() => setFilterType('all')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              filterType === 'all' ? 'bg-white text-zinc-950 shadow-sm' : 'text-zinc-800 hover:text-zinc-900'
-            }`}
+        
+        <div className="flex items-center gap-1 p-1 bg-zinc-50 rounded-xl">
+          <button 
+            onClick={() => setFilterTab('all')}
+            className={`px-4 py-2 text-[13px] font-bold rounded-lg transition-all ${filterTab === 'all' ? 'bg-white text-zinc-900 shadow-sm border border-zinc-200/60' : 'text-zinc-500 hover:text-zinc-700'}`}
           >
             All Media
           </button>
-          <button
-            onClick={() => setFilterType('missing')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              filterType === 'missing' ? 'bg-amber-500 text-white shadow-sm' : 'text-zinc-800 hover:text-zinc-900'
-            }`}
+          <button 
+            onClick={() => setFilterTab('missing_alt')}
+            className={`px-4 py-2 text-[13px] font-bold rounded-lg transition-all ${filterTab === 'missing_alt' ? 'bg-white text-zinc-900 shadow-sm border border-zinc-200/60' : 'text-zinc-500 hover:text-zinc-700'}`}
           >
             Missing Alt Tag
           </button>
-          <button
-            onClick={() => setFilterType('webp')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              filterType === 'webp' ? 'bg-emerald-600 text-white shadow-sm' : 'text-zinc-800 hover:text-zinc-900'
-            }`}
+          <button 
+            onClick={() => setFilterTab('webp')}
+            className={`px-4 py-2 text-[13px] font-bold rounded-lg transition-all ${filterTab === 'webp' ? 'bg-white text-zinc-900 shadow-sm border border-zinc-200/60' : 'text-zinc-500 hover:text-zinc-700'}`}
           >
             WebP Optimized
           </button>
         </div>
       </div>
 
-      {/* Media Items Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-        {filteredMedia.map((item) => (
-          <div
-            key={item.id}
-            className="rounded-2xl border border-zinc-200/80 bg-white p-4 shadow-sm flex flex-col sm:flex-row items-center gap-4 transition-all hover:border-zinc-300"
-          >
-            {/* Image Thumbnail */}
-            <div className="relative h-32 w-full sm:w-40 shrink-0 rounded-xl bg-zinc-100 overflow-hidden border border-zinc-200">
-              <img
-                src={item.file_url}
-                alt={item.alt_text || item.file_name}
-                className="h-full w-full object-cover"
-              />
-              <span className="absolute top-2 left-2 rounded-md bg-zinc-950/80 backdrop-blur-sm px-2 py-0.5 text-[10px] font-bold text-white font-mono uppercase">
-                {item.file_format}
-              </span>
-            </div>
-
-            {/* Content Details */}
-            <div className="flex-1 min-w-0 space-y-2.5 w-full">
-              <div>
-                <p className="font-serif font-extrabold text-sm text-zinc-950 truncate">
-                  {item.file_name}
-                </p>
-                <div className="flex items-center gap-2 text-[11px] text-zinc-700 font-medium mt-0.5">
-                  <span>{item.dimensions}</span>
-                  <span>•</span>
-                  <span>{formatBytes(item.file_size)}</span>
-                </div>
-              </div>
-
-              {/* Alt Text Field */}
-              <div className="space-y-1">
-                <div className="flex items-center justify-between">
-                  <label className="text-[11px] font-serif font-bold text-zinc-700">
-                    Alt Text (SEO Image Tag)
-                  </label>
-                  {!item.alt_text && (
-                    <button
-                      onClick={() => handleGenerateAlt(item.id, item.file_name, item.file_url)}
-                      disabled={generatingAltId === item.id}
-                      className="inline-flex items-center gap-1 text-[10px] font-extrabold text-purple-600 hover:text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md border border-purple-200/60 disabled:opacity-50"
-                    >
-                      <Wand2 className="h-3 w-3" />
-                      <span>{generatingAltId === item.id ? 'Generating...' : 'AI Generate'}</span>
-                    </button>
-                  )}
-                </div>
-                <input
-                  type="text"
-                  value={item.alt_text || ''}
-                  onChange={(e) => {
-                    const val = e.target.value;
-                    setMediaList((prev) =>
-                      prev.map((m) =>
-                        m.id === item.id ? { ...m, alt_text: val } : m
-                      )
-                    );
-                  }}
-                  onBlur={async (e) => {
-                    const val = e.target.value;
-                    try {
-                      await fetch('/api/media', {
-                        method: 'PATCH',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ id: item.id, alt_text: val })
-                      });
-                    } catch (err) {
-                      console.error('Failed to save alt text');
-                    }
-                  }}
-                  placeholder="Describe this image for Google SEO..."
-                  className={`w-full rounded-xl border px-3 py-1.5 text-xs font-medium text-zinc-900 focus:outline-none ${
-                    item.alt_text
-                      ? 'border-zinc-200 bg-zinc-50/50 focus:border-orange-500'
-                      : 'border-amber-300 bg-amber-50/30 focus:border-amber-500'
-                  }`}
-                />
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex items-center justify-between pt-1">
-                <button
-                  onClick={() => handleCopyUrl(item.id, item.file_url)}
-                  className="inline-flex items-center gap-1 text-xs font-bold text-zinc-600 hover:text-zinc-900"
-                >
-                  {copiedId === item.id ? (
-                    <Check className="h-3.5 w-3.5 text-emerald-600" />
-                  ) : (
-                    <Copy className="h-3.5 w-3.5 text-zinc-700" />
-                  )}
-                  <span>{copiedId === item.id ? 'Copied' : 'Copy URL'}</span>
-                </button>
-
-                <div className="flex items-center gap-2">
-                  <a
-                    href={item.file_url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="p-1.5 text-zinc-700 hover:text-zinc-700 rounded-lg hover:bg-zinc-100"
-                    title="Open original image"
-                  >
-                    <ExternalLink className="h-4 w-4" />
-                  </a>
-                  <button
-                    onClick={() => handleDelete(item.id)}
-                    className="p-1.5 text-zinc-700 hover:text-red-600 rounded-lg hover:bg-red-50"
-                    title="Delete image"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
+      {/* Image List */}
+      <div className="space-y-4">
+        {loading ? (
+          <div className="flex items-center justify-center h-64">
+            <div className="w-10 h-10 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
           </div>
-        ))}
+        ) : filteredFiles.length === 0 ? (
+          <div className="flex flex-col items-center justify-center h-64 bg-white rounded-3xl border border-zinc-100 shadow-sm text-zinc-400">
+            <ImageIcon className="w-16 h-16 mb-4 opacity-20" />
+            <p className="text-lg">No media files found.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {filteredFiles.map((file) => (
+              <div key={file.url} className="bg-white rounded-2xl p-4 border border-zinc-100 shadow-sm flex gap-5 group hover:border-orange-200 transition-colors">
+                
+                {/* Thumbnail */}
+                <div className="w-40 h-32 rounded-xl bg-zinc-100 overflow-hidden relative shrink-0">
+                  <img src={file.url} alt={file.name} className="w-full h-full object-cover" />
+                  {file.isWebpOptimized && (
+                    <div className="absolute top-2 left-2 px-1.5 py-0.5 bg-black/70 text-white text-[9px] font-black tracking-widest rounded-md uppercase backdrop-blur-sm">
+                      WEBP
+                    </div>
+                  )}
+                </div>
+
+                {/* Details */}
+                <div className="flex-1 min-w-0 flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-bold text-zinc-900 truncate text-[15px]">{file.name}</h3>
+                    <p className="text-[13px] text-zinc-500 mt-0.5 flex items-center gap-2">
+                      {file.width && file.height ? `${file.width}x${file.height}` : 'Unknown Dimensions'}
+                      <span className="text-zinc-300">•</span>
+                      <span>{formatSize(file.size)}</span>
+                      {file.originalSize && file.originalSize > file.size && (
+                        <span className="text-emerald-600 font-medium text-[11px] ml-1 bg-emerald-50 px-1.5 py-0.5 rounded-md">
+                          Saved {formatSize(file.originalSize - file.size)}
+                        </span>
+                      )}
+                    </p>
+                  </div>
+
+                  <div className="mt-3">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <label className="text-[11px] font-bold text-zinc-600 uppercase tracking-wide">Alt Text (SEO Image Tag)</label>
+                      <button 
+                        className="flex items-center gap-1 text-[11px] font-bold text-purple-600 hover:text-purple-700 bg-purple-50 hover:bg-purple-100 px-2 py-1 rounded-md transition-colors"
+                        onClick={() => toast.success('AI integration coming soon!')}
+                      >
+                        <Sparkles className="w-3 h-3" />
+                        AI Generate
+                      </button>
+                    </div>
+                    <input 
+                      type="text"
+                      defaultValue={file.altText || ''}
+                      onBlur={(e) => {
+                        if (e.target.value !== file.altText) {
+                          updateAltText(file.url, e.target.value);
+                        }
+                      }}
+                      placeholder="Describe this image for Google SEO..."
+                      className="w-full px-3 py-2 bg-white border border-yellow-400 rounded-lg text-[14px] text-zinc-900 focus:ring-2 focus:ring-yellow-400/20 focus:border-yellow-500 transition-all placeholder:text-zinc-400"
+                    />
+                  </div>
+                  
+                  <div className="flex items-center justify-between mt-3">
+                    <button 
+                      onClick={() => copyToClipboard(file.url)}
+                      className="flex items-center gap-1.5 text-[13px] font-semibold text-zinc-500 hover:text-zinc-800 transition-colors"
+                    >
+                      {copiedUrl === file.url ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
+                      Copy URL
+                    </button>
+                    
+                    <div className="flex gap-2">
+                      <a href={file.url} target="_blank" rel="noreferrer" className="p-1.5 text-zinc-400 hover:text-zinc-800 transition-colors" title="Open in new tab">
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                      <button 
+                        onClick={() => {
+                          toast.error('Delete functionality requires backend API update');
+                        }}
+                        className="p-1.5 text-zinc-400 hover:text-red-500 transition-colors"
+                        title="Delete Image"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

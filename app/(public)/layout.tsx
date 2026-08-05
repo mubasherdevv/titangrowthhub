@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import { getSiteSettings } from '@/lib/getSiteSettings';
 
 export async function generateMetadata(): Promise<Metadata> {
-  let title = 'Titan Growth Hub – Pakistan\'s #1 SEO & Digital Marketing Agency';
+  let title = 'Titan Growth Hub – Pakistan\'s Leading SEO & Digital Marketing Agency';
   let description = 'Titan Growth Hub helps businesses scale with data-driven SEO, PPC, and content marketing strategies.';
 
   let robots = 'index, follow';
@@ -86,7 +86,7 @@ async function getJsonLdSchemas() {
   let name = SITE_NAME;
   let url = SITE_URL;
   let logo = `${SITE_URL}/wp-content/uploads/2025/11/fevicon-1.webp`;
-  let description = "Pakistan's #1 SEO & Digital Marketing Agency helping businesses scale with data-driven strategies.";
+  let description = "Pakistan's Leading SEO & Digital Marketing Agency helping businesses scale with data-driven strategies.";
 
   try {
     const { data } = await supabase
