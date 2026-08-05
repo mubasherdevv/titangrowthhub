@@ -28,15 +28,15 @@ export async function POST(request: NextRequest) {
     for (const endpoint of settings.ai_endpoints) {
       if (!endpoint.url || !endpoint.model || !endpoint.apiKey) continue;
 
-      let apiUrl = endpoint.url;
+      let apiUrl = endpoint.url.trim();
       if (!apiUrl.endsWith('/chat/completions')) {
         apiUrl = apiUrl.replace(/\/$/, '') + '/chat/completions';
       }
 
       const payload = {
-        model: endpoint.model,
+        model: endpoint.model.trim(),
         messages: [{ role: 'user', content: prompt }],
-        max_tokens: 50,
+        max_tokens: 200, // Increased to allow reasoning models to finish
       };
 
       try {
@@ -44,16 +44,20 @@ export async function POST(request: NextRequest) {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${endpoint.apiKey}`
+            'Authorization': `Bearer ${endpoint.apiKey.trim()}`
           },
           body: JSON.stringify(payload)
         });
 
         if (response.ok) {
           const data = await response.json();
-          const altText = data.choices?.[0]?.message?.content?.trim().replace(/^["']|["']$/g, '');
+          const messageContent = data.choices?.[0]?.message?.content || data.choices?.[0]?.message?.reasoning;
+          const altText = messageContent ? messageContent.trim().replace(/^["']|["']$/g, '') : null;
+          
           if (altText) {
             return NextResponse.json({ success: true, altText });
+          } else {
+            lastError = 'Model returned empty response or reached token limit';
           }
         } else {
           lastError = await response.text();

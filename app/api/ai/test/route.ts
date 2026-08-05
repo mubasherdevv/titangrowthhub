@@ -9,24 +9,24 @@ export async function POST(request: NextRequest) {
     }
 
     // Default to OpenAI chat completions endpoint format if just a base domain is provided
-    let endpoint = aiApiUrl;
+    let endpoint = aiApiUrl.trim();
     if (!endpoint.endsWith('/chat/completions')) {
       endpoint = endpoint.replace(/\/$/, '') + '/chat/completions';
     }
 
     const payload = {
-      model: aiModel,
+      model: aiModel.trim(),
       messages: [
         { role: 'user', content: 'Say "Hello, connection successful!"' }
       ],
-      max_tokens: 20
+      max_tokens: 50 // Increased to allow reasoning models to finish
     };
 
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${aiApiKey}`
+        'Authorization': `Bearer ${aiApiKey.trim()}`
       },
       body: JSON.stringify(payload)
     });
