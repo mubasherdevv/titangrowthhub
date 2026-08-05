@@ -256,7 +256,6 @@ export default function SettingsPage() {
     { id: 'api', label: 'API & Integrations', subtitle: 'Search console & AI keys', icon: Key },
     { id: 'verifications', label: 'Webmaster Tools', subtitle: 'Google verification', icon: ShieldCheck },
     { id: 'team', label: 'Team & Users', subtitle: 'Access & permissions', icon: Users },
-    { id: 'security', label: 'Security', subtitle: 'Passwords & 2FA', icon: Lock },
     { id: 'notifications', label: 'Notifications', subtitle: 'Email alerts & webhooks', icon: Bell },
   ];
 
@@ -921,7 +920,7 @@ export default function SettingsPage() {
           )}
 
           {/* TAB 5 & 6 PLACEHOLDERS */}
-          {(activeTab === 'security' || activeTab === 'notifications') && (
+          {activeTab === 'notifications' && (
             <div className="rounded-2xl border border-zinc-200/80 bg-white p-8 text-center text-xs text-zinc-500 space-y-2">
               <p className="font-bold text-zinc-900 text-sm capitalize">{activeTab} Preferences</p>
               <p>Configure {activeTab} policies, authentication protocols, and system triggers.</p>
