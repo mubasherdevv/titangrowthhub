@@ -1,6 +1,7 @@
 import React from 'react';
 import { supabase } from '@/lib/supabase';
 import { getPageMeta } from '@/lib/getPageMeta';
+import { servicesPageSchema } from '@/lib/pageSchemas';
 
 export async function generateMetadata() {
   const { title, description } = await getPageMeta(
@@ -711,6 +712,10 @@ export default async function Page() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesPageSchema) }}
+      />
       <script
         dangerouslySetInnerHTML={{
           __html: `document.body.className = "services";`,

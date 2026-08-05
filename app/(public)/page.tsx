@@ -1,5 +1,6 @@
 import React from 'react';
 import { getPageMeta } from '@/lib/getPageMeta';
+import { localBusinessSchema } from '@/lib/pageSchemas';
 
 export async function generateMetadata() {
   const { title, description } = await getPageMeta(
@@ -9,6 +10,7 @@ export async function generateMetadata() {
   );
   return { title, description };
 }
+
 
 
 const pageHtml = `
@@ -3659,6 +3661,10 @@ const pageHtml = `
 export default function HomePage() {
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+            />
             <script
                 dangerouslySetInnerHTML={{
                     __html: `document.body.className = "home page-template page-template-elementor_header_footer page page-id-17 theme-avista elementor-default elementor-template-full-width elementor-kit-8 elementor-page elementor-page-17";`,

@@ -78,28 +78,68 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-async function getJsonLdSchema() {
+async function getJsonLdSchemas() {
+  const SITE_URL = 'https://titangrowthhub.com';
+  const SITE_NAME = 'Titan Growth Hub';
+
+  let name = SITE_NAME;
+  let url = SITE_URL;
+  let logo = `${SITE_URL}/wp-content/uploads/2025/11/fevicon-1.webp`;
+  let description = "Pakistan's #1 SEO & Digital Marketing Agency helping businesses scale with data-driven strategies.";
+
   try {
     const { data } = await supabase
       .from('site_settings')
-      .select('org_name, org_url, org_logo, site_name, site_url')
+      .select('org_name, org_url, org_logo, site_name, site_url, global_meta_desc')
       .eq('id', 1)
       .single();
 
-    if (!data) return null;
-
-    const schema: any = {
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-    };
-    if (data.org_name || data.site_name) schema.name = data.org_name || data.site_name;
-    if (data.org_url || data.site_url) schema.url = data.org_url || data.site_url;
-    if (data.org_logo) schema.logo = data.org_logo;
-
-    return schema;
+    if (data) {
+      if (data.org_name || data.site_name) name = data.org_name || data.site_name;
+      if (data.org_url || data.site_url) url = (data.org_url || data.site_url).replace(/\/$/, '');
+      if (data.org_logo) logo = data.org_logo;
+      if (data.global_meta_desc) description = data.global_meta_desc;
+    }
   } catch (e) {
-    return null;
+    // use defaults
   }
+
+  const organization = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${url}/#organization`,
+    name,
+    url,
+    logo: {
+      '@type': 'ImageObject',
+      url: logo,
+    },
+    description,
+    sameAs: [
+      'https://www.facebook.com/titangrowthhub',
+      'https://www.linkedin.com/company/titangrowthhub',
+      'https://twitter.com/titangrowthhub',
+    ],
+  };
+
+  const website = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${url}/#website`,
+    url,
+    name,
+    publisher: { '@id': `${url}/#organization` },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${url}/blog?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
+  };
+
+  return [organization, website];
 }
 
 export default async function PublicRootLayout({
@@ -110,8 +150,9 @@ export default async function PublicRootLayout({
   // Read template-head.html to dynamically load all WordPress CSS and scripts in head
   const html = getCleanHtml('template-head.html');
 
-  // Fetch JSON-LD schema from Supabase
-  const jsonLd = await getJsonLdSchema();
+  // Fetch JSON-LD schemas from Supabase
+  const jsonLdSchemas = await getJsonLdSchemas();
+
 
   // Extract head tags
   const headStart = html.indexOf('<head>');
@@ -134,12 +175,14 @@ export default async function PublicRootLayout({
       <head>
         {parse(headContent)}
         {/* JSON-LD Structured Data for Google */}
-        {jsonLd && (
+        {jsonLdSchemas.map((schema, i) => (
           <script
+            key={i}
             type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
           />
-        )}
+        ))}
+
       </head>
       <body>
         {children}

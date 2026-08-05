@@ -1,5 +1,6 @@
 import React from 'react';
 import { getPageMeta } from '@/lib/getPageMeta';
+import { contactPageSchema } from '@/lib/pageSchemas';
 
 export async function generateMetadata() {
   const { title, description } = await getPageMeta(
@@ -9,7 +10,6 @@ export async function generateMetadata() {
   );
   return { title, description };
 }
-
 
 const pageHtml = `
 
@@ -752,6 +752,10 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 export default function Page() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+      />
       <script
         dangerouslySetInnerHTML={{
           __html: `document.body.className = "wp-singular page-template page-template-elementor_header_footer page page-id-29 wp-embed-responsive wp-theme-avista theme-avista woocommerce-no-js no-sidebar elementor-default elementor-template-full-width elementor-kit-7 elementor-page elementor-page-29";`,

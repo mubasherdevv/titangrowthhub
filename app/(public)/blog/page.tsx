@@ -2,6 +2,7 @@ import React from 'react';
 import { supabase } from '@/lib/supabase';
 import { topHtml, bottomHtml } from './blogTemplates';
 import { getPageMeta } from '@/lib/getPageMeta';
+import { blogListingSchema } from '@/lib/pageSchemas';
 
 export async function generateMetadata() {
   const { title, description } = await getPageMeta(
@@ -187,6 +188,10 @@ export default async function BlogPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogListingSchema) }}
+      />
       <script
         dangerouslySetInnerHTML={{
           __html: `document.body.className = "blog";`,

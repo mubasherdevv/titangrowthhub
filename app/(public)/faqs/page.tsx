@@ -1,5 +1,6 @@
 import React from 'react';
 import { getPageMeta } from '@/lib/getPageMeta';
+import { faqPageSchema } from '@/lib/pageSchemas';
 
 export async function generateMetadata() {
   const { title, description } = await getPageMeta(
@@ -1173,6 +1174,10 @@ export default function Page() {
   return (
     <>
       <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema) }}
+      />
+      <script
         dangerouslySetInnerHTML={{
           __html: `document.body.className = "wp-singular page-template page-template-elementor_header_footer page page-id-31 wp-embed-responsive wp-theme-avista theme-avista woocommerce-no-js no-sidebar elementor-default elementor-template-full-width elementor-kit-7 elementor-page elementor-page-31";`,
         }}
@@ -1181,3 +1186,4 @@ export default function Page() {
     </>
   );
 }
+
