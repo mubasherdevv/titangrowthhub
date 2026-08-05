@@ -65,7 +65,11 @@ export function optimizeHtml(html: string): string {
 
   // 🚀 PERFORMANCE OPTIMIZATIONS 🚀
 
-  // 1. Remove Render-Blocking Preloader
+  // 1. Fix Dummy URLs and Hardcoded Logos (e.g. footer logo)
+  html = html.replaceAll('https://themexriver.com/wp/avista', 'https://titangrowthhub.com/');
+  html = html.replaceAll('/wp-content/uploads/2025/11/logo-5.svg', '/website_assets/footer_logo.png');
+
+  // 2. Remove Render-Blocking Preloader
   html = html.replace(/<div class="as-preloader[^>]*>[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/gi, '');
   html = html.replace(/<div class="as-preloader[^>]*>[\s\S]*?<\/div>\s*<\/div>/gi, '');
 
@@ -103,7 +107,6 @@ export function injectDynamicSettings(html: string, settings: any): string {
   if (settings.org_logo) {
     finalHtml = finalHtml.replaceAll('/wp-content/uploads/2025/11/logo-1.webp', settings.org_logo);
     finalHtml = finalHtml.replaceAll('/wp-content/uploads/2025/10/logo-1.webp', settings.org_logo);
-    finalHtml = finalHtml.replaceAll('/wp-content/uploads/2025/11/logo-5.svg', settings.org_logo);
   }
 
   if (settings.favicon_url) {
