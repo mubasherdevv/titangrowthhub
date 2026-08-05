@@ -60,10 +60,10 @@ export default function SettingsPage() {
   const [savingSlug, setSavingSlug] = useState<string | null>(null);
   const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
 
-  const [aiApiUrl, setAiApiUrl] = useState('');
-  const [aiModel, setAiModel] = useState('');
-  const [geminiApiKey, setGeminiApiKey] = useState('');
-  const [isTestingAi, setIsTestingAi] = useState(false);
+  const [aiEndpoints, setAiEndpoints] = useState<Array<{url: string, model: string, apiKey: string}>>([
+    { url: '', model: '', apiKey: '' }
+  ]);
+  const [testingIndex, setTestingIndex] = useState<number | null>(null);
 
   // Webmaster Verification States
   const [gscVerificationMeta, setGscVerificationMeta] = useState('');
@@ -86,9 +86,18 @@ export default function SettingsPage() {
           setDefaultTitlePattern(data.defaultTitlePattern || '%page_title% | %site_name%');
           setGlobalMetaDesc(data.globalMetaDesc || '');
           setAllowIndexing(data.allowIndexing !== undefined ? data.allowIndexing : true);
-          setAiApiUrl(data.aiApiUrl || '');
-          setAiModel(data.aiModel || '');
-          setGeminiApiKey(data.geminiApiKey || '');
+          if (data.aiEndpoints && Array.isArray(data.aiEndpoints) && data.aiEndpoints.length > 0) {
+            setAiEndpoints(data.aiEndpoints);
+          } else {
+            // Fallback for transition from single fields
+            setAiEndpoints([
+              {
+                url: data.aiApiUrl || '',
+                model: data.aiModel || '',
+                apiKey: data.geminiApiKey || ''
+              }
+            ]);
+          }
           setGscVerificationMeta(data.gscVerificationMeta || '');
           setGscVerificationFilename(data.gscVerificationFilename || '');
           setGscVerificationFilecontent(data.gscVerificationFilecontent || '');
@@ -158,11 +167,7 @@ export default function SettingsPage() {
           faviconUrl: faviconPreview,
           defaultTitlePattern,
           globalMetaDesc,
-          allowIndexing,
-          aiApiUrl,
-          aiModel,
-          geminiApiKey,
-          gscVerificationMeta,
+          aiEndpoints,
           gscVerificationFilename,
           gscVerificationFilecontent,
         }),
@@ -195,17 +200,18 @@ export default function SettingsPage() {
     }
   };
 
-  const testAiConnection = async () => {
-    if (!aiApiUrl || !aiModel || !geminiApiKey) {
+  const testAiConnection = async (index: number) => {
+    const endpoint = aiEndpoints[index];
+    if (!endpoint.url || !endpoint.model || !endpoint.apiKey) {
       toast.error('Please fill in Base URL, Model Name, and API Key to test');
       return;
     }
-    setIsTestingAi(true);
+    setTestingIndex(index);
     try {
       const res = await fetch('/api/ai/test', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ aiApiUrl, aiModel, aiApiKey: geminiApiKey })
+        body: JSON.stringify({ aiApiUrl: endpoint.url, aiModel: endpoint.model, aiApiKey: endpoint.apiKey })
       });
       const data = await res.json();
       if (res.ok && data.success) {
@@ -216,8 +222,32 @@ export default function SettingsPage() {
     } catch (err) {
       toast.error('Network error during AI test');
     } finally {
-      setIsTestingAi(false);
+      setTestingIndex(null);
     }
+  };
+
+  const addEndpoint = () => {
+    if (aiEndpoints.length >= 3) {
+      toast.error('You can only add up to 3 AI models.');
+      return;
+    }
+    setAiEndpoints([...aiEndpoints, { url: '', model: '', apiKey: '' }]);
+  };
+
+  const removeEndpoint = (index: number) => {
+    if (aiEndpoints.length === 1) {
+      toast.error('You must have at least 1 AI model.');
+      return;
+    }
+    const newEndpoints = [...aiEndpoints];
+    newEndpoints.splice(index, 1);
+    setAiEndpoints(newEndpoints);
+  };
+
+  const updateEndpoint = (index: number, field: string, value: string) => {
+    const newEndpoints = [...aiEndpoints];
+    newEndpoints[index] = { ...newEndpoints[index], [field]: value };
+    setAiEndpoints(newEndpoints);
   };
 
   const navItems = [
@@ -679,71 +709,98 @@ export default function SettingsPage() {
           {/* TAB 3: API & INTEGRATIONS */}
           {activeTab === 'api' && (
             <div className="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm space-y-6">
-              <div className="border-b border-zinc-100 pb-4">
-                <h2 className="font-serif text-lg font-bold text-zinc-950">
-                  AI & Content Generation Models
-                </h2>
-                <p className="text-xs text-zinc-500 font-medium mt-0.5">
-                  Configure your preferred AI API provider (e.g., OpenAI, OpenRouter, Gemini, or local models) for automated content features.
-                </p>
+              <div className="border-b border-zinc-100 pb-4 flex justify-between items-start">
+                <div>
+                  <h2 className="font-serif text-lg font-bold text-zinc-950">
+                    AI & Content Generation Models
+                  </h2>
+                  <p className="text-xs text-zinc-500 font-medium mt-0.5">
+                    Configure multiple AI API providers with fallback. If Model 1 fails, Model 2 will be used.
+                  </p>
+                </div>
+                <button
+                  onClick={addEndpoint}
+                  disabled={aiEndpoints.length >= 3}
+                  className="flex items-center gap-1.5 rounded-lg bg-zinc-100 px-3 py-1.5 text-[11px] font-bold text-zinc-700 hover:bg-zinc-200 disabled:opacity-50 transition-all"
+                >
+                  <Plus className="h-3 w-3" /> Add Model
+                </button>
               </div>
 
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <label className="text-xs font-serif font-bold text-zinc-900 block">
-                    API Base URL
-                  </label>
-                  <p className="text-[11px] text-zinc-500">For standard OpenAI-compatible APIs, e.g., <code>https://api.openai.com/v1</code> or <code>https://openrouter.ai/api/v1</code></p>
-                  <input
-                    type="url"
-                    value={aiApiUrl}
-                    onChange={(e) => setAiApiUrl(e.target.value)}
-                    placeholder="https://api.openai.com/v1"
-                    className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
-                  />
-                </div>
+              <div className="space-y-6">
+                {aiEndpoints.map((endpoint, index) => (
+                  <div key={index} className="relative rounded-xl border border-zinc-200 bg-zinc-50/30 p-4 space-y-4">
+                    <div className="flex items-center justify-between border-b border-zinc-100 pb-2">
+                      <h3 className="text-xs font-bold font-serif text-zinc-800">
+                        {index === 0 ? 'Primary Model' : `Fallback Model ${index}`}
+                      </h3>
+                      {aiEndpoints.length > 1 && (
+                        <button
+                          onClick={() => removeEndpoint(index)}
+                          className="text-red-500 hover:text-red-600 transition-colors p-1 rounded hover:bg-red-50"
+                          title="Remove this model"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      )}
+                    </div>
 
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <label className="text-xs font-serif font-bold text-zinc-900 block">
-                      AI Model Name
-                    </label>
-                    <input
-                      type="text"
-                      value={aiModel}
-                      onChange={(e) => setAiModel(e.target.value)}
-                      placeholder="gpt-4o, gemini-1.5-pro, etc."
-                      className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
-                    />
+                    <div className="space-y-2">
+                      <label className="text-[11px] font-serif font-bold text-zinc-900 block">
+                        API Base URL
+                      </label>
+                      <input
+                        type="url"
+                        value={endpoint.url}
+                        onChange={(e) => updateEndpoint(index, 'url', e.target.value)}
+                        placeholder="e.g. https://api.openai.com/v1"
+                        className="w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                      <div className="space-y-2">
+                        <label className="text-[11px] font-serif font-bold text-zinc-900 block">
+                          AI Model Name
+                        </label>
+                        <input
+                          type="text"
+                          value={endpoint.model}
+                          onChange={(e) => updateEndpoint(index, 'model', e.target.value)}
+                          placeholder="e.g. gpt-4o, gemini-1.5-pro"
+                          className="w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="text-[11px] font-serif font-bold text-zinc-900 block">
+                          API Key
+                        </label>
+                        <input
+                          type="password"
+                          value={endpoint.apiKey}
+                          onChange={(e) => updateEndpoint(index, 'apiKey', e.target.value)}
+                          placeholder="sk-..."
+                          className="w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="pt-2">
+                      <button
+                        onClick={() => testAiConnection(index)}
+                        disabled={testingIndex !== null}
+                        className="flex items-center gap-1.5 rounded-lg bg-zinc-900 px-3 py-2 text-[10px] font-bold text-white shadow-sm hover:bg-zinc-800 disabled:opacity-50 transition-all"
+                      >
+                        {testingIndex === index ? (
+                          <><span className="animate-spin">⏳</span> Testing...</>
+                        ) : (
+                          <><Sparkles className="h-3 w-3" /> Test Connection</>
+                        )}
+                      </button>
+                    </div>
                   </div>
-
-                  <div className="space-y-2">
-                    <label className="text-xs font-serif font-bold text-zinc-900 block">
-                      AI API Key
-                    </label>
-                    <input
-                      type="password"
-                      value={geminiApiKey}
-                      onChange={(e) => setGeminiApiKey(e.target.value)}
-                      placeholder="sk-..."
-                      className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
-                    />
-                  </div>
-                </div>
-
-                <div className="pt-4 flex items-center justify-start border-t border-zinc-100">
-                  <button
-                    onClick={testAiConnection}
-                    disabled={isTestingAi}
-                    className="flex items-center gap-2 rounded-xl bg-zinc-900 px-4 py-2.5 text-[11px] font-bold text-white shadow-sm hover:bg-zinc-800 disabled:opacity-50 transition-all"
-                  >
-                    {isTestingAi ? (
-                      <><span className="animate-spin">⏳</span> Testing Connection...</>
-                    ) : (
-                      <><Sparkles className="h-4 w-4" /> Test AI Connection</>
-                    )}
-                  </button>
-                </div>
+                ))}
               </div>
             </div>
           )}

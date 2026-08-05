@@ -22,6 +22,7 @@ const dbToFrontendSettings = (db: any) => {
     geminiApiKey: db.gemini_api_key,
     aiApiUrl: db.ai_api_url,
     aiModel: db.ai_model,
+    aiEndpoints: db.ai_endpoints,
     orgName: db.org_name,
     orgUrl: db.org_url,
     orgLogo: db.org_logo,
@@ -52,6 +53,7 @@ const frontendToDbSettings = (fe: any) => {
   if (fe.geminiApiKey !== undefined) db.gemini_api_key = fe.geminiApiKey;
   if (fe.aiApiUrl !== undefined) db.ai_api_url = fe.aiApiUrl;
   if (fe.aiModel !== undefined) db.ai_model = fe.aiModel;
+  if (fe.aiEndpoints !== undefined) db.ai_endpoints = fe.aiEndpoints;
   if (fe.orgName !== undefined) db.org_name = fe.orgName;
   if (fe.orgUrl !== undefined) db.org_url = fe.orgUrl;
   if (fe.orgLogo !== undefined) db.org_logo = fe.orgLogo;
