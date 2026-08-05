@@ -67,7 +67,7 @@ export function optimizeHtml(html: string): string {
 
   // 1. Fix Dummy URLs and Hardcoded Logos (e.g. footer logo)
   html = html.replaceAll('https://themexriver.com/wp/avista', 'https://titangrowthhub.com/');
-  html = html.replaceAll('/wp-content/uploads/2025/11/logo-5.svg', '/website_assets/footer_logo.png');
+  html = html.replaceAll('/wp-content/uploads/2025/11/logo-5.svg', '/website_assets/footer-logo.png');
   html = html.replaceAll('https://titangrowthhub.com//wp-content/uploads/2025/11/tx-bg-img.webp', '/website_assets/tx-bg-img.webp');
   html = html.replaceAll('https://themexriver.com/wp/avista/wp-content/uploads/2025/11/tx-bg-img.webp', '/website_assets/tx-bg-img.webp');
 
