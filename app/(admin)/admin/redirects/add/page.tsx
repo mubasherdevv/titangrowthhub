@@ -28,14 +28,38 @@ export default function AddRedirectPage() {
   const [notes, setNotes] = useState('');
   const [excludeLogs, setExcludeLogs] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!sourcePath.trim() || !targetPath.trim()) {
+    
+    const finalSourcePath = sourcePath.trim().startsWith('/') ? sourcePath.trim() : `/${sourcePath.trim()}`;
+    const finalTargetPath = targetPath.trim().startsWith('/') ? targetPath.trim() : `/${targetPath.trim()}`;
+
+    if (!finalSourcePath || !finalTargetPath) {
       toast.error('Source URL and Target URL are required!');
       return;
     }
-    toast.success('Redirect rule created successfully');
-    window.location.href = '/admin/redirects';
+
+    try {
+      const res = await fetch('/api/redirects', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          from_path: finalSourcePath,
+          to_path: finalTargetPath,
+          status_code: parseInt(redirectType) || 301,
+        }),
+      });
+
+      if (res.ok) {
+        toast.success('Redirect rule created successfully');
+        window.location.href = '/admin/redirects';
+      } else {
+        const errorData = await res.json();
+        toast.error(errorData.error || 'Failed to create redirect');
+      }
+    } catch (err) {
+      toast.error('Error creating redirect rule');
+    }
   };
 
   return (
