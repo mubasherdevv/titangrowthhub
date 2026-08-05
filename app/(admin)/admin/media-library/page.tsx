@@ -85,17 +85,28 @@ export default function MediaLibraryPage() {
       const url = URL.createObjectURL(file);
       img.onload = () => {
         const dimensions = `${img.width}x${img.height}`;
+        // Resize if too large (Max width 1920px for modern web)
+        const MAX_WIDTH = 1920;
+        let targetWidth = img.width;
+        let targetHeight = img.height;
+
+        if (targetWidth > MAX_WIDTH) {
+          const ratio = MAX_WIDTH / targetWidth;
+          targetWidth = MAX_WIDTH;
+          targetHeight = img.height * ratio;
+        }
+
         // Automatically convert images to webp to save space, unless it's an svg
         if (file.type !== 'image/svg+xml') {
           const canvas = document.createElement('canvas');
-          canvas.width = img.width;
-          canvas.height = img.height;
+          canvas.width = targetWidth;
+          canvas.height = targetHeight;
           const ctx = canvas.getContext('2d');
-          ctx?.drawImage(img, 0, 0);
+          ctx?.drawImage(img, 0, 0, targetWidth, targetHeight);
           canvas.toBlob(
             (blob) => {
               if (blob) {
-                resolve({ blob, dimensions, format: 'webp' });
+                resolve({ blob, dimensions: `${Math.round(targetWidth)}x${Math.round(targetHeight)}`, format: 'webp' });
               } else {
                 resolve({ blob: file, dimensions, format: file.name.split('.').pop() || '' });
               }
