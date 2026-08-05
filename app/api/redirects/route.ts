@@ -1,59 +1,95 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 
-const formatRedirect = (db: any) => {
-  return {
-    id: db.id,
-    fromPath: db.from_path,
-    toPath: db.to_path,
-    statusCode: db.status_code,
-    createdAt: db.created_at,
-  };
-};
-
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
     const { data, error } = await supabase
       .from('redirects')
       .select('*')
       .order('created_at', { ascending: false });
 
-    if (error) throw error;
-    return NextResponse.json((data || []).map(formatRedirect));
-  } catch (error: any) {
-    console.error('Error fetching redirects:', error);
-    return NextResponse.json({ error: error.message || 'Failed to fetch redirects' }, { status: 500 });
+    if (error) {
+      return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ success: true, data });
+  } catch (err: any) {
+    return NextResponse.json({ success: false, error: err.message }, { status: 500 });
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const insertData = {
-      from_path: body.fromPath,
-      to_path: body.toPath,
-      status_code: body.statusCode || 301,
-    };
+    const { from_path, to_path, status_code } = body;
+
+    if (!from_path || !to_path || !status_code) {
+      return NextResponse.json({ success: false, error: 'Missing required fields' }, { status: 400 });
+    }
 
     const { data, error } = await supabase
       .from('redirects')
-      .insert([insertData])
-      .select();
+      .insert([
+        {
+          from_path,
+          to_path,
+          status_code,
+          is_active: true,
+          hits: 0,
+        }
+      ])
+      .select()
+      .single();
 
-    if (error) throw error;
-    return NextResponse.json(data && data[0] ? formatRedirect(data[0]) : null);
-  } catch (error: any) {
-    console.error('Error creating redirect:', error);
-    return NextResponse.json({ error: error.message || 'Failed to create redirect' }, { status: 500 });
+    if (error) {
+      return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ success: true, data });
+  } catch (err: any) {
+    return NextResponse.json({ success: false, error: err.message }, { status: 500 });
   }
 }
 
-export async function DELETE(request: Request) {
+export async function PATCH(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { id, from_path, to_path, status_code, is_active } = body;
+
+    if (!id) {
+      return NextResponse.json({ success: false, error: 'ID is required' }, { status: 400 });
+    }
+
+    const updates: any = {};
+    if (from_path !== undefined) updates.from_path = from_path;
+    if (to_path !== undefined) updates.to_path = to_path;
+    if (status_code !== undefined) updates.status_code = status_code;
+    if (is_active !== undefined) updates.is_active = is_active;
+
+    const { data, error } = await supabase
+      .from('redirects')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) {
+      return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ success: true, data });
+  } catch (err: any) {
+    return NextResponse.json({ success: false, error: err.message }, { status: 500 });
+  }
+}
+
+export async function DELETE(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
+
     if (!id) {
-      return NextResponse.json({ error: 'Missing redirect ID' }, { status: 400 });
+      return NextResponse.json({ success: false, error: 'ID is required' }, { status: 400 });
     }
 
     const { error } = await supabase
@@ -61,10 +97,12 @@ export async function DELETE(request: Request) {
       .delete()
       .eq('id', id);
 
-    if (error) throw error;
+    if (error) {
+      return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    }
+
     return NextResponse.json({ success: true });
-  } catch (error: any) {
-    console.error('Error deleting redirect:', error);
-    return NextResponse.json({ error: error.message || 'Failed to delete redirect' }, { status: 500 });
+  } catch (err: any) {
+    return NextResponse.json({ success: false, error: err.message }, { status: 500 });
   }
 }

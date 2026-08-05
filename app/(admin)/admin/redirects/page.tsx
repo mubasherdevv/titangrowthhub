@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useToast } from '@/components/ToastProvider';
 import {
@@ -25,92 +25,18 @@ import {
 
 interface RedirectRule {
   id: string;
-  sourceUrl: string;
-  targetUrl: string;
-  type: '301' | '302' | '307';
-  status: 'Active' | 'Inactive';
+  from_path: string;
+  to_path: string;
+  status_code: number;
+  is_active: boolean;
   hits: number;
-  lastAccessed: string;
+  last_accessed: string | null;
 }
-
-const initialRedirects: RedirectRule[] = [
-  {
-    id: '1',
-    sourceUrl: '/old-about-us',
-    targetUrl: '/about',
-    type: '301',
-    status: 'Active',
-    hits: 245,
-    lastAccessed: 'May 26, 2025 10:30 AM',
-  },
-  {
-    id: '2',
-    sourceUrl: '/old-services',
-    targetUrl: '/services',
-    type: '301',
-    status: 'Active',
-    hits: 189,
-    lastAccessed: 'May 26, 2025 09:15 AM',
-  },
-  {
-    id: '3',
-    sourceUrl: '/blog/old-post-name',
-    targetUrl: '/blog/new-post-name',
-    type: '301',
-    status: 'Active',
-    hits: 156,
-    lastAccessed: 'May 25, 2025 11:20 PM',
-  },
-  {
-    id: '4',
-    sourceUrl: '/contact-us',
-    targetUrl: '/contact',
-    type: '302',
-    status: 'Active',
-    hits: 98,
-    lastAccessed: 'May 25, 2025 08:45 PM',
-  },
-  {
-    id: '5',
-    sourceUrl: '/old-pricing',
-    targetUrl: '/pricing',
-    type: '301',
-    status: 'Inactive',
-    hits: 0,
-    lastAccessed: '-',
-  },
-  {
-    id: '6',
-    sourceUrl: '/products',
-    targetUrl: '/shop',
-    type: '301',
-    status: 'Active',
-    hits: 312,
-    lastAccessed: 'May 24, 2025 04:10 PM',
-  },
-  {
-    id: '7',
-    sourceUrl: '/2019/old-article',
-    targetUrl: '/blog/old-article',
-    type: '301',
-    status: 'Active',
-    hits: 72,
-    lastAccessed: 'May 24, 2025 02:30 PM',
-  },
-  {
-    id: '8',
-    sourceUrl: '/old-feature',
-    targetUrl: '/features',
-    type: '302',
-    status: 'Inactive',
-    hits: 0,
-    lastAccessed: '-',
-  },
-];
 
 export default function RedirectsPage() {
   const toast = useToast();
-  const [redirects, setRedirects] = useState<RedirectRule[]>(initialRedirects);
+  const [redirects, setRedirects] = useState<RedirectRule[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [typeFilter, setTypeFilter] = useState('All');
@@ -118,32 +44,73 @@ export default function RedirectsPage() {
   const [groupFilter, setGroupFilter] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
 
+  useEffect(() => {
+    fetchRedirects();
+  }, []);
+
+  const fetchRedirects = async () => {
+    try {
+      setLoading(true);
+      const res = await fetch('/api/redirects');
+      const data = await res.json();
+      if (data.success) {
+        setRedirects(data.data);
+      } else {
+        toast.error('Failed to load redirects');
+      }
+    } catch (err) {
+      toast.error('Error fetching redirects');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Toggle Single Status (Active <-> Inactive)
-  const handleToggleStatus = (id: string) => {
+  const handleToggleStatus = async (id: string) => {
     const rule = redirects.find((r) => r.id === id);
-    const newStatus = rule?.status === 'Active' ? 'Inactive' : 'Active';
-    setRedirects((prev) =>
-      prev.map((item) =>
-        item.id === id
-          ? {
-              ...item,
-              status: newStatus,
-            }
-          : item
-      )
-    );
-    toast.success(
-      newStatus === 'Active'
-        ? `Redirect ${rule?.sourceUrl ?? ''} activated`
-        : `Redirect ${rule?.sourceUrl ?? ''} deactivated`
-    );
+    if (!rule) return;
+    
+    const newStatus = !rule.is_active;
+    
+    try {
+      const res = await fetch('/api/redirects', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, is_active: newStatus }),
+      });
+      
+      if (res.ok) {
+        setRedirects((prev) =>
+          prev.map((item) =>
+            item.id === id ? { ...item, is_active: newStatus } : item
+          )
+        );
+        toast.success(
+          newStatus ? `Redirect ${rule.from_path} activated` : `Redirect ${rule.from_path} deactivated`
+        );
+      } else {
+        toast.error('Failed to update status');
+      }
+    } catch (err) {
+      toast.error('Error updating status');
+    }
   };
 
   // Delete a redirect rule
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
+    if (!confirm('Delete this redirect?')) return;
     const rule = redirects.find((r) => r.id === id);
-    setRedirects((prev) => prev.filter((r) => r.id !== id));
-    toast.success(`Redirect ${rule?.sourceUrl ?? ''} deleted`);
+    try {
+      const res = await fetch(`/api/redirects?id=${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        setRedirects((prev) => prev.filter((r) => r.id !== id));
+        toast.success(`Redirect ${rule?.from_path ?? ''} deleted`);
+      } else {
+        toast.error('Failed to delete redirect');
+      }
+    } catch (err) {
+      toast.error('Error deleting redirect');
+    }
   };
 
   // Toggle Select All
@@ -173,10 +140,10 @@ export default function RedirectsPage() {
   // Filtered List
   const filteredRedirects = redirects.filter((rule) => {
     const matchesSearch =
-      rule.sourceUrl.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      rule.targetUrl.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesType = typeFilter === 'All' || rule.type === typeFilter;
-    const matchesStatus = statusFilter === 'All' || rule.status === statusFilter;
+      rule.from_path.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      rule.to_path.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesType = typeFilter === 'All' || rule.status_code.toString() === typeFilter;
+    const matchesStatus = statusFilter === 'All' || (statusFilter === 'Active' ? rule.is_active : !rule.is_active);
     return matchesSearch && matchesType && matchesStatus;
   });
 
@@ -227,7 +194,7 @@ export default function RedirectsPage() {
           </div>
           <div>
             <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-400 uppercase">Total Redirects</p>
-            <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">120</p>
+            <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">{redirects.length}</p>
             <p className="text-[11px] text-zinc-400 font-medium">All redirect rules</p>
           </div>
         </div>
@@ -239,7 +206,7 @@ export default function RedirectsPage() {
           </div>
           <div>
             <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-400 uppercase">Active</p>
-            <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">112</p>
+            <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">{redirects.filter(r => r.is_active).length}</p>
             <p className="text-[11px] text-emerald-600 font-extrabold">Working properly</p>
           </div>
         </div>
@@ -251,10 +218,11 @@ export default function RedirectsPage() {
           </div>
           <div>
             <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-400 uppercase">Inactive</p>
-            <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">6</p>
-            <p className="text-[11px] text-zinc-400 font-medium">Disabled rules</p>
+            <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">{redirects.filter(r => !r.is_active).length}</p>
+            <p className="text-[11px] text-amber-600 font-extrabold">Paused rules</p>
           </div>
         </div>
+
 
         {/* Card 4: Types */}
         <div className="flex items-center gap-4 rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm">
@@ -414,7 +382,7 @@ export default function RedirectsPage() {
                     {/* Source URL */}
                     <td className="py-4 px-4">
                       <div className="flex items-center gap-1.5 font-mono text-xs font-semibold text-zinc-800 group-hover:text-purple-600 transition-colors">
-                        <span>{rule.sourceUrl}</span>
+                        <span>{rule.from_path}</span>
                         <ExternalLink className="h-3 w-3 text-zinc-400 shrink-0" />
                       </div>
                     </td>
@@ -422,27 +390,27 @@ export default function RedirectsPage() {
                     {/* Target URL */}
                     <td className="py-4 px-4">
                       <div className="flex items-center gap-1.5 font-mono text-xs font-semibold text-zinc-800">
-                        <span>{rule.targetUrl}</span>
+                        <span>{rule.to_path}</span>
                         <ExternalLink className="h-3 w-3 text-zinc-400 shrink-0" />
                       </div>
                     </td>
 
                     {/* Type Badge */}
                     <td className="py-4 px-4">
-                      {rule.type === '301' ? (
+                      {rule.status_code === 301 ? (
                         <span className="inline-flex items-center rounded-md bg-purple-50 px-2 py-0.5 text-[11px] font-extrabold text-purple-700 border border-purple-200/60">
                           301
                         </span>
                       ) : (
                         <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-0.5 text-[11px] font-extrabold text-blue-700 border border-blue-200/60">
-                          302
+                          {rule.status_code}
                         </span>
                       )}
                     </td>
 
                     {/* Status Pill */}
                     <td className="py-4 px-4">
-                      {rule.status === 'Active' ? (
+                      {rule.is_active ? (
                         <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[11px] font-bold text-emerald-600 border border-emerald-200/60">
                           <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                           Active
@@ -457,12 +425,12 @@ export default function RedirectsPage() {
 
                     {/* Hits */}
                     <td className="py-4 px-4 font-serif font-bold text-zinc-900">
-                      {rule.hits}
+                      {rule.hits || 0}
                     </td>
 
                     {/* Last Accessed */}
                     <td className="py-4 px-4 text-xs text-zinc-500 font-medium">
-                      {rule.lastAccessed}
+                      {rule.last_accessed ? new Date(rule.last_accessed).toLocaleString() : '-'}
                     </td>
 
                     {/* Action Buttons */}
@@ -479,14 +447,14 @@ export default function RedirectsPage() {
                         {/* Toggle Switch */}
                         <button
                           onClick={() => handleToggleStatus(rule.id)}
-                          title={`Switch to ${rule.status === 'Active' ? 'Inactive' : 'Active'}`}
-                          className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                            rule.status === 'Active' ? 'bg-purple-600' : 'bg-zinc-200'
+                          title={`Switch to ${rule.is_active ? 'Inactive' : 'Active'}`}
+                          className={`flex h-5 w-9 items-center rounded-full transition-colors ${
+                            rule.is_active ? 'bg-emerald-500' : 'bg-zinc-300'
                           }`}
                         >
                           <span
-                            className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow-md ring-0 transition duration-200 ease-in-out ${
-                              rule.status === 'Active' ? 'translate-x-4' : 'translate-x-0'
+                            className={`h-4 w-4 rounded-full bg-white transition-transform ${
+                              rule.is_active ? 'translate-x-4' : 'translate-x-1'
                             }`}
                           />
                         </button>

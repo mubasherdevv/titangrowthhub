@@ -43,7 +43,7 @@ export async function middleware(request: NextRequest) {
 
   try {
     // Query Supabase REST API directly using fetch (100% Edge runtime compatible)
-    const reqUrl = `${supabaseUrl}/rest/v1/redirects?from_path=eq.${encodeURIComponent(pathname)}&select=to_path,status_code`;
+    const reqUrl = `${supabaseUrl}/rest/v1/redirects?from_path=eq.${encodeURIComponent(pathname)}&is_active=eq.true&select=id,to_path,status_code`;
     
     const response = await fetch(reqUrl, {
       method: 'GET',
@@ -60,6 +60,14 @@ export async function middleware(request: NextRequest) {
       const redirect = data && data[0];
 
       if (redirect) {
+        // Fire and forget hit tracking to internal API
+        const origin = request.nextUrl.origin;
+        fetch(`${origin}/api/redirects/hit`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: redirect.id })
+        }).catch(() => {}); // ignore error
+
         const targetUrl = new URL(redirect.to_path, request.url);
         return NextResponse.redirect(targetUrl, redirect.status_code || 301);
       }
