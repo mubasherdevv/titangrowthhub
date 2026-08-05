@@ -34,7 +34,7 @@ export default function HomePage() {
           <h1 className="font-serif text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-950">
             Dashboard
           </h1>
-          <p className="mt-1 text-xs md:text-sm text-zinc-500 font-medium">
+          <p className="mt-1 text-xs md:text-sm text-zinc-800 font-medium">
             Welcome back! Here&apos;s what&apos;s happening with your website.
           </p>
         </div>
@@ -47,7 +47,7 @@ export default function HomePage() {
           >
             <Calendar className="h-4 w-4 text-orange-600" />
             <span className="font-serif">{dateRange}</span>
-            <ChevronDown className="h-3.5 w-3.5 text-zinc-400 ml-1" />
+            <ChevronDown className="h-3.5 w-3.5 text-zinc-700 ml-1" />
           </button>
 
           {showDatePicker && (

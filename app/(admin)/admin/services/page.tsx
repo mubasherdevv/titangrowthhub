@@ -134,14 +134,14 @@ export default function ServicesPage() {
           <h1 className="font-serif text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-950">
             Services
           </h1>
-          <p className="mt-1 text-xs md:text-sm text-zinc-500 font-medium">
+          <p className="mt-1 text-xs md:text-sm text-zinc-800 font-medium">
             Manage and optimize your services pages for better visibility.
           </p>
         </div>
 
         <div className="flex items-center gap-3">
           <button className="flex items-center gap-2 rounded-2xl border border-zinc-200 bg-white px-4 py-2.5 text-xs font-bold text-zinc-700 shadow-sm transition-all hover:bg-zinc-50 hover:border-zinc-300">
-            <Upload className="h-4 w-4 text-zinc-500" />
+            <Upload className="h-4 w-4 text-zinc-800" />
             <span>Import CSV</span>
           </button>
           <Link
@@ -159,7 +159,7 @@ export default function ServicesPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-center">
           {/* Search Input */}
           <div className="lg:col-span-4 relative">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-700" />
             <input
               type="text"
               value={searchQuery}
@@ -171,7 +171,7 @@ export default function ServicesPage() {
 
           {/* Status Dropdown */}
           <div className="lg:col-span-2">
-            <label className="text-[10px] font-serif font-bold uppercase tracking-wider text-zinc-400 block mb-1">Status</label>
+            <label className="text-[10px] font-serif font-bold uppercase tracking-wider text-zinc-700 block mb-1">Status</label>
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
@@ -186,7 +186,7 @@ export default function ServicesPage() {
 
           {/* Category Dropdown */}
           <div className="lg:col-span-2">
-            <label className="text-[10px] font-serif font-bold uppercase tracking-wider text-zinc-400 block mb-1">Category</label>
+            <label className="text-[10px] font-serif font-bold uppercase tracking-wider text-zinc-700 block mb-1">Category</label>
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
@@ -201,7 +201,7 @@ export default function ServicesPage() {
 
           {/* SEO Score Dropdown */}
           <div className="lg:col-span-2">
-            <label className="text-[10px] font-serif font-bold uppercase tracking-wider text-zinc-400 block mb-1">SEO Score</label>
+            <label className="text-[10px] font-serif font-bold uppercase tracking-wider text-zinc-700 block mb-1">SEO Score</label>
             <select
               value={scoreFilter}
               onChange={(e) => setScoreFilter(e.target.value)}
@@ -221,7 +221,7 @@ export default function ServicesPage() {
               onClick={handleClearFilters}
               className="w-full flex items-center justify-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs font-bold text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 transition-colors"
             >
-              <RotateCcw className="h-3.5 w-3.5 text-zinc-500" />
+              <RotateCcw className="h-3.5 w-3.5 text-zinc-800" />
               <span>Clear Filters</span>
             </button>
           </div>
@@ -233,7 +233,7 @@ export default function ServicesPage() {
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-zinc-200/80 bg-zinc-50/50 text-zinc-400 font-serif font-bold uppercase tracking-wider">
+              <tr className="border-b border-zinc-200/80 bg-zinc-50/50 text-zinc-700 font-serif font-bold uppercase tracking-wider">
                 <th className="py-4 px-4 w-10">
                   <input
                     type="checkbox"
@@ -287,7 +287,7 @@ export default function ServicesPage() {
                           <p className="font-serif font-extrabold text-zinc-950 text-xs md:text-sm group-hover:text-orange-600 transition-colors">
                             {service.title}
                           </p>
-                          <span className="text-[11px] text-zinc-400 font-medium">
+                          <span className="text-[11px] text-zinc-700 font-medium">
                             {service.slug}
                           </span>
                         </div>
@@ -333,7 +333,7 @@ export default function ServicesPage() {
                     <td className="py-4 px-4">
                       <div className="text-xs">
                         <p className="font-bold text-zinc-800">{service.updatedDate}</p>
-                        <p className="text-[11px] text-zinc-400 font-medium">{service.updatedTime}</p>
+                        <p className="text-[11px] text-zinc-700 font-medium">{service.updatedTime}</p>
                       </div>
                     </td>
 
@@ -342,19 +342,19 @@ export default function ServicesPage() {
                       <div className="flex items-center justify-center gap-1">
                         <button
                           title="Edit Service"
-                          className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-100 hover:text-zinc-800"
+                          className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-800"
                         >
                           <Edit2 className="h-3.5 w-3.5" />
                         </button>
                         <button
                           title="Preview Service"
-                          className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-100 hover:text-zinc-800"
+                          className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-800"
                         >
                           <Eye className="h-3.5 w-3.5" />
                         </button>
                         <button
                           title="More options"
-                          className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-100 hover:text-zinc-800"
+                          className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-800"
                         >
                           <MoreVertical className="h-3.5 w-3.5" />
                         </button>
@@ -368,13 +368,13 @@ export default function ServicesPage() {
         </div>
 
         {/* Footer & Pagination */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-zinc-100 bg-white px-6 py-4 text-xs font-semibold text-zinc-500">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-zinc-100 bg-white px-6 py-4 text-xs font-semibold text-zinc-800">
           <div>Showing 1 to 5 of 12 results</div>
           <div className="flex items-center gap-1.5">
             <button
               disabled={currentPage === 1}
               onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-zinc-500 disabled:opacity-40 hover:bg-zinc-50"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-zinc-800 disabled:opacity-40 hover:bg-zinc-50"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
@@ -408,7 +408,7 @@ export default function ServicesPage() {
             >
               3
             </button>
-            <span className="px-1 text-zinc-400">...</span>
+            <span className="px-1 text-zinc-700">...</span>
             <button
               onClick={() => setCurrentPage(12)}
               className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-xs font-bold text-zinc-700 hover:bg-zinc-50"
@@ -417,7 +417,7 @@ export default function ServicesPage() {
             </button>
             <button
               onClick={() => setCurrentPage((p) => Math.min(12, p + 1))}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-zinc-500 hover:bg-zinc-50"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-zinc-800 hover:bg-zinc-50"
             >
               <ChevronRight className="h-4 w-4" />
             </button>

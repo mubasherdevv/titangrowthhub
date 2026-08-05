@@ -245,7 +245,7 @@ export default function MediaLibraryPage() {
           <h1 className="font-serif text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-950">
             Media Library & Image SEO
           </h1>
-          <p className="mt-1 text-xs md:text-sm text-zinc-500 font-medium">
+          <p className="mt-1 text-xs md:text-sm text-zinc-800 font-medium">
             Manage images, auto-generate AI Alt tags, and optimize WebP image compression.
           </p>
         </div>
@@ -274,9 +274,9 @@ export default function MediaLibraryPage() {
             <ImageIcon className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-400 uppercase">Total Images</p>
+            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-700 uppercase">Total Images</p>
             <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">{mediaList.length}</p>
-            <p className="text-[11px] text-zinc-400 font-medium">In media directory</p>
+            <p className="text-[11px] text-zinc-700 font-medium">In media directory</p>
           </div>
         </div>
 
@@ -285,7 +285,7 @@ export default function MediaLibraryPage() {
             <AlertTriangle className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-400 uppercase">Missing Alt Text</p>
+            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-700 uppercase">Missing Alt Text</p>
             <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">
               {mediaList.filter((m) => !m.alt_text).length}
             </p>
@@ -298,7 +298,7 @@ export default function MediaLibraryPage() {
             <CheckCircle2 className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-400 uppercase">WebP Optimized</p>
+            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-700 uppercase">WebP Optimized</p>
             <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">
               {mediaList.filter((m) => m.file_format === 'webp').length}
             </p>
@@ -311,7 +311,7 @@ export default function MediaLibraryPage() {
             <Wand2 className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-400 uppercase">SEO Health</p>
+            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-700 uppercase">SEO Health</p>
             <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">96%</p>
             <p className="text-[11px] text-purple-600 font-bold">High Image Rank</p>
           </div>
@@ -321,7 +321,7 @@ export default function MediaLibraryPage() {
       {/* Filter Bar */}
       <div className="rounded-2xl border border-zinc-200/80 bg-white p-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
         <div className="relative w-full sm:w-80">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-700" />
           <input
             type="text"
             value={searchQuery}
@@ -335,7 +335,7 @@ export default function MediaLibraryPage() {
           <button
             onClick={() => setFilterType('all')}
             className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              filterType === 'all' ? 'bg-white text-zinc-950 shadow-sm' : 'text-zinc-500 hover:text-zinc-900'
+              filterType === 'all' ? 'bg-white text-zinc-950 shadow-sm' : 'text-zinc-800 hover:text-zinc-900'
             }`}
           >
             All Media
@@ -343,7 +343,7 @@ export default function MediaLibraryPage() {
           <button
             onClick={() => setFilterType('missing')}
             className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              filterType === 'missing' ? 'bg-amber-500 text-white shadow-sm' : 'text-zinc-500 hover:text-zinc-900'
+              filterType === 'missing' ? 'bg-amber-500 text-white shadow-sm' : 'text-zinc-800 hover:text-zinc-900'
             }`}
           >
             Missing Alt Tag
@@ -351,7 +351,7 @@ export default function MediaLibraryPage() {
           <button
             onClick={() => setFilterType('webp')}
             className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              filterType === 'webp' ? 'bg-emerald-600 text-white shadow-sm' : 'text-zinc-500 hover:text-zinc-900'
+              filterType === 'webp' ? 'bg-emerald-600 text-white shadow-sm' : 'text-zinc-800 hover:text-zinc-900'
             }`}
           >
             WebP Optimized
@@ -384,7 +384,7 @@ export default function MediaLibraryPage() {
                 <p className="font-serif font-extrabold text-sm text-zinc-950 truncate">
                   {item.file_name}
                 </p>
-                <div className="flex items-center gap-2 text-[11px] text-zinc-400 font-medium mt-0.5">
+                <div className="flex items-center gap-2 text-[11px] text-zinc-700 font-medium mt-0.5">
                   <span>{item.dimensions}</span>
                   <span>•</span>
                   <span>{formatBytes(item.file_size)}</span>
@@ -449,7 +449,7 @@ export default function MediaLibraryPage() {
                   {copiedId === item.id ? (
                     <Check className="h-3.5 w-3.5 text-emerald-600" />
                   ) : (
-                    <Copy className="h-3.5 w-3.5 text-zinc-400" />
+                    <Copy className="h-3.5 w-3.5 text-zinc-700" />
                   )}
                   <span>{copiedId === item.id ? 'Copied' : 'Copy URL'}</span>
                 </button>
@@ -459,14 +459,14 @@ export default function MediaLibraryPage() {
                     href={item.file_url}
                     target="_blank"
                     rel="noreferrer"
-                    className="p-1.5 text-zinc-400 hover:text-zinc-700 rounded-lg hover:bg-zinc-100"
+                    className="p-1.5 text-zinc-700 hover:text-zinc-700 rounded-lg hover:bg-zinc-100"
                     title="Open original image"
                   >
                     <ExternalLink className="h-4 w-4" />
                   </a>
                   <button
                     onClick={() => handleDelete(item.id)}
-                    className="p-1.5 text-zinc-400 hover:text-red-600 rounded-lg hover:bg-red-50"
+                    className="p-1.5 text-zinc-700 hover:text-red-600 rounded-lg hover:bg-red-50"
                     title="Delete image"
                   >
                     <Trash2 className="h-4 w-4" />

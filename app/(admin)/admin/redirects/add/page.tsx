@@ -70,7 +70,7 @@ export default function AddRedirectPage() {
       {/* Breadcrumb & Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-medium mb-1">
+          <div className="flex items-center gap-1.5 text-xs text-zinc-700 font-medium mb-1">
             <Link href="/admin/redirects" className="hover:text-zinc-600 transition-colors">
               Redirects
             </Link>
@@ -80,7 +80,7 @@ export default function AddRedirectPage() {
           <h1 className="font-serif text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-950">
             Add Redirect
           </h1>
-          <p className="mt-1 text-xs md:text-sm text-zinc-500 font-medium">
+          <p className="mt-1 text-xs md:text-sm text-zinc-800 font-medium">
             Create a new redirect rule to guide users and search engines from one URL to another.
           </p>
         </div>
@@ -91,7 +91,7 @@ export default function AddRedirectPage() {
             href="/admin/redirects"
             className="flex items-center gap-2 rounded-2xl border border-zinc-200 bg-white px-4 py-2.5 text-xs font-bold text-zinc-700 shadow-sm transition-all hover:bg-zinc-50 hover:border-zinc-300"
           >
-            <ArrowLeft className="h-4 w-4 text-zinc-500" />
+            <ArrowLeft className="h-4 w-4 text-zinc-800" />
             <span>Back to Redirects</span>
           </Link>
           <div className="relative inline-flex rounded-2xl bg-purple-600 text-white shadow-md shadow-purple-600/20">
@@ -126,11 +126,11 @@ export default function AddRedirectPage() {
                 <label className="text-xs font-serif font-bold text-zinc-900 block">
                   Source URL <span className="text-red-500">*</span>
                 </label>
-                <p className="text-[11px] text-zinc-400 font-medium">
+                <p className="text-[11px] text-zinc-700 font-medium">
                   The original URL you want to redirect from.
                 </p>
                 <div className="flex items-center rounded-xl border border-zinc-200 bg-zinc-50/40 overflow-hidden focus-within:border-purple-600 focus-within:bg-white transition-all">
-                  <span className="bg-zinc-100 px-3 py-2.5 text-xs font-semibold text-zinc-500 border-r border-zinc-200 shrink-0">
+                  <span className="bg-zinc-100 px-3 py-2.5 text-xs font-semibold text-zinc-800 border-r border-zinc-200 shrink-0">
                     {domainPrefix}
                   </span>
                   <input
@@ -141,7 +141,7 @@ export default function AddRedirectPage() {
                     className="w-full bg-transparent px-3 py-2.5 text-xs font-medium text-zinc-900 placeholder-zinc-400 focus:outline-none"
                   />
                 </div>
-                <span className="text-[11px] text-zinc-400 font-medium block">
+                <span className="text-[11px] text-zinc-700 font-medium block">
                   Example: {domainPrefix}/old-page
                 </span>
               </div>
@@ -151,11 +151,11 @@ export default function AddRedirectPage() {
                 <label className="text-xs font-serif font-bold text-zinc-900 block">
                   Target URL <span className="text-red-500">*</span>
                 </label>
-                <p className="text-[11px] text-zinc-400 font-medium">
+                <p className="text-[11px] text-zinc-700 font-medium">
                   The URL you want to redirect users and search engines to.
                 </p>
                 <div className="flex items-center rounded-xl border border-zinc-200 bg-zinc-50/40 overflow-hidden focus-within:border-purple-600 focus-within:bg-white transition-all">
-                  <span className="bg-zinc-100 px-3 py-2.5 text-xs font-semibold text-zinc-500 border-r border-zinc-200 shrink-0">
+                  <span className="bg-zinc-100 px-3 py-2.5 text-xs font-semibold text-zinc-800 border-r border-zinc-200 shrink-0">
                     {domainPrefix}
                   </span>
                   <input
@@ -166,7 +166,7 @@ export default function AddRedirectPage() {
                     className="w-full bg-transparent px-3 py-2.5 text-xs font-medium text-zinc-900 placeholder-zinc-400 focus:outline-none"
                   />
                 </div>
-                <span className="text-[11px] text-zinc-400 font-medium block">
+                <span className="text-[11px] text-zinc-700 font-medium block">
                   Example: {domainPrefix}/new-page
                 </span>
               </div>
@@ -179,7 +179,7 @@ export default function AddRedirectPage() {
                 <label className="text-xs font-serif font-bold text-zinc-900 block">
                   Redirect Type
                 </label>
-                <p className="text-[11px] text-zinc-400 font-medium">
+                <p className="text-[11px] text-zinc-700 font-medium">
                   Choose the type of redirect.
                 </p>
                 <select
@@ -191,7 +191,7 @@ export default function AddRedirectPage() {
                   <option value="302">302 - Found / Temporary</option>
                   <option value="307">307 - Temporary Redirect</option>
                 </select>
-                <span className="text-[11px] text-zinc-500 font-medium block">
+                <span className="text-[11px] text-zinc-800 font-medium block">
                   301 is recommended for SEO. It passes link equity to the new URL.
                 </span>
               </div>
@@ -201,7 +201,7 @@ export default function AddRedirectPage() {
                 <label className="text-xs font-serif font-bold text-zinc-900 block">
                   Match Type
                 </label>
-                <p className="text-[11px] text-zinc-400 font-medium">
+                <p className="text-[11px] text-zinc-700 font-medium">
                   How should we match the source URL?
                 </p>
                 <select
@@ -213,7 +213,7 @@ export default function AddRedirectPage() {
                   <option value="Ignore Slash">Ignore Slash</option>
                   <option value="Regex Match">Regex Match</option>
                 </select>
-                <span className="text-[11px] text-zinc-400 font-medium block">
+                <span className="text-[11px] text-zinc-700 font-medium block">
                   Redirect only when the URL matches exactly.
                 </span>
               </div>
@@ -226,7 +226,7 @@ export default function AddRedirectPage() {
                 <label className="text-xs font-serif font-bold text-zinc-900 block">
                   Status
                 </label>
-                <p className="text-[11px] text-zinc-400 font-medium">
+                <p className="text-[11px] text-zinc-700 font-medium">
                   Enable or disable this redirect rule.
                 </p>
                 <div className="flex items-center gap-3 pt-1">
@@ -247,7 +247,7 @@ export default function AddRedirectPage() {
                     {isActive ? 'Active' : 'Inactive'}
                   </span>
                 </div>
-                <span className="text-[11px] text-zinc-400 font-medium block">
+                <span className="text-[11px] text-zinc-700 font-medium block">
                   Inactive redirects will not work.
                 </span>
               </div>
@@ -257,7 +257,7 @@ export default function AddRedirectPage() {
                 <label className="text-xs font-serif font-bold text-zinc-900 block">
                   Redirect Group (Optional)
                 </label>
-                <p className="text-[11px] text-zinc-400 font-medium">
+                <p className="text-[11px] text-zinc-700 font-medium">
                   Organize redirects using groups.
                 </p>
                 <select
@@ -270,7 +270,7 @@ export default function AddRedirectPage() {
                   <option value="Posts">Posts</option>
                   <option value="Services">Services</option>
                 </select>
-                <span className="text-[11px] text-zinc-400 font-medium block">
+                <span className="text-[11px] text-zinc-700 font-medium block">
                   You can manage groups from redirect settings.
                 </span>
               </div>
@@ -289,7 +289,7 @@ export default function AddRedirectPage() {
                 <label className="text-xs font-serif font-bold text-zinc-900 block">
                   Notes
                 </label>
-                <p className="text-[11px] text-zinc-400 font-medium">
+                <p className="text-[11px] text-zinc-700 font-medium">
                   Add a note to describe this redirect (for your reference).
                 </p>
                 <div className="relative">
@@ -300,7 +300,7 @@ export default function AddRedirectPage() {
                     placeholder="Enter note..."
                     className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 p-3.5 text-xs font-medium text-zinc-900 placeholder-zinc-400 focus:border-purple-600 focus:bg-white focus:outline-none transition-all resize-none"
                   />
-                  <span className="absolute right-3 bottom-3 text-[11px] font-semibold text-zinc-400">
+                  <span className="absolute right-3 bottom-3 text-[11px] font-semibold text-zinc-700">
                     {notes.length} / 255
                   </span>
                 </div>
@@ -311,7 +311,7 @@ export default function AddRedirectPage() {
                 <label className="text-xs font-serif font-bold text-zinc-900 block">
                   Exclude from Redirect Logs
                 </label>
-                <p className="text-[11px] text-zinc-400 font-medium">
+                <p className="text-[11px] text-zinc-700 font-medium">
                   Do not log hits for this redirect.
                 </p>
                 <div className="flex items-center gap-3 pt-2">
@@ -332,7 +332,7 @@ export default function AddRedirectPage() {
                     {excludeLogs ? 'Excluded' : 'Exclude'}
                   </span>
                 </div>
-                <span className="text-[11px] text-zinc-400 font-medium block pt-1">
+                <span className="text-[11px] text-zinc-700 font-medium block pt-1">
                   Useful for internal or system redirects.
                 </span>
               </div>
@@ -383,12 +383,12 @@ export default function AddRedirectPage() {
                 Need Help?
               </h3>
             </div>
-            <p className="text-xs text-zinc-500 font-medium leading-relaxed">
+            <p className="text-xs text-zinc-800 font-medium leading-relaxed">
               Learn more about redirects and best practices.
             </p>
             <button className="w-full flex items-center justify-center gap-2 rounded-xl border border-zinc-200 bg-white py-2.5 text-xs font-bold text-zinc-700 hover:bg-zinc-50 hover:border-zinc-300 transition-colors shadow-sm">
               <span>View Documentation</span>
-              <ExternalLink className="h-3.5 w-3.5 text-zinc-400" />
+              <ExternalLink className="h-3.5 w-3.5 text-zinc-700" />
             </button>
           </div>
         </div>

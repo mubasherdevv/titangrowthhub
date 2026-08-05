@@ -182,7 +182,7 @@ export default function GlobalSeoPage() {
           <h1 className="font-serif text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-950">
             Global SEO & Schema
           </h1>
-          <p className="mt-1 text-xs md:text-sm text-zinc-500 font-medium">
+          <p className="mt-1 text-xs md:text-sm text-zinc-800 font-medium">
             Manage global meta tags, JSON-LD schema generators, and robots.txt file configurations.
           </p>
         </div>
@@ -212,7 +212,7 @@ export default function GlobalSeoPage() {
             <Code className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-400 uppercase">Active Schemas</p>
+            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-700 uppercase">Active Schemas</p>
             <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">4</p>
             <p className="text-[11px] text-emerald-600 font-bold">JSON-LD Validated</p>
           </div>
@@ -223,7 +223,7 @@ export default function GlobalSeoPage() {
             <FileText className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-400 uppercase">Robots.txt Status</p>
+            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-700 uppercase">Robots.txt Status</p>
             <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">Valid</p>
             <p className="text-[11px] text-emerald-600 font-bold">Indexing Allowed</p>
           </div>
@@ -234,9 +234,9 @@ export default function GlobalSeoPage() {
             <Share2 className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-400 uppercase">OpenGraph</p>
+            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-700 uppercase">OpenGraph</p>
             <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">Active</p>
-            <p className="text-[11px] text-zinc-400 font-medium">FB & Twitter Cards</p>
+            <p className="text-[11px] text-zinc-700 font-medium">FB & Twitter Cards</p>
           </div>
         </div>
 
@@ -245,7 +245,7 @@ export default function GlobalSeoPage() {
             <CheckCircle2 className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-400 uppercase">Schema Health</p>
+            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-700 uppercase">Schema Health</p>
             <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">100%</p>
             <p className="text-[11px] text-purple-600 font-bold">Zero Errors</p>
           </div>
@@ -255,7 +255,7 @@ export default function GlobalSeoPage() {
       {/* Main Tabs Container */}
       <div className="rounded-2xl border border-zinc-200/80 bg-white shadow-sm overflow-hidden">
         {/* Navigation Tabs */}
-        <div className="flex items-center border-b border-zinc-200/80 px-4 pt-3 text-xs font-bold text-zinc-500 overflow-x-auto">
+        <div className="flex items-center border-b border-zinc-200/80 px-4 pt-3 text-xs font-bold text-zinc-800 overflow-x-auto">
           <button
             onClick={() => setActiveTab('meta')}
             className={`pb-3 px-4 border-b-2 font-serif tracking-wide transition-all ${
@@ -305,7 +305,7 @@ export default function GlobalSeoPage() {
             <div className="lg:col-span-6 space-y-5">
               <div>
                 <h3 className="font-serif text-sm font-bold text-zinc-950 mb-0.5">Google Search Snippet</h3>
-                <p className="text-xs text-zinc-400 font-medium">These fields control what Google shows for your site in search results.</p>
+                <p className="text-xs text-zinc-700 font-medium">These fields control what Google shows for your site in search results.</p>
               </div>
 
               <div className="space-y-1.5">
@@ -318,7 +318,7 @@ export default function GlobalSeoPage() {
                   maxLength={60}
                   className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none"
                 />
-                <p className="text-[11px] text-zinc-400">{siteName.length}/60 characters</p>
+                <p className="text-[11px] text-zinc-700">{siteName.length}/60 characters</p>
               </div>
 
               <div className="space-y-1.5">
@@ -331,7 +331,7 @@ export default function GlobalSeoPage() {
                   maxLength={60}
                   className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none"
                 />
-                <p className="text-[11px] text-zinc-400">Shown in browser tab as: {siteName || 'Site Name'} – {siteTagline || 'Tagline'}</p>
+                <p className="text-[11px] text-zinc-700">Shown in browser tab as: {siteName || 'Site Name'} – {siteTagline || 'Tagline'}</p>
               </div>
 
               <div className="space-y-1.5">
@@ -344,13 +344,13 @@ export default function GlobalSeoPage() {
                   maxLength={160}
                   className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none resize-none"
                 />
-                <p className={`text-[11px] font-medium ${ globalMetaDesc.length > 155 ? 'text-red-500' : globalMetaDesc.length > 120 ? 'text-amber-500' : 'text-zinc-400'}`}>{globalMetaDesc.length}/160 characters</p>
+                <p className={`text-[11px] font-medium ${ globalMetaDesc.length > 155 ? 'text-red-500' : globalMetaDesc.length > 120 ? 'text-amber-500' : 'text-zinc-700'}`}>{globalMetaDesc.length}/160 characters</p>
               </div>
 
               <div className="flex items-center justify-between rounded-xl border border-zinc-100 bg-zinc-50 p-4">
                 <div>
                   <p className="text-xs font-bold text-zinc-900">Allow Search Engine Indexing</p>
-                  <p className="text-[11px] text-zinc-400 font-medium mt-0.5">Disable to add noindex / nofollow to all pages</p>
+                  <p className="text-[11px] text-zinc-700 font-medium mt-0.5">Disable to add noindex / nofollow to all pages</p>
                 </div>
                 <button
                   onClick={() => setAllowIndexing(!allowIndexing)}
@@ -370,7 +370,7 @@ export default function GlobalSeoPage() {
             <div className="lg:col-span-6">
               <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5 space-y-4">
                 <div className="flex items-center gap-2">
-                  <Search className="h-4 w-4 text-zinc-400" />
+                  <Search className="h-4 w-4 text-zinc-700" />
                   <span className="text-xs font-bold text-zinc-900">Google Search Preview</span>
                 </div>
 
@@ -381,7 +381,7 @@ export default function GlobalSeoPage() {
                     <div className="w-4 h-4 rounded-full bg-orange-100 flex items-center justify-center">
                       <Globe className="h-2.5 w-2.5 text-orange-500" />
                     </div>
-                    <span className="text-[11px] text-zinc-500">titangrowthhub.com</span>
+                    <span className="text-[11px] text-zinc-800">titangrowthhub.com</span>
                   </div>
                   {/* Title */}
                   <p className="text-[17px] font-normal text-blue-600 hover:underline cursor-pointer leading-tight mb-1">
@@ -502,7 +502,7 @@ export default function GlobalSeoPage() {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="font-serif text-sm font-bold text-zinc-950">Robots.txt File Rules</h3>
-                <p className="text-xs text-zinc-400 font-medium mt-0.5">Control which pages search engine crawlers can access.</p>
+                <p className="text-xs text-zinc-700 font-medium mt-0.5">Control which pages search engine crawlers can access.</p>
               </div>
               <a
                 href="/robots.txt"
@@ -541,7 +541,7 @@ Disallow: /api/`}</pre>
                 onChange={(e) => setRobotsText(e.target.value)}
                 className="w-full font-mono text-xs bg-zinc-900 text-emerald-400 p-4 rounded-xl border border-zinc-800 focus:outline-none leading-relaxed"
               />
-              <p className="text-[11px] text-zinc-400 mt-1.5">After saving, visit <span className="text-orange-600 font-bold">/robots.txt</span> to verify your changes are live.</p>
+              <p className="text-[11px] text-zinc-700 mt-1.5">After saving, visit <span className="text-orange-600 font-bold">/robots.txt</span> to verify your changes are live.</p>
             </div>
           </div>
         )}
@@ -553,7 +553,7 @@ Disallow: /api/`}</pre>
             <div className="lg:col-span-6 space-y-5">
               <div>
                 <h3 className="font-serif text-sm font-bold text-zinc-950 mb-0.5">OpenGraph & Social Cards</h3>
-                <p className="text-xs text-zinc-400 font-medium">Controls how your site looks when shared on Facebook, WhatsApp, LinkedIn, and Twitter.</p>
+                <p className="text-xs text-zinc-700 font-medium">Controls how your site looks when shared on Facebook, WhatsApp, LinkedIn, and Twitter.</p>
               </div>
 
               <div className="space-y-1.5">
@@ -566,7 +566,7 @@ Disallow: /api/`}</pre>
                   maxLength={95}
                   className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none"
                 />
-                <p className="text-[11px] text-zinc-400">{ogTitle.length}/95 characters — Facebook shows up to 95 chars</p>
+                <p className="text-[11px] text-zinc-700">{ogTitle.length}/95 characters — Facebook shows up to 95 chars</p>
               </div>
 
               <div className="space-y-1.5">
@@ -579,7 +579,7 @@ Disallow: /api/`}</pre>
                   maxLength={200}
                   className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none resize-none"
                 />
-                <p className="text-[11px] text-zinc-400">{ogDescription.length}/200 characters</p>
+                <p className="text-[11px] text-zinc-700">{ogDescription.length}/200 characters</p>
               </div>
 
               <div className="space-y-1.5">
@@ -591,14 +591,14 @@ Disallow: /api/`}</pre>
                   placeholder="https://titangrowthhub.com/og-image.jpg (1200×630px recommended)"
                   className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none"
                 />
-                <p className="text-[11px] text-zinc-400">Recommended: 1200×630px JPG/PNG. This image appears in social share previews.</p>
+                <p className="text-[11px] text-zinc-700">Recommended: 1200×630px JPG/PNG. This image appears in social share previews.</p>
               </div>
 
               {/* OG Image Preview */}
               {ogImage && (
                 <div className="rounded-xl border border-zinc-200 overflow-hidden">
                   <img src={ogImage} alt="OG Preview" className="w-full h-32 object-cover" />
-                  <p className="text-[11px] text-zinc-400 px-3 py-2">OG Image Preview</p>
+                  <p className="text-[11px] text-zinc-700 px-3 py-2">OG Image Preview</p>
                 </div>
               )}
             </div>
@@ -609,33 +609,33 @@ Disallow: /api/`}</pre>
 
               {/* Facebook Card */}
               <div className="space-y-1">
-                <p className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider">Facebook / LinkedIn / WhatsApp</p>
+                <p className="text-[11px] font-bold text-zinc-800 uppercase tracking-wider">Facebook / LinkedIn / WhatsApp</p>
                 <div className="rounded-xl border border-zinc-200 overflow-hidden bg-white shadow-sm">
                   <div className="h-40 bg-zinc-100 flex items-center justify-center overflow-hidden">
                     {ogImage
                       ? <img src={ogImage} alt="" className="w-full h-full object-cover" />
-                      : <div className="flex flex-col items-center gap-2 text-zinc-400">
+                      : <div className="flex flex-col items-center gap-2 text-zinc-700">
                           <ImageIcon className="h-8 w-8" />
                           <span className="text-[11px]">1200×630px image here</span>
                         </div>
                     }
                   </div>
                   <div className="p-3 border-t border-zinc-100">
-                    <p className="text-[11px] uppercase text-zinc-400 tracking-wider">titangrowthhub.com</p>
+                    <p className="text-[11px] uppercase text-zinc-700 tracking-wider">titangrowthhub.com</p>
                     <p className="text-sm font-bold text-zinc-900 leading-tight mt-0.5">{ogTitle || 'Your OG Title appears here'}</p>
-                    <p className="text-[12px] text-zinc-500 mt-0.5 line-clamp-2">{ogDescription || 'Your OG description appears here when the link is shared on social media.'}</p>
+                    <p className="text-[12px] text-zinc-800 mt-0.5 line-clamp-2">{ogDescription || 'Your OG description appears here when the link is shared on social media.'}</p>
                   </div>
                 </div>
               </div>
 
               {/* Twitter Card */}
               <div className="space-y-1">
-                <p className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider">Twitter / X</p>
+                <p className="text-[11px] font-bold text-zinc-800 uppercase tracking-wider">Twitter / X</p>
                 <div className="rounded-xl border border-zinc-200 overflow-hidden bg-white shadow-sm">
                   <div className="h-32 bg-zinc-100 flex items-center justify-center overflow-hidden">
                     {ogImage
                       ? <img src={ogImage} alt="" className="w-full h-full object-cover" />
-                      : <div className="flex flex-col items-center gap-2 text-zinc-400">
+                      : <div className="flex flex-col items-center gap-2 text-zinc-700">
                           <Share2 className="h-6 w-6" />
                           <span className="text-[11px]">Twitter card image</span>
                         </div>
@@ -643,8 +643,8 @@ Disallow: /api/`}</pre>
                   </div>
                   <div className="p-3 border-t border-zinc-100">
                     <p className="text-[12px] font-bold text-zinc-900">{ogTitle || 'Twitter card title'}</p>
-                    <p className="text-[11px] text-zinc-500">{ogDescription || 'Twitter card description'}</p>
-                    <p className="text-[11px] text-zinc-400 mt-1">titangrowthhub.com</p>
+                    <p className="text-[11px] text-zinc-800">{ogDescription || 'Twitter card description'}</p>
+                    <p className="text-[11px] text-zinc-700 mt-1">titangrowthhub.com</p>
                   </div>
                 </div>
               </div>

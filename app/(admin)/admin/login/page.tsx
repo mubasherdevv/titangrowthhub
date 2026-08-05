@@ -82,7 +82,7 @@ function LoginPageContent() {
               <span>Welcome Back</span>
               <span className="animate-bounce">👋</span>
             </h1>
-            <p className="text-sm text-zinc-500 font-medium leading-relaxed">
+            <p className="text-sm text-zinc-800 font-medium leading-relaxed">
               Sign in to access your VistaSEO dashboard and manage your SEO performance.
             </p>
           </div>
@@ -143,7 +143,7 @@ function LoginPageContent() {
         </div>
 
         {/* Footer Copyright */}
-        <div className="text-xs font-semibold text-zinc-400">
+        <div className="text-xs font-semibold text-zinc-700">
           © 2025 VistaSEO. All rights reserved.
         </div>
       </div>
@@ -160,7 +160,7 @@ function LoginPageContent() {
               <h2 className="font-serif text-2xl sm:text-3xl font-extrabold text-zinc-950">
                 Admin Login
               </h2>
-              <p className="text-xs text-zinc-500 font-medium mt-1">
+              <p className="text-xs text-zinc-800 font-medium mt-1">
                 Please enter your credentials to continue
               </p>
             </div>
@@ -174,7 +174,7 @@ function LoginPageContent() {
                 Email address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-700" />
                 <input
                   type="email"
                   required
@@ -192,7 +192,7 @@ function LoginPageContent() {
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-700" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
@@ -204,7 +204,7 @@ function LoginPageContent() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-zinc-700 hover:text-zinc-600"
                 >
                   {showPassword ? (
                     <EyeOff className="h-4 w-4" />
@@ -265,7 +265,7 @@ function LoginPageContent() {
           {/* Divider */}
           <div className="relative flex items-center justify-center my-6">
             <div className="w-full border-t border-zinc-100" />
-            <span className="absolute bg-white px-3 text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
+            <span className="absolute bg-white px-3 text-[11px] font-semibold text-zinc-700 uppercase tracking-wider">
               or
             </span>
           </div>
@@ -274,7 +274,7 @@ function LoginPageContent() {
           <button
             type="button"
             disabled
-            className="w-full flex items-center justify-center gap-2.5 rounded-xl border border-zinc-200 bg-white py-3 text-xs font-bold text-zinc-400 shadow-sm cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-2.5 rounded-xl border border-zinc-200 bg-white py-3 text-xs font-bold text-zinc-700 shadow-sm cursor-not-allowed"
             title="Sign in with Google is not enabled yet"
           >
             <svg className="h-4 w-4" viewBox="0 0 24 24">
@@ -299,7 +299,7 @@ function LoginPageContent() {
           </button>
 
           {/* Contact Admin Link */}
-          <p className="text-center text-xs text-zinc-500 font-medium pt-2">
+          <p className="text-center text-xs text-zinc-800 font-medium pt-2">
             Don't have an account?{' '}
             <a href="#" className="font-bold text-purple-600 hover:underline">
               Contact administrator

@@ -155,7 +155,7 @@ export default function RedirectsPage() {
           <h1 className="font-serif text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-950">
             Redirects
           </h1>
-          <p className="mt-1 text-xs md:text-sm text-zinc-500 font-medium">
+          <p className="mt-1 text-xs md:text-sm text-zinc-800 font-medium">
             Manage 301, 302 and other redirects to improve your site structure and SEO.
           </p>
         </div>
@@ -163,11 +163,11 @@ export default function RedirectsPage() {
         {/* Action Buttons */}
         <div className="flex items-center gap-3">
           <button className="flex items-center gap-2 rounded-2xl border border-zinc-200 bg-white px-4 py-2.5 text-xs font-bold text-zinc-700 shadow-sm transition-all hover:bg-zinc-50 hover:border-zinc-300">
-            <Upload className="h-4 w-4 text-zinc-500" />
+            <Upload className="h-4 w-4 text-zinc-800" />
             <span>Import / Export</span>
           </button>
           <button className="flex items-center gap-2 rounded-2xl border border-zinc-200 bg-white px-4 py-2.5 text-xs font-bold text-zinc-700 shadow-sm transition-all hover:bg-zinc-50 hover:border-zinc-300">
-            <Settings className="h-4 w-4 text-zinc-500" />
+            <Settings className="h-4 w-4 text-zinc-800" />
             <span>Settings</span>
           </button>
           <div className="relative inline-flex rounded-2xl bg-purple-600 text-white shadow-md shadow-purple-600/20">
@@ -193,9 +193,9 @@ export default function RedirectsPage() {
             <Lock className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-400 uppercase">Total Redirects</p>
+            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-700 uppercase">Total Redirects</p>
             <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">{redirects.length}</p>
-            <p className="text-[11px] text-zinc-400 font-medium">All redirect rules</p>
+            <p className="text-[11px] text-zinc-700 font-medium">All redirect rules</p>
           </div>
         </div>
 
@@ -205,7 +205,7 @@ export default function RedirectsPage() {
             <CheckCircle2 className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-400 uppercase">Active</p>
+            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-700 uppercase">Active</p>
             <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">{redirects.filter(r => r.is_active).length}</p>
             <p className="text-[11px] text-emerald-600 font-extrabold">Working properly</p>
           </div>
@@ -217,7 +217,7 @@ export default function RedirectsPage() {
             <PauseCircle className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-400 uppercase">Inactive</p>
+            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-700 uppercase">Inactive</p>
             <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">{redirects.filter(r => !r.is_active).length}</p>
             <p className="text-[11px] text-amber-600 font-extrabold">Paused rules</p>
           </div>
@@ -230,9 +230,9 @@ export default function RedirectsPage() {
             <Globe className="h-6 w-6" />
           </div>
           <div>
-            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-400 uppercase">Types</p>
+            <p className="text-[11px] font-serif font-bold tracking-wider text-zinc-700 uppercase">Types</p>
             <p className="font-serif text-2xl font-black text-zinc-950 mt-0.5">2</p>
-            <p className="text-[11px] text-zinc-400 font-medium">301, 302</p>
+            <p className="text-[11px] text-zinc-700 font-medium">301, 302</p>
           </div>
         </div>
       </div>
@@ -243,7 +243,7 @@ export default function RedirectsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 flex-1">
             {/* Search Input */}
             <div className="relative">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-700" />
               <input
                 type="text"
                 value={searchQuery}
@@ -290,7 +290,7 @@ export default function RedirectsPage() {
           {/* Action Buttons Right */}
           <div className="flex items-center gap-2 self-end lg:self-auto">
             <button className="flex items-center gap-2 rounded-xl border border-zinc-200 bg-white px-3.5 py-2.5 text-xs font-bold text-zinc-700 hover:bg-zinc-50">
-              <Filter className="h-3.5 w-3.5 text-zinc-500" />
+              <Filter className="h-3.5 w-3.5 text-zinc-800" />
               <span>Filters</span>
             </button>
             <button
@@ -308,7 +308,7 @@ export default function RedirectsPage() {
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-zinc-200/80 bg-zinc-50/50 text-zinc-400 font-serif font-bold uppercase tracking-wider">
+              <tr className="border-b border-zinc-200/80 bg-zinc-50/50 text-zinc-700 font-serif font-bold uppercase tracking-wider">
                 <th className="py-4 px-4 w-10">
                   <input
                     type="checkbox"
@@ -383,7 +383,7 @@ export default function RedirectsPage() {
                     <td className="py-4 px-4">
                       <div className="flex items-center gap-1.5 font-mono text-xs font-semibold text-zinc-800 group-hover:text-purple-600 transition-colors">
                         <span>{rule.from_path}</span>
-                        <ExternalLink className="h-3 w-3 text-zinc-400 shrink-0" />
+                        <ExternalLink className="h-3 w-3 text-zinc-700 shrink-0" />
                       </div>
                     </td>
 
@@ -391,7 +391,7 @@ export default function RedirectsPage() {
                     <td className="py-4 px-4">
                       <div className="flex items-center gap-1.5 font-mono text-xs font-semibold text-zinc-800">
                         <span>{rule.to_path}</span>
-                        <ExternalLink className="h-3 w-3 text-zinc-400 shrink-0" />
+                        <ExternalLink className="h-3 w-3 text-zinc-700 shrink-0" />
                       </div>
                     </td>
 
@@ -429,7 +429,7 @@ export default function RedirectsPage() {
                     </td>
 
                     {/* Last Accessed */}
-                    <td className="py-4 px-4 text-xs text-zinc-500 font-medium">
+                    <td className="py-4 px-4 text-xs text-zinc-800 font-medium">
                       {rule.last_accessed ? new Date(rule.last_accessed).toLocaleString() : '-'}
                     </td>
 
@@ -439,7 +439,7 @@ export default function RedirectsPage() {
                         {/* Edit Button */}
                         <button
                           title="Edit Redirect"
-                          className="flex h-7 w-7 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-100 hover:text-zinc-800"
+                          className="flex h-7 w-7 items-center justify-center rounded-lg text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-800"
                         >
                           <Edit2 className="h-3.5 w-3.5" />
                         </button>
@@ -463,7 +463,7 @@ export default function RedirectsPage() {
                         <button
                           onClick={() => handleDelete(rule.id)}
                           title="Delete Redirect"
-                          className="flex h-7 w-7 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-red-50 hover:text-red-600"
+                          className="flex h-7 w-7 items-center justify-center rounded-lg text-zinc-700 transition-colors hover:bg-red-50 hover:text-red-600"
                         >
                           <Trash2 className="h-3.5 w-3.5" />
                         </button>
@@ -477,7 +477,7 @@ export default function RedirectsPage() {
         </div>
 
         {/* Footer & Bulk Actions */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-zinc-100 bg-white px-6 py-4 text-xs font-semibold text-zinc-500">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-zinc-100 bg-white px-6 py-4 text-xs font-semibold text-zinc-800">
           {/* Bulk Actions Left */}
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <select className="rounded-xl border border-zinc-200 bg-white px-3 py-2 text-xs font-semibold text-zinc-700 focus:border-purple-600 focus:outline-none">
@@ -492,14 +492,14 @@ export default function RedirectsPage() {
           </div>
 
           {/* Showing Count */}
-          <div className="text-zinc-400">Showing 1 to 8 of 120 redirects</div>
+          <div className="text-zinc-700">Showing 1 to 8 of 120 redirects</div>
 
           {/* Pagination Right */}
           <div className="flex items-center gap-1.5">
             <button
               disabled={currentPage === 1}
               onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-zinc-500 disabled:opacity-40 hover:bg-zinc-50"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-zinc-800 disabled:opacity-40 hover:bg-zinc-50"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
@@ -533,7 +533,7 @@ export default function RedirectsPage() {
             >
               3
             </button>
-            <span className="px-1 text-zinc-400">...</span>
+            <span className="px-1 text-zinc-700">...</span>
             <button
               onClick={() => setCurrentPage(15)}
               className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-xs font-bold text-zinc-700 hover:bg-zinc-50"
@@ -542,7 +542,7 @@ export default function RedirectsPage() {
             </button>
             <button
               onClick={() => setCurrentPage((p) => Math.min(15, p + 1))}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-zinc-500 hover:bg-zinc-50"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-zinc-800 hover:bg-zinc-50"
             >
               <ChevronRight className="h-4 w-4" />
             </button>

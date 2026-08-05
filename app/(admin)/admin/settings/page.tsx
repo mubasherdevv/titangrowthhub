@@ -267,7 +267,7 @@ export default function SettingsPage() {
           <h1 className="font-serif text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-950">
             Settings
           </h1>
-          <p className="mt-1 text-xs md:text-sm text-zinc-500 font-medium">
+          <p className="mt-1 text-xs md:text-sm text-zinc-800 font-medium">
             Manage your website preferences, global SEO configurations, API keys, and team members.
           </p>
         </div>
@@ -294,7 +294,7 @@ export default function SettingsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Inner Settings Sub-Sidebar (4 Columns on LG) */}
         <div className="lg:col-span-4 rounded-2xl border border-zinc-200/80 bg-white p-3 shadow-sm space-y-1">
-          <h3 className="px-3 py-2 text-[10px] font-serif font-bold uppercase tracking-widest text-zinc-400">
+          <h3 className="px-3 py-2 text-[10px] font-serif font-bold uppercase tracking-widest text-zinc-700">
             System Preferences
           </h3>
           {navItems.map((item) => {
@@ -313,14 +313,14 @@ export default function SettingsPage() {
                 <div className="flex items-center gap-3.5 min-w-0">
                   <div
                     className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors ${
-                      isActive ? 'bg-orange-600 text-white' : 'bg-zinc-100 text-zinc-500'
+                      isActive ? 'bg-orange-600 text-white' : 'bg-zinc-100 text-zinc-800'
                     }`}
                   >
                     <Icon className="h-4.5 w-4.5" />
                   </div>
                   <div className="min-w-0">
                     <p className="font-serif text-xs font-bold truncate">{item.label}</p>
-                    <p className="text-[11px] text-zinc-400 font-normal truncate">{item.subtitle}</p>
+                    <p className="text-[11px] text-zinc-700 font-normal truncate">{item.subtitle}</p>
                   </div>
                 </div>
                 <ChevronRight className={`h-4 w-4 shrink-0 transition-transform ${isActive ? 'text-orange-600 translate-x-0.5' : 'text-zinc-300'}`} />
@@ -338,7 +338,7 @@ export default function SettingsPage() {
                 <h2 className="font-serif text-lg font-bold text-zinc-950">
                   General Settings
                 </h2>
-                <p className="text-xs text-zinc-500 font-medium mt-0.5">
+                <p className="text-xs text-zinc-800 font-medium mt-0.5">
                   Configure your site identity, logo, favicon, and regional preferences.
                 </p>
               </div>
@@ -388,7 +388,7 @@ export default function SettingsPage() {
                   <h3 className="font-serif text-sm font-bold text-zinc-950">
                     Branding Assets (Logo & Favicon)
                   </h3>
-                  <p className="text-[11px] text-zinc-400 font-medium mt-0.5">
+                  <p className="text-[11px] text-zinc-700 font-medium mt-0.5">
                     Upload your official website brand logo and browser favicon.
                   </p>
                 </div>
@@ -416,7 +416,7 @@ export default function SettingsPage() {
 
                       <div className="space-y-1">
                         <label className="cursor-pointer inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-bold text-zinc-700 shadow-sm hover:bg-zinc-50">
-                          <Upload className="h-3.5 w-3.5 text-zinc-500" />
+                          <Upload className="h-3.5 w-3.5 text-zinc-800" />
                           <span>Upload Logo</span>
                           <input
                             type="file"
@@ -435,7 +435,7 @@ export default function SettingsPage() {
                         )}
                       </div>
                     </div>
-                    <span className="text-[10px] text-zinc-400 block font-medium">
+                    <span className="text-[10px] text-zinc-700 block font-medium">
                       Recommended: 512 x 512px (PNG, SVG, or WebP)
                     </span>
                   </div>
@@ -459,7 +459,7 @@ export default function SettingsPage() {
 
                       <div className="space-y-1">
                         <label className="cursor-pointer inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-bold text-zinc-700 shadow-sm hover:bg-zinc-50">
-                          <Upload className="h-3.5 w-3.5 text-zinc-500" />
+                          <Upload className="h-3.5 w-3.5 text-zinc-800" />
                           <span>Upload Favicon</span>
                           <input
                             type="file"
@@ -478,7 +478,7 @@ export default function SettingsPage() {
                         )}
                       </div>
                     </div>
-                    <span className="text-[10px] text-zinc-400 block font-medium">
+                    <span className="text-[10px] text-zinc-700 block font-medium">
                       Appears in browser tabs. Recommended: 32 x 32px (ICO, PNG, or SVG)
                     </span>
                   </div>
@@ -528,7 +528,7 @@ export default function SettingsPage() {
               <div className="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm space-y-6">
                 <div className="border-b border-zinc-100 pb-4">
                   <h2 className="font-serif text-lg font-bold text-zinc-950">Global SEO Configurations</h2>
-                  <p className="text-xs text-zinc-500 font-medium mt-0.5">Set default meta patterns, global descriptions, and indexing behavior.</p>
+                  <p className="text-xs text-zinc-800 font-medium mt-0.5">Set default meta patterns, global descriptions, and indexing behavior.</p>
                 </div>
 
                 {/* Title Pattern */}
@@ -540,7 +540,7 @@ export default function SettingsPage() {
                     onChange={(e) => setDefaultTitlePattern(e.target.value)}
                     className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
                   />
-                  <span className="text-[11px] text-zinc-400 font-medium block">Available tags: %page_title%, %site_name%, %separator%</span>
+                  <span className="text-[11px] text-zinc-700 font-medium block">Available tags: %page_title%, %site_name%, %separator%</span>
                 </div>
 
                 {/* Global Meta Description */}
@@ -558,7 +558,7 @@ export default function SettingsPage() {
                 <div className="flex items-center justify-between rounded-xl border border-zinc-100 bg-zinc-50/40 p-4">
                   <div>
                     <p className="text-xs font-bold text-zinc-900">Discourage Search Engine Indexing</p>
-                    <p className="text-[11px] text-zinc-400 font-medium">When enabled, adds noindex meta tag to all pages.</p>
+                    <p className="text-[11px] text-zinc-700 font-medium">When enabled, adds noindex meta tag to all pages.</p>
                   </div>
                   <button
                     type="button"
@@ -581,13 +581,13 @@ export default function SettingsPage() {
                 <div className="px-6 py-4 border-b border-zinc-100 flex items-center justify-between">
                   <div>
                     <h2 className="font-serif text-base font-bold text-zinc-950">Page Meta Title &amp; Description</h2>
-                    <p className="text-xs text-zinc-500 font-medium mt-0.5">Edit meta title and description for each page — controls what Google shows in search results.</p>
+                    <p className="text-xs text-zinc-800 font-medium mt-0.5">Edit meta title and description for each page — controls what Google shows in search results.</p>
                   </div>
-                  <span className="text-[11px] font-bold text-zinc-400 bg-zinc-100 rounded-full px-2.5 py-1">{pageMeta.length} pages</span>
+                  <span className="text-[11px] font-bold text-zinc-700 bg-zinc-100 rounded-full px-2.5 py-1">{pageMeta.length} pages</span>
                 </div>
 
                 {pageMetaLoading ? (
-                  <div className="p-8 text-center text-xs text-zinc-400">Loading pages...</div>
+                  <div className="p-8 text-center text-xs text-zinc-700">Loading pages...</div>
                 ) : (
                   <div className="divide-y divide-zinc-100">
                     {pageMeta.map((page) => {
@@ -609,12 +609,12 @@ export default function SettingsPage() {
                               </div>
                               <div className="min-w-0">
                                 <p className="text-xs font-bold text-zinc-900">{page.label}</p>
-                                <p className="text-[11px] text-zinc-400 font-mono">{page.url}</p>
+                                <p className="text-[11px] text-zinc-700 font-mono">{page.url}</p>
                               </div>
                             </div>
                             <div className="flex items-center gap-3 shrink-0 ml-4">
                               <div className="hidden sm:flex flex-col items-end gap-0.5">
-                                <p className="text-[11px] text-zinc-500 truncate max-w-[200px]">{page.metaTitle}</p>
+                                <p className="text-[11px] text-zinc-800 truncate max-w-[200px]">{page.metaTitle}</p>
                                 <p className={`text-[10px] font-bold ${ titleLen > 60 ? 'text-red-500' : titleLen > 50 ? 'text-amber-500' : 'text-emerald-600'}`}>{titleLen}/60</p>
                               </div>
                               <ChevronRight className={`h-4 w-4 text-zinc-300 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
@@ -630,7 +630,7 @@ export default function SettingsPage() {
                                   <div className="space-y-1.5">
                                     <div className="flex items-center justify-between">
                                       <label className="text-xs font-serif font-bold text-zinc-900">Meta Title</label>
-                                      <span className={`text-[11px] font-bold ${ titleLen > 60 ? 'text-red-500' : titleLen > 50 ? 'text-amber-500' : 'text-zinc-400'}`}>{titleLen}/60</span>
+                                      <span className={`text-[11px] font-bold ${ titleLen > 60 ? 'text-red-500' : titleLen > 50 ? 'text-amber-500' : 'text-zinc-700'}`}>{titleLen}/60</span>
                                     </div>
                                     <input
                                       type="text"
@@ -639,13 +639,13 @@ export default function SettingsPage() {
                                       maxLength={70}
                                       className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:outline-none"
                                     />
-                                    <p className="text-[11px] text-zinc-400">Recommended: 50–60 characters. Google truncates beyond 60.</p>
+                                    <p className="text-[11px] text-zinc-700">Recommended: 50–60 characters. Google truncates beyond 60.</p>
                                   </div>
 
                                   <div className="space-y-1.5">
                                     <div className="flex items-center justify-between">
                                       <label className="text-xs font-serif font-bold text-zinc-900">Meta Description</label>
-                                      <span className={`text-[11px] font-bold ${ descLen > 155 ? 'text-red-500' : descLen > 130 ? 'text-amber-500' : 'text-zinc-400'}`}>{descLen}/155</span>
+                                      <span className={`text-[11px] font-bold ${ descLen > 155 ? 'text-red-500' : descLen > 130 ? 'text-amber-500' : 'text-zinc-700'}`}>{descLen}/155</span>
                                     </div>
                                     <textarea
                                       rows={3}
@@ -654,7 +654,7 @@ export default function SettingsPage() {
                                       maxLength={160}
                                       className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:outline-none resize-none"
                                     />
-                                    <p className="text-[11px] text-zinc-400">Recommended: 120–155 characters.</p>
+                                    <p className="text-[11px] text-zinc-700">Recommended: 120–155 characters.</p>
                                   </div>
 
                                   <div className="flex items-center gap-3">
@@ -671,7 +671,7 @@ export default function SettingsPage() {
                                     </button>
                                     <button
                                       onClick={() => resetPageMeta(page.slug)}
-                                      className="text-[11px] font-bold text-zinc-500 hover:text-zinc-700 underline"
+                                      className="text-[11px] font-bold text-zinc-800 hover:text-zinc-700 underline"
                                     >
                                       Reset to Default
                                     </button>
@@ -680,18 +680,18 @@ export default function SettingsPage() {
 
                                 {/* Right: Google Preview */}
                                 <div className="space-y-2">
-                                  <p className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider">Google Search Preview</p>
+                                  <p className="text-[11px] font-bold text-zinc-800 uppercase tracking-wider">Google Search Preview</p>
                                   <div className="rounded-xl border border-zinc-200 bg-white p-4 shadow-sm">
                                     <div className="flex items-center gap-2 mb-2">
                                       <div className="w-4 h-4 rounded-full bg-orange-100 flex items-center justify-center">
                                         <Globe className="h-2.5 w-2.5 text-orange-500" />
                                       </div>
-                                      <span className="text-[11px] text-zinc-500">titangrowthhub.com{page.url}</span>
+                                      <span className="text-[11px] text-zinc-800">titangrowthhub.com{page.url}</span>
                                     </div>
                                     <p className="text-[16px] font-normal text-blue-600 leading-snug mb-1 line-clamp-1">{page.metaTitle || 'Meta Title'}</p>
                                     <p className="text-[12px] text-zinc-600 leading-snug line-clamp-2">{page.metaDesc || 'Meta description will appear here.'}</p>
                                   </div>
-                                  <p className="text-[10px] text-zinc-400">Preview is approximate. Google may rewrite titles/descriptions.</p>
+                                  <p className="text-[10px] text-zinc-700">Preview is approximate. Google may rewrite titles/descriptions.</p>
                                 </div>
                               </div>
                             </div>
@@ -713,7 +713,7 @@ export default function SettingsPage() {
                   <h2 className="font-serif text-lg font-bold text-zinc-950">
                     AI & Content Generation Models
                   </h2>
-                  <p className="text-xs text-zinc-500 font-medium mt-0.5">
+                  <p className="text-xs text-zinc-800 font-medium mt-0.5">
                     Configure multiple AI API providers with fallback. If Model 1 fails, Model 2 will be used.
                   </p>
                 </div>
@@ -811,7 +811,7 @@ export default function SettingsPage() {
                 <h2 className="font-serif text-lg font-bold text-zinc-950">
                   Google Search Console Verification
                 </h2>
-                <p className="text-xs text-zinc-500 font-medium mt-0.5">
+                <p className="text-xs text-zinc-800 font-medium mt-0.5">
                   Verify ownership of your site using a Meta Tag or by uploading the HTML verification file string.
                 </p>
               </div>
@@ -821,7 +821,7 @@ export default function SettingsPage() {
                   <label className="text-xs font-serif font-bold text-zinc-900 block">
                     Meta Tag Verification
                   </label>
-                  <p className="text-[11px] text-zinc-500">Paste the full meta tag (e.g., <code>&lt;meta name="google-site-verification" content="..." /&gt;</code>)</p>
+                  <p className="text-[11px] text-zinc-800">Paste the full meta tag (e.g., <code>&lt;meta name="google-site-verification" content="..." /&gt;</code>)</p>
                   <input
                     type="text"
                     value={gscVerificationMeta}
@@ -836,7 +836,7 @@ export default function SettingsPage() {
                     <label className="text-xs font-serif font-bold text-zinc-900 block">
                       HTML File Verification
                     </label>
-                    <p className="text-[11px] text-zinc-500 mb-2">If you prefer HTML file verification, enter the filename and content Google provided.</p>
+                    <p className="text-[11px] text-zinc-800 mb-2">If you prefer HTML file verification, enter the filename and content Google provided.</p>
                   </div>
                   
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -875,7 +875,7 @@ export default function SettingsPage() {
                   <h2 className="font-serif text-lg font-bold text-zinc-950">
                     Team Members
                   </h2>
-                  <p className="text-xs text-zinc-500 font-medium mt-0.5">
+                  <p className="text-xs text-zinc-800 font-medium mt-0.5">
                     Manage users who have access to this admin dashboard.
                   </p>
                 </div>
@@ -893,7 +893,7 @@ export default function SettingsPage() {
                     </div>
                     <div>
                       <p className="text-xs font-bold text-zinc-900">John Doe (You)</p>
-                      <p className="text-[11px] text-zinc-400">admin@vistaseo.com</p>
+                      <p className="text-[11px] text-zinc-700">admin@vistaseo.com</p>
                     </div>
                   </div>
                   <span className="inline-flex items-center rounded-full bg-orange-50 px-2.5 py-0.5 text-[11px] font-bold text-orange-600 border border-orange-200/60">
@@ -908,7 +908,7 @@ export default function SettingsPage() {
                     </div>
                     <div>
                       <p className="text-xs font-bold text-zinc-900">Alex Smith</p>
-                      <p className="text-[11px] text-zinc-400">alex@vistaseo.com</p>
+                      <p className="text-[11px] text-zinc-700">alex@vistaseo.com</p>
                     </div>
                   </div>
                   <span className="inline-flex items-center rounded-full bg-zinc-100 px-2.5 py-0.5 text-[11px] font-bold text-zinc-600 border border-zinc-200">
@@ -921,7 +921,7 @@ export default function SettingsPage() {
 
           {/* TAB 5 & 6 PLACEHOLDERS */}
           {activeTab === 'notifications' && (
-            <div className="rounded-2xl border border-zinc-200/80 bg-white p-8 text-center text-xs text-zinc-500 space-y-2">
+            <div className="rounded-2xl border border-zinc-200/80 bg-white p-8 text-center text-xs text-zinc-800 space-y-2">
               <p className="font-bold text-zinc-900 text-sm capitalize">{activeTab} Preferences</p>
               <p>Configure {activeTab} policies, authentication protocols, and system triggers.</p>
             </div>

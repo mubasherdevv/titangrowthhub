@@ -154,7 +154,7 @@ export default function AddNewServicePage() {
           <h1 className="font-serif text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-950">
             Add New Service
           </h1>
-          <p className="mt-1 text-xs md:text-sm text-zinc-500 font-medium">
+          <p className="mt-1 text-xs md:text-sm text-zinc-800 font-medium">
             Create a new service page and optimize for search engines.
           </p>
         </div>
@@ -166,11 +166,11 @@ export default function AddNewServicePage() {
             disabled={isSubmitting}
             className="flex items-center gap-2 rounded-2xl border border-zinc-200 bg-white px-4 py-2.5 text-xs font-bold text-zinc-700 shadow-sm transition-all hover:bg-zinc-50 hover:border-zinc-300 disabled:opacity-50"
           >
-            <Save className="h-4 w-4 text-zinc-500" />
+            <Save className="h-4 w-4 text-zinc-800" />
             <span>{isSubmitting ? 'Saving...' : 'Save Draft'}</span>
           </button>
           <button className="flex items-center gap-2 rounded-2xl border border-zinc-200 bg-white px-4 py-2.5 text-xs font-bold text-zinc-700 shadow-sm transition-all hover:bg-zinc-50 hover:border-zinc-300">
-            <Eye className="h-4 w-4 text-zinc-500" />
+            <Eye className="h-4 w-4 text-zinc-800" />
             <span>Preview</span>
           </button>
           <div className="relative inline-flex rounded-2xl bg-orange-600 text-white shadow-md shadow-orange-600/20">
@@ -194,7 +194,7 @@ export default function AddNewServicePage() {
         {/* Left Column: Form Fields & Navigation Tabs (8 Cols) */}
         <div className="lg:col-span-8 space-y-6">
           {/* Form Tabs Bar */}
-          <div className="flex items-center border-b border-zinc-200/80 bg-white rounded-2xl px-4 pt-3 text-xs font-bold text-zinc-500 shadow-sm overflow-x-auto">
+          <div className="flex items-center border-b border-zinc-200/80 bg-white rounded-2xl px-4 pt-3 text-xs font-bold text-zinc-800 shadow-sm overflow-x-auto">
             <button
               onClick={() => setActiveTab('general')}
               className={`pb-3 px-4 border-b-2 font-serif tracking-wide transition-all ${
@@ -246,7 +246,7 @@ export default function AddNewServicePage() {
                   <label className="text-xs font-serif font-bold text-zinc-900">
                     Service Title <span className="text-red-500">*</span>
                   </label>
-                  <span className="text-[11px] font-semibold text-zinc-400">
+                  <span className="text-[11px] font-semibold text-zinc-700">
                     {title.length} / 60
                   </span>
                 </div>
@@ -267,12 +267,12 @@ export default function AddNewServicePage() {
                     <label className="text-xs font-serif font-bold text-zinc-900">
                       Slug <span className="text-red-500">*</span>
                     </label>
-                    <span className="text-[11px] font-semibold text-zinc-400">
+                    <span className="text-[11px] font-semibold text-zinc-700">
                       {slug.length} / 100
                     </span>
                   </div>
                   <div className="flex items-center rounded-xl border border-zinc-200 bg-zinc-50/50 overflow-hidden focus-within:border-orange-500 focus-within:bg-white transition-all">
-                    <span className="bg-zinc-100 px-3 py-2.5 text-xs font-medium text-zinc-500 border-r border-zinc-200 shrink-0">
+                    <span className="bg-zinc-100 px-3 py-2.5 text-xs font-medium text-zinc-800 border-r border-zinc-200 shrink-0">
                       /services/
                     </span>
                     <input
@@ -318,7 +318,7 @@ export default function AddNewServicePage() {
                     placeholder="Enter a short description about this service..."
                     className="w-full rounded-xl border border-zinc-200 bg-zinc-50/50 p-4 text-xs font-medium text-zinc-900 placeholder-zinc-400 focus:border-orange-500 focus:bg-white focus:outline-none transition-all resize-none"
                   />
-                  <span className="absolute right-3 bottom-3 text-[11px] font-semibold text-zinc-400">
+                  <span className="absolute right-3 bottom-3 text-[11px] font-semibold text-zinc-700">
                     {shortDesc.length} / 160
                   </span>
                 </div>
@@ -331,14 +331,14 @@ export default function AddNewServicePage() {
                 </label>
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 rounded-xl border-2 border-dashed border-zinc-200 bg-zinc-50/40 p-5 transition-all hover:border-orange-300 hover:bg-orange-50/20">
                   <div className="flex items-center gap-3.5">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-400">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-700">
                       <ImageIcon className="h-6 w-6" />
                     </div>
                     <div>
                       <p className="text-xs font-bold text-zinc-800">
                         Click to upload image
                       </p>
-                      <p className="text-[11px] text-zinc-400 font-medium">
+                      <p className="text-[11px] text-zinc-700 font-medium">
                         Recommended size: 1200 x 630px (16:9)
                       </p>
                     </div>
@@ -428,7 +428,7 @@ export default function AddNewServicePage() {
                   className="w-full rounded-xl border border-zinc-200 bg-white p-4 text-xs font-normal text-zinc-900 placeholder-zinc-400 focus:border-orange-500 focus:outline-none transition-all leading-relaxed"
                 />
 
-                <div className="flex items-center justify-between text-[11px] text-zinc-400 font-medium pt-1">
+                <div className="flex items-center justify-between text-[11px] text-zinc-700 font-medium pt-1">
                   <span>Word count: {content.trim() ? content.trim().split(/\s+/).length : 0}</span>
                   <span>Characters: {content.length}</span>
                 </div>
@@ -443,15 +443,15 @@ export default function AddNewServicePage() {
                   </label>
                   <div className="flex items-center justify-between rounded-xl border border-zinc-200 bg-zinc-50/40 p-3 hover:bg-zinc-50 cursor-pointer transition-colors">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-zinc-100 text-zinc-500">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-zinc-100 text-zinc-800">
                         <User className="h-4 w-4" />
                       </div>
                       <div>
                         <p className="text-xs font-bold text-zinc-800">Click to select icon</p>
-                        <p className="text-[11px] text-zinc-400">Select an icon that represents this service</p>
+                        <p className="text-[11px] text-zinc-700">Select an icon that represents this service</p>
                       </div>
                     </div>
-                    <ChevronRight className="h-4 w-4 text-zinc-400" />
+                    <ChevronRight className="h-4 w-4 text-zinc-700" />
                   </div>
                 </div>
 
@@ -466,7 +466,7 @@ export default function AddNewServicePage() {
                     onChange={(e) => setDisplayOrder(e.target.value)}
                     className="w-full rounded-xl border border-zinc-200 bg-zinc-50/50 px-4 py-2.5 text-xs font-semibold text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none"
                   />
-                  <span className="text-[11px] text-zinc-400 block font-medium">Lower numbers appear first</span>
+                  <span className="text-[11px] text-zinc-700 block font-medium">Lower numbers appear first</span>
                 </div>
               </div>
             </>
@@ -480,7 +480,7 @@ export default function AddNewServicePage() {
                 <h2 className="font-serif text-xl font-extrabold text-zinc-950">
                   SEO Settings
                 </h2>
-                <p className="text-xs text-zinc-500 font-medium mt-0.5">
+                <p className="text-xs text-zinc-800 font-medium mt-0.5">
                   Optimize your service page for search engines and improve visibility.
                 </p>
               </div>
@@ -492,9 +492,9 @@ export default function AddNewServicePage() {
                     <label className="text-xs font-serif font-bold text-zinc-900">
                       SEO Title
                     </label>
-                    <Info className="h-3.5 w-3.5 text-zinc-400 cursor-pointer" />
+                    <Info className="h-3.5 w-3.5 text-zinc-700 cursor-pointer" />
                   </div>
-                  <span className="text-[11px] font-semibold text-zinc-400">
+                  <span className="text-[11px] font-semibold text-zinc-700">
                     {seoTitle.length} / 60
                   </span>
                 </div>
@@ -527,7 +527,7 @@ export default function AddNewServicePage() {
                     <label className="text-xs font-serif font-bold text-zinc-900">
                       Meta Description
                     </label>
-                    <Info className="h-3.5 w-3.5 text-zinc-400 cursor-pointer" />
+                    <Info className="h-3.5 w-3.5 text-zinc-700 cursor-pointer" />
                   </div>
                 </div>
                 <div className="relative">
@@ -538,7 +538,7 @@ export default function AddNewServicePage() {
                     placeholder="Boost your business with our professional Local SEO services..."
                     className="w-full rounded-xl border border-zinc-200 bg-zinc-50/30 p-4 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none transition-all resize-none leading-relaxed"
                   />
-                  <span className="absolute right-3 bottom-3 text-[11px] font-semibold text-zinc-400">
+                  <span className="absolute right-3 bottom-3 text-[11px] font-semibold text-zinc-700">
                     {seoMetaDesc.length} / 160
                   </span>
                 </div>
@@ -563,10 +563,10 @@ export default function AddNewServicePage() {
                   <label className="text-xs font-serif font-bold text-zinc-900">
                     URL Slug
                   </label>
-                  <Info className="h-3.5 w-3.5 text-zinc-400 cursor-pointer" />
+                  <Info className="h-3.5 w-3.5 text-zinc-700 cursor-pointer" />
                 </div>
                 <div className="flex items-center rounded-xl border border-zinc-200 bg-zinc-50/40 overflow-hidden focus-within:border-orange-500 focus-within:bg-white transition-all">
-                  <span className="bg-zinc-100 px-3.5 py-2.5 text-xs font-medium text-zinc-500 border-r border-zinc-200 shrink-0">
+                  <span className="bg-zinc-100 px-3.5 py-2.5 text-xs font-medium text-zinc-800 border-r border-zinc-200 shrink-0">
                     yoursite.com/services/
                   </span>
                   <input
@@ -577,7 +577,7 @@ export default function AddNewServicePage() {
                     className="w-full bg-transparent px-3 py-2.5 text-xs font-medium text-zinc-900 focus:outline-none"
                   />
                 </div>
-                <span className="text-[11px] text-zinc-400 font-medium block">
+                <span className="text-[11px] text-zinc-700 font-medium block">
                   Short, descriptive and keyword focused URL is recommended.
                 </span>
               </div>
@@ -589,9 +589,9 @@ export default function AddNewServicePage() {
                     <label className="text-xs font-serif font-bold text-zinc-900">
                       Focus Keyword
                     </label>
-                    <Info className="h-3.5 w-3.5 text-zinc-400 cursor-pointer" />
+                    <Info className="h-3.5 w-3.5 text-zinc-700 cursor-pointer" />
                   </div>
-                  <span className="text-[11px] font-semibold text-zinc-400">
+                  <span className="text-[11px] font-semibold text-zinc-700">
                     {focusKeyword.split(' ').length} / 80
                   </span>
                 </div>
@@ -602,7 +602,7 @@ export default function AddNewServicePage() {
                   placeholder="local seo services"
                   className="w-full rounded-xl border border-zinc-200 bg-zinc-50/30 px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none transition-all"
                 />
-                <span className="text-[11px] text-zinc-400 font-medium block">
+                <span className="text-[11px] text-zinc-700 font-medium block">
                   This keyword will be used to calculate your SEO score.
                 </span>
               </div>
@@ -613,7 +613,7 @@ export default function AddNewServicePage() {
                   <label className="text-xs font-serif font-bold text-zinc-900">
                     Canonical URL
                   </label>
-                  <Info className="h-3.5 w-3.5 text-zinc-400 cursor-pointer" />
+                  <Info className="h-3.5 w-3.5 text-zinc-700 cursor-pointer" />
                 </div>
                 <input
                   type="text"
@@ -622,7 +622,7 @@ export default function AddNewServicePage() {
                   placeholder="https://yoursite.com/services/local-seo-services"
                   className="w-full rounded-xl border border-zinc-200 bg-zinc-50/30 px-4 py-2.5 text-xs font-medium text-zinc-900 focus:border-orange-500 focus:bg-white focus:outline-none transition-all"
                 />
-                <span className="text-[11px] text-zinc-400 font-medium block">
+                <span className="text-[11px] text-zinc-700 font-medium block">
                   The canonical URL helps prevent duplicate content issues.
                 </span>
               </div>
@@ -633,7 +633,7 @@ export default function AddNewServicePage() {
                   <label className="text-xs font-serif font-bold text-zinc-900">
                     Meta Robots
                   </label>
-                  <Info className="h-3.5 w-3.5 text-zinc-400 cursor-pointer" />
+                  <Info className="h-3.5 w-3.5 text-zinc-700 cursor-pointer" />
                 </div>
                 <select
                   value={metaRobots}
@@ -645,7 +645,7 @@ export default function AddNewServicePage() {
                   <option value="Noindex, Nofollow">Noindex, Nofollow</option>
                   <option value="Index, Nofollow">Index, Nofollow</option>
                 </select>
-                <span className="text-[11px] text-zinc-400 font-medium block">
+                <span className="text-[11px] text-zinc-700 font-medium block">
                   Allow search engines to index and follow this page.
                 </span>
               </div>
@@ -654,7 +654,7 @@ export default function AddNewServicePage() {
 
           {/* TAB 3 & 4 PLACEHOLDERS */}
           {(activeTab === 'schema' || activeTab === 'social') && (
-            <div className="rounded-2xl border border-zinc-200/80 bg-white p-8 text-center text-xs text-zinc-500 space-y-2">
+            <div className="rounded-2xl border border-zinc-200/80 bg-white p-8 text-center text-xs text-zinc-800 space-y-2">
               <p className="font-bold text-zinc-900 text-sm capitalize">{activeTab} Configuration</p>
               <p>Configure advanced {activeTab} attributes for search engine crawlers and social cards.</p>
             </div>
@@ -669,7 +669,7 @@ export default function AddNewServicePage() {
               <h3 className="font-serif text-sm font-bold text-zinc-950">
                 SEO Score
               </h3>
-              <Info className="h-4 w-4 text-zinc-400 cursor-pointer" />
+              <Info className="h-4 w-4 text-zinc-700 cursor-pointer" />
             </div>
 
             <div className="flex items-center gap-5 pt-1">
@@ -679,16 +679,16 @@ export default function AddNewServicePage() {
                     ? 'border-purple-600 text-purple-700 bg-purple-50/40'
                     : seoScore >= 50
                     ? 'border-orange-500 text-orange-600 bg-orange-50/40'
-                    : 'border-zinc-300 text-zinc-400 bg-zinc-50'
+                    : 'border-zinc-300 text-zinc-700 bg-zinc-50'
                 }`}
               >
                 <div>
                   <span>{seoScore}</span>
-                  <span className="text-xs font-normal text-zinc-400 block text-center -mt-1">/100</span>
+                  <span className="text-xs font-normal text-zinc-700 block text-center -mt-1">/100</span>
                 </div>
               </div>
 
-              <p className="text-xs text-zinc-500 font-medium leading-relaxed">
+              <p className="text-xs text-zinc-800 font-medium leading-relaxed">
                 {seoScore >= 80
                   ? 'Great job! Your service page content is well-optimized for search engines.'
                   : seoScore >= 50
@@ -717,7 +717,7 @@ export default function AddNewServicePage() {
                     />
                     <span
                       className={`font-semibold ${
-                        item.passed ? 'text-zinc-900' : 'text-zinc-500'
+                        item.passed ? 'text-zinc-900' : 'text-zinc-800'
                       }`}
                     >
                       {item.label}
@@ -739,7 +739,7 @@ export default function AddNewServicePage() {
                 <button
                   onClick={() => setPreviewDevice('desktop')}
                   className={`p-1 rounded-md transition-colors ${
-                    previewDevice === 'desktop' ? 'bg-purple-600 text-white' : 'text-zinc-400'
+                    previewDevice === 'desktop' ? 'bg-purple-600 text-white' : 'text-zinc-700'
                   }`}
                   title="Desktop preview"
                 >
@@ -748,7 +748,7 @@ export default function AddNewServicePage() {
                 <button
                   onClick={() => setPreviewDevice('mobile')}
                   className={`p-1 rounded-md transition-colors ${
-                    previewDevice === 'mobile' ? 'bg-purple-600 text-white' : 'text-zinc-400'
+                    previewDevice === 'mobile' ? 'bg-purple-600 text-white' : 'text-zinc-700'
                   }`}
                   title="Mobile preview"
                 >

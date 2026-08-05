@@ -98,7 +98,7 @@ export default function SitemapPage() {
       {/* Breadcrumb & Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-medium mb-1">
+          <div className="flex items-center gap-1.5 text-xs text-zinc-700 font-medium mb-1">
             <Link href="/" className="hover:text-zinc-600 transition-colors">
               Dashboard
             </Link>
@@ -108,7 +108,7 @@ export default function SitemapPage() {
           <h1 className="font-serif text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-950">
             Sitemap
           </h1>
-          <p className="mt-1 text-xs md:text-sm text-zinc-500 font-medium">
+          <p className="mt-1 text-xs md:text-sm text-zinc-800 font-medium">
             Manage and submit your XML sitemap to search engines.
           </p>
         </div>
@@ -144,7 +144,7 @@ export default function SitemapPage() {
                 <FileCode className="h-5.5 w-5.5" />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-[11px] font-semibold text-zinc-400">Sitemap URL</p>
+                <p className="text-[11px] font-semibold text-zinc-700">Sitemap URL</p>
                 <a
                   href={`${siteUrl}/sitemap.xml`}
                   target="_blank"
@@ -152,7 +152,7 @@ export default function SitemapPage() {
                   className="text-xs font-bold text-zinc-800 hover:text-purple-600 transition-colors flex items-center gap-1 truncate mt-0.5"
                 >
                   <span className="truncate">{siteUrl}/sitemap.xml</span>
-                  <ExternalLink className="h-3 w-3 shrink-0 text-zinc-400" />
+                  <ExternalLink className="h-3 w-3 shrink-0 text-zinc-700" />
                 </a>
               </div>
             </div>
@@ -163,7 +163,7 @@ export default function SitemapPage() {
                 <Globe className="h-5.5 w-5.5" />
               </div>
               <div>
-                <p className="text-[11px] font-semibold text-zinc-400">Total URLs</p>
+                <p className="text-[11px] font-semibold text-zinc-700">Total URLs</p>
                 <div className="flex items-baseline gap-2 mt-0.5">
                   <span className="font-serif text-2xl font-black text-zinc-950">{totalUrls}</span>
                 </div>
@@ -176,9 +176,9 @@ export default function SitemapPage() {
                 <Clock className="h-5.5 w-5.5" />
               </div>
               <div>
-                <p className="text-[11px] font-semibold text-zinc-400">Last Generated</p>
+                <p className="text-[11px] font-semibold text-zinc-700">Last Generated</p>
                 <p className="font-serif text-sm font-extrabold text-zinc-950 mt-0.5">{lastModDate}</p>
-                <p className="text-[11px] text-zinc-400 font-medium">{lastModTime}</p>
+                <p className="text-[11px] text-zinc-700 font-medium">{lastModTime}</p>
               </div>
             </div>
 
@@ -188,13 +188,13 @@ export default function SitemapPage() {
                 <CheckCircle2 className="h-5.5 w-5.5" />
               </div>
               <div>
-                <p className="text-[11px] font-semibold text-zinc-400">Status</p>
+                <p className="text-[11px] font-semibold text-zinc-700">Status</p>
                 <div className="flex items-center gap-2 mt-0.5">
                   <span className="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-0.5 text-[11px] font-bold text-emerald-600 border border-emerald-200/60">
                     Success
                   </span>
                 </div>
-                <p className="text-[11px] text-zinc-400 font-medium mt-1">Your sitemap is healthy</p>
+                <p className="text-[11px] text-zinc-700 font-medium mt-1">Your sitemap is healthy</p>
               </div>
             </div>
           </div>
@@ -210,20 +210,20 @@ export default function SitemapPage() {
               <h2 className="font-serif text-base font-bold text-zinc-950">
                 Sitemap Files
               </h2>
-              <p className="text-xs text-zinc-400 font-medium mt-0.5">
+              <p className="text-xs text-zinc-700 font-medium mt-0.5">
                 Download and manage your sitemap files.
               </p>
             </div>
 
             {loading ? (
-              <div className="p-6 text-center text-zinc-400 font-semibold">
+              <div className="p-6 text-center text-zinc-700 font-semibold">
                 Loading files...
               </div>
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
                   <thead>
-                    <tr className="border-b border-zinc-200/80 bg-zinc-50/50 text-zinc-400 font-serif font-bold uppercase tracking-wider">
+                    <tr className="border-b border-zinc-200/80 bg-zinc-50/50 text-zinc-700 font-serif font-bold uppercase tracking-wider">
                       <th className="py-4 px-5">File Name</th>
                       <th className="py-4 px-4">Type</th>
                       <th className="py-4 px-4">URLs</th>
@@ -240,7 +240,7 @@ export default function SitemapPage() {
                         {/* File Name */}
                         <td className="py-4 px-5">
                           <div className="flex items-center gap-3">
-                            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 text-zinc-500 font-mono text-xs group-hover:bg-purple-100 group-hover:text-purple-600 transition-colors">
+                            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 text-zinc-800 font-mono text-xs group-hover:bg-purple-100 group-hover:text-purple-600 transition-colors">
                               {'</>'}
                             </div>
                             <span className="font-mono text-xs font-bold text-zinc-800 group-hover:text-purple-600 transition-colors">
@@ -267,7 +267,7 @@ export default function SitemapPage() {
                         <td className="py-4 px-4">
                           <div className="text-xs">
                             <p className="font-bold text-zinc-800">{file.lastModifiedDate}</p>
-                            <p className="text-[11px] text-zinc-400 font-medium">{file.lastModifiedTime}</p>
+                            <p className="text-[11px] text-zinc-700 font-medium">{file.lastModifiedTime}</p>
                           </div>
                         </td>
 
@@ -277,14 +277,14 @@ export default function SitemapPage() {
                             <button
                               onClick={() => handleDownloadFile(file.name)}
                               title="Download XML"
-                              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-zinc-500 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
+                              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-zinc-800 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
                             >
                               <Download className="h-3.5 w-3.5" />
                             </button>
                             <button
                               onClick={() => handleViewFile(file.name)}
                               title="View XML File"
-                              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-zinc-500 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
+                              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 text-zinc-800 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
                             >
                               <ExternalLink className="h-3.5 w-3.5" />
                             </button>
@@ -297,7 +297,7 @@ export default function SitemapPage() {
               </div>
             )}
 
-            <div className="border-t border-zinc-100 bg-white px-6 py-3.5 text-xs font-semibold text-zinc-400">
+            <div className="border-t border-zinc-100 bg-white px-6 py-3.5 text-xs font-semibold text-zinc-700">
               Showing 1 to {files.length} of {files.length} files
             </div>
           </div>
@@ -349,7 +349,7 @@ export default function SitemapPage() {
                     <p className="text-xs font-bold text-zinc-800 group-hover:text-purple-600 transition-colors">
                       Ping Search Engines
                     </p>
-                    <p className="text-[11px] text-zinc-400 font-medium">
+                    <p className="text-[11px] text-zinc-700 font-medium">
                       Notify search engines about your sitemap
                     </p>
                   </div>
@@ -372,7 +372,7 @@ export default function SitemapPage() {
                     <p className="text-xs font-bold text-zinc-800 group-hover:text-purple-600 transition-colors">
                       Verify Sitemap
                     </p>
-                    <p className="text-[11px] text-zinc-400 font-medium">
+                    <p className="text-[11px] text-zinc-700 font-medium">
                       Check if your sitemap is accessible
                     </p>
                   </div>
@@ -395,7 +395,7 @@ export default function SitemapPage() {
                     <p className="text-xs font-bold text-zinc-800 group-hover:text-purple-600 transition-colors">
                       View Sitemap Index
                     </p>
-                    <p className="text-[11px] text-zinc-400 font-medium">
+                    <p className="text-[11px] text-zinc-700 font-medium">
                       View all URLs in your sitemap
                     </p>
                   </div>
@@ -422,7 +422,7 @@ export default function SitemapPage() {
                   </div>
                   <div>
                     <p className="text-xs font-bold text-zinc-900">Google Search Console</p>
-                    <p className="text-[10px] text-zinc-400">Last pinged: {lastModDate} {lastModTime}</p>
+                    <p className="text-[10px] text-zinc-700">Last pinged: {lastModDate} {lastModTime}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -441,7 +441,7 @@ export default function SitemapPage() {
                   </div>
                   <div>
                     <p className="text-xs font-bold text-zinc-900">Bing Webmaster Tools</p>
-                    <p className="text-[10px] text-zinc-400">Last pinged: {lastModDate} {lastModTime}</p>
+                    <p className="text-[10px] text-zinc-700">Last pinged: {lastModDate} {lastModTime}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
