@@ -57,6 +57,24 @@ export function getCleanHtml(relativePath: string): string {
   // Cleanup old ngrok references if any
   html = html.replaceAll('https://0062-101-50-71-229.ngrok-free.app', '');
 
+  return optimizeHtml(html);
+}
+
+export function optimizeHtml(html: string): string {
+  if (!html) return html;
+
+  // 🚀 PERFORMANCE OPTIMIZATIONS 🚀
+
+  // 1. Remove Render-Blocking Preloader
+  html = html.replace(/<div class="as-preloader[^>]*>[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/gi, '');
+  html = html.replace(/<div class="as-preloader[^>]*>[\s\S]*?<\/div>\s*<\/div>/gi, '');
+
+  // 2. Auto Image Lazy Loading (Skip if already has loading attribute)
+  html = html.replace(/<img(?![^>]*loading=)([^>]+)>/gi, '<img loading="lazy" decoding="async" $1>');
+
+  // 3. Simple Minification (Remove extra white spaces between tags)
+  html = html.replace(/>\s+</g, '><');
+
   return html;
 }
 
@@ -75,5 +93,6 @@ export function injectDynamicSettings(html: string, settings: any): string {
     finalHtml = finalHtml.replaceAll('/wp-content/uploads/2025/11/fevicon-1.webp', settings.favicon_url);
   }
 
-  return finalHtml;
+  // Apply speed optimizations before returning
+  return optimizeHtml(finalHtml);
 }
