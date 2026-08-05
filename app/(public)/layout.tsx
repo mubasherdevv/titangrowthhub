@@ -138,6 +138,7 @@ async function getJsonLdSchemas() {
       },
       'query-input': 'required name=search_term_string',
     },
+    dateModified: new Date().toISOString(), // AI Readiness Freshness Signal
   };
 
   return [organization, website];
@@ -189,6 +190,9 @@ export default async function PublicRootLayout({
     
     // 3. Add display=swap to Google Fonts to prevent invisible text while loading
     headContent = headContent.replace(/(href=['"]https:\/\/fonts.googleapis.com\/css.*?)['"]/gi, "$1&display=swap'");
+
+    // 4. AI Readiness Freshness Signal Meta Tag
+    headContent += `\n<meta property="article:modified_time" content="${new Date().toISOString()}">\n`;
   }
 
   return (
