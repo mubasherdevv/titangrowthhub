@@ -71,6 +71,16 @@ export function optimizeHtml(html: string): string {
   html = html.replaceAll('https://titangrowthhub.com//wp-content/uploads/2025/11/tx-bg-img.webp', '/website_assets/tx-bg-img.webp');
   html = html.replaceAll('https://themexriver.com/wp/avista/wp-content/uploads/2025/11/tx-bg-img.webp', '/website_assets/tx-bg-img.webp');
 
+  // 1.5 Fix HTTrack Local Navigation Links (e.g., href="../about/index.html" -> href="/about")
+  html = html.replace(/href=['"](?:\.\.\/)*([^'"]*?)\/?index\.html['"]/gi, (match, path) => {
+    if (path.startsWith('http') || path.startsWith('//')) {
+      return match; // Ignore external links
+    }
+    // Remove leading slash if it exists and clean the path
+    let cleanPath = path.startsWith('/') ? path.substring(1) : path;
+    return `href="/${cleanPath}"`;
+  });
+
   // 2. Remove Render-Blocking Preloader
   html = html.replace(/<div class="as-preloader[^>]*>[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/gi, '');
   html = html.replace(/<div class="as-preloader[^>]*>[\s\S]*?<\/div>\s*<\/div>/gi, '');
