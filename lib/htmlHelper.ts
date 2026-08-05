@@ -76,10 +76,7 @@ export function optimizeHtml(html: string): string {
   // 2. Auto Image Lazy Loading (Skip if already has loading attribute)
   html = html.replace(/<img(?![^>]*loading=)([^>]+)>/gi, '<img loading="lazy" decoding="async" $1>');
 
-  // 3. Simple Minification (Remove extra white spaces between tags)
-  html = html.replace(/>\s+</g, '><');
-
-  // 4. Agentic Browsing & Accessibility Fixes
+  // 3. Agentic Browsing & Accessibility Fixes
   // Add aria-label to missing form elements (e.g. wpcf7 inputs without labels)
   html = html.replace(/<input([^>]*class="[^"]*wpcf7-form-control[^"]*"[^>]*)>/gi, (match, p1) => {
     if (!match.includes('aria-label') && !match.includes('id=')) {
