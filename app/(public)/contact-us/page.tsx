@@ -1,6 +1,8 @@
 import React from 'react';
 import { getPageMeta } from '@/lib/getPageMeta';
 import { contactPageSchema } from '@/lib/pageSchemas';
+import { getSiteSettings } from '@/lib/getSiteSettings';
+import { injectDynamicSettings } from '@/lib/htmlHelper';
 
 export async function generateMetadata() {
   const { title, description } = await getPageMeta(
@@ -749,7 +751,10 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
     <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"daf30b97c9e94fec9725b4f69e8dd5ef","r":1}' crossorigin="anonymous"></script>
 `;
 
-export default function Page() {
+export default async function Page() {
+  const settings = await getSiteSettings();
+  const finalHtml = injectDynamicSettings(pageHtml, settings);
+
   return (
     <>
       <script
@@ -761,7 +766,7 @@ export default function Page() {
           __html: `document.body.className = "wp-singular page-template page-template-elementor_header_footer page page-id-29 wp-embed-responsive wp-theme-avista theme-avista woocommerce-no-js no-sidebar elementor-default elementor-template-full-width elementor-kit-7 elementor-page elementor-page-29";`,
         }}
       />
-      <div dangerouslySetInnerHTML={{ __html: pageHtml }} />
+      <div dangerouslySetInnerHTML={{ __html: finalHtml }} />
     </>
   );
 }

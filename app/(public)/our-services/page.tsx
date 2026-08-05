@@ -2,6 +2,8 @@ import React from 'react';
 import { supabase } from '@/lib/supabase';
 import { getPageMeta } from '@/lib/getPageMeta';
 import { servicesPageSchema } from '@/lib/pageSchemas';
+import { getSiteSettings } from '@/lib/getSiteSettings';
+import { injectDynamicSettings } from '@/lib/htmlHelper';
 
 export async function generateMetadata() {
   const { title, description } = await getPageMeta(
@@ -709,6 +711,8 @@ export default async function Page() {
     : `<div class="w-100 text-center" style="padding: 40px; background: #fff; border-radius: 20px; grid-column: span 2;"><h3>No services published yet.</h3></div>`;
 
   const finalHtml = `${topHtml}${servicesListHtml}${bottomHtml}`;
+  const settings = await getSiteSettings();
+  const injectedHtml = injectDynamicSettings(finalHtml, settings);
 
   return (
     <>
@@ -721,7 +725,7 @@ export default async function Page() {
           __html: `document.body.className = "services";`,
         }}
       />
-      <div dangerouslySetInnerHTML={{ __html: finalHtml }} />
+      <div dangerouslySetInnerHTML={{ __html: injectedHtml }} />
     </>
   );
 }

@@ -54,5 +54,26 @@ export function getCleanHtml(relativePath: string): string {
   html = html.replaceAll('href="../checkout/index.html"', 'href="#"');
   html = html.replaceAll('href="../pricing/index.html"', 'href="#"');
 
+  // Cleanup old ngrok references if any
+  html = html.replaceAll('https://0062-101-50-71-229.ngrok-free.app', '');
+
   return html;
+}
+
+export function injectDynamicSettings(html: string, settings: any): string {
+  if (!html || !settings) return html;
+  
+  let finalHtml = html;
+  
+  if (settings.org_logo) {
+    finalHtml = finalHtml.replaceAll('/wp-content/uploads/2025/11/logo-1.webp', settings.org_logo);
+    finalHtml = finalHtml.replaceAll('/wp-content/uploads/2025/10/logo-1.webp', settings.org_logo);
+    finalHtml = finalHtml.replaceAll('/wp-content/uploads/2025/11/logo-5.svg', settings.org_logo);
+  }
+
+  if (settings.favicon_url) {
+    finalHtml = finalHtml.replaceAll('/wp-content/uploads/2025/11/fevicon-1.webp', settings.favicon_url);
+  }
+
+  return finalHtml;
 }

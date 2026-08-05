@@ -3,6 +3,8 @@ import { supabase } from '@/lib/supabase';
 import { topHtml, bottomHtml } from './blogTemplates';
 import { getPageMeta } from '@/lib/getPageMeta';
 import { blogListingSchema } from '@/lib/pageSchemas';
+import { getSiteSettings } from '@/lib/getSiteSettings';
+import { injectDynamicSettings } from '@/lib/htmlHelper';
 
 export async function generateMetadata() {
   const { title, description } = await getPageMeta(
@@ -185,6 +187,8 @@ export default async function BlogPage() {
   `;
 
   const finalHtml = `${topHtml}${blogsListHtml}${newBottomHtml}`;
+  const settings = await getSiteSettings();
+  const injectedHtml = injectDynamicSettings(finalHtml, settings);
 
   return (
     <>
@@ -197,7 +201,7 @@ export default async function BlogPage() {
           __html: `document.body.className = "blog";`,
         }}
       />
-      <div dangerouslySetInnerHTML={{ __html: finalHtml }} />
+      <div dangerouslySetInnerHTML={{ __html: injectedHtml }} />
     </>
   );
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 import { getPageMeta } from '@/lib/getPageMeta';
 import { localBusinessSchema } from '@/lib/pageSchemas';
+import { getSiteSettings } from '@/lib/getSiteSettings';
+import { injectDynamicSettings } from '@/lib/htmlHelper';
 
 export async function generateMetadata() {
   const { title, description } = await getPageMeta(
@@ -3658,7 +3660,10 @@ const pageHtml = `
         crossorigin="anonymous"></script>
 `;
 
-export default function HomePage() {
+export default async function HomePage() {
+    const settings = await getSiteSettings();
+    const finalHtml = injectDynamicSettings(pageHtml, settings);
+
     return (
         <>
             <script
@@ -3670,7 +3675,7 @@ export default function HomePage() {
                     __html: `document.body.className = "home page-template page-template-elementor_header_footer page page-id-17 theme-avista elementor-default elementor-template-full-width elementor-kit-8 elementor-page elementor-page-17";`,
                 }}
             />
-            <div dangerouslySetInnerHTML={{ __html: pageHtml }} />
+            <div dangerouslySetInnerHTML={{ __html: finalHtml }} />
         </>
     );
 }
