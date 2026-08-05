@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useToast } from '@/components/ToastProvider';
 import {
@@ -17,10 +17,13 @@ import {
 
 export default function AddRedirectPage() {
   const toast = useToast();
-  const [sourceDomain, setSourceDomain] = useState('https://yoursite.com');
+  const [domainPrefix, setDomainPrefix] = useState('');
   const [sourcePath, setSourcePath] = useState('');
-  const [targetDomain, setTargetDomain] = useState('https://yoursite.com');
   const [targetPath, setTargetPath] = useState('');
+
+  useEffect(() => {
+    setDomainPrefix(window.location.origin);
+  }, []);
   const [redirectType, setRedirectType] = useState('301');
   const [matchType, setMatchType] = useState('Exact Match');
   const [isActive, setIsActive] = useState(true);
@@ -127,24 +130,19 @@ export default function AddRedirectPage() {
                   The original URL you want to redirect from.
                 </p>
                 <div className="flex items-center rounded-xl border border-zinc-200 bg-zinc-50/40 overflow-hidden focus-within:border-purple-600 focus-within:bg-white transition-all">
-                  <select
-                    value={sourceDomain}
-                    onChange={(e) => setSourceDomain(e.target.value)}
-                    className="bg-zinc-100 px-3 py-2.5 text-xs font-semibold text-zinc-700 border-r border-zinc-200 focus:outline-none shrink-0"
-                  >
-                    <option value="https://yoursite.com">https://yoursite.com</option>
-                    <option value="https://app.yoursite.com">https://app.yoursite.com</option>
-                  </select>
+                  <span className="bg-zinc-100 px-3 py-2.5 text-xs font-semibold text-zinc-500 border-r border-zinc-200 shrink-0">
+                    {domainPrefix}
+                  </span>
                   <input
                     type="text"
                     value={sourcePath}
                     onChange={(e) => setSourcePath(e.target.value)}
-                    placeholder="Enter source path (e.g. old-page)"
+                    placeholder="/old-page"
                     className="w-full bg-transparent px-3 py-2.5 text-xs font-medium text-zinc-900 placeholder-zinc-400 focus:outline-none"
                   />
                 </div>
                 <span className="text-[11px] text-zinc-400 font-medium block">
-                  Example: https://yoursite.com/old-page
+                  Example: {domainPrefix}/old-page
                 </span>
               </div>
 
@@ -157,24 +155,19 @@ export default function AddRedirectPage() {
                   The URL you want to redirect users and search engines to.
                 </p>
                 <div className="flex items-center rounded-xl border border-zinc-200 bg-zinc-50/40 overflow-hidden focus-within:border-purple-600 focus-within:bg-white transition-all">
-                  <select
-                    value={targetDomain}
-                    onChange={(e) => setTargetDomain(e.target.value)}
-                    className="bg-zinc-100 px-3 py-2.5 text-xs font-semibold text-zinc-700 border-r border-zinc-200 focus:outline-none shrink-0"
-                  >
-                    <option value="https://yoursite.com">https://yoursite.com</option>
-                    <option value="https://app.yoursite.com">https://app.yoursite.com</option>
-                  </select>
+                  <span className="bg-zinc-100 px-3 py-2.5 text-xs font-semibold text-zinc-500 border-r border-zinc-200 shrink-0">
+                    {domainPrefix}
+                  </span>
                   <input
                     type="text"
                     value={targetPath}
                     onChange={(e) => setTargetPath(e.target.value)}
-                    placeholder="Enter target path (e.g. new-page)"
+                    placeholder="/new-page"
                     className="w-full bg-transparent px-3 py-2.5 text-xs font-medium text-zinc-900 placeholder-zinc-400 focus:outline-none"
                   />
                 </div>
                 <span className="text-[11px] text-zinc-400 font-medium block">
-                  Example: https://yoursite.com/new-page
+                  Example: {domainPrefix}/new-page
                 </span>
               </div>
             </div>
