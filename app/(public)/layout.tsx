@@ -178,17 +178,7 @@ export default async function PublicRootLayout({
     }
 
     // 🚀 PERFORMANCE OPTIMIZATIONS for HEAD 🚀
-    // 1. Defer all external scripts so they don't block render (exclude inline scripts)
-    headContent = headContent.replace(/<script(?![^>]*defer)([^>]*src=['"][^'"]+['"][^>]*)><\/script>/gi, '<script defer$1></script>');
-    
-    // 2. Defer Non-Critical CSS (Animations, Icons, Popups, Sliders) to fix Render-Blocking
-    const nonCriticalCss = ['fontawesome', 'elementor-icons', 'magnific', 'animate', 'swiper', 'woocommerce', 'nice-select'];
-    nonCriticalCss.forEach((css) => {
-      const regex = new RegExp(`<link[^>]*rel=['"]stylesheet['"][^>]*href=['"]([^'"]*${css}[^'"]*)['"][^>]*>`, 'gi');
-      headContent = headContent.replace(regex, `<link rel="preload" href="$1" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="$1"></noscript>`);
-    });
-    
-    // 3. Add display=swap to Google Fonts to prevent invisible text while loading
+    // 1. Add display=swap to Google Fonts to prevent invisible text while loading
     headContent = headContent.replace(/(href=['"]https:\/\/fonts.googleapis.com\/css.*?)['"]/gi, "$1&display=swap'");
 
     // 4. AI Readiness Freshness Signal Meta Tag
