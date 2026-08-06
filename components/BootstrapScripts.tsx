@@ -24,8 +24,6 @@ const scriptsToLoad = [
   '/wp-content/themes/avista/assets/js/touchspin67b1.js?ver=6.9.5',
   '/wp-content/themes/avista/assets/js/avista-custom67b1.js?ver=6.9.5',
   '/wp-content/themes/avista/assets/js/avista-corea780.js?ver=1785262555',
-  '/wp-content/plugins/woocommerce/assets/js/sourcebuster/sourcebuster.min278d.js?ver=10.4.2',
-  '/wp-content/plugins/woocommerce/assets/js/frontend/order-attribution.min278d.js?ver=10.4.2',
   '/wp-includes/js/jquery/ui/core.minb37e.js?ver=1.13.3',
   '/wp-content/plugins/avista-core/assets/js/elh-elementa780.js?ver=1785262555'
 ];

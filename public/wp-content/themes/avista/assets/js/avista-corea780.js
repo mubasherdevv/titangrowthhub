@@ -738,6 +738,7 @@
 			if ($("#wa_liquid_img").length) {
 				const waWrapper = document.getElementById("wa_liquid_img");
 				const waImg = waWrapper.querySelector("img");
+				if (!waImg) return;
 				const waImageURL = waImg.getAttribute("src");
 				waImg.remove();
 
