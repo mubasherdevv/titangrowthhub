@@ -69,6 +69,11 @@ export default function SettingsPage() {
   const [gscVerificationMeta, setGscVerificationMeta] = useState('');
   const [gscVerificationFilename, setGscVerificationFilename] = useState('');
   const [gscVerificationFilecontent, setGscVerificationFilecontent] = useState('');
+  
+  // GCP and GSC API Credentials
+  const [gcpClientEmail, setGcpClientEmail] = useState('');
+  const [gcpPrivateKey, setGcpPrivateKey] = useState('');
+  const [gscPropertyUrl, setGscPropertyUrl] = useState('');
 
   // Fetch settings on load
   useEffect(() => {
@@ -101,6 +106,9 @@ export default function SettingsPage() {
           setGscVerificationMeta(data.gscVerificationMeta || '');
           setGscVerificationFilename(data.gscVerificationFilename || '');
           setGscVerificationFilecontent(data.gscVerificationFilecontent || '');
+          setGcpClientEmail(data.gcpClientEmail || '');
+          setGcpPrivateKey(data.gcpPrivateKey || '');
+          setGscPropertyUrl(data.gscPropertyUrl || '');
         }
       })
       .catch((err) => console.error('Error fetching settings:', err));
@@ -170,6 +178,10 @@ export default function SettingsPage() {
           aiEndpoints,
           gscVerificationFilename,
           gscVerificationFilecontent,
+          gscVerificationMeta,
+          gcpClientEmail,
+          gcpPrivateKey,
+          gscPropertyUrl,
         }),
       });
 
@@ -861,6 +873,52 @@ export default function SettingsPage() {
                         className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
                       />
                     </div>
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t border-zinc-100 space-y-4">
+                  <div>
+                    <h3 className="text-xs font-serif font-bold text-zinc-900 block">
+                      Search Console & Indexing API Access (GCP Service Account)
+                    </h3>
+                    <p className="text-[11px] text-zinc-800 mb-2">
+                      Enter the credentials from your Google Cloud Service Account JSON key file to enable live dashboard stats and automatic sitemap pinging.
+                    </p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div className="space-y-2">
+                      <label className="text-[11px] font-bold text-zinc-700 block">GCP Client Email</label>
+                      <input
+                        type="email"
+                        value={gcpClientEmail}
+                        onChange={(e) => setGcpClientEmail(e.target.value)}
+                        placeholder="service-account@project-id.iam.gserviceaccount.com"
+                        className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <label className="text-[11px] font-bold text-zinc-700 block">GSC Property URL</label>
+                      <input
+                        type="text"
+                        value={gscPropertyUrl}
+                        onChange={(e) => setGscPropertyUrl(e.target.value)}
+                        placeholder="https://titangrowthhub.com/ or sc-domain:titangrowthhub.com"
+                        className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-[11px] font-bold text-zinc-700 block">GCP Private Key</label>
+                    <textarea
+                      value={gcpPrivateKey}
+                      onChange={(e) => setGcpPrivateKey(e.target.value)}
+                      placeholder="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+                      rows={5}
+                      className="w-full rounded-xl border border-zinc-200 bg-zinc-50/40 px-4 py-2.5 text-xs font-mono text-zinc-900 focus:border-orange-500 focus:outline-none"
+                    />
                   </div>
                 </div>
               </div>
