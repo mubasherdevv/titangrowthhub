@@ -24,47 +24,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date(),
   }));
 
-  // 2. Fetch published blogs from Supabase
-  let blogUrls: any[] = [];
-  try {
-    const { data: blogs } = await supabase
-      .from('blogs')
-      .select('slug, created_at')
-      .eq('status', 'Published');
-
-    if (blogs) {
-      blogUrls = blogs.map((blog) => {
-        const slug = blog.slug.startsWith('/') ? blog.slug : `/${blog.slug}`;
-        return {
-          url: `${siteUrl}${slug}`,
-          lastModified: new Date(blog.created_at),
-        };
-      });
-    }
-  } catch (e) {
-    console.error('Error fetching blogs for sitemap:', e);
-  }
-
-  // 3. Fetch published services from Supabase
-  let serviceUrls: any[] = [];
-  try {
-    const { data: services } = await supabase
-      .from('services')
-      .select('slug, created_at')
-      .eq('status', 'Published');
-
-    if (services) {
-      serviceUrls = services.map((service) => {
-        const slug = service.slug.startsWith('/') ? service.slug : `/${service.slug}`;
-        return {
-          url: `${siteUrl}${slug}`,
-          lastModified: new Date(service.created_at),
-        };
-      });
-    }
-  } catch (e) {
-    console.error('Error fetching services for sitemap:', e)
-  }
-
-  return [...staticRoutes, ...blogUrls, ...serviceUrls];
+  return staticRoutes;
 }

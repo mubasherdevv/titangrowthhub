@@ -60,6 +60,10 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
 
   return {
     rules: rules,
-    sitemap: `${siteUrl.endsWith('/') ? siteUrl : siteUrl + '/' }sitemap.xml`,
+    sitemap: [
+      `${siteUrl.endsWith('/') ? siteUrl : siteUrl + '/' }sitemap.xml`,
+      `${siteUrl.endsWith('/') ? siteUrl : siteUrl + '/' }sitemap-blogs.xml`,
+      `${siteUrl.endsWith('/') ? siteUrl : siteUrl + '/' }sitemap-services.xml`,
+    ],
   };
 }
