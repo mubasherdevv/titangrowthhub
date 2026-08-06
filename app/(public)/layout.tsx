@@ -3,6 +3,7 @@ import parse from 'html-react-parser';
 import { supabase } from '@/lib/supabase';
 import { Metadata } from 'next';
 import { getSiteSettings } from '@/lib/getSiteSettings';
+import BootstrapScripts from '@/components/BootstrapScripts';
 
 export async function generateMetadata(): Promise<Metadata> {
   let title = 'Titan Growth Hub – Pakistan\'s Leading SEO & Digital Marketing Agency';
@@ -231,6 +232,11 @@ export default async function PublicRootLayout({
   return (
     <html lang="en-US">
       <head>
+        {/* Preconnect to external domains for faster resource loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="//themexriver.com" />
+
         {parse(headContent)}
         {/* JSON-LD Structured Data for Google */}
         {jsonLdSchemas.map((schema, i) => (
@@ -245,6 +251,8 @@ export default async function PublicRootLayout({
       </head>
       <body>
         {children}
+
+        <BootstrapScripts />
       </body>
     </html>
   );

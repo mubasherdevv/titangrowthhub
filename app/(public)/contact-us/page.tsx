@@ -408,7 +408,7 @@ const pageHtml = `
             <!-- Center Logo & Text -->
             <div class="footer-col-center">
                 <a href="/" class="footer-logo">
-                    <img loading="lazy" src="/website_assets/footer-logo.png" alt="Titan Growth Hub">
+                    <img loading="lazy" src="/website_assets/footer-logo.webp" alt="Titan Growth Hub">
                 </a>
                 <p class="footer-desc">
                     We help businesses grow<br>with smart digital solutions.

@@ -251,144 +251,152 @@ const pageHtml = `
             <h2 class="tx-title as-sec-title-1 wa_title_spilt_1">Experts Who Care About Your Growth</h2>
                     </div>
 
-        <div class="as-team-1-wrap">
-                        <div class="as-team-1-member-ani">
-                <div class="as-team-1-member ">
-                    <div class="member-img wa-fix wa-img-cover wa-p-relative">
-                                                <img loading="lazy" decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-1.webp"
-                            alt="Team Expert">
-                        
-                        <div class="content-wrap">
-                                                        <h5 class="as-h-1 member-name">
-                                <a
-                                href="../teams/melissa-lee/index.html"
-                                target="_self"
-                                rel="">
-                                    Sharah Alena                                </a>
-                            </h5>
-                                                                                    <p class="as-p-1 member-dg">CEO &amp; Founder</p>
-                                                    </div>
-                    </div>
+        <div class="as-team-1-wrap custom-team-cards-container">
+<style>
+.custom-team-cards-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+.custom-team-card {
+    width: calc(25% - 23px);
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+}
+.custom-team-img-wrap {
+    border-radius: 16px;
+    overflow: hidden;
+    height: 320px;
+    position: relative;
+    z-index: 1;
+}
+.custom-team-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.custom-team-content-box {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px 20px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    margin-top: -30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.custom-team-icon-circle {
+    width: 44px;
+    height: 44px;
+    background: #ff5e14;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 3px solid #fff;
+    font-size: 16px;
+}
+.custom-team-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+    font-family: 'Inter', sans-serif;
+}
+.custom-team-role {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ff5e14;
+    margin-bottom: 12px;
+}
+.custom-team-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+@media (max-width: 1199px) {
+    .custom-team-card { width: calc(50% - 15px); }
+}
+@media (max-width: 767px) {
+    .custom-team-card { width: 100%; margin-bottom: 20px; }
+    .custom-team-content-box { margin-top: -20px; }
+}
+</style>
 
-                                        <div class="member-social">
-                                                <a class="link-elm" href="#0"
-                        target="_self"
-                        rel="" aria-label="name">
-                            <i aria-hidden="true" class="fab fa-linkedin-in"></i>                        </a>
-                                                <a class="link-elm" href="#0"
-                        target="_self"
-                        rel="" aria-label="name">
-                            <i aria-hidden="true" class="fab fa-instagram"></i>                        </a>
-                                                <a class="link-elm" href="#0"
-                        target="_self"
-                        rel="" aria-label="name">
-                            <i aria-hidden="true" class="fab fa-x-twitter"></i>                        </a>
-                                            </div>
-                                    </div>
-            </div>
-                        <div class="as-team-1-member-ani">
-                <div class="as-team-1-member ">
-                    <div class="member-img wa-fix wa-img-cover wa-p-relative">
-                                                <img loading="lazy" decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-2.webp"
-                            alt="Team Expert">
-                        
-                        <div class="content-wrap">
-                                                        <h5 class="as-h-1 member-name">
-                                <a
-                                href="../teams/melissa-lee/index.html"
-                                target="_self"
-                                rel="">
-                                    Sharah Alena                                </a>
-                            </h5>
-                                                                                    <p class="as-p-1 member-dg">CEO &amp; Founder</p>
-                                                    </div>
-                    </div>
+<!-- Team Member 1 -->
+<div class="custom-team-card">
+    <div class="custom-team-img-wrap">
+        <img loading="lazy" src="/wp-content/uploads/2025/10/t1-img-1.webp" alt="Ayesha Khan">
+    </div>
+    <div class="custom-team-content-box">
+        <div class="custom-team-icon-circle">
+            <i class="fa-solid fa-chart-line"></i>
+        </div>
+        <h5 class="custom-team-name">Ayesha Khan</h5>
+        <p class="custom-team-role">SEO Specialist</p>
+        <p class="custom-team-desc">SEO expert focused on ranking websites and driving organic traffic.</p>
+    </div>
+</div>
 
-                                        <div class="member-social">
-                                                <a class="link-elm" href="#0"
-                        target="_self"
-                        rel="" aria-label="name">
-                            <i aria-hidden="true" class="fab fa-linkedin-in"></i>                        </a>
-                                                <a class="link-elm" href="#0"
-                        target="_self"
-                        rel="" aria-label="name">
-                            <i aria-hidden="true" class="fab fa-instagram"></i>                        </a>
-                                                <a class="link-elm" href="#0"
-                        target="_self"
-                        rel="" aria-label="name">
-                            <i aria-hidden="true" class="fab fa-x-twitter"></i>                        </a>
-                                            </div>
-                                    </div>
-            </div>
-                        <div class="as-team-1-member-ani">
-                <div class="as-team-1-member ">
-                    <div class="member-img wa-fix wa-img-cover wa-p-relative">
-                                                <img loading="lazy" decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-3.webp"
-                            alt="Team Expert">
-                        
-                        <div class="content-wrap">
-                                                        <h5 class="as-h-1 member-name">
-                                <a
-                                href="../teams/melissa-lee/index.html"
-                                target="_self"
-                                rel="">
-                                    Sharah Alena                                </a>
-                            </h5>
-                                                                                    <p class="as-p-1 member-dg">CEO &amp; Founder</p>
-                                                    </div>
-                    </div>
+<!-- Team Member 2 -->
+<div class="custom-team-card">
+    <div class="custom-team-img-wrap">
+        <img loading="lazy" src="/wp-content/uploads/2025/10/t1-img-2.webp" alt="Usman Ali">
+    </div>
+    <div class="custom-team-content-box">
+        <div class="custom-team-icon-circle">
+            <i class="fa-solid fa-bullhorn"></i>
+        </div>
+        <h5 class="custom-team-name">Usman Ali</h5>
+        <p class="custom-team-role">Performance Marketer</p>
+        <p class="custom-team-desc">Paid ads strategist who turns clicks into customers and growth.</p>
+    </div>
+</div>
 
-                                        <div class="member-social">
-                                                <a class="link-elm" href="#0"
-                        target="_self"
-                        rel="" aria-label="name">
-                            <i aria-hidden="true" class="fab fa-linkedin-in"></i>                        </a>
-                                                <a class="link-elm" href="#0"
-                        target="_self"
-                        rel="" aria-label="name">
-                            <i aria-hidden="true" class="fab fa-instagram"></i>                        </a>
-                                                <a class="link-elm" href="#0"
-                        target="_self"
-                        rel="" aria-label="name">
-                            <i aria-hidden="true" class="fab fa-x-twitter"></i>                        </a>
-                                            </div>
-                                    </div>
-            </div>
-                        <div class="as-team-1-member-ani">
-                <div class="as-team-1-member ">
-                    <div class="member-img wa-fix wa-img-cover wa-p-relative">
-                                                <img loading="lazy" decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-4.webp"
-                            alt="Team Expert">
-                        
-                        <div class="content-wrap">
-                                                        <h5 class="as-h-1 member-name">
-                                <a
-                                href="../teams/melissa-lee/index.html"
-                                target="_self"
-                                rel="">
-                                    Sharah Alena                                </a>
-                            </h5>
-                                                                                    <p class="as-p-1 member-dg">CEO &amp; Founder</p>
-                                                    </div>
-                    </div>
+<!-- Team Member 3 -->
+<div class="custom-team-card">
+    <div class="custom-team-img-wrap">
+        <img loading="lazy" src="/wp-content/uploads/2025/10/t1-img-3.webp" alt="Mariam Fatima">
+    </div>
+    <div class="custom-team-content-box">
+        <div class="custom-team-icon-circle">
+            <i class="fa-solid fa-pen-nib"></i>
+        </div>
+        <h5 class="custom-team-name">Mariam Fatima</h5>
+        <p class="custom-team-role">Content Strategist</p>
+        <p class="custom-team-desc">Creates engaging content that builds brand authority and trust.</p>
+    </div>
+</div>
 
-                                        <div class="member-social">
-                                                <a class="link-elm" href="#0"
-                        target="_self"
-                        rel="" aria-label="name">
-                            <i aria-hidden="true" class="fab fa-linkedin-in"></i>                        </a>
-                                                <a class="link-elm" href="#0"
-                        target="_self"
-                        rel="" aria-label="name">
-                            <i aria-hidden="true" class="fab fa-instagram"></i>                        </a>
-                                                <a class="link-elm" href="#0"
-                        target="_self"
-                        rel="" aria-label="name">
-                            <i aria-hidden="true" class="fab fa-x-twitter"></i>                        </a>
-                                            </div>
-                                    </div>
-            </div>
-                    </div>
+<!-- Team Member 4 -->
+<div class="custom-team-card">
+    <div class="custom-team-img-wrap">
+        <img loading="lazy" src="/wp-content/uploads/2025/10/t1-img-4.webp" alt="Bilal Ahmed">
+    </div>
+    <div class="custom-team-content-box">
+        <div class="custom-team-icon-circle">
+            <i class="fa-solid fa-desktop"></i>
+        </div>
+        <h5 class="custom-team-name">Bilal Ahmed</h5>
+        <p class="custom-team-role">Web Designer</p>
+        <p class="custom-team-desc">Designs modern, user-friendly websites that convert visitors.</p>
+    </div>
+</div>
+</div>
+
     </div>
 </section>				</div>
 				</div>
@@ -548,7 +556,7 @@ const pageHtml = `
             <!-- Center Logo & Text -->
             <div class="footer-col-center">
                 <a href="/" class="footer-logo">
-                    <img loading="lazy" src="/website_assets/footer-logo.png" alt="Titan Growth Hub">
+                    <img loading="lazy" src="/website_assets/footer-logo.webp" alt="Titan Growth Hub">
                 </a>
                 <p class="footer-desc">
                     We help businesses grow<br>with smart digital solutions.

@@ -84,15 +84,6 @@
 			initGlassyEffect();
 
 			function waRunGlassyEffectOnSlide(swiper) {
-				document
-					.querySelectorAll(".wa-pixi-wrap")
-					.forEach((el) => el.remove());
-				document
-					.querySelectorAll(".as-hero-2-slider-item-img img")
-					.forEach((img) => {
-						img.style.opacity = "1";
-					});
-
 				const activeSlide = swiper.slides[swiper.activeIndex];
 				if (!activeSlide) return;
 
@@ -104,12 +95,22 @@
 				);
 				if (!imgEl || !imgWrap) return;
 
-				const computedPos = window.getComputedStyle(imgWrap).position;
-				if (computedPos === "static")
-					imgWrap.style.position = "relative";
+				// --- DOM READS ---
+				const rect = imgWrap.getBoundingClientRect();
+				const w = Math.max(1, Math.round(rect.width));
+				const h = Math.max(1, Math.round(rect.height));
 
-				const oldWrap = imgWrap.querySelector(".wa-pixi-wrap");
-				if (oldWrap) oldWrap.remove();
+				// --- DOM WRITES ---
+				document
+					.querySelectorAll(".wa-pixi-wrap")
+					.forEach((el) => el.remove());
+				document
+					.querySelectorAll(".as-hero-2-slider-item-img img")
+					.forEach((img) => {
+						img.style.opacity = "1";
+					});
+
+				imgWrap.style.position = "relative";
 
 				const wrap = document.createElement("div");
 				wrap.className = "wa-pixi-wrap";
@@ -117,10 +118,6 @@
 				wrap.style.inset = "0";
 				wrap.style.zIndex = "1";
 				wrap.style.pointerEvents = "none";
-
-				const rect = imgWrap.getBoundingClientRect();
-				const w = Math.max(1, Math.round(rect.width));
-				const h = Math.max(1, Math.round(rect.height));
 
 				imgEl.style.opacity = "0";
 				imgWrap.appendChild(wrap);
