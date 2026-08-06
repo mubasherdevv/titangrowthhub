@@ -23,8 +23,7 @@ const pageHtml = `
             <div class="loader as-h-1">
                 <span class="loader_letter">L</span>
                 <span class="loader_letter">
-                                            <img src="../wp-content/uploads/2025/11/fevicon-1.webp"
-                        alt="fevicon-1">
+                                            <img src="../website_assets/favicon_io/android-chrome-192x192.png" alt="fevicon-1" style="width: 45px; height: 45px; object-fit: contain; display: block; margin: 0 auto;">
                                     </span>
                 <span class="loader_letter">A</span>
                 <span class="loader_letter">D</span>
@@ -104,11 +103,10 @@ const pageHtml = `
             </div>
         </div>
     </div>
-    <a href="../index.html" aria-label="fevicon-1" class="as-header-1-logo">
+    <a href="../index.html" aria-label="fevicon-1" style="position: relative; display: inline-flex; align-items: center; justify-content: center;" class="as-header-1-logo">
                 <img src="../wp-content/uploads/2025/10/h1-favicon-shape.webp" alt="h1-favicon-shape" class="bg-shape">
         
-                <img src="../wp-content/uploads/2025/10/fevicon-1.webp"
-        alt="fevicon-1">
+                <img src="../website_assets/favicon_io/android-chrome-192x192.png" alt="fevicon-1" style="width: 45px; height: 45px; object-fit: contain; position: absolute; top: 50%; left: 45%; transform: translate(-50%, -50%); z-index: 5;">
             </a>
 </header>
 <div class="wa-offcanvas-area offcanvas_box_active lenis lenis-smooth ">
@@ -219,7 +217,7 @@ const pageHtml = `
 
     <!-- wrapper-box start -->
             <!-- breadcrumb-start -->
-        <div class="as-breadcrumb-area wa-p-relative wa-bg-default tx-breadcrumb " data-background="/website_assets/tx-bg-img.webp">
+        <div class="as-breadcrumb-area wa-p-relative wa-bg-default tx-breadcrumb " data-background="/website_assets/tx-bg-img.webp" style="background-image: url('/website_assets/tx-bg-img.webp');">
             <div class="container as-container-2">
                 <div class="as-breadcrumb-wrap">
                     <h1 class="as-breadcrumb-title">Our Team</h1>
@@ -529,182 +527,302 @@ const pageHtml = `
 				<div class="elementor-element elementor-element-4024d54 e-con-full e-flex e-con e-parent" data-id="4024d54" data-element_type="container">
 				<div class="elementor-element elementor-element-fdd45c3 elementor-widget elementor-widget-tx_footers elh-el tx_footers" data-id="fdd45c3" data-element_type="widget" data-settings="{&quot;design_style&quot;:&quot;style_1&quot;}" data-widget_type="tx_footers.default">
 				<div class="elementor-widget-container">
-					<footer class="as-footer-1-area wa-bg-default pt-95 pb-120 tx-section" data-background="https://themexriver.com/wp/avista/wp-content/uploads/2025/11/f1-bg-img.webp">
-    <div class="container as-container-1">
-        <div class="as-footer-1-container">
+					<footer class="custom-dark-footer-v2">
+    <div class="custom-container">
+        <div class="footer-grid">
+            
+            <!-- Navigation -->
+            <div class="footer-col-nav">
+                <h3 class="footer-heading">Quick Links</h3>
+                <div class="heading-underline"></div>
+                <ul class="footer-links">
+                    <li><a href="/"><span class="arr">&gt;</span>Home</a></li>
+                    <li><a href="/about"><span class="arr">&gt;</span> About Us</a></li>
+                    <li><a href="/our-services"><span class="arr">&gt;</span> Services</a></li>
+                    <li><a href="/blog"><span class="arr">&gt;</span> Blogs</a></li>
+                    <li><a href="/contact-us"><span class="arr">&gt;</span> Contact</a></li>
+                </ul>
+            </div>
 
-            <div class="as-footer-1-wrap mb-90">
+            <!-- Center Logo & Text -->
+            <div class="footer-col-center">
+                <a href="/" class="footer-logo">
+                    <img src="/website_assets/footer-logo.png" alt="Titan Growth Hub">
+                </a>
+                <p class="footer-desc">
+                    We help businesses grow<br>with smart digital solutions.
+                </p>
+                <div class="footer-decorative-line">
+                    <span></span>
+                    <i class="dot"></i>
+                    <span></span>
+                </div>
+            </div>
 
-                <!-- single-widget -->
-                                <div class="as-footer-1-widget">
-                    <div class="as-footer-1-newsletter">
-                                                <h4 class="as-h-1 title">
-                            <i aria-hidden="true" class="flaticon flaticon-notification"></i>                            Newsletter                        </h4>
-                        
-                                                <p class="as-p-1 disc">Keep up out latest update subscribe our newsletter!</p>
-                        
-                                                <div class="tx-contactForm">
-                            
-<div class="wpcf7 no-js" id="wpcf7-f2678-o1" lang="en-US" dir="ltr" data-wpcf7-id="2678">
-<div class="screen-reader-response"><p role="status" aria-live="polite" aria-atomic="true"></p> <ul></ul></div>
-<form action="https://themexriver.com/wp/avista/our-team/#wpcf7-f2678-o1" method="post" class="wpcf7-form init" aria-label="Contact form" novalidate="novalidate" data-status="init">
-<fieldset class="hidden-fields-container"><input type="hidden" name="_wpcf7" value="2678" /><input type="hidden" name="_wpcf7_version" value="6.1.4" /><input type="hidden" name="_wpcf7_locale" value="en_US" /><input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f2678-o1" /><input type="hidden" name="_wpcf7_container_post" value="0" /><input type="hidden" name="_wpcf7_posted_data_hash" value="" />
-</fieldset>
-<div class="as-footer-1-newsletter-form wa-p-relative">
-    <span class="wpcf7-form-control-wrap" data-name="email-650"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email as-footer-1-newsletter-form-input wa_placeholder" aria-required="true" aria-invalid="false" placeholder="Email Address" value="" type="email" name="email-650" /></span>
-    <button type="submit" class="as-footer-1-newsletter-form-btn as-pr-btn-1 wa_btn_split_1 wa_magnetic_btn_1" >
-        <span class="text wa-fix">Subscribe</span>
-    </button>
-</div><div class="wpcf7-response-output" aria-hidden="true"></div>
-</form>
-</div>
+            <!-- Follow Us -->
+            <div class="footer-col-social">
+                <div class="social-wrapper">
+                    <h3 class="footer-heading">Follow Us</h3>
+                    <div class="heading-underline"></div>
+                    <div class="social-icons">
+                        <div class="social-row">
+                            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                         </div>
-                        
                     </div>
-                </div>
-                
-                <!-- single-widget -->
-                                <div class="as-footer-1-widget">
-                                        <h3 class="as-footer-1-widget-title as-h-1">Quick Navigation</h3>
-                                        <ul class="wa-ul as-footer-1-menu">
-                                                <li class="as-p-1">
-                            <a href="../about/index.html"
-                            target="_self"
-                            rel="">
-                                                                About us                            </a>
-                        </li>
-                                                <li class="as-p-1">
-                            <a href="../about/index.html"
-                            target="_self"
-                            rel="">
-                                                                Features                            </a>
-                        </li>
-                                                <li class="as-p-1">
-                            <a href="../pricing/index.html"
-                            target="_self"
-                            rel="">
-                                                                Pricing                            </a>
-                        </li>
-                                                <li class="as-p-1">
-                            <a href="../about/index.html"
-                            target="_self"
-                            rel="">
-                                                                Testimonial                            </a>
-                        </li>
-                                                <li class="as-p-1">
-                            <a href="../faqs/index.html"
-                            target="_self"
-                            rel="">
-                                                                FAQ's                            </a>
-                        </li>
-                                            </ul>
-                </div>
-                
-                <!-- single-widget -->
-                                <div class="as-footer-1-widget">
-                                        <h3 class="as-footer-1-widget-title as-h-1">All Page</h3>
-                                        <ul class="wa-ul as-footer-1-menu">
-                                                <li class="as-p-1">
-                            <a href="../index.html"
-                            target="_self"
-                            rel="">
-                                                                Home                            </a>
-                        </li>
-                                                <li class="as-p-1">
-                            <a href="../contact-us/index.html"
-                            target="_self"
-                            rel="">
-                                                                Contact                            </a>
-                        </li>
-                                                <li class="as-p-1">
-                            <a href="../blog/index.html"
-                            target="_self"
-                            rel="">
-                                                                Blogs                            </a>
-                        </li>
-                                                <li class="as-p-1">
-                            <a href="#"
-                            target="_self"
-                            rel="">
-                                                                Privacy Policy                            </a>
-                        </li>
-                                                <li class="as-p-1">
-                            <a href="#"
-                            target="_self"
-                            rel="">
-                                                                404                            </a>
-                        </li>
-                                            </ul>
-                </div>
-                
-                <!-- single-widget -->
-                                <div class="as-footer-1-widget">
-                                        <h3 class="as-footer-1-widget-title as-h-1">Social Media</h3>
-                                        <ul class="wa-ul as-footer-1-menu">
-                                                <li class="as-p-1">
-                            <a href="#"
-                            target="_self"
-                            rel="">
-                                                                Facebook                            </a>
-                        </li>
-                                                <li class="as-p-1">
-                            <a href="#"
-                            target="_self"
-                            rel="">
-                                                                Instagram                            </a>
-                        </li>
-                                                <li class="as-p-1">
-                            <a href="#"
-                            target="_self"
-                            rel="">
-                                                                Twitter                            </a>
-                        </li>
-                                                <li class="as-p-1">
-                            <a href="#"
-                            target="_self"
-                            rel="">
-                                                                linkedin                            </a>
-                        </li>
-                                            </ul>
-                </div>
-                
-                <!-- single-widget -->
-                                <div class="as-footer-1-widget">
-                    <div class="wow backInUp2">
-                        <a href="https://themexriver.com/cdn-cgi/l/email-protection#224b4c444d62454f434b4e0c414d4f" target="_self" rel="" aria-label="info@gmail.com" class="as-footer-1-big-email as-p-1 ">
-                            <span class="text wa_magnetic_btn_1">
-                                <span class="__cf_email__" data-cfemail="c6afa8a0a986a1aba7afaae8a5a9ab">[email&#160;protected]</span>                            </span>
+
+                    <!-- Get in Touch -->
+                    <div class="get-in-touch" style="margin-top: 35px; width: 100%;">
+                        <h3 class="footer-heading" style="margin-bottom: 15px; font-size: 18px;">Get In Touch</h3>
+                        <a href="mailto:info@titangrowthhub.com" class="email-btn" style="display: inline-block; background-color: transparent; border: 1px solid #FF6B00; color: #FF6B00; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-size: 15px; font-weight: 500; transition: all 0.3s ease;">
+                            info@titangrowthhub.com
                         </a>
                     </div>
                 </div>
-                
             </div>
 
-            <!-- logo -->
-                        <div class="text-center mb-30">
-                <a href="https://themexriver.com/wp/avista" class="as-footer-1-logo wa-fix tx-logo">
-                    <img class="wow bounceInUp" src="../wp-content/uploads/2025/11/logo-5.svg"
-                    alt="logo-5">
-                </a>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom-v2">
+            <div class="copyright-area">
+                <p>
+                    <span class="highlight-orange">© 2026</span> Titan Growth Hub. All rights reserved.
+                </p>
             </div>
-            
-            <!-- footer-bottom -->
-            <div class="as-footer-1-bottom">
-                                <p class="as-footer-1-copyright as-p-1">
-                    © All rights reserved <span class="copyright-year"></span>                </p>
-                
-                                <p class="as-footer-1-make as-p-1">
-                    make with <i class="fa-solid fa-heart"></i> by <a href="#" aria-label="Themexriver">Themexriver</a>                </p>
-                
-                                <div class="as-footer-1-bottom-link">
-                                        <a class="link-elm as-p-1" href="#"
-                    target="_self"
-                    rel="">
-                                                Privacy Policy                    </a>
-                                    </div>
-                            </div>
+            <div class="legal-links">
+                <a href="#">Privacy Policy</a>
+                <span class="separator">|</span>
+                <a href="#">Terms of Service</a>
+                <span class="separator">|</span>
+                <a href="#">Cookie Policy</a>
+            </div>
         </div>
     </div>
+    
+    <style>
+        .custom-dark-footer-v2 {
+            background-color: #000000; 
+            padding: 80px 0 30px 0; 
+            font-family: 'Inter', sans-serif;
+        }
+        .custom-dark-footer-v2 .custom-container {
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 20px;
+        }
+        .custom-dark-footer-v2 .footer-grid {
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-start; 
+            flex-wrap: wrap; 
+            gap: 40px; 
+            margin-bottom: 60px;
+        }
+        
+        .custom-dark-footer-v2 .footer-heading {
+            color: #ffffff; 
+            font-size: 20px; 
+            font-weight: 600; 
+            margin-bottom: 10px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .custom-dark-footer-v2 .heading-underline {
+            width: 30px;
+            height: 2px;
+            background-color: #FF6B00;
+            margin-bottom: 25px;
+        }
+        
+        /* Nav Column */
+        .custom-dark-footer-v2 .footer-col-nav {
+            flex: 1; 
+            min-width: 250px;
+        }
+        .custom-dark-footer-v2 .footer-links {
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column;
+        }
+        .custom-dark-footer-v2 .footer-links li {
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .custom-dark-footer-v2 .footer-links li:last-child {
+            border-bottom: none;
+        }
+        .custom-dark-footer-v2 .footer-links li a {
+            color: #a3a3a3; 
+            text-decoration: none; 
+            font-size: 15px; 
+            transition: color 0.3s ease;
+            display: block;
+            padding: 12px 0;
+        }
+        .custom-dark-footer-v2 .footer-links li a .arr {
+            color: #FF6B00;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+        .custom-dark-footer-v2 .footer-links li a:hover {
+            color: #ffffff;
+        }
+
+        /* Center Column */
+        .custom-dark-footer-v2 .footer-col-center {
+            flex: 1.5; 
+            min-width: 300px; 
+            text-align: center; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+        }
+        .custom-dark-footer-v2 .footer-logo {
+            display: inline-block; 
+            margin-bottom: 25px;
+        }
+        .custom-dark-footer-v2 .footer-logo img {
+            max-width: 220px; 
+            height: auto;
+        }
+        .custom-dark-footer-v2 .footer-desc {
+            color: #a3a3a3; 
+            font-size: 15px; 
+            line-height: 1.6; 
+            max-width: 280px; 
+            margin: 0 auto 20px auto;
+        }
+        .custom-dark-footer-v2 .footer-decorative-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        .custom-dark-footer-v2 .footer-decorative-line span {
+            width: 40px;
+            height: 1px;
+            background-color: #333333;
+        }
+        .custom-dark-footer-v2 .footer-decorative-line .dot {
+            width: 6px;
+            height: 6px;
+            background-color: #FF6B00;
+            border-radius: 50%;
+        }
+
+        /* Social Column */
+        .custom-dark-footer-v2 .footer-col-social {
+            flex: 1; 
+            min-width: 200px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-end;
+        }
+        .custom-dark-footer-v2 .social-wrapper {
+            width: 100%; 
+            max-width: 200px;
+        }
+        .custom-dark-footer-v2 .social-icons {
+            display: flex; 
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .custom-dark-footer-v2 .social-row {
+            display: flex;
+            gap: 15px;
+        }
+        .custom-dark-footer-v2 .social-row.center-icon {
+            justify-content: center;
+        }
+        .custom-dark-footer-v2 .social-icons a {
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 44px; 
+            height: 44px; 
+            background-color: transparent;
+            border: 1px solid #333333;
+            color: #ffffff; 
+            border-radius: 50%; 
+            text-decoration: none; 
+            font-size: 16px; 
+            transition: all 0.3s ease;
+        }
+        .custom-dark-footer-v2 .social-icons a:hover {
+            background-color: #FF6B00;
+            border-color: #FF6B00;
+            transform: translateY(-3px);
+        }
+
+        /* Bottom */
+        .custom-dark-footer-v2 .footer-bottom-v2 {
+            border-top: 1px solid #1a1a1a; 
+            padding-top: 30px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .custom-dark-footer-v2 .copyright-area p {
+            color: #a3a3a3; 
+            font-size: 14px; 
+            margin: 0;
+        }
+        .custom-dark-footer-v2 .highlight-orange {
+            color: #FF6B00;
+        }
+        .custom-dark-footer-v2 .legal-links {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .custom-dark-footer-v2 .legal-links a {
+            color: #a3a3a3;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        .custom-dark-footer-v2 .legal-links a:hover {
+            color: #ffffff;
+        }
+        .custom-dark-footer-v2 .legal-links .separator {
+            color: #FF6B00;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .custom-dark-footer-v2 .footer-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            .custom-dark-footer-v2 .footer-col-nav,
+            .custom-dark-footer-v2 .footer-col-center,
+            .custom-dark-footer-v2 .footer-col-social {
+                align-items: center;
+                text-align: center;
+            }
+            .custom-dark-footer-v2 .heading-underline {
+                margin: 0 auto 25px auto;
+            }
+            .custom-dark-footer-v2 .social-wrapper {
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .custom-dark-footer-v2 .footer-bottom-v2 {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+            }
+        }
+    </style>
 </footer>				</div>
 				</div>
 				</div>

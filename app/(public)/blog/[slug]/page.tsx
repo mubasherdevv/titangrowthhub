@@ -497,7 +497,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         <!-- Author Box -->
                         <div class="author-box">
                           <div class="author-avatar">
-                            <img src="/wp-content/uploads/2025/11/fevicon-1.webp" alt="Muhammad Mubasher" />
+                            <img src="/website_assets/favicon_io/android-chrome-192x192.png" alt="Muhammad Mubasher" style="width: 45px; height: 45px; object-fit: contain; position: absolute; top: 50%; left: 45%; transform: translate(-50%, -50%); z-index: 5;">
                           </div>
                           <div class="author-info">
                             <h4>Muhammad Mubasher</h4>

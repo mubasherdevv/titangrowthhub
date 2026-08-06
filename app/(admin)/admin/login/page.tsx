@@ -56,7 +56,7 @@ function LoginPageContent() {
   if (checkingSession) {
     return (
       <div className="min-h-screen w-full flex items-center justify-center bg-[#F8F9FE]">
-        <Loader2 className="h-8 w-8 text-purple-600 animate-spin" />
+        <Loader2 className="h-8 w-8 text-orange-600 animate-spin" />
       </div>
     );
   }
@@ -67,11 +67,11 @@ function LoginPageContent() {
       <div className="hidden lg:flex flex-col justify-between bg-[#F8F9FE] p-12 lg:p-16 border-r border-zinc-100 relative overflow-hidden">
         {/* Brand Logo */}
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-purple-600 text-white shadow-md shadow-purple-600/30">
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-orange-600 text-white shadow-md shadow-orange-600/30">
             <Layers className="h-6 w-6" />
           </div>
           <span className="font-serif text-2xl font-black text-zinc-950 tracking-tight">
-            VistaSEO
+            Titan Growth Hub
           </span>
         </div>
 
@@ -83,12 +83,12 @@ function LoginPageContent() {
               <span className="animate-bounce">👋</span>
             </h1>
             <p className="text-sm text-zinc-800 font-medium leading-relaxed">
-              Sign in to access your VistaSEO dashboard and manage your SEO performance.
+              Sign in to access your Titan Growth Hub dashboard and manage your SEO performance.
             </p>
           </div>
 
           {/* SVG/HTML Dashboard Mockup Illustration */}
-          <div className="relative mx-auto w-full max-w-sm rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-xl shadow-purple-900/5">
+          <div className="relative mx-auto w-full max-w-sm rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-xl shadow-orange-900/5">
             {/* Window Controls */}
             <div className="flex items-center gap-1.5 border-b border-zinc-100 pb-3 mb-4">
               <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
@@ -99,7 +99,7 @@ function LoginPageContent() {
             {/* Inner Mockup Layout */}
             <div className="space-y-4">
               {/* Header Bar */}
-              <div className="h-3 w-3/4 rounded-full bg-purple-600/80" />
+              <div className="h-3 w-3/4 rounded-full bg-orange-600/80" />
 
               {/* Skeleton Lines */}
               <div className="space-y-2">
@@ -109,13 +109,13 @@ function LoginPageContent() {
 
               {/* Chart Mockup Area */}
               <div className="grid grid-cols-12 gap-3 pt-2">
-                <div className="col-span-7 rounded-xl border border-purple-100 bg-purple-50/30 p-3 flex flex-col justify-between">
+                <div className="col-span-7 rounded-xl border border-orange-100 bg-orange-50/30 p-3 flex flex-col justify-between">
                   <div className="flex items-center justify-between">
-                    <span className="h-2 w-10 rounded bg-purple-200" />
-                    <TrendingUp className="h-3.5 w-3.5 text-purple-600" />
+                    <span className="h-2 w-10 rounded bg-orange-200" />
+                    <TrendingUp className="h-3.5 w-3.5 text-orange-600" />
                   </div>
                   {/* Wave Chart Line */}
-                  <svg className="w-full h-12 text-purple-600" viewBox="0 0 100 40">
+                  <svg className="w-full h-12 text-orange-600" viewBox="0 0 100 40">
                     <path
                       d="M 0 30 Q 25 5, 50 20 T 100 10"
                       fill="none"
@@ -127,7 +127,7 @@ function LoginPageContent() {
                 </div>
 
                 <div className="col-span-5 rounded-xl border border-zinc-100 bg-zinc-50 p-3 flex flex-col items-center justify-center gap-2">
-                  <PieChart className="h-8 w-8 text-purple-500" />
+                  <PieChart className="h-8 w-8 text-orange-500" />
                   <div className="h-1.5 w-12 rounded bg-zinc-200" />
                 </div>
               </div>
@@ -144,7 +144,7 @@ function LoginPageContent() {
 
         {/* Footer Copyright */}
         <div className="text-xs font-semibold text-zinc-700">
-          © 2025 VistaSEO. All rights reserved.
+          © 2025 Titan Growth Hub. All rights reserved.
         </div>
       </div>
 
@@ -153,7 +153,7 @@ function LoginPageContent() {
         <div className="w-full max-w-md space-y-8 rounded-3xl border border-zinc-200/70 bg-white p-8 sm:p-10 shadow-xl shadow-zinc-900/5">
           {/* Avatar Icon & Title */}
           <div className="text-center space-y-3">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-purple-100/70 text-purple-600">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-orange-100/70 text-orange-600">
               <User className="h-8 w-8" />
             </div>
             <div>
@@ -181,7 +181,7 @@ function LoginPageContent() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50/30 pl-10 pr-4 py-3 text-xs font-medium text-zinc-900 placeholder-zinc-400 focus:border-purple-600 focus:bg-white focus:outline-none transition-all"
+                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50/30 pl-10 pr-4 py-3 text-xs font-medium text-zinc-900 placeholder-zinc-400 focus:border-orange-600 focus:bg-white focus:outline-none transition-all"
                 />
               </div>
             </div>
@@ -199,7 +199,7 @@ function LoginPageContent() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50/30 pl-10 pr-10 py-3 text-xs font-medium text-zinc-900 placeholder-zinc-400 focus:border-purple-600 focus:bg-white focus:outline-none transition-all"
+                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50/30 pl-10 pr-10 py-3 text-xs font-medium text-zinc-900 placeholder-zinc-400 focus:border-orange-600 focus:bg-white focus:outline-none transition-all"
                 />
                 <button
                   type="button"
@@ -222,13 +222,13 @@ function LoginPageContent() {
                   type="checkbox"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                  className="h-4 w-4 rounded border-zinc-300 text-purple-600 focus:ring-purple-500"
+                  className="h-4 w-4 rounded border-zinc-300 text-orange-600 focus:ring-orange-500"
                 />
                 <span>Remember me</span>
               </label>
               <a
                 href="#"
-                className="font-semibold text-purple-600 hover:text-purple-700 transition-colors"
+                className="font-semibold text-orange-600 hover:text-orange-700 transition-colors"
               >
                 Forgot password?
               </a>
@@ -246,7 +246,7 @@ function LoginPageContent() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-xl bg-purple-600 py-3 text-xs font-extrabold text-white shadow-lg shadow-purple-600/25 transition-all hover:bg-purple-700 active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full rounded-xl bg-orange-600 py-3 text-xs font-extrabold text-white shadow-lg shadow-orange-600/25 transition-all hover:bg-orange-700 active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <span className="inline-flex items-center justify-center gap-2">
@@ -301,7 +301,7 @@ function LoginPageContent() {
           {/* Contact Admin Link */}
           <p className="text-center text-xs text-zinc-800 font-medium pt-2">
             Don't have an account?{' '}
-            <a href="#" className="font-bold text-purple-600 hover:underline">
+            <a href="#" className="font-bold text-orange-600 hover:underline">
               Contact administrator
             </a>
           </p>
@@ -316,7 +316,7 @@ export default function LoginPage() {
     <Suspense
       fallback={
         <div className="min-h-screen w-full flex items-center justify-center bg-[#F8F9FE]">
-          <Loader2 className="h-8 w-8 text-purple-600 animate-spin" />
+          <Loader2 className="h-8 w-8 text-orange-600 animate-spin" />
         </div>
       }
     >

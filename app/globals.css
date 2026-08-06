@@ -33,3 +33,28 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #a1a1aa;
 }
+
+/* Fix header and loader logo size */
+.as-header-1-logo {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.as-header-1-logo img:not(.bg-shape) {
+    max-width: 45px !important;
+    max-height: 45px !important;
+    object-fit: contain;
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.loader_letter img {
+    max-width: 45px !important;
+    max-height: 45px !important;
+    object-fit: contain;
+}

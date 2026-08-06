@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   let ogTitle = '';
   let ogDesc = '';
   let ogImg = '';
-  let faviconUrl = '/wp-content/uploads/2025/11/fevicon-1.webp';
+  let faviconUrl = '/website_assets/favicon_io/favicon.ico';
   let siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://titangrowthhub.com';
 
   try {
@@ -85,7 +85,7 @@ async function getJsonLdSchemas() {
 
   let name = SITE_NAME;
   let url = SITE_URL;
-  let logo = `${SITE_URL}/wp-content/uploads/2025/11/fevicon-1.webp`;
+  let logo = `${SITE_URL}/website_assets/favicon_io/android-chrome-192x192.png`;
   let description = "Pakistan's Leading SEO & Digital Marketing Agency helping businesses scale with data-driven strategies.";
 
   try {
