@@ -57,7 +57,7 @@ export default async function BlogPage() {
             <div class="tz-blog-item" style="padding: 20px; background: #fff; border-radius: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
               <div class="item-img" style="border-radius: 15px; overflow: hidden; margin-bottom: 20px; aspect-ratio: 16/9; max-height: 350px;">
                 <a href="${slug}">
-                  <img src="${featuredImg}" class="img-responsive w-100 wp-post-image" alt="${blog.title || ''}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;" />
+                  <img loading="lazy" src="${featuredImg}" class="img-responsive w-100 wp-post-image" alt="${blog.title || ''}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;" />
                 </a>
               </div>
               <div class="item-text headline pera-content">
@@ -103,7 +103,7 @@ export default async function BlogPage() {
         <div class="tz-rcw-item has-thumbnail">
           <div class="item-img" style="border-radius: 8px; overflow: hidden; width: 65px; height: 65px; flex-shrink: 0;">
             <a href="${cleanSlug}">
-              <img src="${bImg}" class="sidebar-post-img wp-post-image" alt="" style="width: 100%; height: 100%; object-fit: cover;" />
+              <img loading="lazy" src="${bImg}" class="sidebar-post-img wp-post-image" alt="Titan Growth Hub Image" style="width: 100%; height: 100%; object-fit: cover;" />
             </a>
           </div>
           <div class="item-text headline" style="padding-left: 12px;">

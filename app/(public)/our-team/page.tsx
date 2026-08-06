@@ -21,9 +21,9 @@ const pageHtml = `
         <div class="as-preloader ">
         <div class="as-preloader-wrap">
             <div class="loader as-h-1">
-                <span class="loader_letter">L</span>
-                <span class="loader_letter">
-                                            <img src="../website_assets/favicon_io/android-chrome-192x192.png" alt="fevicon-1" style="width: 45px; height: 45px; object-fit: contain; display: block; margin: 0 auto;">
+                 <span class="loader_letter">L</span>
+                                                 <img loading="lazy" src="../website_assets/favicon_io/android-chrome-192x192.png"
+                        alt="Titan Growth Hub Favicon">
                                     </span>
                 <span class="loader_letter">A</span>
                 <span class="loader_letter">D</span>
@@ -103,10 +103,11 @@ const pageHtml = `
             </div>
         </div>
     </div>
-    <a href="../index.html" aria-label="fevicon-1" style="position: relative; display: inline-flex; align-items: center; justify-content: center;" class="as-header-1-logo">
-                <img src="../wp-content/uploads/2025/10/h1-favicon-shape.webp" alt="h1-favicon-shape" class="bg-shape">
+    <a href="../index.html" aria-label="fevicon-1" class="as-header-1-logo">
+                <img loading="lazy" src="../wp-content/uploads/2025/10/h1-favicon-shape.webp" alt="h1-favicon-shape" class="bg-shape">
         
-                <img src="../website_assets/favicon_io/android-chrome-192x192.png" alt="fevicon-1" style="width: 45px; height: 45px; object-fit: contain; position: absolute; top: 50%; left: 45%; transform: translate(-50%, -50%); z-index: 5;">
+                <img loading="lazy" src="../website_assets/favicon_io/android-chrome-192x192.png"
+        alt="Titan Growth Hub Favicon">
             </a>
 </header>
 <div class="wa-offcanvas-area offcanvas_box_active lenis lenis-smooth ">
@@ -114,7 +115,7 @@ const pageHtml = `
         <!-- top -->
         <div class="wa-offcanvas-top">
                         <a href="../index.html" class="tx-logo wa-offcanvas-top-logo" aria-label="Site Logo"  >
-                <img src="../wp-content/uploads/2025/11/logo-1.webp" alt="logo-1">
+                <img loading="lazy" src="../wp-content/uploads/2025/11/logo-1.webp" alt="Partner Logo">
             </a>
             
             <!-- close-btn -->
@@ -156,19 +157,19 @@ const pageHtml = `
             <div class="wa-offcanvas-gallery-grid">
                                 <a href="../wp-content/uploads/2025/10/p1-img-1.webp"
                 aria-label="" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                    <img src="../wp-content/uploads/2025/10/p1-img-1.webp" alt="">
+                    <img loading="lazy" src="../wp-content/uploads/2025/10/p1-img-1.webp" alt="Titan Growth Hub Image">
                 </a>
                                 <a href="../wp-content/uploads/2025/10/p1-img-2.webp"
                 aria-label="" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                    <img src="../wp-content/uploads/2025/10/p1-img-2.webp" alt="">
+                    <img loading="lazy" src="../wp-content/uploads/2025/10/p1-img-2.webp" alt="Titan Growth Hub Image">
                 </a>
                                 <a href="../wp-content/uploads/2025/10/p1-img-4.webp"
                 aria-label="" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                    <img src="../wp-content/uploads/2025/10/p1-img-4.webp" alt="">
+                    <img loading="lazy" src="../wp-content/uploads/2025/10/p1-img-4.webp" alt="Titan Growth Hub Image">
                 </a>
                                 <a href="../wp-content/uploads/2025/10/p1-img-3.webp"
                 aria-label="" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                    <img src="../wp-content/uploads/2025/10/p1-img-3.webp" alt="">
+                    <img loading="lazy" src="../wp-content/uploads/2025/10/p1-img-3.webp" alt="Titan Growth Hub Image">
                 </a>
                             </div>
         </div>
@@ -254,8 +255,8 @@ const pageHtml = `
                         <div class="as-team-1-member-ani">
                 <div class="as-team-1-member ">
                     <div class="member-img wa-fix wa-img-cover wa-p-relative">
-                                                <img decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-1.webp"
-                            alt="t1-img-1">
+                                                <img loading="lazy" decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-1.webp"
+                            alt="Team Expert">
                         
                         <div class="content-wrap">
                                                         <h5 class="as-h-1 member-name">
@@ -288,8 +289,8 @@ const pageHtml = `
                         <div class="as-team-1-member-ani">
                 <div class="as-team-1-member ">
                     <div class="member-img wa-fix wa-img-cover wa-p-relative">
-                                                <img decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-2.webp"
-                            alt="t1-img-2">
+                                                <img loading="lazy" decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-2.webp"
+                            alt="Team Expert">
                         
                         <div class="content-wrap">
                                                         <h5 class="as-h-1 member-name">
@@ -322,8 +323,8 @@ const pageHtml = `
                         <div class="as-team-1-member-ani">
                 <div class="as-team-1-member ">
                     <div class="member-img wa-fix wa-img-cover wa-p-relative">
-                                                <img decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-3.webp"
-                            alt="t1-img-3">
+                                                <img loading="lazy" decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-3.webp"
+                            alt="Team Expert">
                         
                         <div class="content-wrap">
                                                         <h5 class="as-h-1 member-name">
@@ -356,8 +357,8 @@ const pageHtml = `
                         <div class="as-team-1-member-ani">
                 <div class="as-team-1-member ">
                     <div class="member-img wa-fix wa-img-cover wa-p-relative">
-                                                <img decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-4.webp"
-                            alt="t1-img-4">
+                                                <img loading="lazy" decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-4.webp"
+                            alt="Team Expert">
                         
                         <div class="content-wrap">
                                                         <h5 class="as-h-1 member-name">
@@ -402,58 +403,58 @@ const pageHtml = `
                                                         <h6 class="as-h-1 text-elm">
                         Apps Design                    </h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                                                                             <h6 class="as-h-1 text-elm">
                         Seo                    </h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                                                                             <h6 class="as-h-1 text-elm">
                         Digital Marketing                    </h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                                                                             <h6 class="as-h-1 text-elm">
                         Branding                    </h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                                                                             <h6 class="as-h-1 text-elm">
                         Web Design                    </h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                                                                             <h6 class="as-h-1 text-elm">
                         Website Marketing                    </h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                                                                             <h6 class="as-h-1 text-elm">
                         Apps Design                    </h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                                                                             <h6 class="as-h-1 text-elm">
                         Seo                    </h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                                                                             <h6 class="as-h-1 text-elm">
                         Digital Marketing                    </h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                                                                             <h6 class="as-h-1 text-elm">
                         Web Design                    </h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                                                                             <h6 class="as-h-1 text-elm">
                         Website Marketing                    </h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                                                 </div>
         </div>
     </div>
@@ -463,58 +464,58 @@ const pageHtml = `
             <div class="as-marquee-text-1-content">
                                                         <h6 class="as-h-1 text-elm">Apps Design</h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                     
                                                         <h6 class="as-h-1 text-elm">Seo</h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                     
                                                         <h6 class="as-h-1 text-elm">Digital Marketing</h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                     
                                                         <h6 class="as-h-1 text-elm">Branding</h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                     
                                                         <h6 class="as-h-1 text-elm">Web Design</h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                     
                                                         <h6 class="as-h-1 text-elm">Website Marketing</h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                     
                                                         <h6 class="as-h-1 text-elm">Apps Design</h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                     
                                                         <h6 class="as-h-1 text-elm">Seo</h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                     
                                                         <h6 class="as-h-1 text-elm">Digital Marketing</h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                     
                                                         <h6 class="as-h-1 text-elm">Branding</h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                     
                                                         <h6 class="as-h-1 text-elm">Website Marketing</h6>
                     
-                                        <img decoding="async" src="../wp-content/uploads/2025/10/star.webp"
-                    alt="star">
+                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/star.webp"
+                    alt="Star Icon">
                     
                             </div>
         </div>
@@ -547,7 +548,7 @@ const pageHtml = `
             <!-- Center Logo & Text -->
             <div class="footer-col-center">
                 <a href="/" class="footer-logo">
-                    <img src="/website_assets/footer-logo.png" alt="Titan Growth Hub">
+                    <img loading="lazy" src="/website_assets/footer-logo.png" alt="Titan Growth Hub">
                 </a>
                 <p class="footer-desc">
                     We help businesses grow<br>with smart digital solutions.

@@ -22,8 +22,8 @@ const pageHtml = `
             <div class="loader as-h-1">
                 <span class="loader_letter">L</span>
                 <span class="loader_letter">
-                                            <img src="../website_assets/favicon_io/android-chrome-192x192.png"
-                        alt="fevicon-1">
+                                            <img loading="lazy" src="../website_assets/favicon_io/android-chrome-192x192.png"
+                        alt="Titan Growth Hub Favicon">
                                     </span>
                 <span class="loader_letter">A</span>
                 <span class="loader_letter">D</span>
@@ -104,10 +104,10 @@ const pageHtml = `
         </div>
     </div>
     <a href="../index.html" aria-label="fevicon-1" class="as-header-1-logo">
-                <img src="../wp-content/uploads/2025/10/h1-favicon-shape.webp" alt="h1-favicon-shape" class="bg-shape">
+                <img loading="lazy" src="../wp-content/uploads/2025/10/h1-favicon-shape.webp" alt="h1-favicon-shape" class="bg-shape">
         
-                <img src="../website_assets/favicon_io/android-chrome-192x192.png"
-        alt="fevicon-1">
+                <img loading="lazy" src="../website_assets/favicon_io/android-chrome-192x192.png"
+        alt="Titan Growth Hub Favicon">
             </a>
 </header>
 <div class="wa-offcanvas-area offcanvas_box_active lenis lenis-smooth ">
@@ -115,7 +115,7 @@ const pageHtml = `
         <!-- top -->
         <div class="wa-offcanvas-top">
                         <a href="../index.html" class="tx-logo wa-offcanvas-top-logo" aria-label="Site Logo"  >
-                <img src="../wp-content/uploads/2025/11/logo-1.webp" alt="logo-1">
+                <img loading="lazy" src="../wp-content/uploads/2025/11/logo-1.webp" alt="Partner Logo">
             </a>
             
             <!-- close-btn -->
@@ -157,19 +157,19 @@ const pageHtml = `
             <div class="wa-offcanvas-gallery-grid">
                                 <a href="../wp-content/uploads/2025/10/p1-img-1.webp"
                 aria-label="" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                    <img src="../wp-content/uploads/2025/10/p1-img-1.webp" alt="">
+                    <img loading="lazy" src="../wp-content/uploads/2025/10/p1-img-1.webp" alt="Titan Growth Hub Image">
                 </a>
                                 <a href="../wp-content/uploads/2025/10/p1-img-2.webp"
                 aria-label="" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                    <img src="../wp-content/uploads/2025/10/p1-img-2.webp" alt="">
+                    <img loading="lazy" src="../wp-content/uploads/2025/10/p1-img-2.webp" alt="Titan Growth Hub Image">
                 </a>
                                 <a href="../wp-content/uploads/2025/10/p1-img-4.webp"
                 aria-label="" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                    <img src="../wp-content/uploads/2025/10/p1-img-4.webp" alt="">
+                    <img loading="lazy" src="../wp-content/uploads/2025/10/p1-img-4.webp" alt="Titan Growth Hub Image">
                 </a>
                                 <a href="../wp-content/uploads/2025/10/p1-img-3.webp"
                 aria-label="" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                    <img src="../wp-content/uploads/2025/10/p1-img-3.webp" alt="">
+                    <img loading="lazy" src="../wp-content/uploads/2025/10/p1-img-3.webp" alt="Titan Growth Hub Image">
                 </a>
                             </div>
         </div>
@@ -260,21 +260,21 @@ const pageHtml = `
                                 Avista empowers companies to grow faster.                </p>
                                 <div class="as-about-1-testimonial">
                                         <div class="as-author-1">
-                                                <img decoding="async" src="../wp-content/uploads/2025/10/a1-shape-1.webp" alt="a1-shape-1" class="bg-shape-1">
+                                                <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/a1-shape-1.webp" alt="Decorative Shape" class="bg-shape-1">
                         
-                                                <img decoding="async" src="../wp-content/uploads/2025/10/a1-shape-2.webp" alt="a1-shape-2" class="bg-shape-2">
+                                                <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/a1-shape-2.webp" alt="Decorative Shape" class="bg-shape-2">
                         
                                                 <div class="as-author-1-img wa-fix wa-img-cover wow fadeInRight2" data-wow-delay="0s">
-                            <img decoding="async" src="../wp-content/uploads/2025/10/author-1.webp" alt="">
+                            <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/author-1.webp" alt="Titan Growth Hub Image">
                         </div>
                                                 <div class="as-author-1-img wa-fix wa-img-cover wow fadeInRight2" data-wow-delay=".1s">
-                            <img decoding="async" src="../wp-content/uploads/2025/10/author-2.webp" alt="">
+                            <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/author-2.webp" alt="Titan Growth Hub Image">
                         </div>
                                                 <div class="as-author-1-img wa-fix wa-img-cover wow fadeInRight2" data-wow-delay=".2s">
-                            <img decoding="async" src="../wp-content/uploads/2025/10/author-3.webp" alt="">
+                            <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/author-3.webp" alt="Titan Growth Hub Image">
                         </div>
                                                 <div class="as-author-1-img wa-fix wa-img-cover wow fadeInRight2" data-wow-delay=".3s">
-                            <img decoding="async" src="../wp-content/uploads/2025/10/author-4.webp" alt="">
+                            <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/author-4.webp" alt="Titan Growth Hub Image">
                         </div>
                                             </div>
                     
@@ -365,8 +365,8 @@ const pageHtml = `
                         <div class="as-team-1-member-ani">
                 <div class="as-team-1-member wa_magnetic_1_trigger">
                     <div class="member-img wa-fix wa-img-cover wa-p-relative">
-                                                <img decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-1.webp"
-                            alt="t1-img-1">
+                                                <img loading="lazy" decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-1.webp"
+                            alt="Team Expert">
                         
                         <div class="content-wrap">
                                                         <h5 class="as-h-1 member-name">
@@ -399,8 +399,8 @@ const pageHtml = `
                         <div class="as-team-1-member-ani">
                 <div class="as-team-1-member wa_magnetic_1_trigger">
                     <div class="member-img wa-fix wa-img-cover wa-p-relative">
-                                                <img decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-2.webp"
-                            alt="t1-img-2">
+                                                <img loading="lazy" decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-2.webp"
+                            alt="Team Expert">
                         
                         <div class="content-wrap">
                                                         <h5 class="as-h-1 member-name">
@@ -433,8 +433,8 @@ const pageHtml = `
                         <div class="as-team-1-member-ani">
                 <div class="as-team-1-member wa_magnetic_1_trigger">
                     <div class="member-img wa-fix wa-img-cover wa-p-relative">
-                                                <img decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-3.webp"
-                            alt="t1-img-3">
+                                                <img loading="lazy" decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-3.webp"
+                            alt="Team Expert">
                         
                         <div class="content-wrap">
                                                         <h5 class="as-h-1 member-name">
@@ -467,8 +467,8 @@ const pageHtml = `
                         <div class="as-team-1-member-ani">
                 <div class="as-team-1-member wa_magnetic_1_trigger">
                     <div class="member-img wa-fix wa-img-cover wa-p-relative">
-                                                <img decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-4.webp"
-                            alt="t1-img-4">
+                                                <img loading="lazy" decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/t1-img-4.webp"
+                            alt="Team Expert">
                         
                         <div class="content-wrap">
                                                         <h5 class="as-h-1 member-name">
@@ -541,11 +541,11 @@ const pageHtml = `
 
                     <div class="as-cta-2-manager">
                                                 <div class="img-elm wa-fix wa-img-cover">
-                            <img decoding="async" src="../wp-content/uploads/2025/10/author-7.webp" alt="author-7">
+                            <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/author-7.webp" alt="Team Member">
                         </div>
                         
                         <h4 class="as-h-1 text-elm">
-                            Hi                                                        <img decoding="async" src="../wp-content/uploads/2025/10/hy-icon.gif" alt="hy-icon">                             I’m Lisa, Customer Manager                        </h4>
+                            Hi                                                        <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/hy-icon.gif" alt="hy-icon">                             I’m Lisa, Customer Manager                        </h4>
                     </div>
                 </div>
                 
@@ -571,19 +571,19 @@ const pageHtml = `
                                             </div>
                     <div class="as-cta-2-projects-ss">
                                                 <div class="ss-elm">
-                            <img decoding="async" src="../wp-content/uploads/2025/10/cta2-mockup.webp" alt="cta2-mockup">
+                            <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/cta2-mockup.webp" alt="cta2-mockup">
                         </div>
                         
                                                 <div class="ss-elm wa-fix">
-                            <img decoding="async" class="wow slideInLeft" src="../wp-content/uploads/2025/10/cta2-ss-1.webp" alt="cta2-ss-1">
+                            <img loading="lazy" decoding="async" class="wow slideInLeft" src="../wp-content/uploads/2025/10/cta2-ss-1.webp" alt="cta2-ss-1">
                         </div>
                         
                                                 <div class="ss-elm wa-fix">
-                            <img decoding="async" class="wow slideInLeft" data-wow-delay=".1s" src="../wp-content/uploads/2025/10/cta2-ss-2.webp" alt="cta2-ss-2">
+                            <img loading="lazy" decoding="async" class="wow slideInLeft" data-wow-delay=".1s" src="../wp-content/uploads/2025/10/cta2-ss-2.webp" alt="cta2-ss-2">
                         </div>
                         
                                                 <div class="ss-elm wa-fix">
-                            <img decoding="async" class="wow slideInLeft" data-wow-delay=".2s" src="../wp-content/uploads/2025/10/cta2-ss-3.webp" alt="cta2-ss-3">
+                            <img loading="lazy" decoding="async" class="wow slideInLeft" data-wow-delay=".2s" src="../wp-content/uploads/2025/10/cta2-ss-3.webp" alt="cta2-ss-3">
                         </div>
                         
                     </div>
@@ -625,7 +625,7 @@ const pageHtml = `
     <div class="button-x-author" >
         <div class="author">
             <div class="author-img wa-img-cover wa-fix">
-                <img decoding="async" src="../wp-content/uploads/2025/10/author-5.webp" alt="">
+                <img loading="lazy" decoding="async" src="../wp-content/uploads/2025/10/author-5.webp" alt="Titan Growth Hub Image">
             </div>
             <div class="content">
                 <h4 class="as-h-1 author-name">Liven Geo</h4>
@@ -690,8 +690,8 @@ const pageHtml = `
             <!-- left -->
             <div class="as-blog-1-left wa-fix wa_magnetic_1_trigger wa-fix">
                                 <div class="logo-elm">
-                    <img decoding="async" class="wow fadeInUp2" src="../wp-content/uploads/2025/10/logo-1.webp"
-                    alt="logo-1">
+                    <img loading="lazy" decoding="async" class="wow fadeInUp2" src="../wp-content/uploads/2025/10/logo-1.webp"
+                    alt="Partner Logo">
                 </div>
                 
                                 <h4 class="as-h-1 title wa_title_spilt_1">
@@ -735,7 +735,7 @@ const pageHtml = `
                 
                                 <div class="as-blog-1-left-bg-img">
                     <div class="wa_magnetic_1_elm w-100 h-100">
-                        <img decoding="async" class="wow fadeInRight2" src="../wp-content/uploads/2025/10/b1-illus-1.webp"
+                        <img loading="lazy" decoding="async" class="wow fadeInRight2" src="../wp-content/uploads/2025/10/b1-illus-1.webp"
                     alt="b1-illus-1">
                     </div>
                 </div>
@@ -746,7 +746,7 @@ const pageHtml = `
 
                                 <div class="as-blog-1-item wa_magnetic_1_trigger ">
                                         <div class="item-img wa-fix wa-img-cover">
-                        <img decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/b1-img-1.webp"
+                        <img loading="lazy" decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/b1-img-1.webp"
                         alt="b1-img-1">
                     </div>
                     
@@ -778,7 +778,7 @@ const pageHtml = `
                 </div>
                                 <div class="as-blog-1-item wa_magnetic_1_trigger ">
                                         <div class="item-img wa-fix wa-img-cover">
-                        <img decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/b1-img-2.webp"
+                        <img loading="lazy" decoding="async" class="wa_magnetic_1_elm" src="../wp-content/uploads/2025/10/b1-img-2.webp"
                         alt="b1-img-2">
                     </div>
                     
@@ -839,7 +839,7 @@ const pageHtml = `
             <!-- Center Logo & Text -->
             <div class="footer-col-center">
                 <a href="/" class="footer-logo">
-                    <img src="/website_assets/footer-logo.png" alt="Titan Growth Hub">
+                    <img loading="lazy" src="/website_assets/footer-logo.png" alt="Titan Growth Hub">
                 </a>
                 <p class="footer-desc">
                     We help businesses grow<br>with smart digital solutions.

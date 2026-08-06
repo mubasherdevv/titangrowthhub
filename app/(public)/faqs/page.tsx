@@ -1216,6 +1216,7 @@ export default async function Page() {
     return (
         <>
             <script
+                id="faq-schema-markup"
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema) }}
             />

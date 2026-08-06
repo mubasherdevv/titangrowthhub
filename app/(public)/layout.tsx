@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
   let robots = 'index, follow';
   let ogTitle = '';
   let ogDesc = '';
-  let ogImg = '';
+  let ogImg = '/website_assets/og-image.jpg';
   let faviconUrl = '/website_assets/favicon_io/favicon.ico';
   let siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://titangrowthhub.com';
 
@@ -35,7 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
       robots = data.allow_indexing ? 'index, follow' : 'noindex, nofollow';
       ogTitle = data.og_title || title;
       ogDesc = data.og_description || description;
-      ogImg = data.og_image || '';
+      ogImg = data.og_image || '/website_assets/og-image.jpg';
       if (data.favicon_url) {
         faviconUrl = data.favicon_url;
       }
@@ -48,6 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
+    metadataBase: new URL(siteUrl),
     title: {
       default: title,
       template: `%s`,
@@ -75,6 +76,9 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     alternates: {
       canonical: siteUrl,
+      languages: {
+        'en-US': siteUrl,
+      },
     },
   };
 }
@@ -141,7 +145,46 @@ async function getJsonLdSchemas() {
     dateModified: new Date().toISOString(), // AI Readiness Freshness Signal
   };
 
-  return [organization, website];
+  const localBusiness = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': `${url}/#localbusiness`,
+    name,
+    image: logo,
+    url,
+    telephone: '+92-311-2345678', // Placeholder, user can update
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'DHA Phase 6',
+      addressLocality: 'Karachi',
+      addressRegion: 'Sindh',
+      postalCode: '75500',
+      addressCountry: 'PK'
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '09:00',
+        closes: '18:00'
+      }
+    ]
+  };
+
+  const breadcrumbList = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: url
+      }
+    ]
+  };
+
+  return [organization, website, localBusiness, breadcrumbList];
 }
 
 export default async function PublicRootLayout({
@@ -193,6 +236,7 @@ export default async function PublicRootLayout({
         {jsonLdSchemas.map((schema, i) => (
           <script
             key={i}
+            id={`schema-markup-${i}`}
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
           />

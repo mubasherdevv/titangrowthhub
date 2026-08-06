@@ -135,7 +135,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div class="related-card">
           <div class="related-img">
             <a href="/blog/${cleanSlug}">
-              <img src="${bImg}" alt="${b.title}" />
+              <img loading="lazy" src="${bImg}" alt="${b.title}" />
             </a>
           </div>
           <div class="related-info">
@@ -168,7 +168,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div class="tz-rcw-item has-thumbnail">
           <div class="item-img" style="border-radius: 8px; overflow: hidden; width: 65px; height: 65px; flex-shrink: 0;">
             <a href="/blog/${cleanSlug}">
-              <img src="${bImg}" class="sidebar-post-img wp-post-image" alt="" style="width: 100%; height: 100%; object-fit: cover;" />
+              <img loading="lazy" src="${bImg}" class="sidebar-post-img wp-post-image" alt="Titan Growth Hub Image" style="width: 100%; height: 100%; object-fit: cover;" />
             </a>
           </div>
           <div class="item-text headline" style="padding-left: 12px;">
@@ -474,7 +474,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
                         <!-- Featured Image Banner -->
                         <div class="tz-thumb mb-30" style="border-radius: 15px; overflow: hidden; height: 420px; width: 100%;">
-                            <img src="${featuredImg}" class="img-responsive w-100 wp-post-image" alt="${blog.title || ''}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;" />
+                            <img loading="lazy" src="${featuredImg}" class="img-responsive w-100 wp-post-image" alt="${blog.title || ''}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;" />
                         </div>
                         
                         <!-- Table of Contents -->
@@ -497,7 +497,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         <!-- Author Box -->
                         <div class="author-box">
                           <div class="author-avatar">
-                            <img src="/website_assets/favicon_io/android-chrome-192x192.png" alt="Muhammad Mubasher" style="width: 45px; height: 45px; object-fit: contain; position: absolute; top: 50%; left: 45%; transform: translate(-50%, -50%); z-index: 5;">
+                            <img loading="lazy" src="/website_assets/favicon_io/android-chrome-192x192.png" alt="Muhammad Mubasher" style="width: 45px; height: 45px; object-fit: contain; position: absolute; top: 50%; left: 45%; transform: translate(-50%, -50%); z-index: 5;">
                           </div>
                           <div class="author-info">
                             <h4>Muhammad Mubasher</h4>

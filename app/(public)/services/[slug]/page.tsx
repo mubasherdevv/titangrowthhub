@@ -71,7 +71,7 @@ const topHtml = `
             <div class="loader as-h-1">
                 <span class="loader_letter">L</span>
                 <span class="loader_letter">
-                                            <img src="/website_assets/favicon_io/android-chrome-192x192.png" alt="fevicon-1" style="width: 45px; height: 45px; object-fit: contain; display: block; margin: 0 auto;">
+                                            <img loading="lazy" src="/website_assets/favicon_io/android-chrome-192x192.png" alt="Titan Growth Hub Favicon" style="width: 45px; height: 45px; object-fit: contain; display: block; margin: 0 auto;">
                                     </span>
                 <span class="loader_letter">A</span>
                 <span class="loader_letter">D</span>
@@ -152,9 +152,9 @@ const topHtml = `
         </div>
     </div>
     <a href="/" aria-label="fevicon-1" style="position: relative; display: inline-flex; align-items: center; justify-content: center;" class="as-header-1-logo">
-                <img src="/wp-content/uploads/2025/10/h1-favicon-shape.webp" alt="h1-favicon-shape" class="bg-shape">
+                <img loading="lazy" src="/wp-content/uploads/2025/10/h1-favicon-shape.webp" alt="h1-favicon-shape" class="bg-shape">
         
-                <img src="/website_assets/favicon_io/android-chrome-192x192.png" alt="fevicon-1" style="width: 45px; height: 45px; object-fit: contain; position: absolute; top: 50%; left: 45%; transform: translate(-50%, -50%); z-index: 5;">
+                <img loading="lazy" src="/website_assets/favicon_io/android-chrome-192x192.png" alt="Titan Growth Hub Favicon" style="width: 45px; height: 45px; object-fit: contain; position: absolute; top: 50%; left: 45%; transform: translate(-50%, -50%); z-index: 5;">
             </a>
 </header>
 <div class="wa-offcanvas-area offcanvas_box_active lenis lenis-smooth ">
@@ -162,7 +162,7 @@ const topHtml = `
         <!-- top -->
         <div class="wa-offcanvas-top">
                         <a href="/" class="tx-logo wa-offcanvas-top-logo" aria-label="Site Logo"  >
-                <img src="/wp-content/uploads/2025/11/logo-1.webp" alt="logo-1">
+                <img loading="lazy" src="/wp-content/uploads/2025/11/logo-1.webp" alt="Partner Logo">
             </a>
             
             <!-- close-btn -->
@@ -204,19 +204,19 @@ const topHtml = `
             <div class="wa-offcanvas-gallery-grid">
                                 <a href="/wp-content/uploads/2025/10/p1-img-1.webp"
                 aria-label="" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                    <img src="/wp-content/uploads/2025/10/p1-img-1.webp" alt="">
+                    <img loading="lazy" src="/wp-content/uploads/2025/10/p1-img-1.webp" alt="Titan Growth Hub Image">
                 </a>
                                 <a href="/wp-content/uploads/2025/10/p1-img-2.webp"
                 aria-label="" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                    <img src="/wp-content/uploads/2025/10/p1-img-2.webp" alt="">
+                    <img loading="lazy" src="/wp-content/uploads/2025/10/p1-img-2.webp" alt="Titan Growth Hub Image">
                 </a>
                                 <a href="/wp-content/uploads/2025/10/p1-img-4.webp"
                 aria-label="" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                    <img src="/wp-content/uploads/2025/10/p1-img-4.webp" alt="">
+                    <img loading="lazy" src="/wp-content/uploads/2025/10/p1-img-4.webp" alt="Titan Growth Hub Image">
                 </a>
                                 <a href="/wp-content/uploads/2025/10/p1-img-3.webp"
                 aria-label="" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                    <img src="/wp-content/uploads/2025/10/p1-img-3.webp" alt="">
+                    <img loading="lazy" src="/wp-content/uploads/2025/10/p1-img-3.webp" alt="Titan Growth Hub Image">
                 </a>
                             </div>
         </div>
@@ -311,7 +311,7 @@ const bottomHtml = `</div>
             <!-- Center Logo & Text -->
             <div class="footer-col-center">
                 <a href="/" class="footer-logo">
-                    <img src="/website_assets/footer-logo.png" alt="Titan Growth Hub">
+                    <img loading="lazy" src="/website_assets/footer-logo.png" alt="Titan Growth Hub">
                 </a>
                 <p class="footer-desc">
                     We help businesses grow<br>with smart digital solutions.
@@ -755,7 +755,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 ${service.short_desc ? `<p style="font-size: 18px; color: #555; line-height: 1.6; margin-bottom: 40px;">${service.short_desc}</p>` : ''}
 
                 <!-- Featured Image -->
-                ${service.featured_image ? `<div style="margin-bottom: 40px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05);"><img src="${service.featured_image}" alt="${service.title}" style="width: 100%; height: auto; display: block;" /></div>` : ''}
+                ${service.featured_image ? `<div style="margin-bottom: 40px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05);"><img loading="lazy" src="${service.featured_image}" alt="${service.title}" style="width: 100%; height: auto; display: block;" /></div>` : ''}
                 
                 <!-- Main Content -->
                 <div class="service-content prose prose-lg max-w-none prose-orange prose-headings:font-bold prose-a:text-orange-600 hover:prose-a:text-orange-700" style="color: #444; line-height: 1.8;">

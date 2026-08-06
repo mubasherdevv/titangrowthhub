@@ -32,8 +32,8 @@ const pageHtml = `
             <div class="as-preloader-wrap">
                 <div class="loader as-h-1">
                     <span class="loader_letter">L</span>
-                                                 <img src="../website_assets/favicon_io/android-chrome-192x192.png"
-                        alt="fevicon-1">
+                                                 <img loading="lazy" src="../website_assets/favicon_io/android-chrome-192x192.png"
+                        alt="Titan Growth Hub Favicon">
                                     </span>
                 <span class="loader_letter">A</span>
                 <span class="loader_letter">D</span>
@@ -114,10 +114,10 @@ const pageHtml = `
         </div>
     </div>
     <a href="../index.html" aria-label="fevicon-1" class="as-header-1-logo">
-                <img src="../wp-content/uploads/2025/10/h1-favicon-shape.webp" alt="h1-favicon-shape" class="bg-shape">
+                <img loading="lazy" src="../wp-content/uploads/2025/10/h1-favicon-shape.webp" alt="h1-favicon-shape" class="bg-shape">
         
-                <img src="../website_assets/favicon_io/android-chrome-192x192.png"
-        alt="fevicon-1">
+                <img loading="lazy" src="../website_assets/favicon_io/android-chrome-192x192.png"
+        alt="Titan Growth Hub Favicon">
             </a>
 </header>
                         <div class="wa-offcanvas-area offcanvas_box_active lenis lenis-smooth ">
@@ -125,7 +125,7 @@ const pageHtml = `
                                 <!-- top -->
                                 <div class="wa-offcanvas-top">
                                     <a href="/" class="tx-logo wa-offcanvas-top-logo" aria-label="Site Logo">
-                                        <img src="/wp-content/uploads/2025/11/logo-1.webp" alt="logo-1">
+                                        <img loading="lazy" src="/wp-content/uploads/2025/11/logo-1.webp" alt="Partner Logo">
                                     </a>
 
                                     <!-- close-btn -->
@@ -167,19 +167,19 @@ const pageHtml = `
                                     <div class="wa-offcanvas-gallery-grid">
                                         <a href="/wp-content/uploads/2025/10/p1-img-1.webp" aria-label=""
                                             class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                                            <img src="/wp-content/uploads/2025/10/p1-img-1.webp" alt="">
+                                            <img loading="lazy" src="/wp-content/uploads/2025/10/p1-img-1.webp" alt="Titan Growth Hub Image">
                                         </a>
                                         <a href="/wp-content/uploads/2025/10/p1-img-2.webp" aria-label=""
                                             class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                                            <img src="/wp-content/uploads/2025/10/p1-img-2.webp" alt="">
+                                            <img loading="lazy" src="/wp-content/uploads/2025/10/p1-img-2.webp" alt="Titan Growth Hub Image">
                                         </a>
                                         <a href="/wp-content/uploads/2025/10/p1-img-4.webp" aria-label=""
                                             class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                                            <img src="/wp-content/uploads/2025/10/p1-img-4.webp" alt="">
+                                            <img loading="lazy" src="/wp-content/uploads/2025/10/p1-img-4.webp" alt="Titan Growth Hub Image">
                                         </a>
                                         <a href="/wp-content/uploads/2025/10/p1-img-3.webp" aria-label=""
                                             class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                                            <img src="/wp-content/uploads/2025/10/p1-img-3.webp" alt="">
+                                            <img loading="lazy" src="/wp-content/uploads/2025/10/p1-img-3.webp" alt="Titan Growth Hub Image">
                                         </a>
                                     </div>
                                 </div>
@@ -233,7 +233,7 @@ const pageHtml = `
                                 <p class="as-h-1 active-text">
                                     <i aria-hidden="true" class="fas fa-circle"></i> Available for New Projects
                                 </p>
-                                <img decoding="async" class="bg-shape"
+                                <img loading="lazy" decoding="async" class="bg-shape"
                                     src="/wp-content/uploads/2025/10/h1-active-bg.webp" alt="h1-active-bg">
                             </div>
 
@@ -375,33 +375,33 @@ const pageHtml = `
                                                 Avista empowers companies to grow faster. </p>
                                             <div class="as-about-1-testimonial">
                                                 <div class="as-author-1">
-                                                    <img decoding="async"
+                                                    <img loading="lazy" decoding="async"
                                                         src="/wp-content/uploads/2025/10/a1-shape-1.webp"
-                                                        alt="a1-shape-1" class="bg-shape-1">
+                                                        alt="Decorative Shape" class="bg-shape-1">
 
-                                                    <img decoding="async"
+                                                    <img loading="lazy" decoding="async"
                                                         src="/wp-content/uploads/2025/10/a1-shape-2.webp"
-                                                        alt="a1-shape-2" class="bg-shape-2">
+                                                        alt="Decorative Shape" class="bg-shape-2">
 
                                                     <div class="as-author-1-img wa-fix wa-img-cover wow fadeInRight2"
                                                         data-wow-delay="0s">
-                                                        <img decoding="async"
-                                                            src="/wp-content/uploads/2025/10/author-1.webp" alt="">
+                                                        <img loading="lazy" decoding="async"
+                                                            src="/wp-content/uploads/2025/10/author-1.webp" alt="Titan Growth Hub Image">
                                                     </div>
                                                     <div class="as-author-1-img wa-fix wa-img-cover wow fadeInRight2"
                                                         data-wow-delay=".1s">
-                                                        <img decoding="async"
-                                                            src="/wp-content/uploads/2025/10/author-2.webp" alt="">
+                                                        <img loading="lazy" decoding="async"
+                                                            src="/wp-content/uploads/2025/10/author-2.webp" alt="Titan Growth Hub Image">
                                                     </div>
                                                     <div class="as-author-1-img wa-fix wa-img-cover wow fadeInRight2"
                                                         data-wow-delay=".2s">
-                                                        <img decoding="async"
-                                                            src="/wp-content/uploads/2025/10/author-3.webp" alt="">
+                                                        <img loading="lazy" decoding="async"
+                                                            src="/wp-content/uploads/2025/10/author-3.webp" alt="Titan Growth Hub Image">
                                                     </div>
                                                     <div class="as-author-1-img wa-fix wa-img-cover wow fadeInRight2"
                                                         data-wow-delay=".3s">
-                                                        <img decoding="async"
-                                                            src="/wp-content/uploads/2025/10/author-4.webp" alt="">
+                                                        <img loading="lazy" decoding="async"
+                                                            src="/wp-content/uploads/2025/10/author-4.webp" alt="Titan Growth Hub Image">
                                                     </div>
                                                 </div>
 
@@ -487,151 +487,7 @@ const pageHtml = `
                         </div>
                     </div>
                 </div>
-                <div class="elementor-element elementor-element-ac3fa96 e-con-full e-flex e-con e-child"
-                    data-id="ac3fa96" data-element_type="container">
-                    <div class="elementor-element elementor-element-329ed3c elementor-widget elementor-widget-tx_team_lists elh-el tx_team_lists"
-                        data-id="329ed3c" data-element_type="widget"
-                        data-settings="{&quot;design_style&quot;:&quot;style_1&quot;}"
-                        data-widget_type="tx_team_lists.default">
-                        <div class="elementor-widget-container">
-                            <section class="as-team-1-area pt-30 tx-section  ">
-                                <div class="container as-container-1">
-                                    <!-- section-title -->
-                                    <div class="as-team-1-sec-title text-center mb-30">
-                                        <h6 class="as-subtitle-1 tx-subTitle">
-                                            <span class="icon">
-                                                {<i aria-hidden="true" class="fas fa-circle"></i>} </span>
-                                            Team Members
-                                        </h6>
-
-                                        <h2 class="tx-title as-sec-title-1 wa_title_spilt_1">Experts Who Care About Your
-                                            Growth</h2>
-                                    </div>
-
-                                    <div class="as-team-1-wrap">
-                                        <div class="as-team-1-member-ani">
-                                            <div class="as-team-1-member wa_magnetic_1_trigger">
-                                                <div class="member-img wa-fix wa-img-cover wa-p-relative">
-                                                    <img decoding="async" class="wa_magnetic_1_elm"
-                                                        src="/wp-content/uploads/2025/10/t1-img-1.webp" alt="t1-img-1">
-
-                                                    <div class="content-wrap">
-                                                        <h5 class="as-h-1 member-name">
-                                                            <a href="#" target="_self"
-                                                                rel="">
-                                                                Sharah Alena </a>
-                                                        </h5>
-                                                        <p class="as-p-1 member-dg">CEO &amp; Founder</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="member-social">
-                                                    <a class="link-elm" href="#0" target="_self" rel=""
-                                                        aria-label="name">
-                                                        <i aria-hidden="true" class="fab fa-linkedin-in"></i> </a>
-                                                    <a class="link-elm" href="#0" target="_self" rel=""
-                                                        aria-label="name">
-                                                        <i aria-hidden="true" class="fab fa-instagram"></i> </a>
-                                                    <a class="link-elm" href="#0" target="_self" rel=""
-                                                        aria-label="name">
-                                                        <i aria-hidden="true" class="fab fa-x-twitter"></i> </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="as-team-1-member-ani">
-                                            <div class="as-team-1-member wa_magnetic_1_trigger">
-                                                <div class="member-img wa-fix wa-img-cover wa-p-relative">
-                                                    <img decoding="async" class="wa_magnetic_1_elm"
-                                                        src="/wp-content/uploads/2025/10/t1-img-2.webp" alt="t1-img-2">
-
-                                                    <div class="content-wrap">
-                                                        <h5 class="as-h-1 member-name">
-                                                            <a href="#" target="_self"
-                                                                rel="">
-                                                                Sharah Alena </a>
-                                                        </h5>
-                                                        <p class="as-p-1 member-dg">CEO &amp; Founder</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="member-social">
-                                                    <a class="link-elm" href="#0" target="_self" rel=""
-                                                        aria-label="name">
-                                                        <i aria-hidden="true" class="fab fa-linkedin-in"></i> </a>
-                                                    <a class="link-elm" href="#0" target="_self" rel=""
-                                                        aria-label="name">
-                                                        <i aria-hidden="true" class="fab fa-instagram"></i> </a>
-                                                    <a class="link-elm" href="#0" target="_self" rel=""
-                                                        aria-label="name">
-                                                        <i aria-hidden="true" class="fab fa-x-twitter"></i> </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="as-team-1-member-ani">
-                                            <div class="as-team-1-member wa_magnetic_1_trigger">
-                                                <div class="member-img wa-fix wa-img-cover wa-p-relative">
-                                                    <img decoding="async" class="wa_magnetic_1_elm"
-                                                        src="/wp-content/uploads/2025/10/t1-img-3.webp" alt="t1-img-3">
-
-                                                    <div class="content-wrap">
-                                                        <h5 class="as-h-1 member-name">
-                                                            <a href="#" target="_self"
-                                                                rel="">
-                                                                Sharah Alena </a>
-                                                        </h5>
-                                                        <p class="as-p-1 member-dg">CEO &amp; Founder</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="member-social">
-                                                    <a class="link-elm" href="#0" target="_self" rel=""
-                                                        aria-label="name">
-                                                        <i aria-hidden="true" class="fab fa-linkedin-in"></i> </a>
-                                                    <a class="link-elm" href="#0" target="_self" rel=""
-                                                        aria-label="name">
-                                                        <i aria-hidden="true" class="fab fa-instagram"></i> </a>
-                                                    <a class="link-elm" href="#0" target="_self" rel=""
-                                                        aria-label="name">
-                                                        <i aria-hidden="true" class="fab fa-x-twitter"></i> </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="as-team-1-member-ani">
-                                            <div class="as-team-1-member wa_magnetic_1_trigger">
-                                                <div class="member-img wa-fix wa-img-cover wa-p-relative">
-                                                    <img decoding="async" class="wa_magnetic_1_elm"
-                                                        src="/wp-content/uploads/2025/10/t1-img-4.webp" alt="t1-img-4">
-
-                                                    <div class="content-wrap">
-                                                        <h5 class="as-h-1 member-name">
-                                                            <a href="#" target="_self"
-                                                                rel="">
-                                                                Sharah Alena </a>
-                                                        </h5>
-                                                        <p class="as-p-1 member-dg">CEO &amp; Founder</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="member-social">
-                                                    <a class="link-elm" href="#0" target="_self" rel=""
-                                                        aria-label="name">
-                                                        <i aria-hidden="true" class="fab fa-linkedin-in"></i> </a>
-                                                    <a class="link-elm" href="#0" target="_self" rel=""
-                                                        aria-label="name">
-                                                        <i aria-hidden="true" class="fab fa-instagram"></i> </a>
-                                                    <a class="link-elm" href="#0" target="_self" rel=""
-                                                        aria-label="name">
-                                                        <i aria-hidden="true" class="fab fa-x-twitter"></i> </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
                 </div>
-            </div>
             <div class="elementor-element elementor-element-e0519fc e-con-full e-flex e-con e-parent" data-id="e0519fc"
                 data-element_type="container">
                 <div class="elementor-element elementor-element-1013a04 elementor-widget elementor-widget-tx_moving_text elh-el tx_moving_text"
@@ -646,47 +502,47 @@ const pageHtml = `
                                         <h6 class="as-h-1 text-elm">
                                             Apps Design </h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
                                         <h6 class="as-h-1 text-elm">
                                             Seo </h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
                                         <h6 class="as-h-1 text-elm">
                                             Digital Marketing </h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
                                         <h6 class="as-h-1 text-elm">
                                             Branding </h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
                                         <h6 class="as-h-1 text-elm">
                                             Web Design </h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
                                         <h6 class="as-h-1 text-elm">
                                             Website Marketing </h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
                                         <h6 class="as-h-1 text-elm">
                                             Apps Design </h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
                                         <h6 class="as-h-1 text-elm">
                                             Seo </h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
                                         <h6 class="as-h-1 text-elm">
                                             Digital Marketing </h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
                                         <h6 class="as-h-1 text-elm">
                                             Web Design </h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
                                         <h6 class="as-h-1 text-elm">
                                             Website Marketing </h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
                                     </div>
                                 </div>
                             </div>
@@ -696,47 +552,47 @@ const pageHtml = `
                                     <div class="as-marquee-text-1-content">
                                         <h6 class="as-h-1 text-elm">Apps Design</h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
 
                                         <h6 class="as-h-1 text-elm">Seo</h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
 
                                         <h6 class="as-h-1 text-elm">Digital Marketing</h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
 
                                         <h6 class="as-h-1 text-elm">Branding</h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
 
                                         <h6 class="as-h-1 text-elm">Web Design</h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
 
                                         <h6 class="as-h-1 text-elm">Website Marketing</h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
 
                                         <h6 class="as-h-1 text-elm">Apps Design</h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
 
                                         <h6 class="as-h-1 text-elm">Seo</h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
 
                                         <h6 class="as-h-1 text-elm">Digital Marketing</h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
 
                                         <h6 class="as-h-1 text-elm">Branding</h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
 
                                         <h6 class="as-h-1 text-elm">Website Marketing</h6>
 
-                                        <img decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="star">
+                                        <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/star.webp" alt="Star Icon">
 
                                     </div>
                                 </div>
@@ -778,7 +634,7 @@ const pageHtml = `
                                             Our team never runs out of fresh ideas. </p>
 
                                         <div class="img-elm">
-                                            <img decoding="async" class="wow backInUp2"
+                                            <img loading="lazy" decoding="async" class="wow backInUp2"
                                                 src="/wp-content/uploads/2025/10/f1-img-2.webp" alt="f1-img-2">
                                         </div>
 
@@ -794,7 +650,7 @@ const pageHtml = `
                                                 Customized strategies designed around each client’s unique needs. </p>
 
                                             <div class="img-elm">
-                                                <img decoding="async" class="wow fadeInUp2"
+                                                <img loading="lazy" decoding="async" class="wow fadeInUp2"
                                                     src="/wp-content/uploads/2025/10/f1-img-3.webp" alt="f1-img-3">
                                             </div>
                                         </div>
@@ -817,23 +673,23 @@ const pageHtml = `
                                                 <div class="rating-author-img">
                                                     <div class="img-elm wa-fix wa-img-cover wow fadeInRight2"
                                                         data-wow-delay=".1ss">
-                                                        <img decoding="async"
-                                                            src="/wp-content/uploads/2025/10/author-1.webp" alt="">
+                                                        <img loading="lazy" decoding="async"
+                                                            src="/wp-content/uploads/2025/10/author-1.webp" alt="Titan Growth Hub Image">
                                                     </div>
                                                     <div class="img-elm wa-fix wa-img-cover wow fadeInRight2"
                                                         data-wow-delay=".2s">
-                                                        <img decoding="async"
-                                                            src="/wp-content/uploads/2025/10/author-2.webp" alt="">
+                                                        <img loading="lazy" decoding="async"
+                                                            src="/wp-content/uploads/2025/10/author-2.webp" alt="Titan Growth Hub Image">
                                                     </div>
                                                     <div class="img-elm wa-fix wa-img-cover wow fadeInRight2"
                                                         data-wow-delay=".3s">
-                                                        <img decoding="async"
-                                                            src="/wp-content/uploads/2025/10/author-3.webp" alt="">
+                                                        <img loading="lazy" decoding="async"
+                                                            src="/wp-content/uploads/2025/10/author-3.webp" alt="Titan Growth Hub Image">
                                                     </div>
                                                     <div class="img-elm wa-fix wa-img-cover wow fadeInRight2"
                                                         data-wow-delay=".4s">
-                                                        <img decoding="async"
-                                                            src="/wp-content/uploads/2025/10/author-4.webp" alt="">
+                                                        <img loading="lazy" decoding="async"
+                                                            src="/wp-content/uploads/2025/10/author-4.webp" alt="Titan Growth Hub Image">
                                                     </div>
                                                 </div>
 
@@ -883,7 +739,7 @@ const pageHtml = `
                                         </div>
 
                                         <div class="img-elm wow fadeInRight2">
-                                            <img decoding="async" src="/wp-content/uploads/2025/10/s1-img-1.webp"
+                                            <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/s1-img-1.webp"
                                                 alt="s1-img-1">
                                         </div>
 
@@ -934,22 +790,22 @@ const pageHtml = `
                                                     CMS Integration </li>
                                             </ul>
 
-                                            <img decoding="async" class="star-icon"
-                                                src="/wp-content/uploads/2025/10/star-icon.webp" alt="star-icon">
+                                            <img loading="lazy" decoding="async" class="star-icon"
+                                                src="/wp-content/uploads/2025/10/star-icon.webp" alt="Rating Star">
 
                                             <div class="icon-elm">
-                                                <img decoding="async" src="/wp-content/uploads/2025/10/s1-logo-1.webp"
-                                                    alt="s1-logo-1">
+                                                <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/s1-logo-1.webp"
+                                                    alt="Service Logo">
                                             </div>
 
-                                            <img decoding="async" class="star-icon"
-                                                src="/wp-content/uploads/2025/10/star-icon.webp" alt="star-icon">
+                                            <img loading="lazy" decoding="async" class="star-icon"
+                                                src="/wp-content/uploads/2025/10/star-icon.webp" alt="Rating Star">
 
                                             <div class="right-content wa-fix">
                                                 <div class="right-content-bg-img wa-fix wa-img-cover">
-                                                    <img decoding="async"
+                                                    <img loading="lazy" decoding="async"
                                                         src="/wp-content/uploads/2025/11/s1-card-img-1.webp"
-                                                        alt="s1-card-img-1">
+                                                        alt="Service Details">
                                                 </div>
                                                 <div class="title-wrap">
                                                     <h4 class="as-h-1 title">
@@ -963,7 +819,7 @@ const pageHtml = `
                                                         <a href="#"
                                                             target="_self" rel=""
                                                             aria-label="Web Design &amp; Development">
-                                                            <img decoding="async"
+                                                            <img loading="lazy" decoding="async"
                                                                 src="/wp-content/uploads/2025/10/right-up.webp"
                                                                 alt="right-up">
                                                             Web Design &amp; Development </a>
@@ -987,22 +843,22 @@ const pageHtml = `
                                                     Brand Promotion </li>
                                             </ul>
 
-                                            <img decoding="async" class="star-icon"
-                                                src="/wp-content/uploads/2025/10/star-icon.webp" alt="star-icon">
+                                            <img loading="lazy" decoding="async" class="star-icon"
+                                                src="/wp-content/uploads/2025/10/star-icon.webp" alt="Rating Star">
 
                                             <div class="icon-elm">
-                                                <img decoding="async" src="/wp-content/uploads/2025/10/s1-logo-2.webp"
-                                                    alt="s1-logo-2">
+                                                <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/s1-logo-2.webp"
+                                                    alt="Service Logo">
                                             </div>
 
-                                            <img decoding="async" class="star-icon"
-                                                src="/wp-content/uploads/2025/10/star-icon.webp" alt="star-icon">
+                                            <img loading="lazy" decoding="async" class="star-icon"
+                                                src="/wp-content/uploads/2025/10/star-icon.webp" alt="Rating Star">
 
                                             <div class="right-content wa-fix">
                                                 <div class="right-content-bg-img wa-fix wa-img-cover">
-                                                    <img decoding="async"
+                                                    <img loading="lazy" decoding="async"
                                                         src="/wp-content/uploads/2025/11/s1-card-img-2.webp"
-                                                        alt="s1-card-img-2">
+                                                        alt="Service Details">
                                                 </div>
                                                 <div class="title-wrap">
                                                     <h4 class="as-h-1 title">
@@ -1014,7 +870,7 @@ const pageHtml = `
                                                     <h4 class="as-h-1 title">
                                                         <a href="#"
                                                             target="_self" rel="" aria-label="Digital Marketing">
-                                                            <img decoding="async"
+                                                            <img loading="lazy" decoding="async"
                                                                 src="/wp-content/uploads/2025/10/right-up.webp"
                                                                 alt="right-up">
                                                             Digital Marketing </a>
@@ -1038,22 +894,22 @@ const pageHtml = `
                                                     Android </li>
                                             </ul>
 
-                                            <img decoding="async" class="star-icon"
-                                                src="/wp-content/uploads/2025/10/star-icon.webp" alt="star-icon">
+                                            <img loading="lazy" decoding="async" class="star-icon"
+                                                src="/wp-content/uploads/2025/10/star-icon.webp" alt="Rating Star">
 
                                             <div class="icon-elm">
-                                                <img decoding="async" src="/wp-content/uploads/2025/10/s1-logo-3.webp"
-                                                    alt="s1-logo-3">
+                                                <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/s1-logo-3.webp"
+                                                    alt="Service Logo">
                                             </div>
 
-                                            <img decoding="async" class="star-icon"
-                                                src="/wp-content/uploads/2025/10/star-icon.webp" alt="star-icon">
+                                            <img loading="lazy" decoding="async" class="star-icon"
+                                                src="/wp-content/uploads/2025/10/star-icon.webp" alt="Rating Star">
 
                                             <div class="right-content wa-fix">
                                                 <div class="right-content-bg-img wa-fix wa-img-cover">
-                                                    <img decoding="async"
+                                                    <img loading="lazy" decoding="async"
                                                         src="/wp-content/uploads/2025/11/s1-card-img-3.webp"
-                                                        alt="s1-card-img-3">
+                                                        alt="Service Details">
                                                 </div>
                                                 <div class="title-wrap">
                                                     <h4 class="as-h-1 title">
@@ -1065,7 +921,7 @@ const pageHtml = `
                                                     <h4 class="as-h-1 title">
                                                         <a href="#"
                                                             target="_self" rel="" aria-label="App Design Support">
-                                                            <img decoding="async"
+                                                            <img loading="lazy" decoding="async"
                                                                 src="/wp-content/uploads/2025/10/right-up.webp"
                                                                 alt="right-up">
                                                             App Design Support </a>
@@ -1089,22 +945,22 @@ const pageHtml = `
                                                     CMS Integration </li>
                                             </ul>
 
-                                            <img decoding="async" class="star-icon"
-                                                src="/wp-content/uploads/2025/10/star-icon.webp" alt="star-icon">
+                                            <img loading="lazy" decoding="async" class="star-icon"
+                                                src="/wp-content/uploads/2025/10/star-icon.webp" alt="Rating Star">
 
                                             <div class="icon-elm">
-                                                <img decoding="async" src="/wp-content/uploads/2025/10/s1-logo-4.webp"
-                                                    alt="s1-logo-4">
+                                                <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/s1-logo-4.webp"
+                                                    alt="Service Logo">
                                             </div>
 
-                                            <img decoding="async" class="star-icon"
-                                                src="/wp-content/uploads/2025/10/star-icon.webp" alt="star-icon">
+                                            <img loading="lazy" decoding="async" class="star-icon"
+                                                src="/wp-content/uploads/2025/10/star-icon.webp" alt="Rating Star">
 
                                             <div class="right-content wa-fix">
                                                 <div class="right-content-bg-img wa-fix wa-img-cover">
-                                                    <img decoding="async"
+                                                    <img loading="lazy" decoding="async"
                                                         src="/wp-content/uploads/2025/11/s1-card-img-4.webp"
-                                                        alt="s1-card-img-4">
+                                                        alt="Service Details">
                                                 </div>
                                                 <div class="title-wrap">
                                                     <h4 class="as-h-1 title">
@@ -1116,7 +972,7 @@ const pageHtml = `
                                                     <h4 class="as-h-1 title">
                                                         <a href="#"
                                                             target="_self" rel="" aria-label="Branding">
-                                                            <img decoding="async"
+                                                            <img loading="lazy" decoding="async"
                                                                 src="/wp-content/uploads/2025/10/right-up.webp"
                                                                 alt="right-up">
                                                             Branding </a>
@@ -1167,16 +1023,16 @@ const pageHtml = `
                                     <div class="as-price-1-left">
                                         <div class="as-price-1-ss wa_marquee_down_top">
                                             <div class="as-price-1-ss-single wa-fix wa-img-cover">
-                                                <img decoding="async" src="/wp-content/uploads/2025/10/p1-ss-1.webp"
-                                                    alt="p1-ss-1">
+                                                <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/p1-ss-1.webp"
+                                                    alt="Platform Screenshot">
                                             </div>
                                             <div class="as-price-1-ss-single wa-fix wa-img-cover">
-                                                <img decoding="async" src="/wp-content/uploads/2025/10/p1-ss-2.webp"
-                                                    alt="p1-ss-2">
+                                                <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/p1-ss-2.webp"
+                                                    alt="Platform Screenshot">
                                             </div>
                                             <div class="as-price-1-ss-single wa-fix wa-img-cover">
-                                                <img decoding="async" src="/wp-content/uploads/2025/10/p1-ss-3.webp"
-                                                    alt="p1-ss-3">
+                                                <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/p1-ss-3.webp"
+                                                    alt="Platform Screenshot">
                                             </div>
                                         </div>
                                     </div>
@@ -1290,6 +1146,151 @@ const pageHtml = `
                     </div>
                 </div>
             </div>
+            <div class="elementor-element elementor-element-ac3fa96 e-con-full e-flex e-con e-parent"
+                    data-id="ac3fa96" data-element_type="container">
+                    <div class="elementor-element elementor-element-329ed3c elementor-widget elementor-widget-tx_team_lists elh-el tx_team_lists"
+                        data-id="329ed3c" data-element_type="widget"
+                        data-settings="{&quot;design_style&quot;:&quot;style_1&quot;}"
+                        data-widget_type="tx_team_lists.default">
+                        <div class="elementor-widget-container">
+                            <section class="as-team-1-area pt-30 tx-section  ">
+                                <div class="container as-container-1">
+                                    <!-- section-title -->
+                                    <div class="as-team-1-sec-title text-center mb-30">
+                                        <h6 class="as-subtitle-1 tx-subTitle">
+                                            <span class="icon">
+                                                {<i aria-hidden="true" class="fas fa-circle"></i>} </span>
+                                            Team Members
+                                        </h6>
+
+                                        <h2 class="tx-title as-sec-title-1 wa_title_spilt_1">Experts Who Care About Your
+                                            Growth</h2>
+                                    </div>
+
+                                    <div class="as-team-1-wrap">
+                                        <div class="as-team-1-member-ani">
+                                            <div class="as-team-1-member wa_magnetic_1_trigger">
+                                                <div class="member-img wa-fix wa-img-cover wa-p-relative" style="max-width: 80%; margin: 0 auto; border-radius: 20px; overflow: hidden;">
+                                                    <img loading="lazy" decoding="async" class="wa_magnetic_1_elm"
+                                                        src="/wp-content/uploads/2025/10/t1-img-1.webp" alt="Team Expert">
+
+                                                    <div class="content-wrap">
+                                                        <h5 class="as-h-1 member-name">
+                                                            <a href="#" target="_self"
+                                                                rel="">
+                                                                Sharah Alena </a>
+                                                        </h5>
+                                                        <p class="as-p-1 member-dg">CEO &amp; Founder</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="member-social">
+                                                    <a class="link-elm" href="#0" target="_self" rel=""
+                                                        aria-label="name">
+                                                        <i aria-hidden="true" class="fab fa-linkedin-in"></i> </a>
+                                                    <a class="link-elm" href="#0" target="_self" rel=""
+                                                        aria-label="name">
+                                                        <i aria-hidden="true" class="fab fa-instagram"></i> </a>
+                                                    <a class="link-elm" href="#0" target="_self" rel=""
+                                                        aria-label="name">
+                                                        <i aria-hidden="true" class="fab fa-x-twitter"></i> </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="as-team-1-member-ani">
+                                            <div class="as-team-1-member wa_magnetic_1_trigger">
+                                                <div class="member-img wa-fix wa-img-cover wa-p-relative" style="max-width: 80%; margin: 0 auto; border-radius: 20px; overflow: hidden;">
+                                                    <img loading="lazy" decoding="async" class="wa_magnetic_1_elm"
+                                                        src="/wp-content/uploads/2025/10/t1-img-2.webp" alt="Team Expert">
+
+                                                    <div class="content-wrap">
+                                                        <h5 class="as-h-1 member-name">
+                                                            <a href="#" target="_self"
+                                                                rel="">
+                                                                Sharah Alena </a>
+                                                        </h5>
+                                                        <p class="as-p-1 member-dg">CEO &amp; Founder</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="member-social">
+                                                    <a class="link-elm" href="#0" target="_self" rel=""
+                                                        aria-label="name">
+                                                        <i aria-hidden="true" class="fab fa-linkedin-in"></i> </a>
+                                                    <a class="link-elm" href="#0" target="_self" rel=""
+                                                        aria-label="name">
+                                                        <i aria-hidden="true" class="fab fa-instagram"></i> </a>
+                                                    <a class="link-elm" href="#0" target="_self" rel=""
+                                                        aria-label="name">
+                                                        <i aria-hidden="true" class="fab fa-x-twitter"></i> </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="as-team-1-member-ani">
+                                            <div class="as-team-1-member wa_magnetic_1_trigger">
+                                                <div class="member-img wa-fix wa-img-cover wa-p-relative" style="max-width: 80%; margin: 0 auto; border-radius: 20px; overflow: hidden;">
+                                                    <img loading="lazy" decoding="async" class="wa_magnetic_1_elm"
+                                                        src="/wp-content/uploads/2025/10/t1-img-3.webp" alt="Team Expert">
+
+                                                    <div class="content-wrap">
+                                                        <h5 class="as-h-1 member-name">
+                                                            <a href="#" target="_self"
+                                                                rel="">
+                                                                Sharah Alena </a>
+                                                        </h5>
+                                                        <p class="as-p-1 member-dg">CEO &amp; Founder</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="member-social">
+                                                    <a class="link-elm" href="#0" target="_self" rel=""
+                                                        aria-label="name">
+                                                        <i aria-hidden="true" class="fab fa-linkedin-in"></i> </a>
+                                                    <a class="link-elm" href="#0" target="_self" rel=""
+                                                        aria-label="name">
+                                                        <i aria-hidden="true" class="fab fa-instagram"></i> </a>
+                                                    <a class="link-elm" href="#0" target="_self" rel=""
+                                                        aria-label="name">
+                                                        <i aria-hidden="true" class="fab fa-x-twitter"></i> </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="as-team-1-member-ani">
+                                            <div class="as-team-1-member wa_magnetic_1_trigger">
+                                                <div class="member-img wa-fix wa-img-cover wa-p-relative" style="max-width: 80%; margin: 0 auto; border-radius: 20px; overflow: hidden;">
+                                                    <img loading="lazy" decoding="async" class="wa_magnetic_1_elm"
+                                                        src="/wp-content/uploads/2025/10/t1-img-4.webp" alt="Team Expert">
+
+                                                    <div class="content-wrap">
+                                                        <h5 class="as-h-1 member-name">
+                                                            <a href="#" target="_self"
+                                                                rel="">
+                                                                Sharah Alena </a>
+                                                        </h5>
+                                                        <p class="as-p-1 member-dg">CEO &amp; Founder</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="member-social">
+                                                    <a class="link-elm" href="#0" target="_self" rel=""
+                                                        aria-label="name">
+                                                        <i aria-hidden="true" class="fab fa-linkedin-in"></i> </a>
+                                                    <a class="link-elm" href="#0" target="_self" rel=""
+                                                        aria-label="name">
+                                                        <i aria-hidden="true" class="fab fa-instagram"></i> </a>
+                                                    <a class="link-elm" href="#0" target="_self" rel=""
+                                                        aria-label="name">
+                                                        <i aria-hidden="true" class="fab fa-x-twitter"></i> </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            
             <div class="elementor-element elementor-element-622b583 e-con-full e-flex e-con e-parent" data-id="622b583"
                 data-element_type="container">
                 <div class="elementor-element elementor-element-945b262 elementor-widget elementor-widget-tx_service_section elh-el tx_service_section"
@@ -1487,13 +1488,13 @@ const pageHtml = `
 
                                         <!-- awards-list -->
                                         <div class="as-faqs-1-awards">
-                                            <img decoding="async" src="/wp-content/uploads/2025/10/faqs1-illus-1.webp"
+                                            <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/faqs1-illus-1.webp"
                                                 alt="faqs1-illus-1" class="bg-shape-1">
 
-                                            <img decoding="async" src="/wp-content/uploads/2025/10/faqs1-illus-2.webp"
+                                            <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/faqs1-illus-2.webp"
                                                 alt="faqs1-illus-2" class="bg-shape-2">
 
-                                            <img decoding="async" src="/wp-content/uploads/2025/10/faqs1-clr.webp"
+                                            <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/faqs1-clr.webp"
                                                 alt="faqs1-clr" class="bg-shape-3">
 
                                             <p class="as-faqs-1-awards-single as-p-1 wow backInUp2"
@@ -2155,12 +2156,12 @@ const pageHtml = `
 
                                             <div class="as-cta-2-manager">
                                                 <div class="img-elm wa-fix wa-img-cover">
-                                                    <img decoding="async" src="/wp-content/uploads/2025/10/author-7.webp"
-                                                        alt="author-7">
+                                                    <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/author-7.webp"
+                                                        alt="Team Member">
                                                 </div>
 
                                                 <h4 class="as-h-1 text-elm">
-                                                    Hi <img decoding="async"
+                                                    Hi <img loading="lazy" decoding="async"
                                                         src="/wp-content/uploads/2025/10/hy-icon.gif" alt="hy-icon"> I’m
                                                     Lisa, Customer Manager </h4>
                                             </div>
@@ -2191,23 +2192,23 @@ const pageHtml = `
                                             </div>
                                             <div class="as-cta-2-projects-ss">
                                                 <div class="ss-elm">
-                                                    <img decoding="async"
+                                                    <img loading="lazy" decoding="async"
                                                         src="/wp-content/uploads/2025/10/cta2-mockup.webp"
                                                         alt="cta2-mockup">
                                                 </div>
 
                                                 <div class="ss-elm wa-fix">
-                                                    <img decoding="async" class="wow slideInLeft"
+                                                    <img loading="lazy" decoding="async" class="wow slideInLeft"
                                                         src="/wp-content/uploads/2025/10/cta2-ss-1.webp" alt="cta2-ss-1">
                                                 </div>
 
                                                 <div class="ss-elm wa-fix">
-                                                    <img decoding="async" class="wow slideInLeft" data-wow-delay=".1s"
+                                                    <img loading="lazy" decoding="async" class="wow slideInLeft" data-wow-delay=".1s"
                                                         src="/wp-content/uploads/2025/10/cta2-ss-2.webp" alt="cta2-ss-2">
                                                 </div>
 
                                                 <div class="ss-elm wa-fix">
-                                                    <img decoding="async" class="wow slideInLeft" data-wow-delay=".2s"
+                                                    <img loading="lazy" decoding="async" class="wow slideInLeft" data-wow-delay=".2s"
                                                         src="/wp-content/uploads/2025/10/cta2-ss-3.webp" alt="cta2-ss-3">
                                                 </div>
 
@@ -2306,9 +2307,9 @@ const pageHtml = `
                                                         <div class="button-x-author">
                                                             <div class="author">
                                                                 <div class="author-img wa-img-cover wa-fix">
-                                                                    <img decoding="async"
+                                                                    <img loading="lazy" decoding="async"
                                                                         src="/wp-content/uploads/2025/10/author-5.webp"
-                                                                        alt="">
+                                                                        alt="Titan Growth Hub Image">
                                                                 </div>
                                                                 <div class="content">
                                                                     <h4 class="as-h-1 author-name">Liven Geo</h4>
@@ -2397,8 +2398,8 @@ const pageHtml = `
                                     <!-- left -->
                                     <div class="as-blog-1-left wa-fix wa_magnetic_1_trigger wa-fix">
                                         <div class="logo-elm">
-                                            <img decoding="async" class="wow fadeInUp2"
-                                                src="/wp-content/uploads/2025/10/logo-1.webp" alt="logo-1">
+                                            <img loading="lazy" decoding="async" class="wow fadeInUp2"
+                                                src="/wp-content/uploads/2025/10/logo-1.webp" alt="Partner Logo">
                                         </div>
 
                                         <h4 class="as-h-1 title wa_title_spilt_1">
@@ -2440,7 +2441,7 @@ const pageHtml = `
 
                                         <div class="as-blog-1-left-bg-img">
                                             <div class="wa_magnetic_1_elm w-100 h-100">
-                                                <img decoding="async" class="wow fadeInRight2"
+                                                <img loading="lazy" decoding="async" class="wow fadeInRight2"
                                                     src="/wp-content/uploads/2025/10/b1-illus-1.webp" alt="b1-illus-1">
                                             </div>
                                         </div>
@@ -2451,7 +2452,7 @@ const pageHtml = `
 
                                         <div class="as-blog-1-item wa_magnetic_1_trigger ">
                                             <div class="item-img wa-fix wa-img-cover">
-                                                <img decoding="async" class="wa_magnetic_1_elm"
+                                                <img loading="lazy" decoding="async" class="wa_magnetic_1_elm"
                                                     src="/wp-content/uploads/2025/10/b1-img-1.webp" alt="b1-img-1">
                                             </div>
 
@@ -2502,7 +2503,7 @@ const pageHtml = `
                                         </div>
                                         <div class="as-blog-1-item wa_magnetic_1_trigger ">
                                             <div class="item-img wa-fix wa-img-cover">
-                                                <img decoding="async" class="wa_magnetic_1_elm"
+                                                <img loading="lazy" decoding="async" class="wa_magnetic_1_elm"
                                                     src="/wp-content/uploads/2025/10/b1-img-2.webp" alt="b1-img-2">
                                             </div>
 
@@ -2587,7 +2588,7 @@ const pageHtml = `
             <!-- Center Logo & Text -->
             <div class="footer-col-center">
                 <a href="/" class="footer-logo">
-                    <img src="/website_assets/footer-logo.png" alt="Titan Growth Hub">
+                    <img loading="lazy" src="/website_assets/footer-logo.png" alt="Titan Growth Hub">
                 </a>
                 <p class="footer-desc">
                     We help businesses grow<br>with smart digital solutions.

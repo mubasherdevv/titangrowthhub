@@ -2,7 +2,7 @@ import React from 'react';
 import { supabase } from '@/lib/supabase';
 
 export const metadata = {
-  title: 'Blog – Avista',
+    title: 'Blog – Avista',
 };
 
 export const topHtml = `
@@ -13,9 +13,9 @@ export const topHtml = `
         <div class="as-preloader ">
         <div class="as-preloader-wrap">
             <div class="loader as-h-1">
-                <span class="loader_letter">L</span>
-                <span class="loader_letter">
-                                            <img src="/website_assets/favicon_io/android-chrome-192x192.png" alt="fevicon-1" style="width: 45px; height: 45px; object-fit: contain; display: block; margin: 0 auto;">
+                 <span class="loader_letter">L</span>
+                                                 <img loading="lazy" src="../website_assets/favicon_io/android-chrome-192x192.png"
+                        alt="Titan Growth Hub Favicon">
                                     </span>
                 <span class="loader_letter">A</span>
                 <span class="loader_letter">D</span>
@@ -80,7 +80,7 @@ export const topHtml = `
             <!-- action-link -->
             <div class="as-header-1-action-link">
 
-                                <a href="/contact-us"
+                                <a href="../contact-us/index.html"
                 target="_self"
                 rel=""
                 aria-label="Get started" class="as-pr-btn-1 wa_btn_split_1 wa_magnetic_btn_1">
@@ -95,10 +95,11 @@ export const topHtml = `
             </div>
         </div>
     </div>
-    <a href="/" aria-label="fevicon-1" style="position: relative; display: inline-flex; align-items: center; justify-content: center;" class="as-header-1-logo">
-                <img src="/wp-content/uploads/2025/10/h1-favicon-shape.webp" alt="h1-favicon-shape" class="bg-shape">
+    <a href="../index.html" aria-label="fevicon-1" class="as-header-1-logo">
+                <img loading="lazy" src="../wp-content/uploads/2025/10/h1-favicon-shape.webp" alt="h1-favicon-shape" class="bg-shape">
         
-                <img src="/website_assets/favicon_io/android-chrome-192x192.png" alt="fevicon-1" style="width: 45px; height: 45px; object-fit: contain; position: absolute; top: 50%; left: 45%; transform: translate(-50%, -50%); z-index: 5;">
+                <img loading="lazy" src="../website_assets/favicon_io/android-chrome-192x192.png"
+        alt="Titan Growth Hub Favicon">
             </a>
 </header>
 <div class="wa-offcanvas-area offcanvas_box_active lenis lenis-smooth ">
@@ -106,7 +107,7 @@ export const topHtml = `
         <!-- top -->
         <div class="wa-offcanvas-top">
                         <a href="/" class="tx-logo wa-offcanvas-top-logo" aria-label="Site Logo"  >
-                <img src="/wp-content/uploads/2025/11/logo-1.webp" alt="logo-1">
+                <img loading="lazy" src="/wp-content/uploads/2025/11/logo-1.webp" alt="Partner Logo">
             </a>
             
             <!-- close-btn -->
@@ -148,19 +149,19 @@ export const topHtml = `
             <div class="wa-offcanvas-gallery-grid">
                                 <a href="/wp-content/uploads/2025/10/p1-img-1.webp"
                 aria-label="" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                    <img src="/wp-content/uploads/2025/10/p1-img-1.webp" alt="">
+                    <img loading="lazy" src="/wp-content/uploads/2025/10/p1-img-1.webp" alt="Titan Growth Hub Image">
                 </a>
                                 <a href="/wp-content/uploads/2025/10/p1-img-2.webp"
                 aria-label="" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                    <img src="/wp-content/uploads/2025/10/p1-img-2.webp" alt="">
+                    <img loading="lazy" src="/wp-content/uploads/2025/10/p1-img-2.webp" alt="Titan Growth Hub Image">
                 </a>
                                 <a href="/wp-content/uploads/2025/10/p1-img-4.webp"
                 aria-label="" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                    <img src="/wp-content/uploads/2025/10/p1-img-4.webp" alt="">
+                    <img loading="lazy" src="/wp-content/uploads/2025/10/p1-img-4.webp" alt="Titan Growth Hub Image">
                 </a>
                                 <a href="/wp-content/uploads/2025/10/p1-img-3.webp"
                 aria-label="" class="popup-img wa-offcanvas-gallery-item wa-img-cover wa-fix">
-                    <img src="/wp-content/uploads/2025/10/p1-img-3.webp" alt="">
+                    <img loading="lazy" src="/wp-content/uploads/2025/10/p1-img-3.webp" alt="Titan Growth Hub Image">
                 </a>
                             </div>
         </div>
@@ -244,7 +245,7 @@ export const bottomHtml = `</div>
 		    </form></div></div><div id="tc-latest-posts-2" class="tx-blog-widget widget tz-sidebar-widget headline widget_tc-latest-posts">		<h4 class="widget-title">						Recent Posts					</h4>							<div class="recent-post-widget">
 										<div class="tz-rcw-item has-thumbnail" id="post-1881">
 												<div class="item-img">
-							<img width="1824" height="839" src="/wp-content/uploads/2025/11/p2-img-3.webp" class="sidebar-post-img wp-post-image" alt="" decoding="async" srcset="https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-3.webp 1824w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-3-600x276.webp 600w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-3-300x138.webp 300w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-3-1024x471.webp 1024w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-3-768x353.webp 768w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-3-1536x707.webp 1536w" sizes="(max-width: 1824px) 100vw, 1824px" />						</div>
+							<img loading="lazy" width="1824" height="839" src="/wp-content/uploads/2025/11/p2-img-3.webp" class="sidebar-post-img wp-post-image" alt="Titan Growth Hub Image" decoding="async" srcset="https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-3.webp 1824w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-3-600x276.webp 600w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-3-300x138.webp 300w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-3-1024x471.webp 1024w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-3-768x353.webp 768w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-3-1536x707.webp 1536w" sizes="(max-width: 1824px) 100vw, 1824px" />						</div>
 						
 						<div class="item-text headline">
 							<div class="item-meta">
@@ -264,7 +265,7 @@ export const bottomHtml = `</div>
 					</div>
 										<div class="tz-rcw-item has-thumbnail" id="post-1879">
 												<div class="item-img">
-							<img width="1824" height="839" src="/wp-content/uploads/2025/11/p2-img-2.webp" class="sidebar-post-img wp-post-image" alt="" decoding="async" srcset="https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-2.webp 1824w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-2-600x276.webp 600w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-2-300x138.webp 300w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-2-1024x471.webp 1024w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-2-768x353.webp 768w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-2-1536x707.webp 1536w" sizes="(max-width: 1824px) 100vw, 1824px" />						</div>
+							<img loading="lazy" width="1824" height="839" src="/wp-content/uploads/2025/11/p2-img-2.webp" class="sidebar-post-img wp-post-image" alt="Titan Growth Hub Image" decoding="async" srcset="https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-2.webp 1824w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-2-600x276.webp 600w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-2-300x138.webp 300w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-2-1024x471.webp 1024w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-2-768x353.webp 768w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/p2-img-2-1536x707.webp 1536w" sizes="(max-width: 1824px) 100vw, 1824px" />						</div>
 						
 						<div class="item-text headline">
 							<div class="item-meta">
@@ -284,7 +285,7 @@ export const bottomHtml = `</div>
 					</div>
 										<div class="tz-rcw-item has-thumbnail" id="post-1181">
 												<div class="item-img">
-							<img width="1920" height="940" src="/wp-content/uploads/2025/11/h2-img-3.webp" class="sidebar-post-img wp-post-image" alt="" decoding="async" srcset="https://themexriver.com/wp/avista/wp-content/uploads/2025/11/h2-img-3.webp 1920w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/h2-img-3-600x294.webp 600w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/h2-img-3-300x147.webp 300w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/h2-img-3-1024x501.webp 1024w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/h2-img-3-768x376.webp 768w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/h2-img-3-1536x752.webp 1536w" sizes="(max-width: 1920px) 100vw, 1920px" />						</div>
+							<img loading="lazy" width="1920" height="940" src="/wp-content/uploads/2025/11/h2-img-3.webp" class="sidebar-post-img wp-post-image" alt="Titan Growth Hub Image" decoding="async" srcset="https://themexriver.com/wp/avista/wp-content/uploads/2025/11/h2-img-3.webp 1920w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/h2-img-3-600x294.webp 600w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/h2-img-3-300x147.webp 300w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/h2-img-3-1024x501.webp 1024w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/h2-img-3-768x376.webp 768w, https://themexriver.com/wp/avista/wp-content/uploads/2025/11/h2-img-3-1536x752.webp 1536w" sizes="(max-width: 1920px) 100vw, 1920px" />						</div>
 						
 						<div class="item-text headline">
 							<div class="item-meta">
@@ -345,7 +346,7 @@ export const bottomHtml = `</div>
             <!-- Center Logo & Text -->
             <div class="footer-col-center">
                 <a href="/" class="footer-logo">
-                    <img src="/website_assets/footer-logo.png" alt="Titan Growth Hub">
+                    <img loading="lazy" src="/website_assets/footer-logo.png" alt="Titan Growth Hub">
                 </a>
                 <p class="footer-desc">
                     We help businesses grow<br>with smart digital solutions.
@@ -734,32 +735,32 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 `;
 
 export default async function Page() {
-  let blogs: any[] = [];
-  try {
-    const { data, error } = await supabase
-      .from('blogs')
-      .select('*')
-      .eq('status', 'Published')
-      .order('created_at', { ascending: false });
+    let blogs: any[] = [];
+    try {
+        const { data, error } = await supabase
+            .from('blogs')
+            .select('*')
+            .eq('status', 'Published')
+            .order('created_at', { ascending: false });
 
-    if (error) throw error;
-    if (data) blogs = data;
-  } catch (err) {
-    console.error('Error fetching blogs from Supabase:', err);
-  }
+        if (error) throw error;
+        if (data) blogs = data;
+    } catch (err) {
+        console.error('Error fetching blogs from Supabase:', err);
+    }
 
-  const blogsListHtml = blogs.length > 0
-    ? blogs.map((blog) => {
-      const dateObj = new Date(blog.created_at);
-      const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
-      const slug = blog.slug.startsWith('/') ? blog.slug : `/blog/${blog.slug.replace(/^\/blog\//, '')}`;
-      const desc = blog.metaDesc || (blog.content ? blog.content.substring(0, 150) + '...' : '');
+    const blogsListHtml = blogs.length > 0
+        ? blogs.map((blog) => {
+            const dateObj = new Date(blog.created_at);
+            const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+            const slug = blog.slug.startsWith('/') ? blog.slug : `/blog/${blog.slug.replace(/^\/blog\//, '')}`;
+            const desc = blog.metaDesc || (blog.content ? blog.content.substring(0, 150) + '...' : '');
 
-      return `
+            return `
           <article class="tx-blog-box mt-30">
             <div class="tz-blog-item list-view-item">
               <div class="item-img">
-                <img width="1824" height="839" src="/wp-content/uploads/2025/11/p2-img-3.webp" class="img-responsive w-100 wp-post-image" alt="" />
+                <img loading="lazy" width="1824" height="839" src="/wp-content/uploads/2025/11/p2-img-3.webp" class="img-responsive w-100 wp-post-image" alt="Titan Growth Hub Image" />
               </div>
               <div class="item-text headline pera-content">
                 <div class="item-meta" style="margin-bottom: 10px; display: flex; gap: 15px; font-size: 13px; color: #fd3f00;">
@@ -780,19 +781,19 @@ export default async function Page() {
             </div>
           </article>
         `;
-    }).join('\n')
-    : `<div class="mt-30 text-center" style="padding: 40px; background: #fff; border-radius: 20px;"><h3>No blog posts published yet.</h3></div>`;
+        }).join('\n')
+        : `<div class="mt-30 text-center" style="padding: 40px; background: #fff; border-radius: 20px;"><h3>No blog posts published yet.</h3></div>`;
 
-  const finalHtml = `${topHtml}${blogsListHtml}${bottomHtml}`;
+    const finalHtml = `${topHtml}${blogsListHtml}${bottomHtml}`;
 
-  return (
-    <>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `document.body.className = "blog";`,
-        }}
-      />
-      <div dangerouslySetInnerHTML={{ __html: finalHtml }} />
-    </>
-  );
+    return (
+        <>
+            <script
+                dangerouslySetInnerHTML={{
+                    __html: `document.body.className = "blog";`,
+                }}
+            />
+            <div dangerouslySetInnerHTML={{ __html: finalHtml }} />
+        </>
+    );
 }
