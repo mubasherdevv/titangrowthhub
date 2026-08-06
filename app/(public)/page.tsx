@@ -2669,14 +2669,14 @@ export default async function HomePage() {
 
         <>
 
-            < script
+            <script
 
                 type="application/ld+json"
 
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }
                 }
             />
-            < script
+            <script
                 dangerouslySetInnerHTML={{
 
                     __html: `document.body.className = "home page-template page-template-elementor_header_footer page page-id-17 theme-avista elementor-default elementor-template-full-width elementor-kit-8 elementor-page elementor-page-17";`,

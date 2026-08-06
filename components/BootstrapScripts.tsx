@@ -26,10 +26,7 @@ const scriptsToLoad = [
   '/wp-content/themes/avista/assets/js/avista-corea780.js?ver=1785262555',
   '/wp-content/plugins/woocommerce/assets/js/sourcebuster/sourcebuster.min278d.js?ver=10.4.2',
   '/wp-content/plugins/woocommerce/assets/js/frontend/order-attribution.min278d.js?ver=10.4.2',
-  '/wp-content/plugins/elementor/assets/js/webpack.runtime.min37de.js?ver=3.33.4',
-  '/wp-content/plugins/elementor/assets/js/frontend-modules.min37de.js?ver=3.33.4',
   '/wp-includes/js/jquery/ui/core.minb37e.js?ver=1.13.3',
-  '/wp-content/plugins/elementor/assets/js/frontend.min37de.js?ver=3.33.4',
   '/wp-content/plugins/avista-core/assets/js/elh-elementa780.js?ver=1785262555'
 ];
 
