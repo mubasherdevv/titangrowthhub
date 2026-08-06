@@ -36,6 +36,7 @@ export default function SitemapPage() {
   const [lastModDate, setLastModDate] = useState('--');
   const [lastModTime, setLastModTime] = useState('--');
   const [isRegenerating, setIsRegenerating] = useState(false);
+  const [autoPing, setAutoPing] = useState(true);
   const [loading, setLoading] = useState(true);
 
   const fetchStats = async () => {
@@ -65,6 +66,8 @@ export default function SitemapPage() {
     try {
       const res = await fetch('/api/revalidate-sitemap', {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ autoPing }),
       });
       if (res.ok) {
         await fetchStats();
@@ -113,15 +116,25 @@ export default function SitemapPage() {
           </p>
         </div>
 
-        {/* Action Button */}
-        <button
-          onClick={handleRegenerate}
-          disabled={isRegenerating}
-          className="flex items-center gap-2 rounded-2xl bg-purple-600 px-5 py-2.5 text-xs font-extrabold text-white shadow-md shadow-purple-600/20 transition-all hover:bg-purple-700 active:scale-95 disabled:opacity-70 self-start sm:self-auto"
-        >
-          <RotateCcw className={`h-4 w-4 ${isRegenerating ? 'animate-spin' : ''}`} />
-          <span>{isRegenerating ? 'Regenerating...' : 'Regenerate Sitemap'}</span>
-        </button>
+        <div className="flex flex-col sm:flex-row gap-3 mt-6 sm:mt-0 items-center">
+          <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
+            <input 
+              type="checkbox" 
+              checked={autoPing} 
+              onChange={(e) => setAutoPing(e.target.checked)}
+              className="w-4 h-4 text-orange-600 rounded border-gray-300 focus:ring-orange-500"
+            />
+            Auto-Ping Google
+          </label>
+          <button 
+            onClick={handleRegenerate}
+            disabled={isRegenerating}
+            className="flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-5 py-2.5 rounded-xl font-medium transition-all shadow-sm hover:shadow shadow-orange-600/20 disabled:opacity-70 disabled:cursor-not-allowed group whitespace-nowrap"
+          >
+            <RotateCcw className={`w-4 h-4 ${isRegenerating ? 'animate-spin' : 'group-hover:rotate-180 transition-transform duration-500'}`} />
+            {isRegenerating ? 'Generating...' : 'Regenerate Sitemap'}
+          </button>
+        </div>
       </div>
 
       {/* Top Overview Cards (4 Grid Items) */}

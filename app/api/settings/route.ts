@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { supabase } from '@/lib/supabase';
 
 const dbToFrontendSettings = (db: any) => {
@@ -30,6 +31,9 @@ const dbToFrontendSettings = (db: any) => {
     gscVerificationMeta: db.gsc_verification_meta,
     gscVerificationFilename: db.gsc_verification_filename,
     gscVerificationFilecontent: db.gsc_verification_filecontent,
+    gcpClientEmail: db.gcp_client_email,
+    gcpPrivateKey: db.gcp_private_key,
+    gscPropertyUrl: db.gsc_property_url,
   };
 };
 
@@ -61,6 +65,9 @@ const frontendToDbSettings = (fe: any) => {
   if (fe.gscVerificationMeta !== undefined) db.gsc_verification_meta = fe.gscVerificationMeta;
   if (fe.gscVerificationFilename !== undefined) db.gsc_verification_filename = fe.gscVerificationFilename;
   if (fe.gscVerificationFilecontent !== undefined) db.gsc_verification_filecontent = fe.gscVerificationFilecontent;
+  if (fe.gcpClientEmail !== undefined) db.gcp_client_email = fe.gcpClientEmail;
+  if (fe.gcpPrivateKey !== undefined) db.gcp_private_key = fe.gcpPrivateKey;
+  if (fe.gscPropertyUrl !== undefined) db.gsc_property_url = fe.gscPropertyUrl;
 
   return db;
 };
@@ -86,6 +93,9 @@ const defaultSettings = {
   orgUrl: '',
   orgLogo: '',
   robotsText: '',
+  gcpClientEmail: '',
+  gcpPrivateKey: '',
+  gscPropertyUrl: '',
 };
 
 export async function GET() {
@@ -136,6 +146,10 @@ export async function POST(request: Request) {
       .single();
 
     if (error) throw error;
+
+    // Revalidate frontend layout and pages so the new meta tag shows up
+    revalidatePath('/', 'layout');
+
     return NextResponse.json(dbToFrontendSettings(data));
   } catch (error: any) {
     console.error('Error saving site settings:', error);

@@ -13,7 +13,8 @@ import {
   Settings,
   HelpCircle,
   ChevronRight,
-  ArrowLeftRight
+  ArrowLeftRight,
+  Search
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -22,6 +23,7 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ isOpen = true, onClose }: SidebarProps) {
+  // Cache buster: v2
   const pathname = usePathname();
 
   const menuGroups = [
@@ -38,6 +40,7 @@ export default function Sidebar({ isOpen = true, onClose }: SidebarProps) {
         { name: 'Global SEO', href: '/admin/global-seo', icon: Globe },
         { name: 'Sitemap', href: '/admin/sitemap', icon: Network },
         { name: 'Redirects', href: '/admin/redirects', icon: ArrowLeftRight },
+        { name: 'Search Console', href: '/admin/search-console', icon: Search },
       ],
     },
     {

@@ -22,7 +22,12 @@ export async function GET(
       return new NextResponse('Not found', { status: 404 });
     }
 
-    if (data.gsc_verification_filename && data.gsc_verification_filename === filename) {
+    const isMatch = data.gsc_verification_filename && 
+      (data.gsc_verification_filename === filename || 
+       data.gsc_verification_filename === `${filename}.html` ||
+       data.gsc_verification_filename.replace('.html', '') === filename);
+
+    if (isMatch) {
       return new NextResponse(data.gsc_verification_filecontent || '', {
         status: 200,
         headers: {
