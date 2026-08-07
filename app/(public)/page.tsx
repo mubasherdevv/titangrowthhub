@@ -60,7 +60,7 @@ const pageHtml = `
 				<div class="elementor-element elementor-element-a98b99b elementor-widget elementor-widget-tx_headers elh-el tx_headers" data-id="a98b99b" data-element_type="widget" data-settings="{&quot;design_style&quot;:&quot;style_1&quot;}" data-widget_type="tx_headers.default">
 				<div class="elementor-widget-container">
 					
-<header class="as-header-1-area tx-header  has-inner-page ">
+<header class="as-header-1-area tx-header ">
     <div class="container as-container-1 text-right">
         <div class="as-header-1-wrap">
 
