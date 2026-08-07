@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 
 const scriptsToLoad = [
   '/wp-includes/js/dist/hooks.minaf5f.js?ver=dd5603f07f9220ed27f1',
@@ -30,6 +31,26 @@ const scriptsToLoad = [
 
 export default function BootstrapScripts() {
   const loaded = useRef(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    // Re-trigger layout logic and animations on route changes
+    if (loaded.current && typeof window !== 'undefined') {
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+        window.dispatchEvent(new Event('load'));
+        document.dispatchEvent(new Event('DOMContentLoaded'));
+        if ((window as any).jQuery) {
+          (window as any).jQuery(window).trigger('load');
+          (window as any).jQuery(document).trigger('ready');
+        }
+        if ((window as any).WOW) {
+          try { new (window as any).WOW({ live: true }).init(); } catch(e) {}
+        }
+      }, 500);
+    }
+  }, [pathname]);
+
   useEffect(() => {
     if (loaded.current) return;
     loaded.current = true;
@@ -85,6 +106,9 @@ export default function BootstrapScripts() {
           if (typeof window !== 'undefined' && (window as any).jQuery) {
               (window as any).jQuery(window).trigger('load');
               (window as any).jQuery(document).trigger('ready');
+          }
+          if (typeof window !== 'undefined' && (window as any).WOW) {
+              try { new (window as any).WOW({ live: true }).init(); } catch(e) {}
           }
           return;
         }
