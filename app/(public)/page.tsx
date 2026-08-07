@@ -1247,8 +1247,23 @@ const pageHtml = `
     .custom-team-card { width: calc(50% - 15px); }
 }
 @media (max-width: 767px) {
-    .custom-team-card { width: 100%; margin-bottom: 20px; }
-    .custom-team-content-box { margin-top: -20px; }
+    .custom-team-cards-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 20px;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+    }
+    .custom-team-card {
+        width: 85%;
+        flex: 0 0 auto;
+        scroll-snap-align: center;
+        margin-bottom: 0px;
+    }
+    .custom-team-cards-container::-webkit-scrollbar {
+        display: none;
+    }
 }
 </style>
 
