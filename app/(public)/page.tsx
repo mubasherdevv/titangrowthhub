@@ -1732,6 +1732,270 @@ const pageHtml = `
                     </div>
                 </div>
             </div>
+
+            <!-- Custom FAQ Section -->
+            <div class="elementor-element e-con-full e-flex e-con e-parent">
+                <style>
+                .custom-faq-section {
+                    padding: 80px 15px;
+                    background-color: #fff;
+                    width: 100%;
+                }
+                .custom-faq-inner {
+                    max-width: 900px;
+                    margin: 0 auto;
+                }
+                .custom-faq-title {
+                    text-align: center;
+                    font-size: 42px;
+                    font-weight: 800;
+                    color: #1a1a1a;
+                    margin-bottom: 15px;
+                    line-height: 1.2;
+                }
+                .custom-faq-title span {
+                    color: #f65022;
+                }
+                .custom-faq-subtitle {
+                    text-align: center;
+                    font-size: 16px;
+                    color: #666;
+                    max-width: 600px;
+                    margin: 0 auto 50px auto;
+                    line-height: 1.6;
+                }
+                .custom-faq-list {
+                    position: relative;
+                }
+                .custom-faq-list::before {
+                    content: '';
+                    position: absolute;
+                    top: 20px;
+                    bottom: 20px;
+                    left: 49px;
+                    width: 1px;
+                    background-color: #eaeaea;
+                }
+                .custom-faq-item {
+                    position: relative;
+                    padding: 25px 0;
+                    border-bottom: 1px solid #eaeaea;
+                }
+                .custom-faq-item:last-child {
+                    border-bottom: none;
+                }
+                .custom-faq-header {
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    background: none;
+                    border: none;
+                    width: 100%;
+                    text-align: left;
+                    padding: 0;
+                }
+                .custom-faq-header:focus {
+                    outline: none;
+                }
+                .custom-faq-number {
+                    width: 35px;
+                    font-weight: 700;
+                    font-size: 16px;
+                    color: #1a1a1a;
+                }
+                .custom-faq-icon-wrapper {
+                    width: 30px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 2;
+                }
+                .custom-faq-circle {
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    border: 2px solid #ccc;
+                    background-color: #fff;
+                }
+                .custom-faq-question {
+                    flex: 1;
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #1a1a1a;
+                    margin: 0;
+                    padding: 0 20px;
+                }
+                .custom-faq-toggle {
+                    font-size: 24px;
+                    font-weight: 300;
+                    color: #1a1a1a;
+                }
+                .custom-faq-answer-wrapper {
+                    padding-left: 85px;
+                    padding-right: 40px;
+                }
+                .custom-faq-answer {
+                    font-size: 15px;
+                    color: #666;
+                    line-height: 1.6;
+                    margin-top: 15px;
+                    margin-bottom: 0;
+                }
+                /* Active states */
+                .custom-faq-header:not(.collapsed) .custom-faq-number {
+                    color: #f65022;
+                }
+                .custom-faq-header:not(.collapsed) .custom-faq-circle {
+                    border-color: #f65022;
+                    position: relative;
+                }
+                .custom-faq-header:not(.collapsed) .custom-faq-circle::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 4px;
+                    height: 4px;
+                    background-color: #f65022;
+                    border-radius: 50%;
+                }
+                .custom-faq-header:not(.collapsed) .custom-faq-toggle {
+                    color: #f65022;
+                }
+                .custom-faq-header .minus-icon { display: none; }
+                .custom-faq-header:not(.collapsed) .minus-icon { display: inline; }
+                .custom-faq-header:not(.collapsed) .plus-icon { display: none; }
+
+                @media (max-width: 767px) {
+                    .custom-faq-list::before { left: 39px; }
+                    .custom-faq-question { font-size: 16px; padding: 0 10px; }
+                    .custom-faq-answer-wrapper { padding-left: 65px; padding-right: 15px; }
+                    .custom-faq-number { width: 25px; }
+                    .custom-faq-title { font-size: 32px; }
+                }
+                </style>
+
+                <section class="custom-faq-section tx-section">
+                    <div class="custom-faq-inner">
+                        <h2 class="custom-faq-title">Frequently Asked <span>Questions</span></h2>
+                        <p class="custom-faq-subtitle">Find quick answers to common questions about our services, process, and how we help your business grow.</p>
+                        
+                        <div class="custom-faq-list" id="faqAccordion">
+                            
+                            <!-- Item 1 -->
+                            <div class="custom-faq-item">
+                                <button class="custom-faq-header" type="button" data-bs-toggle="collapse" data-bs-target="#faq-1" aria-expanded="true">
+                                    <div class="custom-faq-number">01</div>
+                                    <div class="custom-faq-icon-wrapper"><div class="custom-faq-circle"></div></div>
+                                    <h3 class="custom-faq-question">What services does Titan Growth Hub offer?</h3>
+                                    <div class="custom-faq-toggle">
+                                        <span class="plus-icon">+</span>
+                                        <span class="minus-icon">-</span>
+                                    </div>
+                                </button>
+                                <div id="faq-1" class="collapse show" data-bs-parent="#faqAccordion">
+                                    <div class="custom-faq-answer-wrapper">
+                                        <p class="custom-faq-answer">We offer a full range of digital marketing services including SEO, Local SEO, On-Page &amp; Off-Page SEO, Technical SEO, Meta Ads Management, Content Writing, Link Building, Website Design, and more.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="custom-faq-item">
+                                <button class="custom-faq-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-2" aria-expanded="false">
+                                    <div class="custom-faq-number">02</div>
+                                    <div class="custom-faq-icon-wrapper"><div class="custom-faq-circle"></div></div>
+                                    <h3 class="custom-faq-question">How long does it take to see results from SEO?</h3>
+                                    <div class="custom-faq-toggle">
+                                        <span class="plus-icon">+</span>
+                                        <span class="minus-icon">-</span>
+                                    </div>
+                                </button>
+                                <div id="faq-2" class="collapse" data-bs-parent="#faqAccordion">
+                                    <div class="custom-faq-answer-wrapper">
+                                        <p class="custom-faq-answer">Typically, you can start seeing initial improvements in 3 to 6 months. SEO is a long-term strategy, and the most significant results often compound over time as your domain authority and organic rankings improve.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 3 -->
+                            <div class="custom-faq-item">
+                                <button class="custom-faq-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-3" aria-expanded="false">
+                                    <div class="custom-faq-number">03</div>
+                                    <div class="custom-faq-icon-wrapper"><div class="custom-faq-circle"></div></div>
+                                    <h3 class="custom-faq-question">Do you work with businesses of all sizes?</h3>
+                                    <div class="custom-faq-toggle">
+                                        <span class="plus-icon">+</span>
+                                        <span class="minus-icon">-</span>
+                                    </div>
+                                </button>
+                                <div id="faq-3" class="collapse" data-bs-parent="#faqAccordion">
+                                    <div class="custom-faq-answer-wrapper">
+                                        <p class="custom-faq-answer">Yes, we partner with startups, local businesses, and large enterprises. We tailor our digital marketing strategies to align with your specific industry, budget, and growth objectives.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 4 -->
+                            <div class="custom-faq-item">
+                                <button class="custom-faq-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-4" aria-expanded="false">
+                                    <div class="custom-faq-number">04</div>
+                                    <div class="custom-faq-icon-wrapper"><div class="custom-faq-circle"></div></div>
+                                    <h3 class="custom-faq-question">How do you measure the success of a campaign?</h3>
+                                    <div class="custom-faq-toggle">
+                                        <span class="plus-icon">+</span>
+                                        <span class="minus-icon">-</span>
+                                    </div>
+                                </button>
+                                <div id="faq-4" class="collapse" data-bs-parent="#faqAccordion">
+                                    <div class="custom-faq-answer-wrapper">
+                                        <p class="custom-faq-answer">We track key performance indicators (KPIs) such as organic traffic growth, keyword rankings, conversion rates, cost per acquisition, and overall ROI. Our approaches are data-driven to ensure maximum impact.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 5 -->
+                            <div class="custom-faq-item">
+                                <button class="custom-faq-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-5" aria-expanded="false">
+                                    <div class="custom-faq-number">05</div>
+                                    <div class="custom-faq-icon-wrapper"><div class="custom-faq-circle"></div></div>
+                                    <h3 class="custom-faq-question">Will I get regular reports?</h3>
+                                    <div class="custom-faq-toggle">
+                                        <span class="plus-icon">+</span>
+                                        <span class="minus-icon">-</span>
+                                    </div>
+                                </button>
+                                <div id="faq-5" class="collapse" data-bs-parent="#faqAccordion">
+                                    <div class="custom-faq-answer-wrapper">
+                                        <p class="custom-faq-answer">Absolutely. We provide detailed monthly performance reports, along with ongoing communication to discuss progress, milestones, and strategic adjustments to keep your campaigns on track.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 6 -->
+                            <div class="custom-faq-item">
+                                <button class="custom-faq-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-6" aria-expanded="false">
+                                    <div class="custom-faq-number">06</div>
+                                    <div class="custom-faq-icon-wrapper"><div class="custom-faq-circle"></div></div>
+                                    <h3 class="custom-faq-question">Can you guarantee top rankings on Google?</h3>
+                                    <div class="custom-faq-toggle">
+                                        <span class="plus-icon">+</span>
+                                        <span class="minus-icon">-</span>
+                                    </div>
+                                </button>
+                                <div id="faq-6" class="collapse" data-bs-parent="#faqAccordion">
+                                    <div class="custom-faq-answer-wrapper">
+                                        <p class="custom-faq-answer">While no reputable agency can guarantee the #1 spot due to Google's constantly changing algorithms, we utilize proven, white-hat SEO strategies that have a strong track record of significantly improving search visibility and driving quality traffic.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
             <div class="elementor-element elementor-element-ecca917 e-con-full e-flex e-con e-parent" data-id="ecca917"
                 data-element_type="container">
                 <div class="elementor-element elementor-element-8ef68ef elementor-widget elementor-widget-tx_post_grid elh-el tx_post_grid"
