@@ -74,16 +74,9 @@ export default function BootstrapScripts() {
       `;
       document.body.appendChild(inline2);
 
-      scriptsToLoad.forEach(src => {
-        if (document.querySelector(`script[src='\${src}']`)) return;
-        const script = document.createElement('script');
-        script.src = src;
-        script.async = false; // Ensure sequential execution
-        document.body.appendChild(script);
-      });
-
-      // Run trigger for resize/scroll in case animations need it
-      setTimeout(() => {
+      const loadScript = (index: number) => {
+        if (index >= scriptsToLoad.length) {
+          // All scripts finished loading and executing
           window.dispatchEvent(new Event('resize'));
           window.dispatchEvent(new Event('load'));
           document.dispatchEvent(new Event('DOMContentLoaded'));
@@ -91,7 +84,24 @@ export default function BootstrapScripts() {
               (window as any).jQuery(window).trigger('load');
               (window as any).jQuery(document).trigger('ready');
           }
-      }, 1000);
+          return;
+        }
+
+        const src = scriptsToLoad[index];
+        if (document.querySelector(`script[src='\${src}']`)) {
+          loadScript(index + 1);
+          return;
+        }
+
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = false;
+        script.onload = () => loadScript(index + 1);
+        script.onerror = () => loadScript(index + 1);
+        document.body.appendChild(script);
+      };
+
+      loadScript(0);
     }, 300); // Wait for React hydration
   }, []);
 
