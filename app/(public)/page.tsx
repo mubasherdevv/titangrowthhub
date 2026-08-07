@@ -1833,13 +1833,18 @@ const pageHtml = `
                 .custom-faq-answer-wrapper {
                     padding-left: 85px;
                     padding-right: 40px;
+                    opacity: 1 !important;
+                    visibility: visible !important;
                 }
                 .custom-faq-answer {
                     font-size: 15px;
-                    color: #666;
+                    color: #666 !important;
                     line-height: 1.6;
                     margin-top: 15px;
                     margin-bottom: 0;
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    display: block !important;
                 }
                 /* Active states */
                 .custom-faq-header:not(.collapsed) .custom-faq-number {
