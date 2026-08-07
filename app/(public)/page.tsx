@@ -2535,7 +2535,7 @@ const pageHtml = `
         <script type="speculationrules">
 {"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/wp/avista/*"},{"not":{"href_matches":["/wp/avista/wp-*.php","/wp/avista/wp-admin/*","/wp/avista/wp-content/uploads/*","/wp/avista/wp-content/*","/wp/avista/wp-content/plugins/*","/wp/avista/wp-content/themes/avista/*","/wp/avista/*\\\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\\"nofollow\\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
 </script>
-        <script>
+        <script dangerouslySetInnerHTML={{ __html: (function() {
             const lazyloadRunObserver = () => {
                 const lazyloadBackgrounds = document.querySelectorAll(\`.e-con.e-parent:not(.e-lazyloaded)\`);
                 const lazyloadBackgroundObserver = new IntersectionObserver((entries) => {
@@ -2560,14 +2560,8 @@ const pageHtml = `
             events.forEach((event) => {
                 document.addEventListener(event, lazyloadRunObserver);
             });
-        </script>
-        <script>
-            (function () {
-                var c = document.body.className;
-                c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
-                document.body.className = c;
-            })();
-        </script>
+        })(); }} />
+        
         <link rel='stylesheet' id='wc-blocks-style-css'
             href='wp-content/plugins/woocommerce/assets/client/blocks/wc-blocks6dd8.css?ver=wc-10.4.2' media='all' />
         <link rel='stylesheet' id='elementor-post-2582-css'

@@ -377,22 +377,115 @@ const pageHtml = `
                                             </p>
                                     </div>
 
-                <!-- Single FAQ Section (tabs removed to eliminate duplication) -->
+                <!-- Single FAQ Accordion (clean, no tabs) -->
                 <div class="as-faqs-1-tabs-pane mt-50">
-                                        <div class="tab-pane fade show active"
-                    id="tab-0_9504"
-                    role="tabpanel"
-                    aria-labelledby="projectTab-0_9504">
-                </a>
-                <p class="footer-desc">
-                    We help businesses grow<br>with smart digital solutions.
-                </p>
-                <div class="footer-decorative-line">
-                    <span></span>
-                    <i class="dot"></i>
-                    <span></span>
+                    <div class="as-accordion" id="accordionExample_742">
+                        <div class="as-accordion-item wa_accordion_item active wow fadeInUp2">
+                            <button class="item-title as-h-1"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapse-742-0"
+                                aria-expanded="true"
+                                aria-controls="collapse-742-0">
+                                <span class="text">01.</span>
+                                What services do you offer?
+                                <span class="icon"><i class="fa-solid fa-plus"></i></span>
+                            </button>
+                            <div id="collapse-742-0"
+                                class="accordion-collapse collapse show"
+                                aria-labelledby="heading-742-0"
+                                data-bs-parent="#accordionExample_742">
+                                <p class="as-p-1 item-disc">
+                                    We offer a comprehensive suite of digital marketing services including Search Engine Optimization (SEO), Pay-Per-Click (PPC) advertising, Web Design & Development, and Brand Identity creation. Our goal is to provide end-to-end solutions that drive measurable growth for your business.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="as-accordion-item wa_accordion_item wow fadeInUp2">
+                            <button class="item-title as-h-1 collapsed"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapse-742-1"
+                                aria-expanded="false"
+                                aria-controls="collapse-742-1">
+                                <span class="text">02.</span>
+                                How long does a website project take?
+                                <span class="icon"><i class="fa-solid fa-plus"></i></span>
+                            </button>
+                            <div id="collapse-742-1"
+                                class="accordion-collapse collapse"
+                                aria-labelledby="heading-742-1"
+                                data-bs-parent="#accordionExample_742">
+                                <p class="as-p-1 item-disc">
+                                    A standard website project typically takes 4 to 8 weeks from initial consultation to final launch. This timeline depends on the complexity of the design, the number of pages, and how quickly we receive content and feedback from your team.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="as-accordion-item wa_accordion_item wow fadeInUp2">
+                            <button class="item-title as-h-1 collapsed"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapse-742-2"
+                                aria-expanded="false"
+                                aria-controls="collapse-742-2">
+                                <span class="text">03.</span>
+                                Do you work with international clients?
+                                <span class="icon"><i class="fa-solid fa-plus"></i></span>
+                            </button>
+                            <div id="collapse-742-2"
+                                class="accordion-collapse collapse"
+                                aria-labelledby="heading-742-2"
+                                data-bs-parent="#accordionExample_742">
+                                <p class="as-p-1 item-disc">
+                                    Absolutely! We work with clients worldwide. Our team is experienced in collaborating across different time zones and cultures to deliver exceptional digital marketing solutions globally.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="as-accordion-item wa_accordion_item wow fadeInUp2">
+                            <button class="item-title as-h-1 collapsed"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapse-742-3"
+                                aria-expanded="false"
+                                aria-controls="collapse-742-3">
+                                <span class="text">04.</span>
+                                Can you redesign my existing website?
+                                <span class="icon"><i class="fa-solid fa-plus"></i></span>
+                            </button>
+                            <div id="collapse-742-3"
+                                class="accordion-collapse collapse"
+                                aria-labelledby="heading-742-3"
+                                data-bs-parent="#accordionExample_742">
+                                <p class="as-p-1 item-disc">
+                                    Yes! We specialize in website redesigns that improve user experience, modernize your brand, and boost conversions. We'll analyze your current site and create a tailored redesign strategy.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="as-accordion-item wa_accordion_item wow fadeInUp2">
+                            <button class="item-title as-h-1 collapsed"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapse-742-4"
+                                aria-expanded="false"
+                                aria-controls="collapse-742-4">
+                                <span class="text">05.</span>
+                                How do I get started?
+                                <span class="icon"><i class="fa-solid fa-plus"></i></span>
+                            </button>
+                            <div id="collapse-742-4"
+                                class="accordion-collapse collapse"
+                                aria-labelledby="heading-742-4"
+                                data-bs-parent="#accordionExample_742">
+                                <p class="as-p-1 item-disc">
+                                    Simply <a href="/contact-us" aria-label="Contact us">contact us</a> or send us a message through our website. We'll schedule a free consultation call to learn more about your goals and create a tailored strategy for your business.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
 
             <!-- Follow Us -->
             <div class="footer-col-social">
@@ -665,39 +758,8 @@ const pageHtml = `
 						<script type="speculationrules">
 {"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/wp/avista/*"},{"not":{"href_matches":["/wp/avista/wp-*.php","/wp/avista/wp-admin/*","/wp/avista/wp-content/uploads/*","/wp/avista/wp-content/*","/wp/avista/wp-content/plugins/*","/wp/avista/wp-content/themes/avista/*","/wp/avista/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
 </script>
-			<script>
-				const lazyloadRunObserver = () => {
-					const lazyloadBackgrounds = document.querySelectorAll( \`.e-con.e-parent:not(.e-lazyloaded)\` );
-					const lazyloadBackgroundObserver = new IntersectionObserver( ( entries ) => {
-						entries.forEach( ( entry ) => {
-							if ( entry.isIntersecting ) {
-								let lazyloadBackground = entry.target;
-								if( lazyloadBackground ) {
-									lazyloadBackground.classList.add( 'e-lazyloaded' );
-								}
-								lazyloadBackgroundObserver.unobserve( entry.target );
-							}
-						});
-					}, { rootMargin: '200px 0px 200px 0px' } );
-					lazyloadBackgrounds.forEach( ( lazyloadBackground ) => {
-						lazyloadBackgroundObserver.observe( lazyloadBackground );
-					} );
-				};
-				const events = [
-					'DOMContentLoaded',
-					'elementor/lazyload/observe',
-				];
-				events.forEach( ( event ) => {
-					document.addEventListener( event, lazyloadRunObserver );
-				} );
-			</script>
-				<script>
-		(function () {
-			var c = document.body.className;
-			c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
-			document.body.className = c;
-		})();
-	</script>
+			
+				
 	<link rel='stylesheet' id='wc-blocks-style-css' href='../wp-content/plugins/woocommerce/assets/client/blocks/wc-blocks6dd8.css?ver=wc-10.4.2' media='all' />
 <link rel='stylesheet' id='elementor-post-2582-css' href='../wp-content/uploads/elementor/css/post-258288fa.css?ver=1776695811' media='all' />
 <link rel='stylesheet' id='elementor-post-2141-css' href='../wp-content/uploads/elementor/css/post-2141b54d.css?ver=1776695828' media='all' />
