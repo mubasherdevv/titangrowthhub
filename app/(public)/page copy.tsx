@@ -476,11 +476,7 @@ const pageHtml = `
                                             </div>
                                         </div>
 
-                                        <!-- right-title -->
-                                        <div class="as-about-1-right">
-                                            <h3 class="as-h-1 right-title">
-                                                Expert Team </h3>
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </section>
@@ -1247,8 +1243,23 @@ const pageHtml = `
     .custom-team-card { width: calc(50% - 15px); }
 }
 @media (max-width: 767px) {
-    .custom-team-card { width: 100%; margin-bottom: 20px; }
-    .custom-team-content-box { margin-top: -20px; }
+    .custom-team-cards-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 20px;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+    }
+    .custom-team-card {
+        width: 85%;
+        flex: 0 0 auto;
+        scroll-snap-align: center;
+        margin-bottom: 0px;
+    }
+    .custom-team-cards-container::-webkit-scrollbar {
+        display: none;
+    }
 }
 </style>
 
@@ -1457,287 +1468,10 @@ const pageHtml = `
                                     </div>
                                 </div>
                             </div>
-                            <h2 class="as-process-1-big-title as-h-1 wa_title_spilt_1">
-                                Steps </h2>
-                        </section>
-                    </div>
-                </div>
-            </div>
-            <div class="elementor-element elementor-element-f6b46b3 e-con-full e-flex e-con e-parent" data-id="f6b46b3"
-                data-element_type="container">
-                <div class="elementor-element elementor-element-b5ec9ac elementor-widget elementor-widget-tx_tabs elh-el tx_tabs"
-                    data-id="b5ec9ac" data-element_type="widget"
-                    data-settings="{&quot;design_style&quot;:&quot;style_1&quot;}" data-widget_type="tx_tabs.default">
-                    <div class="elementor-widget-container">
-                        <section class="as-faqs-1-area pt-100 pb-110 tx-section">
-                            <div class="container as-container-1">
-                                <div class="as-faqs-1-wrap">
-                                    <!-- left-awards -->
-                                    <div class="as-faqs-1-left">
-                                        <!-- section-title -->
-                                        <div class="as-faqs-1-left-sec-title text-center mb-60">
-                                            <h6 class="as-subtitle-1 tx-subTitle">
-                                                <span class="icon">
-                                                    {<i aria-hidden="true" class="fas fa-circle"></i>} </span>
-                                                Awards
-                                            </h6>
-                                            <h2 class="tx-title as-sec-title-1">Excellence and innovation drive
-                                                everything we do</h2>
-                                            <p class="tx-description">
-                                            </p>
-                                        </div>
-
-                                      
-
-                                                  
-
-                                               
-
-                                            </div>
-                                        </section>
-                                        <!-- ================= New Custom Section End ================= -->
+                          
 
 
-                                        <!-- awards-list -->
-                                        <div class="as-faqs-1-awards">
-                                            <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/faqs1-illus-1.webp"
-                                                alt="faqs1-illus-1" class="bg-shape-1">
-
-                                            <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/faqs1-illus-2.webp"
-                                                alt="faqs1-illus-2" class="bg-shape-2">
-
-                                            <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/faqs1-clr.webp"
-                                                alt="faqs1-clr" class="bg-shape-3">
-
-                                            <p class="as-faqs-1-awards-single as-p-1 wow backInUp2"
-                                                data-wow-delay=".1s">
-                                                Best Digital Agency of the Year </p>
-                                            <p class="as-faqs-1-awards-single as-p-1 wow backInUp2"
-                                                data-wow-delay=".1s">
-                                                Best Business Award 2024 </p>
-                                            <p class="as-faqs-1-awards-single as-p-1 wow backInUp2"
-                                                data-wow-delay=".1s">
-                                                Featured Author in Colorlib </p>
-
-                                        </div>
-
-                                    </div>
-
-
-                                    <!-- right-faqs -->
-                                    <div class="as-faqs-1-right">
-                                        <!-- section-title -->
-                                        <div class="as-faqs-1-right-sec-title text-center mb-40">
-                                            <h6 class="as-subtitle-1 tx-subTitle">
-                                                <span class="icon">
-                                                    {<i aria-hidden="true" class="fas fa-circle"></i>} </span>
-                                                FAQs
-                                            </h6>
-                                            <h2 class="tx-title as-sec-title-1">Learn more from FAQs</h2>
-                                            <p class="tx-description">
-                                            </p>
-                                        </div>
-
-                                        <!-- tabs-btn -->
-                                        <div class="as-faqs-1-tabs-btn" role="tablist">
-                                            <button class="nav-link as-h-1 active" id="projectTab-0_3855"
-                                                data-bs-toggle="tab" data-bs-target="#tab-0_3855" type="button"
-                                                role="tab" aria-controls="tab-0_3855" aria-selected="true">
-                                                Ask </button>
-                                            <button class="nav-link as-h-1 " id="projectTab-1_3855" data-bs-toggle="tab"
-                                                data-bs-target="#tab-1_3855" type="button" role="tab"
-                                                aria-controls="tab-1_3855" aria-selected="false">
-                                                Job Career </button>
-                                            <button class="nav-link as-h-1 " id="projectTab-2_3855" data-bs-toggle="tab"
-                                                data-bs-target="#tab-2_3855" type="button" role="tab"
-                                                aria-controls="tab-2_3855" aria-selected="false">
-                                                Pricing &amp; Plan </button>
-                                            <div class="as-faqs-1-tabs-btn-line"></div>
-                                        </div>
-
-                                        <!-- tabs-pane -->
-                                        <div class="tab-content as-faqs-1-tabs-pane mt-50">
-                                            <div class="tab-pane fade show active" id="tab-0_3855" role="tabpanel"
-                                                aria-labelledby="projectTab-0_3855">
-                                                <style>
-                                                    .elementor-2141 .elementor-element.elementor-element-1c790c7 {
-                                                        --display: flex;
-                                                    }
-                                                </style>
-                                                <div data-elementor-type="section" data-elementor-id="2141"
-                                                    class="elementor elementor-2141">
-                                                    <div class="elementor-element elementor-element-1c790c7 e-flex e-con-boxed e-con e-parent"
-                                                        data-id="1c790c7" data-element_type="container">
-                                                        <div class="e-con-inner">
-                                                            <div class="elementor-element elementor-element-924fed3 elementor-widget elementor-widget-tx_faq elh-el tx_faq"
-                                                                data-id="924fed3" data-element_type="widget"
-                                                                data-settings="{&quot;design_style&quot;:&quot;style_1&quot;}"
-                                                                data-widget_type="tx_faq.default">
-                                                                <div class="elementor-widget-container">
-                                                                    <div class="as-faqs-1-tabs-pane-single">
-                                                                        <div class="as-accordion"
-                                                                            id="accordionExample_478">
-                                                                            <div
-                                                                                class="as-accordion-item  wa_accordion_item active wow fadeInUp2">
-                                                                                <button class="item-title as-h-1 "
-                                                                                    type="button"
-                                                                                    data-bs-toggle="collapse"
-                                                                                    data-bs-target="#collapse-478-0"
-                                                                                    aria-expanded="true"
-                                                                                    aria-controls="collapse-478-0">
-                                                                                    <span class="text">
-                                                                                        01. </span>
-                                                                                    What services do you offer? <span
-                                                                                        class="icon">
-                                                                                        <i class="fa-solid fa-plus"></i>
-                                                                                    </span>
-                                                                                </button>
-                                                                                <div id="collapse-478-0"
-                                                                                    class="accordion-collapse collapse show"
-                                                                                    aria-labelledby="heading-478-0"
-                                                                                    data-bs-parent="#accordionExample_478">
-                                                                                    <p class="as-p-1 item-disc">
-                                                                                        Simply <a href="#"
-                                                                                            aria-label="name">contact
-                                                                                            us</a>
-                                                                                        or send us a message. We’ll
-                                                                                        schedule a quick call to learn
-                                                                                        more about your goals and get
-                                                                                        started with a tailored plan.
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div
-                                                                                class="as-accordion-item  wa_accordion_item  wow fadeInUp2">
-                                                                                <button
-                                                                                    class="item-title as-h-1 collapsed"
-                                                                                    type="button"
-                                                                                    data-bs-toggle="collapse"
-                                                                                    data-bs-target="#collapse-478-1"
-                                                                                    aria-expanded="false"
-                                                                                    aria-controls="collapse-478-1">
-                                                                                    <span class="text">
-                                                                                        02. </span>
-                                                                                    How long does a website project
-                                                                                    take? <span class="icon">
-                                                                                        <i class="fa-solid fa-plus"></i>
-                                                                                    </span>
-                                                                                </button>
-                                                                                <div id="collapse-478-1"
-                                                                                    class="accordion-collapse collapse "
-                                                                                    aria-labelledby="heading-478-1"
-                                                                                    data-bs-parent="#accordionExample_478">
-                                                                                    <p class="as-p-1 item-disc">
-                                                                                        Simply <a href="#"
-                                                                                            aria-label="name">contact
-                                                                                            us</a>
-                                                                                        or send us a message. We’ll
-                                                                                        schedule a quick call to learn
-                                                                                        more about your goals and get
-                                                                                        started with a tailored plan.
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div
-                                                                                class="as-accordion-item  wa_accordion_item  wow fadeInUp2">
-                                                                                <button
-                                                                                    class="item-title as-h-1 collapsed"
-                                                                                    type="button"
-                                                                                    data-bs-toggle="collapse"
-                                                                                    data-bs-target="#collapse-478-2"
-                                                                                    aria-expanded="false"
-                                                                                    aria-controls="collapse-478-2">
-                                                                                    <span class="text">
-                                                                                        03. </span>
-                                                                                    Do you work with international
-                                                                                    clients? <span class="icon">
-                                                                                        <i class="fa-solid fa-plus"></i>
-                                                                                    </span>
-                                                                                </button>
-                                                                                <div id="collapse-478-2"
-                                                                                    class="accordion-collapse collapse "
-                                                                                    aria-labelledby="heading-478-2"
-                                                                                    data-bs-parent="#accordionExample_478">
-                                                                                    <p class="as-p-1 item-disc">
-                                                                                        Simply <a href="#"
-                                                                                            aria-label="name">contact
-                                                                                            us</a>
-                                                                                        or send us a message. We’ll
-                                                                                        schedule a quick call to learn
-                                                                                        more about your goals and get
-                                                                                        started with a tailored plan.
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div
-                                                                                class="as-accordion-item  wa_accordion_item  wow fadeInUp2">
-                                                                                <button
-                                                                                    class="item-title as-h-1 collapsed"
-                                                                                    type="button"
-                                                                                    data-bs-toggle="collapse"
-                                                                                    data-bs-target="#collapse-478-3"
-                                                                                    aria-expanded="false"
-                                                                                    aria-controls="collapse-478-3">
-                                                                                    <span class="text">
-                                                                                        04. </span>
-                                                                                    Can you redesign my existing
-                                                                                    website? <span class="icon">
-                                                                                        <i class="fa-solid fa-plus"></i>
-                                                                                    </span>
-                                                                                </button>
-                                                                                <div id="collapse-478-3"
-                                                                                    class="accordion-collapse collapse "
-                                                                                    aria-labelledby="heading-478-3"
-                                                                                    data-bs-parent="#accordionExample_478">
-                                                                                    <p class="as-p-1 item-disc">
-                                                                                        Simply <a href="#"
-                                                                                            aria-label="name">contact
-                                                                                            us</a>
-                                                                                        or send us a message. We’ll
-                                                                                        schedule a quick call to learn
-                                                                                        more about your goals and get
-                                                                                        started with a tailored plan.
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div
-                                                                                class="as-accordion-item  wa_accordion_item  wow fadeInUp2">
-                                                                                <button
-                                                                                    class="item-title as-h-1 collapsed"
-                                                                                    type="button"
-                                                                                    data-bs-toggle="collapse"
-                                                                                    data-bs-target="#collapse-478-4"
-                                                                                    aria-expanded="false"
-                                                                                    aria-controls="collapse-478-4">
-                                                                                    <span class="text">
-                                                                                        05. </span>
-                                                                                    How do I get started? <span
-                                                                                        class="icon">
-                                                                                        <i class="fa-solid fa-plus"></i>
-                                                                                    </span>
-                                                                                </button>
-                                                                                <div id="collapse-478-4"
-                                                                                    class="accordion-collapse collapse "
-                                                                                    aria-labelledby="heading-478-4"
-                                                                                    data-bs-parent="#accordionExample_478">
-                                                                                    <p class="as-p-1 item-disc">
-                                                                                        Simply <a href="#"
-                                                                                            aria-label="name">contact
-                                                                                            us</a>
-                                                                                        or send us a message. We’ll
-                                                                                        schedule a quick call to learn
-                                                                                        more about your goals and get
-                                                                                        started with a tailored plan.
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                            
                                             </div>
                                             </div>
                                     </div>
@@ -1987,6 +1721,275 @@ const pageHtml = `
                     </div>
                 </div>
             </div>
+
+            <!-- Custom FAQ Section -->
+            <div class="elementor-element e-con-full e-flex e-con e-parent">
+                <style>
+                .custom-faq-section {
+                    padding: 80px 15px;
+                    background-color: #fff;
+                    width: 100%;
+                }
+                .custom-faq-inner {
+                    max-width: 900px;
+                    margin: 0 auto;
+                }
+                .custom-faq-title {
+                    text-align: center;
+                    font-size: 42px;
+                    font-weight: 800;
+                    color: #1a1a1a;
+                    margin-bottom: 15px;
+                    line-height: 1.2;
+                }
+                .custom-faq-title span {
+                    color: #f65022;
+                }
+                .custom-faq-subtitle {
+                    text-align: center;
+                    font-size: 16px;
+                    color: #666;
+                    max-width: 600px;
+                    margin: 0 auto 50px auto;
+                    line-height: 1.6;
+                }
+                .custom-faq-list {
+                    position: relative;
+                }
+                .custom-faq-list::before {
+                    content: '';
+                    position: absolute;
+                    top: 20px;
+                    bottom: 20px;
+                    left: 49px;
+                    width: 1px;
+                    background-color: #eaeaea;
+                }
+                .custom-faq-item {
+                    position: relative;
+                    padding: 25px 0;
+                    border-bottom: 1px solid #eaeaea;
+                }
+                .custom-faq-item:last-child {
+                    border-bottom: none;
+                }
+                .custom-faq-header {
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    background: none;
+                    border: none;
+                    width: 100%;
+                    text-align: left;
+                    padding: 0;
+                }
+                .custom-faq-header:focus {
+                    outline: none;
+                }
+                .custom-faq-number {
+                    width: 35px;
+                    font-weight: 700;
+                    font-size: 16px;
+                    color: #1a1a1a;
+                }
+                .custom-faq-icon-wrapper {
+                    width: 30px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 2;
+                }
+                .custom-faq-circle {
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    border: 2px solid #ccc;
+                    background-color: #fff;
+                }
+                .custom-faq-question {
+                    flex: 1;
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #1a1a1a;
+                    margin: 0;
+                    padding: 0 20px;
+                }
+                .custom-faq-toggle {
+                    font-size: 24px;
+                    font-weight: 300;
+                    color: #1a1a1a;
+                }
+                .custom-faq-answer-wrapper {
+                    padding-left: 85px;
+                    padding-right: 40px;
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                }
+                .custom-faq-answer {
+                    font-size: 15px;
+                    color: #666 !important;
+                    line-height: 1.6;
+                    margin-top: 15px;
+                    margin-bottom: 0;
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    display: block !important;
+                }
+                /* Active states */
+                .custom-faq-header:not(.collapsed) .custom-faq-number {
+                    color: #f65022;
+                }
+                .custom-faq-header:not(.collapsed) .custom-faq-circle {
+                    border-color: #f65022;
+                    position: relative;
+                }
+                .custom-faq-header:not(.collapsed) .custom-faq-circle::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 4px;
+                    height: 4px;
+                    background-color: #f65022;
+                    border-radius: 50%;
+                }
+                .custom-faq-header:not(.collapsed) .custom-faq-toggle {
+                    color: #f65022;
+                }
+                .custom-faq-header .minus-icon { display: none; }
+                .custom-faq-header:not(.collapsed) .minus-icon { display: inline; }
+                .custom-faq-header:not(.collapsed) .plus-icon { display: none; }
+
+                @media (max-width: 767px) {
+                    .custom-faq-list::before { left: 39px; }
+                    .custom-faq-question { font-size: 16px; padding: 0 10px; }
+                    .custom-faq-answer-wrapper { padding-left: 65px; padding-right: 15px; }
+                    .custom-faq-number { width: 25px; }
+                    .custom-faq-title { font-size: 32px; }
+                }
+                </style>
+
+                <section class="custom-faq-section tx-section">
+                    <div class="custom-faq-inner">
+                        <h2 class="custom-faq-title">Frequently Asked <span>Questions</span></h2>
+                        <p class="custom-faq-subtitle">Find quick answers to common questions about our services, process, and how we help your business grow.</p>
+                        
+                        <div class="custom-faq-list" id="faqAccordion">
+                            
+                            <!-- Item 1 -->
+                            <div class="custom-faq-item">
+                                <button class="custom-faq-header" type="button" data-bs-toggle="collapse" data-bs-target="#faq-1" aria-expanded="true">
+                                    <div class="custom-faq-number">01</div>
+                                    <div class="custom-faq-icon-wrapper"><div class="custom-faq-circle"></div></div>
+                                    <h3 class="custom-faq-question">What services does Titan Growth Hub offer?</h3>
+                                    <div class="custom-faq-toggle">
+                                        <span class="plus-icon">+</span>
+                                        <span class="minus-icon">-</span>
+                                    </div>
+                                </button>
+                                <div id="faq-1" class="collapse show" data-bs-parent="#faqAccordion">
+                                    <div class="custom-faq-answer-wrapper">
+                                        <p class="custom-faq-answer">We offer a full range of digital marketing services including SEO, Local SEO, On-Page &amp; Off-Page SEO, Technical SEO, Meta Ads Management, Content Writing, Link Building, Website Design, and more.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="custom-faq-item">
+                                <button class="custom-faq-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-2" aria-expanded="false">
+                                    <div class="custom-faq-number">02</div>
+                                    <div class="custom-faq-icon-wrapper"><div class="custom-faq-circle"></div></div>
+                                    <h3 class="custom-faq-question">How long does it take to see results from SEO?</h3>
+                                    <div class="custom-faq-toggle">
+                                        <span class="plus-icon">+</span>
+                                        <span class="minus-icon">-</span>
+                                    </div>
+                                </button>
+                                <div id="faq-2" class="collapse" data-bs-parent="#faqAccordion">
+                                    <div class="custom-faq-answer-wrapper">
+                                        <p class="custom-faq-answer">Typically, you can start seeing initial improvements in 3 to 6 months. SEO is a long-term strategy, and the most significant results often compound over time as your domain authority and organic rankings improve.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 3 -->
+                            <div class="custom-faq-item">
+                                <button class="custom-faq-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-3" aria-expanded="false">
+                                    <div class="custom-faq-number">03</div>
+                                    <div class="custom-faq-icon-wrapper"><div class="custom-faq-circle"></div></div>
+                                    <h3 class="custom-faq-question">Do you work with businesses of all sizes?</h3>
+                                    <div class="custom-faq-toggle">
+                                        <span class="plus-icon">+</span>
+                                        <span class="minus-icon">-</span>
+                                    </div>
+                                </button>
+                                <div id="faq-3" class="collapse" data-bs-parent="#faqAccordion">
+                                    <div class="custom-faq-answer-wrapper">
+                                        <p class="custom-faq-answer">Yes, we partner with startups, local businesses, and large enterprises. We tailor our digital marketing strategies to align with your specific industry, budget, and growth objectives.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 4 -->
+                            <div class="custom-faq-item">
+                                <button class="custom-faq-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-4" aria-expanded="false">
+                                    <div class="custom-faq-number">04</div>
+                                    <div class="custom-faq-icon-wrapper"><div class="custom-faq-circle"></div></div>
+                                    <h3 class="custom-faq-question">How do you measure the success of a campaign?</h3>
+                                    <div class="custom-faq-toggle">
+                                        <span class="plus-icon">+</span>
+                                        <span class="minus-icon">-</span>
+                                    </div>
+                                </button>
+                                <div id="faq-4" class="collapse" data-bs-parent="#faqAccordion">
+                                    <div class="custom-faq-answer-wrapper">
+                                        <p class="custom-faq-answer">We track key performance indicators (KPIs) such as organic traffic growth, keyword rankings, conversion rates, cost per acquisition, and overall ROI. Our approaches are data-driven to ensure maximum impact.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 5 -->
+                            <div class="custom-faq-item">
+                                <button class="custom-faq-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-5" aria-expanded="false">
+                                    <div class="custom-faq-number">05</div>
+                                    <div class="custom-faq-icon-wrapper"><div class="custom-faq-circle"></div></div>
+                                    <h3 class="custom-faq-question">Will I get regular reports?</h3>
+                                    <div class="custom-faq-toggle">
+                                        <span class="plus-icon">+</span>
+                                        <span class="minus-icon">-</span>
+                                    </div>
+                                </button>
+                                <div id="faq-5" class="collapse" data-bs-parent="#faqAccordion">
+                                    <div class="custom-faq-answer-wrapper">
+                                        <p class="custom-faq-answer">Absolutely. We provide detailed monthly performance reports, along with ongoing communication to discuss progress, milestones, and strategic adjustments to keep your campaigns on track.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 6 -->
+                            <div class="custom-faq-item">
+                                <button class="custom-faq-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-6" aria-expanded="false">
+                                    <div class="custom-faq-number">06</div>
+                                    <div class="custom-faq-icon-wrapper"><div class="custom-faq-circle"></div></div>
+                                    <h3 class="custom-faq-question">Can you guarantee top rankings on Google?</h3>
+                                    <div class="custom-faq-toggle">
+                                        <span class="plus-icon">+</span>
+                                        <span class="minus-icon">-</span>
+                                    </div>
+                                </button>
+                                <div id="faq-6" class="collapse" data-bs-parent="#faqAccordion">
+                                    <div class="custom-faq-answer-wrapper">
+                                        <p class="custom-faq-answer">While no reputable agency can guarantee the #1 spot due to Google's constantly changing algorithms, we utilize proven, white-hat SEO strategies that have a strong track record of significantly improving search visibility and driving quality traffic.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
             <div class="elementor-element elementor-element-ecca917 e-con-full e-flex e-con e-parent" data-id="ecca917"
                 data-element_type="container">
                 <div class="elementor-element elementor-element-8ef68ef elementor-widget elementor-widget-tx_post_grid elh-el tx_post_grid"
@@ -2547,7 +2550,13 @@ const pageHtml = `
                 document.addEventListener(event, lazyloadRunObserver);
             });
         })(); }} />
-        
+        <script>
+            (function () {
+                var c = document.body.className;
+                c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+                document.body.className = c;
+            })();
+        </script>
         <link rel='stylesheet' id='wc-blocks-style-css'
             href='wp-content/plugins/woocommerce/assets/client/blocks/wc-blocks6dd8.css?ver=wc-10.4.2' media='all' />
         <link rel='stylesheet' id='elementor-post-2582-css'

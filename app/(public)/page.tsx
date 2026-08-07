@@ -476,11 +476,7 @@ const pageHtml = `
                                             </div>
                                         </div>
 
-                                        <!-- right-title -->
-                                        <div class="as-about-1-right">
-                                            <h3 class="as-h-1 right-title">
-                                                Expert Team </h3>
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </section>

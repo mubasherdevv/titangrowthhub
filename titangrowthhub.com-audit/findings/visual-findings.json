@@ -1,0 +1,251 @@
+{
+  "visual": {
+    "above_the_fold": [
+      {
+        "device": "desktop",
+        "viewport": "1920x1080",
+        "analysis": {
+          "h1Visible": false,
+          "h1Position": null,
+          "primaryCTAs": [
+            {
+              "text": "Contact",
+              "visible": true,
+              "position": 30
+            },
+            {
+              "text": "Get started",
+              "visible": true,
+              "position": 37
+            },
+            {
+              "text": "Contact",
+              "visible": true,
+              "position": 443
+            },
+            {
+              "text": "Schedule a call",
+              "visible": true,
+              "position": 607
+            },
+            {
+              "text": "contact\n                                          ",
+              "visible": true,
+              "position": 0
+            },
+            {
+              "text": "contact\n                                          ",
+              "visible": true,
+              "position": 0
+            },
+            {
+              "text": "contact\n                                          ",
+              "visible": true,
+              "position": 0
+            },
+            {
+              "text": "contact\n                                          ",
+              "visible": true,
+              "position": 0
+            }
+          ],
+          "heroContent": [
+            {
+              "visible": true,
+              "height": 824,
+              "topPosition": -1
+            }
+          ],
+          "navVisible": true,
+          "logoVisible": true,
+          "scrollPosition": 0
+        }
+      },
+      {
+        "device": "mobile",
+        "viewport": "375x812",
+        "analysis": {
+          "h1Visible": false,
+          "h1Position": null,
+          "primaryCTAs": [
+            {
+              "text": "Contact",
+              "visible": true,
+              "position": 0
+            },
+            {
+              "text": "Get started",
+              "visible": true,
+              "position": 36
+            },
+            {
+              "text": "Contact",
+              "visible": true,
+              "position": 443
+            },
+            {
+              "text": "Schedule a call",
+              "visible": true,
+              "position": 598
+            },
+            {
+              "text": "contact\n                                          ",
+              "visible": true,
+              "position": 0
+            },
+            {
+              "text": "contact\n                                          ",
+              "visible": true,
+              "position": 0
+            },
+            {
+              "text": "contact\n                                          ",
+              "visible": true,
+              "position": 0
+            },
+            {
+              "text": "contact\n                                          ",
+              "visible": true,
+              "position": 0
+            }
+          ],
+          "heroContent": [
+            {
+              "visible": true,
+              "height": 896,
+              "topPosition": -1
+            }
+          ],
+          "navVisible": false,
+          "logoVisible": true,
+          "scrollPosition": 0
+        }
+      }
+    ],
+    "mobile_responsiveness": [
+      {
+        "type": "small_touch_targets",
+        "severity": "medium",
+        "message": "40 interactive elements have touch targets smaller than 48x48px",
+        "elements": [
+          {
+            "tag": "A",
+            "text": "Get started",
+            "width": 108,
+            "height": 42
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "width": 42,
+            "height": 42
+          },
+          {
+            "tag": "A",
+            "text": "",
+            "width": 150,
+            "height": 38
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "width": 25,
+            "height": 25
+          },
+          {
+            "tag": "A",
+            "text": "",
+            "width": 40,
+            "height": 40
+          },
+          {
+            "tag": "A",
+            "text": "",
+            "width": 40,
+            "height": 40
+          },
+          {
+            "tag": "A",
+            "text": "",
+            "width": 40,
+            "height": 40
+          },
+          {
+            "tag": "A",
+            "text": "",
+            "width": 40,
+            "height": 40
+          },
+          {
+            "tag": "A",
+            "text": "Schedule a call",
+            "width": 183,
+            "height": 44
+          },
+          {
+            "tag": "A",
+            "text": "[email\u00a0protected]",
+            "width": 122,
+            "height": 16
+          }
+        ]
+      },
+      {
+        "type": "small_text",
+        "severity": "medium",
+        "message": "56 text elements have font size below 16px",
+        "examples": [
+          {
+            "tag": "LI",
+            "fontSize": 14,
+            "text": "Responsive Design"
+          },
+          {
+            "tag": "LI",
+            "fontSize": 14,
+            "text": "Interaction Design"
+          },
+          {
+            "tag": "LI",
+            "fontSize": 14,
+            "text": "SEO Optimization"
+          },
+          {
+            "tag": "LI",
+            "fontSize": 14,
+            "text": "CMS Integration"
+          },
+          {
+            "tag": "LI",
+            "fontSize": 14,
+            "text": "Interaction Design"
+          }
+        ]
+      },
+      {
+        "type": "mobile_navigation",
+        "severity": "info",
+        "message": "Mobile navigation check",
+        "hasHamburgerMenu": true,
+        "hamburgerVisible": false
+      }
+    ],
+    "layout_issues": [],
+    "accessibility_tree": [],
+    "recommendations": [],
+    "page_metrics": {
+      "documentHeight": 20087,
+      "viewportHeight": 812,
+      "viewportWidth": 375,
+      "fontSize": "18px",
+      "h1Count": 0,
+      "h1Text": [],
+      "buttons": 11,
+      "links": 80,
+      "images": 204,
+      "imagesWithoutAlt": 0,
+      "fontSize16Plus": 2990,
+      "touchTargetsSmall": 67
+    }
+  }
+}
