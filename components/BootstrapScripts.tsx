@@ -38,29 +38,31 @@ export default function BootstrapScripts() {
       // Add inline scripts that were in the HTML
       const inline1 = document.createElement('script');
       inline1.innerHTML = `
-        const lazyloadRunObserver = () => {
-            const lazyloadBackgrounds = document.querySelectorAll('.e-con.e-parent:not(.e-lazyloaded)');
-            const lazyloadBackgroundObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        let lazyloadBackground = entry.target;
-                        if (lazyloadBackground) {
-                            lazyloadBackground.classList.add('e-lazyloaded');
+        (function() {
+            const lazyloadRunObserver = () => {
+                const lazyloadBackgrounds = document.querySelectorAll('.e-con.e-parent:not(.e-lazyloaded)');
+                const lazyloadBackgroundObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            let lazyloadBackground = entry.target;
+                            if (lazyloadBackground) {
+                                lazyloadBackground.classList.add('e-lazyloaded');
+                            }
+                            lazyloadBackgroundObserver.unobserve(entry.target);
                         }
-                        lazyloadBackgroundObserver.unobserve(entry.target);
-                    }
+                    });
+                }, { rootMargin: '200px 0px 200px 0px' });
+                lazyloadBackgrounds.forEach((lazyloadBackground) => {
+                    lazyloadBackgroundObserver.observe(lazyloadBackground);
                 });
-            }, { rootMargin: '200px 0px 200px 0px' });
-            lazyloadBackgrounds.forEach((lazyloadBackground) => {
-                lazyloadBackgroundObserver.observe(lazyloadBackground);
+            };
+            const events = ['DOMContentLoaded', 'elementor/lazyload/observe'];
+            events.forEach((event) => {
+                document.addEventListener(event, lazyloadRunObserver);
             });
-        };
-        const events = ['DOMContentLoaded', 'elementor/lazyload/observe'];
-        events.forEach((event) => {
-            document.addEventListener(event, lazyloadRunObserver);
-        });
-        // Fallback for SPA
-        lazyloadRunObserver();
+            // Fallback for SPA
+            lazyloadRunObserver();
+        })();
       `;
       document.body.appendChild(inline1);
 
