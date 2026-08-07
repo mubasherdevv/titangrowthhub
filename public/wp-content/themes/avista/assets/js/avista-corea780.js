@@ -1244,7 +1244,7 @@
 				start: "top 0%",
 				end: "900px",
 				pin: ".p1_pin_elm",
-				pinSpacing: false,
+				pinSpacing: true,
 				markers: false,
 			},
 		});

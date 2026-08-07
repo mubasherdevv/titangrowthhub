@@ -60,7 +60,7 @@ const pageHtml = `
 				<div class="elementor-element elementor-element-a98b99b elementor-widget elementor-widget-tx_headers elh-el tx_headers" data-id="a98b99b" data-element_type="widget" data-settings="{&quot;design_style&quot;:&quot;style_1&quot;}" data-widget_type="tx_headers.default">
 				<div class="elementor-widget-container">
 					
-<header class="as-header-1-area tx-header ">
+<header class="as-header-1-area tx-header  has-inner-page ">
     <div class="container as-container-1 text-right">
         <div class="as-header-1-wrap">
 
@@ -1341,13 +1341,6 @@ const pageHtml = `
                     data-settings="{&quot;design_style&quot;:&quot;style_3&quot;}"
                     data-widget_type="tx_service_section.default">
                     <div class="elementor-widget-container">
-                        <style>
-                            @media (min-width: 992px) {
-                                .as-process-1-area.p1_pin_elm_trigger {
-                                    height: 850px !important;
-                                }
-                            }
-                        </style>
                         <section class="as-process-1-area wa-fix pt-110 wa-p-relative p1_pin_elm_trigger tx-section ">
                             <div class="p1_pin_elm">
                                 <div class="container as-container-1 ">
@@ -2561,7 +2554,13 @@ const pageHtml = `
                 document.addEventListener(event, lazyloadRunObserver);
             });
         })(); }} />
-        
+        <script>
+            (function () {
+                var c = document.body.className;
+                c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+                document.body.className = c;
+            })();
+        </script>
         <link rel='stylesheet' id='wc-blocks-style-css'
             href='wp-content/plugins/woocommerce/assets/client/blocks/wc-blocks6dd8.css?ver=wc-10.4.2' media='all' />
         <link rel='stylesheet' id='elementor-post-2582-css'
