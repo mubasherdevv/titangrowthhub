@@ -39,29 +39,29 @@ export default function BootstrapScripts() {
       const inline1 = document.createElement('script');
       inline1.innerHTML = `
         (function() {
-            const lazyloadRunObserver = () => {
-                const lazyloadBackgrounds = document.querySelectorAll('.e-con.e-parent:not(.e-lazyloaded)');
-                const lazyloadBackgroundObserver = new IntersectionObserver((entries) => {
+            const customLazyloadRunObserver = () => {
+                const customLazyloadBackgrounds = document.querySelectorAll('.e-con.e-parent:not(.e-lazyloaded)');
+                const customLazyloadBackgroundObserver = new IntersectionObserver((entries) => {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
-                            let lazyloadBackground = entry.target;
-                            if (lazyloadBackground) {
-                                lazyloadBackground.classList.add('e-lazyloaded');
+                            let customLazyloadBackground = entry.target;
+                            if (customLazyloadBackground) {
+                                customLazyloadBackground.classList.add('e-lazyloaded');
                             }
-                            lazyloadBackgroundObserver.unobserve(entry.target);
+                            customLazyloadBackgroundObserver.unobserve(entry.target);
                         }
                     });
                 }, { rootMargin: '200px 0px 200px 0px' });
-                lazyloadBackgrounds.forEach((lazyloadBackground) => {
-                    lazyloadBackgroundObserver.observe(lazyloadBackground);
+                customLazyloadBackgrounds.forEach((customLazyloadBackground) => {
+                    customLazyloadBackgroundObserver.observe(customLazyloadBackground);
                 });
             };
             const events = ['DOMContentLoaded', 'elementor/lazyload/observe'];
             events.forEach((event) => {
-                document.addEventListener(event, lazyloadRunObserver);
+                document.addEventListener(event, customLazyloadRunObserver);
             });
             // Fallback for SPA
-            lazyloadRunObserver();
+            customLazyloadRunObserver();
         })();
       `;
       document.body.appendChild(inline1);
