@@ -63,3 +63,8 @@
     max-height: 45px !important;
     object-fit: contain;
 }
+
+
+.js-marquee-wrapper { display: flex !important; flex-wrap: nowrap !important; width: max-content !important; }
+
+body { margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; }

@@ -1487,32 +1487,7 @@ const pageHtml = `
                                             </p>
                                         </div>
 
-                                        <!-- ================= New Custom Section Start ================= -->
-                                        <section class="as-features-area pt-120 pb-120 wa-fix">
-                                            <div class="container as-container-1">
-
-                                                <!-- Section Header -->
-                                                <div class="row justify-content-center text-center mb-60">
-                                                    <div class="col-lg-8">
-                                                        <p class="as-p-1 hero-disc wa_title_split_2" data-delay=".2">
-                                                            Why Work With Us
-                                                        </p>
-                                                        <h2 class="tx-title as-h-1 hero-title wa_title_spilt_1">
-                                                            Innovative Digital Solutions For Your Business
-                                                        </h2>
-                                                    </div>
-                                                </div>
-
-                                             
-
-                                                  
-
-                                               
-
-                                            </div>
-                                        </section>
-                                        <!-- ================= New Custom Section End ================= -->
-
+                                    
 
                                         <!-- awards-list -->
                                         <div class="as-faqs-1-awards">
@@ -1525,9 +1500,9 @@ const pageHtml = `
                                             <img loading="lazy" decoding="async" src="/wp-content/uploads/2025/10/faqs1-clr.webp"
                                                 alt="faqs1-clr" class="bg-shape-3">
 
-                                            <p class="as-faqs-1-awards-single as-p-1 wow backInUp2"
+                                            <p class="as-faqs-1-awards-sinInUp2"
                                                 data-wow-delay=".1s">
-                                                Best Digital Agency of the Year </p>
+                                             </p>
                                             <p class="as-faqs-1-awards-single as-p-1 wow backInUp2"
                                                 data-wow-delay=".1s">
                                                 Best Business Award 2024 </p>

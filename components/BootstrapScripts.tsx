@@ -34,57 +34,65 @@ export default function BootstrapScripts() {
     if (loaded.current) return;
     loaded.current = true;
     
-    // Add inline scripts that were in the HTML
-    const inline1 = document.createElement('script');
-    inline1.innerHTML = `
-      const lazyloadRunObserver = () => {
-          const lazyloadBackgrounds = document.querySelectorAll('.e-con.e-parent:not(.e-lazyloaded)');
-          const lazyloadBackgroundObserver = new IntersectionObserver((entries) => {
-              entries.forEach((entry) => {
-                  if (entry.isIntersecting) {
-                      let lazyloadBackground = entry.target;
-                      if (lazyloadBackground) {
-                          lazyloadBackground.classList.add('e-lazyloaded');
-                      }
-                      lazyloadBackgroundObserver.unobserve(entry.target);
-                  }
-              });
-          }, { rootMargin: '200px 0px 200px 0px' });
-          lazyloadBackgrounds.forEach((lazyloadBackground) => {
-              lazyloadBackgroundObserver.observe(lazyloadBackground);
-          });
-      };
-      const events = ['DOMContentLoaded', 'elementor/lazyload/observe'];
-      events.forEach((event) => {
-          document.addEventListener(event, lazyloadRunObserver);
-      });
-      // Fallback for SPA
-      lazyloadRunObserver();
-    `;
-    document.body.appendChild(inline1);
-
-    const inline2 = document.createElement('script');
-    inline2.innerHTML = `
-      (function () {
-          var c = document.body.className;
-          c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
-          document.body.className = c;
-      })();
-    `;
-    document.body.appendChild(inline2);
-
-    scriptsToLoad.forEach(src => {
-      if (document.querySelector(`script[src='\${src}']`)) return;
-      const script = document.createElement('script');
-      script.src = src;
-      script.async = false; // Ensure sequential execution
-      document.body.appendChild(script);
-    });
-
-    // Run trigger for resize/scroll in case animations need it
     setTimeout(() => {
-        window.dispatchEvent(new Event('resize'));
-    }, 1000);
+      // Add inline scripts that were in the HTML
+      const inline1 = document.createElement('script');
+      inline1.innerHTML = `
+        const lazyloadRunObserver = () => {
+            const lazyloadBackgrounds = document.querySelectorAll('.e-con.e-parent:not(.e-lazyloaded)');
+            const lazyloadBackgroundObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        let lazyloadBackground = entry.target;
+                        if (lazyloadBackground) {
+                            lazyloadBackground.classList.add('e-lazyloaded');
+                        }
+                        lazyloadBackgroundObserver.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '200px 0px 200px 0px' });
+            lazyloadBackgrounds.forEach((lazyloadBackground) => {
+                lazyloadBackgroundObserver.observe(lazyloadBackground);
+            });
+        };
+        const events = ['DOMContentLoaded', 'elementor/lazyload/observe'];
+        events.forEach((event) => {
+            document.addEventListener(event, lazyloadRunObserver);
+        });
+        // Fallback for SPA
+        lazyloadRunObserver();
+      `;
+      document.body.appendChild(inline1);
+
+      const inline2 = document.createElement('script');
+      inline2.innerHTML = `
+        (function () {
+            var c = document.body.className;
+            c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+            document.body.className = c;
+        })();
+      `;
+      document.body.appendChild(inline2);
+
+      scriptsToLoad.forEach(src => {
+        if (document.querySelector(`script[src='\${src}']`)) return;
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = false; // Ensure sequential execution
+        document.body.appendChild(script);
+      });
+
+      // Run trigger for resize/scroll in case animations need it
+      setTimeout(() => {
+          window.dispatchEvent(new Event('resize'));
+          window.dispatchEvent(new Event('load'));
+          document.dispatchEvent(new Event('DOMContentLoaded'));
+          if (typeof window !== 'undefined' && window.jQuery) {
+              window.jQuery(window).trigger('load');
+              window.jQuery(document).trigger('ready');
+          }
+      }, 1000);
+    }, 300); // Wait for React hydration
   }, []);
 
   return null;

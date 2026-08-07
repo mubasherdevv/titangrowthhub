@@ -1,3 +1,4 @@
+import '@/app/globals.css';
 import { getCleanHtml } from '@/lib/htmlHelper';
 import parse from 'html-react-parser';
 import { supabase } from '@/lib/supabase';
