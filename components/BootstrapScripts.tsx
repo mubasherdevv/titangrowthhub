@@ -87,9 +87,9 @@ export default function BootstrapScripts() {
           window.dispatchEvent(new Event('resize'));
           window.dispatchEvent(new Event('load'));
           document.dispatchEvent(new Event('DOMContentLoaded'));
-          if (typeof window !== 'undefined' && window.jQuery) {
-              window.jQuery(window).trigger('load');
-              window.jQuery(document).trigger('ready');
+          if (typeof window !== 'undefined' && (window as any).jQuery) {
+              (window as any).jQuery(window).trigger('load');
+              (window as any).jQuery(document).trigger('ready');
           }
       }, 1000);
     }, 300); // Wait for React hydration
